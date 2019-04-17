@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.our.oa.dao.CompanyMapper">
+  <resultMap id="BaseResultMap" type="com.our.oa.entity.Company">
+    <id column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="company_code" jdbcType="VARCHAR" property="companyCode" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="zip_code" jdbcType="VARCHAR" property="zipCode" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="website" jdbcType="VARCHAR" property="website" />
+    <result column="is_bp" jdbcType="BIT" property="isBp" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="branch_bank" jdbcType="VARCHAR" property="branchBank" />
+    <result column="bank_number" jdbcType="VARCHAR" property="bankNumber" />
+    <result column="bank_desc" jdbcType="VARCHAR" property="bankDesc" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from oa..sys_company
+    where company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.our.oa.entity.Company">
+    insert into sys_company (company_id, company_name, company_code, 
+      address, zip_code, email, 
+      telephone, website, is_bp, 
+      bank_name, branch_bank, bank_number, 
+      bank_desc, create_time, update_time, 
+      delete_time, delete_flag)
+    values (#{companyId,jdbcType=INTEGER}, #{companyName,jdbcType=VARCHAR}, #{companyCode,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, #{isBp,jdbcType=BIT}, 
+      #{bankName,jdbcType=VARCHAR}, #{branchBank,jdbcType=VARCHAR}, #{bankNumber,jdbcType=VARCHAR}, 
+      #{bankDesc,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.Company">
+    update sys_company
+    set company_name = #{companyName,jdbcType=VARCHAR},
+      company_code = #{companyCode,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      zip_code = #{zipCode,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      website = #{website,jdbcType=VARCHAR},
+      is_bp = #{isBp,jdbcType=BIT},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      branch_bank = #{branchBank,jdbcType=VARCHAR},
+      bank_number = #{bankNumber,jdbcType=VARCHAR},
+      bank_desc = #{bankDesc,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=BIT}
+    where company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select company_id, company_name, company_code, address, zip_code, email, telephone, 
+    website, is_bp, bank_name, branch_bank, bank_number, bank_desc, create_time, update_time, 
+    delete_time, delete_flag
+    from sys_company
+    where company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select company_id, company_name, company_code, address, zip_code, email, telephone, 
+    website, is_bp, bank_name, branch_bank, bank_number, bank_desc, create_time, update_time, 
+    delete_time, delete_flag
+    from sys_company
+  </select>
+</mapper>

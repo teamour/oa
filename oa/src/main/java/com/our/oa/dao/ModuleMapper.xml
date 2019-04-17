@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.our.oa.dao.ModuleMapper">
+  <resultMap id="BaseResultMap" type="com.our.oa.entity.Module">
+    <id column="module_id" jdbcType="INTEGER" property="moduleId" />
+    <result column="module_name" jdbcType="VARCHAR" property="moduleName" />
+    <result column="module_path" jdbcType="VARCHAR" property="modulePath" />
+    <result column="module_icon" jdbcType="VARCHAR" property="moduleIcon" />
+    <result column="app_id" jdbcType="INTEGER" property="appId" />
+    <result column="parent_module_id" jdbcType="INTEGER" property="parentModuleId" />
+    <result column="sort_order" jdbcType="INTEGER" property="sortOrder" />
+    <result column="status" jdbcType="BIT" property="status" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from oa..sys_module
+    where module_id = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.our.oa.entity.Module">
+    insert into oa..sys_module (module_id, module_name, module_path, 
+      module_icon, app_id, parent_module_id, 
+      sort_order, status)
+    values (#{moduleId,jdbcType=INTEGER}, #{moduleName,jdbcType=VARCHAR}, #{modulePath,jdbcType=VARCHAR}, 
+      #{moduleIcon,jdbcType=VARCHAR}, #{appId,jdbcType=INTEGER}, #{parentModuleId,jdbcType=INTEGER}, 
+      #{sortOrder,jdbcType=INTEGER}, #{status,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.Module">
+    update oa..sys_module
+    set module_name = #{moduleName,jdbcType=VARCHAR},
+      module_path = #{modulePath,jdbcType=VARCHAR},
+      module_icon = #{moduleIcon,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=INTEGER},
+      parent_module_id = #{parentModuleId,jdbcType=INTEGER},
+      sort_order = #{sortOrder,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT}
+    where module_id = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select module_id, module_name, module_path, module_icon, app_id, parent_module_id, 
+    sort_order, status
+    from oa..sys_module
+    where module_id = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select module_id, module_name, module_path, module_icon, app_id, parent_module_id, 
+    sort_order, status
+    from oa..sys_module
+  </select>
+</mapper>

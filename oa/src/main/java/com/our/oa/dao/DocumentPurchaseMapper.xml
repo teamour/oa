@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.our.oa.dao.DocumentPurchaseMapper">
+  <resultMap id="BaseResultMap" type="com.our.oa.entity.DocumentPurchase">
+    <id column="purchase_document_id" jdbcType="INTEGER" property="purchaseDocumentId" />
+    <result column="project_id" jdbcType="INTEGER" property="projectId" />
+    <result column="unit_price" jdbcType="INTEGER" property="unitPrice" />
+    <result column="employee_id" jdbcType="INTEGER" property="employeeId" />
+    <result column="settlement_time" jdbcType="VARCHAR" property="settlementTime" />
+    <result column="template_id" jdbcType="INTEGER" property="templateId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from oa..t_document_purchase
+    where purchase_document_id = #{purchaseDocumentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.our.oa.entity.DocumentPurchase">
+    insert into oa..t_document_purchase (purchase_document_id, project_id, unit_price, 
+      employee_id, settlement_time, template_id, 
+      create_time, update_time, delete_time, 
+      delete_flag)
+    values (#{purchaseDocumentId,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER}, #{unitPrice,jdbcType=INTEGER}, 
+      #{employeeId,jdbcType=INTEGER}, #{settlementTime,jdbcType=VARCHAR}, #{templateId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP}, 
+      #{deleteFlag,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.DocumentPurchase">
+    update oa..t_document_purchase
+    set project_id = #{projectId,jdbcType=INTEGER},
+      unit_price = #{unitPrice,jdbcType=INTEGER},
+      employee_id = #{employeeId,jdbcType=INTEGER},
+      settlement_time = #{settlementTime,jdbcType=VARCHAR},
+      template_id = #{templateId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=BIT}
+    where purchase_document_id = #{purchaseDocumentId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select purchase_document_id, project_id, unit_price, employee_id, settlement_time, 
+    template_id, create_time, update_time, delete_time, delete_flag
+    from oa..t_document_purchase
+    where purchase_document_id = #{purchaseDocumentId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select purchase_document_id, project_id, unit_price, employee_id, settlement_time, 
+    template_id, create_time, update_time, delete_time, delete_flag
+    from oa..t_document_purchase
+  </select>
+</mapper>

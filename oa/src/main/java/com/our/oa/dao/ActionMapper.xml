@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.our.oa.dao.ActionMapper">
+  <resultMap id="BaseResultMap" type="com.our.oa.entity.Action">
+    <id column="action_id" jdbcType="INTEGER" property="actionId" />
+    <result column="action_name" jdbcType="VARCHAR" property="actionName" />
+    <result column="action_code" jdbcType="VARCHAR" property="actionCode" />
+    <result column="sort_order" jdbcType="INTEGER" property="sortOrder" />
+    <result column="status" jdbcType="BIT" property="status" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from oa..sys_action
+    where action_id = #{actionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.our.oa.entity.Action">
+    insert into oa..sys_action (action_id, action_name, action_code, 
+      sort_order, status)
+    values (#{actionId,jdbcType=INTEGER}, #{actionName,jdbcType=VARCHAR}, #{actionCode,jdbcType=VARCHAR}, 
+      #{sortOrder,jdbcType=INTEGER}, #{status,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.Action">
+    update oa..sys_action
+    set action_name = #{actionName,jdbcType=VARCHAR},
+      action_code = #{actionCode,jdbcType=VARCHAR},
+      sort_order = #{sortOrder,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT}
+    where action_id = #{actionId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select action_id, action_name, action_code, sort_order, status
+    from oa..sys_action
+    where action_id = #{actionId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select action_id, action_name, action_code, sort_order, status
+    from oa..sys_action
+  </select>
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.our.oa.dao.DepartmentMapper">
+  <resultMap id="BaseResultMap" type="com.our.oa.entity.Department">
+    <id column="dept_id" jdbcType="INTEGER" property="deptId" />
+    <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+    <result column="dept_code" jdbcType="VARCHAR" property="deptCode" />
+    <result column="parent_dept_id" jdbcType="INTEGER" property="parentDeptId" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from oa..sys_department
+    where dept_id = #{deptId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.our.oa.entity.Department">
+    insert into oa..sys_department (dept_id, dept_name, dept_code, 
+      parent_dept_id, company_id, create_time, 
+      update_time, delete_time, delete_flag
+      )
+    values (#{deptId,jdbcType=INTEGER}, #{deptName,jdbcType=VARCHAR}, #{deptCode,jdbcType=VARCHAR}, 
+      #{parentDeptId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=BIT}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.Department">
+    update oa..sys_department
+    set dept_name = #{deptName,jdbcType=VARCHAR},
+      dept_code = #{deptCode,jdbcType=VARCHAR},
+      parent_dept_id = #{parentDeptId,jdbcType=INTEGER},
+      company_id = #{companyId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=BIT}
+    where dept_id = #{deptId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select dept_id, dept_name, dept_code, parent_dept_id, company_id, create_time, update_time, 
+    delete_time, delete_flag
+    from oa..sys_department
+    where dept_id = #{deptId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select dept_id, dept_name, dept_code, parent_dept_id, company_id, create_time, update_time, 
+    delete_time, delete_flag
+    from oa..sys_department
+  </select>
+</mapper>

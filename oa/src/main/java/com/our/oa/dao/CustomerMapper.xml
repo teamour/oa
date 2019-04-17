@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.our.oa.dao.CustomerMapper">
+  <resultMap id="BaseResultMap" type="com.our.oa.entity.Customer">
+    <id column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="website" jdbcType="VARCHAR" property="website" />
+    <result column="registered_capital" jdbcType="INTEGER" property="registeredCapital" />
+    <result column="employee_number" jdbcType="INTEGER" property="employeeNumber" />
+    <result column="establish_date" jdbcType="DATE" property="establishDate" />
+    <result column="company_type" jdbcType="INTEGER" property="companyType" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="zip_code" jdbcType="VARCHAR" property="zipCode" />
+    <result column="ceo" jdbcType="VARCHAR" property="ceo" />
+    <result column="main_business" jdbcType="VARCHAR" property="mainBusiness" />
+    <result column="cooperation_direction" jdbcType="VARCHAR" property="cooperationDirection" />
+    <result column="cooperation_intention" jdbcType="INTEGER" property="cooperationIntention" />
+    <result column="is_upper" jdbcType="BIT" property="isUpper" />
+    <result column="contact_channel" jdbcType="VARCHAR" property="contactChannel" />
+    <result column="sales_staff" jdbcType="VARCHAR" property="salesStaff" />
+    <result column="sales_telephone" jdbcType="VARCHAR" property="salesTelephone" />
+    <result column="sales_email" jdbcType="VARCHAR" property="salesEmail" />
+    <result column="skill_require" jdbcType="VARCHAR" property="skillRequire" />
+    <result column="proposal1_email" jdbcType="VARCHAR" property="proposal1Email" />
+    <result column="proposal1_handler" jdbcType="VARCHAR" property="proposal1Handler" />
+    <result column="proposal2_email" jdbcType="VARCHAR" property="proposal2Email" />
+    <result column="proposal2_handler" jdbcType="VARCHAR" property="proposal2Handler" />
+    <result column="proposal3_email" jdbcType="VARCHAR" property="proposal3Email" />
+    <result column="proposal3_handler" jdbcType="VARCHAR" property="proposal3Handler" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from oa..t_customer
+    where customer_id = #{customerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.our.oa.entity.Customer">
+    insert into oa..t_customer (customer_id, customer_name, website, 
+      registered_capital, employee_number, establish_date, 
+      company_type, address, zip_code, 
+      ceo, main_business, cooperation_direction, 
+      cooperation_intention, is_upper, contact_channel, 
+      sales_staff, sales_telephone, sales_email, 
+      skill_require, proposal1_email, proposal1_handler, 
+      proposal2_email, proposal2_handler, proposal3_email, 
+      proposal3_handler, create_time, update_time, 
+      delete_time, delete_flag)
+    values (#{customerId,jdbcType=INTEGER}, #{customerName,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, 
+      #{registeredCapital,jdbcType=INTEGER}, #{employeeNumber,jdbcType=INTEGER}, #{establishDate,jdbcType=DATE}, 
+      #{companyType,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, 
+      #{ceo,jdbcType=VARCHAR}, #{mainBusiness,jdbcType=VARCHAR}, #{cooperationDirection,jdbcType=VARCHAR}, 
+      #{cooperationIntention,jdbcType=INTEGER}, #{isUpper,jdbcType=BIT}, #{contactChannel,jdbcType=VARCHAR}, 
+      #{salesStaff,jdbcType=VARCHAR}, #{salesTelephone,jdbcType=VARCHAR}, #{salesEmail,jdbcType=VARCHAR}, 
+      #{skillRequire,jdbcType=VARCHAR}, #{proposal1Email,jdbcType=VARCHAR}, #{proposal1Handler,jdbcType=VARCHAR}, 
+      #{proposal2Email,jdbcType=VARCHAR}, #{proposal2Handler,jdbcType=VARCHAR}, #{proposal3Email,jdbcType=VARCHAR}, 
+      #{proposal3Handler,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.Customer">
+    update oa..t_customer
+    set customer_name = #{customerName,jdbcType=VARCHAR},
+      website = #{website,jdbcType=VARCHAR},
+      registered_capital = #{registeredCapital,jdbcType=INTEGER},
+      employee_number = #{employeeNumber,jdbcType=INTEGER},
+      establish_date = #{establishDate,jdbcType=DATE},
+      company_type = #{companyType,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      zip_code = #{zipCode,jdbcType=VARCHAR},
+      ceo = #{ceo,jdbcType=VARCHAR},
+      main_business = #{mainBusiness,jdbcType=VARCHAR},
+      cooperation_direction = #{cooperationDirection,jdbcType=VARCHAR},
+      cooperation_intention = #{cooperationIntention,jdbcType=INTEGER},
+      is_upper = #{isUpper,jdbcType=BIT},
+      contact_channel = #{contactChannel,jdbcType=VARCHAR},
+      sales_staff = #{salesStaff,jdbcType=VARCHAR},
+      sales_telephone = #{salesTelephone,jdbcType=VARCHAR},
+      sales_email = #{salesEmail,jdbcType=VARCHAR},
+      skill_require = #{skillRequire,jdbcType=VARCHAR},
+      proposal1_email = #{proposal1Email,jdbcType=VARCHAR},
+      proposal1_handler = #{proposal1Handler,jdbcType=VARCHAR},
+      proposal2_email = #{proposal2Email,jdbcType=VARCHAR},
+      proposal2_handler = #{proposal2Handler,jdbcType=VARCHAR},
+      proposal3_email = #{proposal3Email,jdbcType=VARCHAR},
+      proposal3_handler = #{proposal3Handler,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=BIT}
+    where customer_id = #{customerId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select customer_id, customer_name, website, registered_capital, employee_number, 
+    establish_date, company_type, address, zip_code, ceo, main_business, cooperation_direction, 
+    cooperation_intention, is_upper, contact_channel, sales_staff, sales_telephone, sales_email, 
+    skill_require, proposal1_email, proposal1_handler, proposal2_email, proposal2_handler, 
+    proposal3_email, proposal3_handler, create_time, update_time, delete_time, delete_flag
+    from oa..t_customer
+    where customer_id = #{customerId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select customer_id, customer_name, website, registered_capital, employee_number, 
+    establish_date, company_type, address, zip_code, ceo, main_business, cooperation_direction, 
+    cooperation_intention, is_upper, contact_channel, sales_staff, sales_telephone, sales_email, 
+    skill_require, proposal1_email, proposal1_handler, proposal2_email, proposal2_handler, 
+    proposal3_email, proposal3_handler, create_time, update_time, delete_time, delete_flag
+    from oa..t_customer
+  </select>
+</mapper>

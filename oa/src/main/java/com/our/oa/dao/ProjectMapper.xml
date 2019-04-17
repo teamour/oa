@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.our.oa.dao.ProjectMapper">
+  <resultMap id="BaseResultMap" type="com.our.oa.entity.Project">
+    <id column="project_id" jdbcType="INTEGER" property="projectId" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="settlement_range" jdbcType="VARCHAR" property="settlementRange" />
+    <result column="site_address" jdbcType="VARCHAR" property="siteAddress" />
+    <result column="pay_deadline" jdbcType="VARCHAR" property="payDeadline" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
+    <result column="project_desc" jdbcType="LONGVARCHAR" property="projectDesc" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from oa..t_project
+    where project_id = #{projectId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.our.oa.entity.Project">
+    insert into oa..t_project (project_id, project_name, customer_id, 
+      settlement_range, site_address, pay_deadline, 
+      create_time, update_time, delete_time, 
+      delete_flag, project_desc)
+    values (#{projectId,jdbcType=INTEGER}, #{projectName,jdbcType=VARCHAR}, #{customerId,jdbcType=INTEGER}, 
+      #{settlementRange,jdbcType=VARCHAR}, #{siteAddress,jdbcType=VARCHAR}, #{payDeadline,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP}, 
+      #{deleteFlag,jdbcType=BIT}, #{projectDesc,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.Project">
+    update oa..t_project
+    set project_name = #{projectName,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      settlement_range = #{settlementRange,jdbcType=VARCHAR},
+      site_address = #{siteAddress,jdbcType=VARCHAR},
+      pay_deadline = #{payDeadline,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=BIT},
+      project_desc = #{projectDesc,jdbcType=LONGVARCHAR}
+    where project_id = #{projectId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select project_id, project_name, customer_id, settlement_range, site_address, pay_deadline, 
+    create_time, update_time, delete_time, delete_flag, project_desc
+    from oa..t_project
+    where project_id = #{projectId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select project_id, project_name, customer_id, settlement_range, site_address, pay_deadline, 
+    create_time, update_time, delete_time, delete_flag, project_desc
+    from oa..t_project
+  </select>
+</mapper>

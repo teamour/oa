@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.our.oa.dao.DocumentInvoiceMapper">
+  <resultMap id="BaseResultMap" type="com.our.oa.entity.DocumentInvoice">
+    <id column="invoice_document_id" jdbcType="INTEGER" property="invoiceDocumentId" />
+    <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="customer_address" jdbcType="VARCHAR" property="customerAddress" />
+    <result column="customer_charge" jdbcType="VARCHAR" property="customerCharge" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="pay_deadline" jdbcType="VARCHAR" property="payDeadline" />
+    <result column="unit_price" jdbcType="INTEGER" property="unitPrice" />
+    <result column="template_id" jdbcType="INTEGER" property="templateId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from oa..t_document_invoice
+    where invoice_document_id = #{invoiceDocumentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.our.oa.entity.DocumentInvoice">
+    insert into oa..t_document_invoice (invoice_document_id, customer_id, customer_address, 
+      customer_charge, company_id, pay_deadline, 
+      unit_price, template_id, create_time, 
+      update_time, delete_time, delete_flag
+      )
+    values (#{invoiceDocumentId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, #{customerAddress,jdbcType=VARCHAR}, 
+      #{customerCharge,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, #{payDeadline,jdbcType=VARCHAR}, 
+      #{unitPrice,jdbcType=INTEGER}, #{templateId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=BIT}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.DocumentInvoice">
+    update oa..t_document_invoice
+    set customer_id = #{customerId,jdbcType=INTEGER},
+      customer_address = #{customerAddress,jdbcType=VARCHAR},
+      customer_charge = #{customerCharge,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=INTEGER},
+      pay_deadline = #{payDeadline,jdbcType=VARCHAR},
+      unit_price = #{unitPrice,jdbcType=INTEGER},
+      template_id = #{templateId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=BIT}
+    where invoice_document_id = #{invoiceDocumentId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select invoice_document_id, customer_id, customer_address, customer_charge, company_id, 
+    pay_deadline, unit_price, template_id, create_time, update_time, delete_time, delete_flag
+    from oa..t_document_invoice
+    where invoice_document_id = #{invoiceDocumentId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select invoice_document_id, customer_id, customer_address, customer_charge, company_id, 
+    pay_deadline, unit_price, template_id, create_time, update_time, delete_time, delete_flag
+    from oa..t_document_invoice
+  </select>
+</mapper>

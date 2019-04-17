@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.our.oa.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.our.oa.entity.User">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_pwd" jdbcType="VARCHAR" property="userPwd" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
+    <result column="error_number" jdbcType="INTEGER" property="errorNumber" />
+    <result column="email_verification_code" jdbcType="VARCHAR" property="emailVerificationCode" />
+    <result column="verification_code_send_time" jdbcType="TIMESTAMP" property="verificationCodeSendTime" />
+    <result column="employee_id" jdbcType="INTEGER" property="employeeId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from oa..sys_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.our.oa.entity.User">
+    insert into oa..sys_user (user_id, user_name, user_pwd, 
+      email, login_time, error_number, 
+      email_verification_code, verification_code_send_time, 
+      employee_id, create_time, update_time, 
+      delete_time, delete_flag)
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{loginTime,jdbcType=TIMESTAMP}, #{errorNumber,jdbcType=INTEGER}, 
+      #{emailVerificationCode,jdbcType=VARCHAR}, #{verificationCodeSendTime,jdbcType=TIMESTAMP}, 
+      #{employeeId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.User">
+    update oa..sys_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_pwd = #{userPwd,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      login_time = #{loginTime,jdbcType=TIMESTAMP},
+      error_number = #{errorNumber,jdbcType=INTEGER},
+      email_verification_code = #{emailVerificationCode,jdbcType=VARCHAR},
+      verification_code_send_time = #{verificationCodeSendTime,jdbcType=TIMESTAMP},
+      employee_id = #{employeeId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=BIT}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select user_id, user_name, user_pwd, email, login_time, error_number, email_verification_code, 
+    verification_code_send_time, employee_id, create_time, update_time, delete_time, 
+    delete_flag
+    from oa..sys_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select user_id, user_name, user_pwd, email, login_time, error_number, email_verification_code, 
+    verification_code_send_time, employee_id, create_time, update_time, delete_time, 
+    delete_flag
+    from oa..sys_user
+  </select>
+</mapper>

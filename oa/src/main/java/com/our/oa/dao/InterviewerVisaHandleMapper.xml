@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.our.oa.dao.InterviewerVisaHandleMapper">
+  <resultMap id="BaseResultMap" type="com.our.oa.entity.InterviewerVisaHandle">
+    <id column="visa_handle_id" jdbcType="INTEGER" property="visaHandleId" />
+    <result column="interviewer_id" jdbcType="INTEGER" property="interviewerId" />
+    <result column="material_prepare_situation" jdbcType="TINYINT" property="materialPrepareSituation" />
+    <result column="mailing_situation" jdbcType="TINYINT" property="mailingSituation" />
+    <result column="application_material" jdbcType="BIT" property="applicationMaterial" />
+    <result column="self_japanese_resume" jdbcType="BIT" property="selfJapaneseResume" />
+    <result column="check_resume" jdbcType="BIT" property="checkResume" />
+    <result column="expect_submit_date" jdbcType="DATE" property="expectSubmitDate" />
+    <result column="actual_submit_date" jdbcType="DATE" property="actualSubmitDate" />
+    <result column="visa_handle_handler" jdbcType="INTEGER" property="visaHandleHandler" />
+    <result column="notice_handler" jdbcType="INTEGER" property="noticeHandler" />
+    <result column="other_handlerf" jdbcType="INTEGER" property="otherHandlerf" />
+    <result column="is_completed" jdbcType="BIT" property="isCompleted" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from oa..t_interviewer_visa_handle
+    where visa_handle_id = #{visaHandleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.our.oa.entity.InterviewerVisaHandle">
+    insert into oa..t_interviewer_visa_handle (visa_handle_id, interviewer_id, material_prepare_situation, 
+      mailing_situation, application_material, self_japanese_resume, 
+      check_resume, expect_submit_date, actual_submit_date, 
+      visa_handle_handler, notice_handler, other_handlerf, 
+      is_completed, create_time, update_time, 
+      delete_time, delete_flag, description
+      )
+    values (#{visaHandleId,jdbcType=INTEGER}, #{interviewerId,jdbcType=INTEGER}, #{materialPrepareSituation,jdbcType=TINYINT}, 
+      #{mailingSituation,jdbcType=TINYINT}, #{applicationMaterial,jdbcType=BIT}, #{selfJapaneseResume,jdbcType=BIT}, 
+      #{checkResume,jdbcType=BIT}, #{expectSubmitDate,jdbcType=DATE}, #{actualSubmitDate,jdbcType=DATE}, 
+      #{visaHandleHandler,jdbcType=INTEGER}, #{noticeHandler,jdbcType=INTEGER}, #{otherHandlerf,jdbcType=INTEGER}, 
+      #{isCompleted,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=BIT}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.InterviewerVisaHandle">
+    update oa..t_interviewer_visa_handle
+    set interviewer_id = #{interviewerId,jdbcType=INTEGER},
+      material_prepare_situation = #{materialPrepareSituation,jdbcType=TINYINT},
+      mailing_situation = #{mailingSituation,jdbcType=TINYINT},
+      application_material = #{applicationMaterial,jdbcType=BIT},
+      self_japanese_resume = #{selfJapaneseResume,jdbcType=BIT},
+      check_resume = #{checkResume,jdbcType=BIT},
+      expect_submit_date = #{expectSubmitDate,jdbcType=DATE},
+      actual_submit_date = #{actualSubmitDate,jdbcType=DATE},
+      visa_handle_handler = #{visaHandleHandler,jdbcType=INTEGER},
+      notice_handler = #{noticeHandler,jdbcType=INTEGER},
+      other_handlerf = #{otherHandlerf,jdbcType=INTEGER},
+      is_completed = #{isCompleted,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=BIT},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where visa_handle_id = #{visaHandleId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select visa_handle_id, interviewer_id, material_prepare_situation, mailing_situation, 
+    application_material, self_japanese_resume, check_resume, expect_submit_date, actual_submit_date, 
+    visa_handle_handler, notice_handler, other_handlerf, is_completed, create_time, update_time, 
+    delete_time, delete_flag, description
+    from oa..t_interviewer_visa_handle
+    where visa_handle_id = #{visaHandleId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select visa_handle_id, interviewer_id, material_prepare_situation, mailing_situation, 
+    application_material, self_japanese_resume, check_resume, expect_submit_date, actual_submit_date, 
+    visa_handle_handler, notice_handler, other_handlerf, is_completed, create_time, update_time, 
+    delete_time, delete_flag, description
+    from oa..t_interviewer_visa_handle
+  </select>
+</mapper>

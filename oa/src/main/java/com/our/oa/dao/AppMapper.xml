@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.our.oa.dao.AppMapper">
+  <resultMap id="BaseResultMap" type="com.our.oa.entity.App">
+    <id column="app_id" jdbcType="INTEGER" property="appId" />
+    <result column="app_name" jdbcType="VARCHAR" property="appName" />
+    <result column="app_url" jdbcType="VARCHAR" property="appUrl" />
+    <result column="app_icon" jdbcType="VARCHAR" property="appIcon" />
+    <result column="sort_order" jdbcType="INTEGER" property="sortOrder" />
+    <result column="status" jdbcType="BIT" property="status" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from oa..sys_app
+    where app_id = #{appId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.our.oa.entity.App">
+    insert into oa..sys_app (app_id, app_name, app_url, 
+      app_icon, sort_order, status
+      )
+    values (#{appId,jdbcType=INTEGER}, #{appName,jdbcType=VARCHAR}, #{appUrl,jdbcType=VARCHAR}, 
+      #{appIcon,jdbcType=VARCHAR}, #{sortOrder,jdbcType=INTEGER}, #{status,jdbcType=BIT}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.App">
+    update oa..sys_app
+    set app_name = #{appName,jdbcType=VARCHAR},
+      app_url = #{appUrl,jdbcType=VARCHAR},
+      app_icon = #{appIcon,jdbcType=VARCHAR},
+      sort_order = #{sortOrder,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT}
+    where app_id = #{appId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select app_id, app_name, app_url, app_icon, sort_order, status
+    from oa..sys_app
+    where app_id = #{appId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select app_id, app_name, app_url, app_icon, sort_order, status
+    from oa..sys_app
+  </select>
+</mapper>

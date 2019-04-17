@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.our.oa.dao.EmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.our.oa.entity.Employee">
+    <id column="employee_id" jdbcType="INTEGER" property="employeeId" />
+    <result column="employee_name" jdbcType="VARCHAR" property="employeeName" />
+    <result column="gender" jdbcType="TINYINT" property="gender" />
+    <result column="age" jdbcType="TINYINT" property="age" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="marital_status" jdbcType="INTEGER" property="maritalStatus" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="dept_id" jdbcType="INTEGER" property="deptId" />
+    <result column="enter_date" jdbcType="DATE" property="enterDate" />
+    <result column="position" jdbcType="INTEGER" property="position" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="the_nearest_station" jdbcType="VARCHAR" property="theNearestStation" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="working_years" jdbcType="TINYINT" property="workingYears" />
+    <result column="skill1" jdbcType="INTEGER" property="skill1" />
+    <result column="skill1_years" jdbcType="TINYINT" property="skill1Years" />
+    <result column="skill2" jdbcType="INTEGER" property="skill2" />
+    <result column="skill2_years" jdbcType="TINYINT" property="skill2Years" />
+    <result column="skill3" jdbcType="INTEGER" property="skill3" />
+    <result column="skill3_years" jdbcType="TINYINT" property="skill3Years" />
+    <result column="skill_score" jdbcType="TINYINT" property="skillScore" />
+    <result column="skill_level" jdbcType="INTEGER" property="skillLevel" />
+    <result column="japanese_level" jdbcType="INTEGER" property="japaneseLevel" />
+    <result column="salary" jdbcType="INTEGER" property="salary" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="branch_bank" jdbcType="VARCHAR" property="branchBank" />
+    <result column="bank_number" jdbcType="VARCHAR" property="bankNumber" />
+    <result column="bank_desc" jdbcType="VARCHAR" property="bankDesc" />
+    <result column="domestic_address" jdbcType="VARCHAR" property="domesticAddress" />
+    <result column="family_support" jdbcType="TINYINT" property="familySupport" />
+    <result column="contract_format" jdbcType="INTEGER" property="contractFormat" />
+    <result column="employment_insurance" jdbcType="BIT" property="employmentInsurance" />
+    <result column="annuity" jdbcType="BIT" property="annuity" />
+    <result column="health_insurance" jdbcType="BIT" property="healthInsurance" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
+    <result column="skill_analysis" jdbcType="LONGVARCHAR" property="skillAnalysis" />
+    <result column="skill_growth" jdbcType="LONGVARCHAR" property="skillGrowth" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from oa..t_employee
+    where employee_id = #{employeeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.our.oa.entity.Employee">
+    insert into oa..t_employee (employee_id, employee_name, gender, 
+      age, birthday, marital_status, 
+      company_id, dept_id, enter_date, 
+      position, address, the_nearest_station, 
+      telephone, working_years, skill1, 
+      skill1_years, skill2, skill2_years, 
+      skill3, skill3_years, skill_score, 
+      skill_level, japanese_level, salary, 
+      bank_name, branch_bank, bank_number, 
+      bank_desc, domestic_address, family_support, 
+      contract_format, employment_insurance, annuity, 
+      health_insurance, create_time, update_time, 
+      delete_time, delete_flag, skill_analysis, 
+      skill_growth)
+    values (#{employeeId,jdbcType=INTEGER}, #{employeeName,jdbcType=VARCHAR}, #{gender,jdbcType=TINYINT}, 
+      #{age,jdbcType=TINYINT}, #{birthday,jdbcType=DATE}, #{maritalStatus,jdbcType=INTEGER}, 
+      #{companyId,jdbcType=INTEGER}, #{deptId,jdbcType=INTEGER}, #{enterDate,jdbcType=DATE}, 
+      #{position,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{theNearestStation,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{workingYears,jdbcType=TINYINT}, #{skill1,jdbcType=INTEGER}, 
+      #{skill1Years,jdbcType=TINYINT}, #{skill2,jdbcType=INTEGER}, #{skill2Years,jdbcType=TINYINT}, 
+      #{skill3,jdbcType=INTEGER}, #{skill3Years,jdbcType=TINYINT}, #{skillScore,jdbcType=TINYINT}, 
+      #{skillLevel,jdbcType=INTEGER}, #{japaneseLevel,jdbcType=INTEGER}, #{salary,jdbcType=INTEGER}, 
+      #{bankName,jdbcType=VARCHAR}, #{branchBank,jdbcType=VARCHAR}, #{bankNumber,jdbcType=VARCHAR}, 
+      #{bankDesc,jdbcType=VARCHAR}, #{domesticAddress,jdbcType=VARCHAR}, #{familySupport,jdbcType=TINYINT}, 
+      #{contractFormat,jdbcType=INTEGER}, #{employmentInsurance,jdbcType=BIT}, #{annuity,jdbcType=BIT}, 
+      #{healthInsurance,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=BIT}, #{skillAnalysis,jdbcType=LONGVARCHAR}, 
+      #{skillGrowth,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.Employee">
+    update oa..t_employee
+    set employee_name = #{employeeName,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=TINYINT},
+      age = #{age,jdbcType=TINYINT},
+      birthday = #{birthday,jdbcType=DATE},
+      marital_status = #{maritalStatus,jdbcType=INTEGER},
+      company_id = #{companyId,jdbcType=INTEGER},
+      dept_id = #{deptId,jdbcType=INTEGER},
+      enter_date = #{enterDate,jdbcType=DATE},
+      position = #{position,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      the_nearest_station = #{theNearestStation,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      working_years = #{workingYears,jdbcType=TINYINT},
+      skill1 = #{skill1,jdbcType=INTEGER},
+      skill1_years = #{skill1Years,jdbcType=TINYINT},
+      skill2 = #{skill2,jdbcType=INTEGER},
+      skill2_years = #{skill2Years,jdbcType=TINYINT},
+      skill3 = #{skill3,jdbcType=INTEGER},
+      skill3_years = #{skill3Years,jdbcType=TINYINT},
+      skill_score = #{skillScore,jdbcType=TINYINT},
+      skill_level = #{skillLevel,jdbcType=INTEGER},
+      japanese_level = #{japaneseLevel,jdbcType=INTEGER},
+      salary = #{salary,jdbcType=INTEGER},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      branch_bank = #{branchBank,jdbcType=VARCHAR},
+      bank_number = #{bankNumber,jdbcType=VARCHAR},
+      bank_desc = #{bankDesc,jdbcType=VARCHAR},
+      domestic_address = #{domesticAddress,jdbcType=VARCHAR},
+      family_support = #{familySupport,jdbcType=TINYINT},
+      contract_format = #{contractFormat,jdbcType=INTEGER},
+      employment_insurance = #{employmentInsurance,jdbcType=BIT},
+      annuity = #{annuity,jdbcType=BIT},
+      health_insurance = #{healthInsurance,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=BIT},
+      skill_analysis = #{skillAnalysis,jdbcType=LONGVARCHAR},
+      skill_growth = #{skillGrowth,jdbcType=LONGVARCHAR}
+    where employee_id = #{employeeId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select employee_id, employee_name, gender, age, birthday, marital_status, company_id, 
+    dept_id, enter_date, position, address, the_nearest_station, telephone, working_years, 
+    skill1, skill1_years, skill2, skill2_years, skill3, skill3_years, skill_score, skill_level, 
+    japanese_level, salary, bank_name, branch_bank, bank_number, bank_desc, domestic_address, 
+    family_support, contract_format, employment_insurance, annuity, health_insurance, 
+    create_time, update_time, delete_time, delete_flag, skill_analysis, skill_growth
+    from oa..t_employee
+    where employee_id = #{employeeId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select employee_id, employee_name, gender, age, birthday, marital_status, company_id, 
+    dept_id, enter_date, position, address, the_nearest_station, telephone, working_years, 
+    skill1, skill1_years, skill2, skill2_years, skill3, skill3_years, skill_score, skill_level, 
+    japanese_level, salary, bank_name, branch_bank, bank_number, bank_desc, domestic_address, 
+    family_support, contract_format, employment_insurance, annuity, health_insurance, 
+    create_time, update_time, delete_time, delete_flag, skill_analysis, skill_growth
+    from oa..t_employee
+  </select>
+</mapper>

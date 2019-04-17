@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.our.oa.dao.SalesRecordMapper">
+  <resultMap id="BaseResultMap" type="com.our.oa.entity.SalesRecord">
+    <id column="sales_record_id" jdbcType="INTEGER" property="salesRecordId" />
+    <result column="sales_id" jdbcType="INTEGER" property="salesId" />
+    <result column="sales_handler" jdbcType="INTEGER" property="salesHandler" />
+    <result column="interview_date" jdbcType="DATE" property="interviewDate" />
+    <result column="interview_time" jdbcType="TIME" property="interviewTime" />
+    <result column="priority" jdbcType="TINYINT" property="priority" />
+    <result column="interview_address" jdbcType="VARCHAR" property="interviewAddress" />
+    <result column="interview_frequency" jdbcType="INTEGER" property="interviewFrequency" />
+    <result column="project_id" jdbcType="INTEGER" property="projectId" />
+    <result column="enter_date" jdbcType="DATE" property="enterDate" />
+    <result column="notice1" jdbcType="VARCHAR" property="notice1" />
+    <result column="notice2" jdbcType="VARCHAR" property="notice2" />
+    <result column="is_done" jdbcType="BIT" property="isDone" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from oa..t_sales_record
+    where sales_record_id = #{salesRecordId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.our.oa.entity.SalesRecord">
+    insert into oa..t_sales_record (sales_record_id, sales_id, sales_handler, 
+      interview_date, interview_time, priority, 
+      interview_address, interview_frequency, project_id, 
+      enter_date, notice1, notice2, 
+      is_done, create_time, update_time, 
+      delete_time, delete_flag)
+    values (#{salesRecordId,jdbcType=INTEGER}, #{salesId,jdbcType=INTEGER}, #{salesHandler,jdbcType=INTEGER}, 
+      #{interviewDate,jdbcType=DATE}, #{interviewTime,jdbcType=TIME}, #{priority,jdbcType=TINYINT}, 
+      #{interviewAddress,jdbcType=VARCHAR}, #{interviewFrequency,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER}, 
+      #{enterDate,jdbcType=DATE}, #{notice1,jdbcType=VARCHAR}, #{notice2,jdbcType=VARCHAR}, 
+      #{isDone,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.SalesRecord">
+    update oa..t_sales_record
+    set sales_id = #{salesId,jdbcType=INTEGER},
+      sales_handler = #{salesHandler,jdbcType=INTEGER},
+      interview_date = #{interviewDate,jdbcType=DATE},
+      interview_time = #{interviewTime,jdbcType=TIME},
+      priority = #{priority,jdbcType=TINYINT},
+      interview_address = #{interviewAddress,jdbcType=VARCHAR},
+      interview_frequency = #{interviewFrequency,jdbcType=INTEGER},
+      project_id = #{projectId,jdbcType=INTEGER},
+      enter_date = #{enterDate,jdbcType=DATE},
+      notice1 = #{notice1,jdbcType=VARCHAR},
+      notice2 = #{notice2,jdbcType=VARCHAR},
+      is_done = #{isDone,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=BIT}
+    where sales_record_id = #{salesRecordId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select sales_record_id, sales_id, sales_handler, interview_date, interview_time, 
+    priority, interview_address, interview_frequency, project_id, enter_date, notice1, 
+    notice2, is_done, create_time, update_time, delete_time, delete_flag
+    from oa..t_sales_record
+    where sales_record_id = #{salesRecordId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select sales_record_id, sales_id, sales_handler, interview_date, interview_time, 
+    priority, interview_address, interview_frequency, project_id, enter_date, notice1, 
+    notice2, is_done, create_time, update_time, delete_time, delete_flag
+    from oa..t_sales_record
+  </select>
+</mapper>

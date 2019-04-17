@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.our.oa.dao.MailingMapper">
+  <resultMap id="BaseResultMap" type="com.our.oa.entity.Mailing">
+    <id column="mailing_id" jdbcType="INTEGER" property="mailingId" />
+    <result column="mailing_aim_summary" jdbcType="VARCHAR" property="mailingAimSummary" />
+    <result column="begin_time" jdbcType="TIMESTAMP" property="beginTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="operator" jdbcType="INTEGER" property="operator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
+    <result column="mailing_templete_content" jdbcType="LONGVARCHAR" property="mailingTempleteContent" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from oa..t_mailing
+    where mailing_id = #{mailingId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.our.oa.entity.Mailing">
+    insert into oa..t_mailing (mailing_id, mailing_aim_summary, begin_time, 
+      end_time, operator, create_time, 
+      update_time, delete_time, delete_flag, 
+      mailing_templete_content)
+    values (#{mailingId,jdbcType=INTEGER}, #{mailingAimSummary,jdbcType=VARCHAR}, #{beginTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=BIT}, 
+      #{mailingTempleteContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.Mailing">
+    update oa..t_mailing
+    set mailing_aim_summary = #{mailingAimSummary,jdbcType=VARCHAR},
+      begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      operator = #{operator,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=BIT},
+      mailing_templete_content = #{mailingTempleteContent,jdbcType=LONGVARCHAR}
+    where mailing_id = #{mailingId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select mailing_id, mailing_aim_summary, begin_time, end_time, operator, create_time, 
+    update_time, delete_time, delete_flag, mailing_templete_content
+    from oa..t_mailing
+    where mailing_id = #{mailingId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select mailing_id, mailing_aim_summary, begin_time, end_time, operator, create_time, 
+    update_time, delete_time, delete_flag, mailing_templete_content
+    from oa..t_mailing
+  </select>
+</mapper>

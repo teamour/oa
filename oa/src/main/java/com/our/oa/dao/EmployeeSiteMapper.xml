@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.our.oa.dao.EmployeeSiteMapper">
+  <resultMap id="BaseResultMap" type="com.our.oa.entity.EmployeeSite">
+    <id column="employee_site_id" jdbcType="INTEGER" property="employeeSiteId" />
+    <result column="employee_id" jdbcType="INTEGER" property="employeeId" />
+    <result column="project_id" jdbcType="INTEGER" property="projectId" />
+    <result column="expect_enter_date" jdbcType="DATE" property="expectEnterDate" />
+    <result column="enter_date" jdbcType="DATE" property="enterDate" />
+    <result column="end_date" jdbcType="DATE" property="endDate" />
+    <result column="sales_staff" jdbcType="VARCHAR" property="salesStaff" />
+    <result column="sales_contact" jdbcType="VARCHAR" property="salesContact" />
+    <result column="sales_email" jdbcType="VARCHAR" property="salesEmail" />
+    <result column="office_clerk" jdbcType="VARCHAR" property="officeClerk" />
+    <result column="office_email" jdbcType="VARCHAR" property="officeEmail" />
+    <result column="settlement_range" jdbcType="VARCHAR" property="settlementRange" />
+    <result column="unit_price" jdbcType="INTEGER" property="unitPrice" />
+    <result column="is_need_sales_staff" jdbcType="BIT" property="isNeedSalesStaff" />
+    <result column="purchase_order_file" jdbcType="VARCHAR" property="purchaseOrderFile" />
+    <result column="invoice_file" jdbcType="VARCHAR" property="invoiceFile" />
+    <result column="payment_site" jdbcType="VARCHAR" property="paymentSite" />
+    <result column="head_office_clerk" jdbcType="VARCHAR" property="headOfficeClerk" />
+    <result column="enter_handler" jdbcType="INTEGER" property="enterHandler" />
+    <result column="is_end" jdbcType="BIT" property="isEnd" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
+    <result column="enter_record" jdbcType="LONGVARCHAR" property="enterRecord" />
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from oa..t_employee_site
+    where employee_site_id = #{employeeSiteId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.our.oa.entity.EmployeeSite">
+    insert into oa..t_employee_site (employee_site_id, employee_id, project_id, 
+      expect_enter_date, enter_date, end_date, 
+      sales_staff, sales_contact, sales_email, 
+      office_clerk, office_email, settlement_range, 
+      unit_price, is_need_sales_staff, purchase_order_file, 
+      invoice_file, payment_site, head_office_clerk, 
+      enter_handler, is_end, create_time, 
+      update_time, delete_time, delete_flag, 
+      enter_record, description)
+    values (#{employeeSiteId,jdbcType=INTEGER}, #{employeeId,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER}, 
+      #{expectEnterDate,jdbcType=DATE}, #{enterDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, 
+      #{salesStaff,jdbcType=VARCHAR}, #{salesContact,jdbcType=VARCHAR}, #{salesEmail,jdbcType=VARCHAR}, 
+      #{officeClerk,jdbcType=VARCHAR}, #{officeEmail,jdbcType=VARCHAR}, #{settlementRange,jdbcType=VARCHAR}, 
+      #{unitPrice,jdbcType=INTEGER}, #{isNeedSalesStaff,jdbcType=BIT}, #{purchaseOrderFile,jdbcType=VARCHAR}, 
+      #{invoiceFile,jdbcType=VARCHAR}, #{paymentSite,jdbcType=VARCHAR}, #{headOfficeClerk,jdbcType=VARCHAR}, 
+      #{enterHandler,jdbcType=INTEGER}, #{isEnd,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=BIT}, 
+      #{enterRecord,jdbcType=LONGVARCHAR}, #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.EmployeeSite">
+    update oa..t_employee_site
+    set employee_id = #{employeeId,jdbcType=INTEGER},
+      project_id = #{projectId,jdbcType=INTEGER},
+      expect_enter_date = #{expectEnterDate,jdbcType=DATE},
+      enter_date = #{enterDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE},
+      sales_staff = #{salesStaff,jdbcType=VARCHAR},
+      sales_contact = #{salesContact,jdbcType=VARCHAR},
+      sales_email = #{salesEmail,jdbcType=VARCHAR},
+      office_clerk = #{officeClerk,jdbcType=VARCHAR},
+      office_email = #{officeEmail,jdbcType=VARCHAR},
+      settlement_range = #{settlementRange,jdbcType=VARCHAR},
+      unit_price = #{unitPrice,jdbcType=INTEGER},
+      is_need_sales_staff = #{isNeedSalesStaff,jdbcType=BIT},
+      purchase_order_file = #{purchaseOrderFile,jdbcType=VARCHAR},
+      invoice_file = #{invoiceFile,jdbcType=VARCHAR},
+      payment_site = #{paymentSite,jdbcType=VARCHAR},
+      head_office_clerk = #{headOfficeClerk,jdbcType=VARCHAR},
+      enter_handler = #{enterHandler,jdbcType=INTEGER},
+      is_end = #{isEnd,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=BIT},
+      enter_record = #{enterRecord,jdbcType=LONGVARCHAR},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where employee_site_id = #{employeeSiteId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select employee_site_id, employee_id, project_id, expect_enter_date, enter_date, 
+    end_date, sales_staff, sales_contact, sales_email, office_clerk, office_email, settlement_range, 
+    unit_price, is_need_sales_staff, purchase_order_file, invoice_file, payment_site, 
+    head_office_clerk, enter_handler, is_end, create_time, update_time, delete_time, 
+    delete_flag, enter_record, description
+    from oa..t_employee_site
+    where employee_site_id = #{employeeSiteId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select employee_site_id, employee_id, project_id, expect_enter_date, enter_date, 
+    end_date, sales_staff, sales_contact, sales_email, office_clerk, office_email, settlement_range, 
+    unit_price, is_need_sales_staff, purchase_order_file, invoice_file, payment_site, 
+    head_office_clerk, enter_handler, is_end, create_time, update_time, delete_time, 
+    delete_flag, enter_record, description
+    from oa..t_employee_site
+  </select>
+</mapper>

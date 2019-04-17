@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  
+  <context id="context_oa"  targetRuntime="MyBatis3Simple" defaultModelType="flat">
+
+    <!-- 生成的Java文件的编码 -->
+    <property name="javaFileEncoding" value="UTF-8"/>
+    <!-- 格式化java代码 -->
+    <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+    <!-- 格式化XML代码 -->
+    <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+    
+    <!-- 为生成的Java模型类添加序列化接口，并生成serialVersionUID字段 -->
+    <plugin type="org.mybatis.generator.plugins.SerializablePlugin">
+        <property name="suppressJavaInterface" value="false"/>
+    </plugin>
+    
+    <!-- 结合Lombok 生成不带getter,setter -->
+  	<plugin type="org.mybatis.generator.plugins.LombokPlugin">
+	</plugin> 
+	
+    <commentGenerator>
+     <!-- suppressDate是去掉生成日期那行注释 -->
+     <property name="suppressDate" value="true"/>
+     <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+     <property name="suppressAllComments" value="true"/>
+    </commentGenerator>
+  
+    <!-- jdbc 连接信息 -->
+    <jdbcConnection 
+        connectionURL="jdbc:mysql://192.168.3.29:3306/oa?characterEncoding=UTF-8" 
+        driverClass="com.mysql.cj.jdbc.Driver" 
+        password="123456" 
+        userId="root" />
+        
+    <!-- model生成 -->   
+    <javaModelGenerator targetPackage="com.our.oa.entity"
+        targetProject="oa/src/main/java" >
+            <property name="trimStrings" value="true"/>
+     </javaModelGenerator>
+     
+    <!-- MapperXML生成 -->
+    <sqlMapGenerator targetPackage="mybatis.mapper" 
+        targetProject="oa/src/main/resources" >
+    </sqlMapGenerator>
+    
+    <!-- Mapper接口生成 -->
+    <javaClientGenerator targetPackage="com.our.oa.dao" 
+        targetProject="oa/src/main/java" type="XMLMAPPER" >
+    </javaClientGenerator>
+    
+    <table catalog="oa" tableName="sys_app" domainObjectName="App"
+        enableCountByExample="false" 
+        enableSelectByExample="false"
+        enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        selectByExampleQueryId="false"
+        enableDeleteByPrimaryKey="true"
+        enableInsert="true"
+        enableSelectByPrimaryKey="true"
+        enableUpdateByPrimaryKey="true" />
+  </context>
+</generatorConfiguration>

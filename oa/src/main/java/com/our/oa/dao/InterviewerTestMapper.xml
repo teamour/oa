@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.our.oa.dao.InterviewerTestMapper">
+  <resultMap id="BaseResultMap" type="com.our.oa.entity.InterviewerTest">
+    <id column="test_id" jdbcType="INTEGER" property="testId" />
+    <result column="interviewer_id" jdbcType="INTEGER" property="interviewerId" />
+    <result column="handler1" jdbcType="INTEGER" property="handler1" />
+    <result column="handler2" jdbcType="INTEGER" property="handler2" />
+    <result column="test_score" jdbcType="INTEGER" property="testScore" />
+    <result column="is_pass" jdbcType="BIT" property="isPass" />
+    <result column="japanese_certificate" jdbcType="VARCHAR" property="japaneseCertificate" />
+    <result column="english_certificate" jdbcType="VARCHAR" property="englishCertificate" />
+    <result column="computer_certificate" jdbcType="VARCHAR" property="computerCertificate" />
+    <result column="japanese_listen" jdbcType="INTEGER" property="japaneseListen" />
+    <result column="japanese_speak" jdbcType="INTEGER" property="japaneseSpeak" />
+    <result column="japanese_read" jdbcType="INTEGER" property="japaneseRead" />
+    <result column="japanese_write" jdbcType="INTEGER" property="japaneseWrite" />
+    <result column="english_listen" jdbcType="INTEGER" property="englishListen" />
+    <result column="english_speak" jdbcType="INTEGER" property="englishSpeak" />
+    <result column="english_read" jdbcType="INTEGER" property="englishRead" />
+    <result column="english_write" jdbcType="INTEGER" property="englishWrite" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
+    <result column="skill_ability" jdbcType="LONGVARCHAR" property="skillAbility" />
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from oa..t_interviewer_test
+    where test_id = #{testId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.our.oa.entity.InterviewerTest">
+    insert into oa..t_interviewer_test (test_id, interviewer_id, handler1, 
+      handler2, test_score, is_pass, 
+      japanese_certificate, english_certificate, 
+      computer_certificate, japanese_listen, japanese_speak, 
+      japanese_read, japanese_write, english_listen, 
+      english_speak, english_read, english_write, 
+      create_time, update_time, delete_time, 
+      delete_flag, skill_ability, description
+      )
+    values (#{testId,jdbcType=INTEGER}, #{interviewerId,jdbcType=INTEGER}, #{handler1,jdbcType=INTEGER}, 
+      #{handler2,jdbcType=INTEGER}, #{testScore,jdbcType=INTEGER}, #{isPass,jdbcType=BIT}, 
+      #{japaneseCertificate,jdbcType=VARCHAR}, #{englishCertificate,jdbcType=VARCHAR}, 
+      #{computerCertificate,jdbcType=VARCHAR}, #{japaneseListen,jdbcType=INTEGER}, #{japaneseSpeak,jdbcType=INTEGER}, 
+      #{japaneseRead,jdbcType=INTEGER}, #{japaneseWrite,jdbcType=INTEGER}, #{englishListen,jdbcType=INTEGER}, 
+      #{englishSpeak,jdbcType=INTEGER}, #{englishRead,jdbcType=INTEGER}, #{englishWrite,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP}, 
+      #{deleteFlag,jdbcType=BIT}, #{skillAbility,jdbcType=LONGVARCHAR}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.InterviewerTest">
+    update oa..t_interviewer_test
+    set interviewer_id = #{interviewerId,jdbcType=INTEGER},
+      handler1 = #{handler1,jdbcType=INTEGER},
+      handler2 = #{handler2,jdbcType=INTEGER},
+      test_score = #{testScore,jdbcType=INTEGER},
+      is_pass = #{isPass,jdbcType=BIT},
+      japanese_certificate = #{japaneseCertificate,jdbcType=VARCHAR},
+      english_certificate = #{englishCertificate,jdbcType=VARCHAR},
+      computer_certificate = #{computerCertificate,jdbcType=VARCHAR},
+      japanese_listen = #{japaneseListen,jdbcType=INTEGER},
+      japanese_speak = #{japaneseSpeak,jdbcType=INTEGER},
+      japanese_read = #{japaneseRead,jdbcType=INTEGER},
+      japanese_write = #{japaneseWrite,jdbcType=INTEGER},
+      english_listen = #{englishListen,jdbcType=INTEGER},
+      english_speak = #{englishSpeak,jdbcType=INTEGER},
+      english_read = #{englishRead,jdbcType=INTEGER},
+      english_write = #{englishWrite,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=BIT},
+      skill_ability = #{skillAbility,jdbcType=LONGVARCHAR},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where test_id = #{testId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select test_id, interviewer_id, handler1, handler2, test_score, is_pass, japanese_certificate, 
+    english_certificate, computer_certificate, japanese_listen, japanese_speak, japanese_read, 
+    japanese_write, english_listen, english_speak, english_read, english_write, create_time, 
+    update_time, delete_time, delete_flag, skill_ability, description
+    from oa..t_interviewer_test
+    where test_id = #{testId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select test_id, interviewer_id, handler1, handler2, test_score, is_pass, japanese_certificate, 
+    english_certificate, computer_certificate, japanese_listen, japanese_speak, japanese_read, 
+    japanese_write, english_listen, english_speak, english_read, english_write, create_time, 
+    update_time, delete_time, delete_flag, skill_ability, description
+    from oa..t_interviewer_test
+  </select>
+</mapper>

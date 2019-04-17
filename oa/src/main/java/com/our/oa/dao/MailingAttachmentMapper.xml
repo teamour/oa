@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.our.oa.dao.MailingAttachmentMapper">
+  <resultMap id="BaseResultMap" type="com.our.oa.entity.MailingAttachment">
+    <id column="mailing_attachment_id" jdbcType="INTEGER" property="mailingAttachmentId" />
+    <result column="mailing_id" jdbcType="INTEGER" property="mailingId" />
+    <result column="mailing_attachment_title" jdbcType="VARCHAR" property="mailingAttachmentTitle" />
+    <result column="mailing_attachment_file" jdbcType="VARCHAR" property="mailingAttachmentFile" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from oa..t_mailing_attachment
+    where mailing_attachment_id = #{mailingAttachmentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.our.oa.entity.MailingAttachment">
+    insert into oa..t_mailing_attachment (mailing_attachment_id, mailing_id, mailing_attachment_title, 
+      mailing_attachment_file, create_time, update_time, 
+      delete_time, delete_flag)
+    values (#{mailingAttachmentId,jdbcType=INTEGER}, #{mailingId,jdbcType=INTEGER}, #{mailingAttachmentTitle,jdbcType=VARCHAR}, 
+      #{mailingAttachmentFile,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.MailingAttachment">
+    update oa..t_mailing_attachment
+    set mailing_id = #{mailingId,jdbcType=INTEGER},
+      mailing_attachment_title = #{mailingAttachmentTitle,jdbcType=VARCHAR},
+      mailing_attachment_file = #{mailingAttachmentFile,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=BIT}
+    where mailing_attachment_id = #{mailingAttachmentId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select mailing_attachment_id, mailing_id, mailing_attachment_title, mailing_attachment_file, 
+    create_time, update_time, delete_time, delete_flag
+    from oa..t_mailing_attachment
+    where mailing_attachment_id = #{mailingAttachmentId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select mailing_attachment_id, mailing_id, mailing_attachment_title, mailing_attachment_file, 
+    create_time, update_time, delete_time, delete_flag
+    from oa..t_mailing_attachment
+  </select>
+</mapper>

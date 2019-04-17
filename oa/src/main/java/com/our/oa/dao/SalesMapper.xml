@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.our.oa.dao.SalesMapper">
+  <resultMap id="BaseResultMap" type="com.our.oa.entity.Sales">
+    <id column="sales_id" jdbcType="INTEGER" property="salesId" />
+    <result column="employee_site_id" jdbcType="INTEGER" property="employeeSiteId" />
+    <result column="expect_entery_date1" jdbcType="VARCHAR" property="expectEnteryDate1" />
+    <result column="expect_entery_date2" jdbcType="VARCHAR" property="expectEnteryDate2" />
+    <result column=" first_project" jdbcType="VARCHAR" property="firstProject" />
+    <result column="second_project" jdbcType="VARCHAR" property="secondProject" />
+    <result column="third_project" jdbcType="VARCHAR" property="thirdProject" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from oa..t_sales
+    where sales_id = #{salesId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.our.oa.entity.Sales">
+    insert into oa..t_sales (sales_id, employee_site_id, expect_entery_date1, 
+      expect_entery_date2, " first_project", second_project, 
+      third_project, create_time, update_time, 
+      delete_time, delete_flag)
+    values (#{salesId,jdbcType=INTEGER}, #{employeeSiteId,jdbcType=INTEGER}, #{expectEnteryDate1,jdbcType=VARCHAR}, 
+      #{expectEnteryDate2,jdbcType=VARCHAR}, #{firstProject,jdbcType=VARCHAR}, #{secondProject,jdbcType=VARCHAR}, 
+      #{thirdProject,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.Sales">
+    update oa..t_sales
+    set employee_site_id = #{employeeSiteId,jdbcType=INTEGER},
+      expect_entery_date1 = #{expectEnteryDate1,jdbcType=VARCHAR},
+      expect_entery_date2 = #{expectEnteryDate2,jdbcType=VARCHAR},
+      " first_project" = #{firstProject,jdbcType=VARCHAR},
+      second_project = #{secondProject,jdbcType=VARCHAR},
+      third_project = #{thirdProject,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=BIT}
+    where sales_id = #{salesId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select sales_id, employee_site_id, expect_entery_date1, expect_entery_date2, " first_project", 
+    second_project, third_project, create_time, update_time, delete_time, delete_flag
+    from oa..t_sales
+    where sales_id = #{salesId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select sales_id, employee_site_id, expect_entery_date1, expect_entery_date2, " first_project", 
+    second_project, third_project, create_time, update_time, delete_time, delete_flag
+    from oa..t_sales
+  </select>
+</mapper>
