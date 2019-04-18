@@ -38,10 +38,10 @@ public class AnnouncementController {
 	
 	@PostMapping(value="/list")
 	public GridDTO<AnnouncementListDTO> listData(HttpServletRequest req,
-			AnnouncementListQueryDTO listQueryDTO) {	
+			AnnouncementListQueryDTO listQueryDTO) {
 
 	    PageInfo<AnnouncementListDTO> queryList = announcementService.getQueryList(listQueryDTO);
-	    
+
 	    return PageInfoToGridDTOUtils.getGridDataResult(queryList);
 	}
 	
