@@ -1,7 +1,6 @@
 package com.our.oa.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,11 +24,11 @@ public class InterviewerResume implements Serializable {
 
     private String resumeFile;
 
-    private Date createTime;
+    private String createTime;
 
-    private Date updateTime;
+    private String updateTime;
 
-    private Date deleteTime;
+    private String deleteTime;
 
     private Boolean deleteFlag;
 
