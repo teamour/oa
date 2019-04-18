@@ -23,7 +23,6 @@
 
 	<form action="#" th:action="@{/company/editor}"
 		th:object="${companyForm}" method="post" class="layui-form">
-		
 		<p>
 			id: <input th:field="*{companyId}" type="text" />
 		</p>
@@ -65,8 +64,9 @@
 		</p>
 		<p>
 			<input type="submit" value="修改" />
+			<input type="button" value="返回" />
 		</p>
-		
+
 	</form>
 </body>
 </html>

@@ -16,5 +16,5 @@ import lombok.ToString;
 public class CompanyListQueryDTO extends GridListQueryBaseDTO {
 	private static final long serialVersionUID = 1L;
 	
-    private String title;
+    private String companyName;
 }

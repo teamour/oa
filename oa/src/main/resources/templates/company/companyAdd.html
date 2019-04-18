@@ -21,8 +21,9 @@
 <body>
 	<h1>客户信息登录:</h1>
 
-	<form action="#" th:action="@{/company/add}"
-		th:object="${companyForm}" method="post" class="layui-form">
+	<form action="#" th:action="@{/company/add}" th:object="${companyForm}"
+		method="post" class="layui-form">
+
 		<p>
 			公司名称: <input th:field="*{companyName}" type="text" />
 		</p>

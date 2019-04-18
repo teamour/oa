@@ -4,7 +4,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>客户信息登录</title>
+<title>客户信息详情</title>
 
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -20,50 +20,11 @@
 </head>
 <body>
 	<h1>客户详细信息:</h1>
+	<div id="infos"></div>
 	
-	<form action="#" th:action="@{/company/detailed}"
-		th:object="${companyForm}" method="post" class="layui-form">
-			<p>公司名称: <lable th:field="*{companyName}" /></p>
-		<p>
-			公司英文缩写: <input th:field="*{companyCode}" type="text" />
-		</p>
-		<p>
-			公司地址: <input th:field="*{address}" type="text" />
-		</p>
-		<p>
-			邮编: <input th:field="*{zipCode}" type="text" />
-		</p>
-		<p>
-			Email: <input th:field="*{email}" type="text" />
-		</p>
-		<p>
-			公司电话号码: <input th:field="*{telephone}" type="text" />
-		</p>
-		<p>
-			公司网址: <input th:field="*{website}" type="text" />
-		</p>
-		<p>
-			是否是bp公司 （0:否 1:是）: <input th:field="*{isBp}" type="text" />
-		</p>
-		<p>
-			口座銀行: <input th:field="*{bankName}" type="text" />
-		</p>
-		<p>
-			口座支店: <input th:field="*{branchBank}" type="text" />
-		</p>
-		<p>
-			口座番号: <input th:field="*{bankNumber}" type="text" />
-		</p>
-		<p>
-			口座備考: <input th:field="*{bankDesc}" type="text" />
-		</p>
-		<p>
-			<input type="submit" value="修改" />
-			<input type="button" value="返回" />
-		</p>
-
-	</form>
-
-	  
+	<div th:object="${companyForm}">
+    	<label>companyId: </label>
+    	<span th:text="*{companyId}"></span><br>
+    </div>
 </body>
 </html>

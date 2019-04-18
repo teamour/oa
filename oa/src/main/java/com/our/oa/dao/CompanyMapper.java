@@ -1,5 +1,6 @@
 package com.our.oa.dao;
 
+import com.our.oa.dto.list.CompanyListQueryDTO;
 import com.our.oa.entity.Company;
 import java.util.List;
 
@@ -12,8 +13,8 @@ public interface CompanyMapper {
     int insert(Company record);
 
     Company selectByPrimaryKey(Integer companyId);
-
-    List<Company> selectAll();
+    
+    List<Company> selectQueryList(CompanyListQueryDTO queryDTO);
 
     int updateByPrimaryKey(Company record);
 }

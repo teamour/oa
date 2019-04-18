@@ -9,10 +9,13 @@ import org.springframework.stereotype.Service;
 
 import com.our.oa.dao.CompanyMapper;
 import com.our.oa.dto.form.CompanyDTO;
+import com.our.oa.dto.list.AnnouncementListDTO;
 import com.our.oa.dto.list.CompanyListDTO;
 import com.our.oa.dto.list.CompanyListQueryDTO;
+import com.our.oa.entity.Announcement;
 import com.our.oa.entity.Company;
 import com.our.oa.service.CompanyService;
+import com.our.oa.utils.ModelMapperUtils;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
@@ -34,20 +37,6 @@ public class CompanyServiceImpl implements CompanyService {
 		Company record = modelMapper.map(companyDTO, Company.class);
 		return mapper.insert(record);
 	}
-
-	@Override
-	public List<CompanyDTO> getAll() {
-		ModelMapper modelMapper = new ModelMapper();
-		List<Company> list = mapper.selectAll();
-		List<CompanyDTO> dtolist = new ArrayList<>();
-		
-		for (int i = 0; i < list.size(); i++) {
-			CompanyDTO record = modelMapper.map(list.get(i), CompanyDTO.class);
-			dtolist.add(record);
-		}
-
-		return dtolist;
-	}
 	
 	@Override
 	public int updateByPrimaryKey(CompanyDTO companyDTO) {
@@ -65,7 +54,10 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public List<CompanyListDTO> getGridList(CompanyListQueryDTO g) {
-		// TODO Auto-generated method stub
-		return null;
+		 List<Company> queryResult = mapper.selectQueryList(g);
+		 if(!queryResult.isEmpty()) {
+			return ModelMapperUtils.mapCollection(queryResult, CompanyListDTO.class);			 
+		 }
+		 return new ArrayList<CompanyListDTO>();
 	}
 }
