@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="UTF-8">
+<title>hr index</title>
+<script type="text/javascript"></script>
+</head>
+<body>
+<div>
+	<form action="search" method="post">
+		<p>
+		<input id="searchBox" type="text" name="search" placeholder="请输入关键词">
+		<input type="submit" value="搜索">
+		</p>
+		<p>
+		<span>姓名</span><input type="checkbox" onblur="chooseBox()">
+		<span>日期</span><input type="checkbox" name="interview1Time">
+		<span>hr担当姓名</span><input type="checkbox" name="interview1Handler">
+		</p>
+	</form>
+</div>
+<div>
+	<p>
+	<a href="addInfoShow">添加面试人员</a>
+	</p>
+	<p>
+	<a href="visaLogin">签证办理登入</a>
+	</p>
+	</div>
+<div>
+	<table style="text-align: center;">
+		<tr>
+			<th colspan="6"><strong>面试人员</strong></th>
+		</tr>
+		<tr>
+			<th width="100px;">面试人员编号</th><th width="100px;">面试人员姓名</th><th width="100px;">面情结果</th><th colspan="3" width="300px;">操作</th>
+		</tr>
+		<tr th:each="in:${interviewer}">
+			<td th:text="${in.interviewerCode}"></td>
+			<td th:text="${in.interviewerName}"></td>
+			<td th:switch="${in.interviewResult}">
+				<span th:case="'-1'" th:text="null"></span>
+				<span th:case="'0'" th:text="不合格"></span>
+				<span th:case="'1'" th:text="合格"></span>
+			</td>
+			<td><a th:href="@{detailInfo(interviewerId=${in.interviewerId})}">详细信息</a></td>
+			<td><a th:href="@{updateInfo(interviewerId=${in.interviewerId})}">编辑</a></td>
+			<td><a th:href="@{addResume(interviewerId=${in.interviewerId})}">附件添加简历</a></td>
+		</tr>
+	</table>
+</div>
+</body>
+</html>
