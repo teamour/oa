@@ -29,7 +29,7 @@
 </head>
 <body>
     <div class="login">
-        <form method="post" th:action="@{/company/add}" class="layui-form" >
+        <form method="post" th:action="@{/login}" class="layui-form" >
             <div class="layui-form-item">
               <input name="email" th:placeholder="#{index.placeholder.email}"  type="text" lay-verify="required" class="layui-input" autocomplete="off">
             </div>
@@ -43,6 +43,6 @@
     </div>
     
     <script type="text/javascript" th:src="@{/js/layui.js}"></script>
-    <script type="text/javascript" th:src="@{/js/pages/sys/index.js}"></script>
+    <script type="text/javascript" th:src="@{/js/pages/index.js}"></script>
 </body>
 </html>

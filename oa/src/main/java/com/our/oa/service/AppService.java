@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.our.oa.entity.App;
 
-public interface AppService {
+public interface AppService{
 
 	List<App> getAllApp();
 }

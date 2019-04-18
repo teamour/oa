@@ -9,12 +9,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/*
+ * 列表显示基类
+ */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class GridDataDTO<T> implements Serializable {
+public class GridDTO<T> implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int page;

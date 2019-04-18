@@ -1,10 +1,12 @@
 package com.our.oa.dao;
 
+import com.our.oa.entity.Company;
 import java.util.List;
 
-import com.our.oa.entity.Company;
-
-public interface CompanyMapper{
+/**
+* Created by Mybatis Generator on 2019/03/31
+*/
+public interface CompanyMapper {
     int deleteByPrimaryKey(Integer companyId);
 
     int insert(Company record);

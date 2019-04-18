@@ -1,5 +1,6 @@
 package com.our.oa.dao;
 
+import com.our.oa.dto.list.AnnouncementListQueryDTO;
 import com.our.oa.entity.Announcement;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface AnnouncementMapper {
 
     Announcement selectByPrimaryKey(Integer announcementId);
 
-    List<Announcement> selectAll();
+    List<Announcement> selectQueryList(AnnouncementListQueryDTO queryDTO);
 
     int updateByPrimaryKey(Announcement record);
 }

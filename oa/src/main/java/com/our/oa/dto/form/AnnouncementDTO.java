@@ -1,14 +1,16 @@
-package com.our.oa.dto;
+package com.our.oa.dto.form;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.our.oa.dto.FormDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -16,8 +18,9 @@ import lombok.ToString;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class AnnouncementDTO implements Serializable{
+@ToString(callSuper=true)
+@EqualsAndHashCode(callSuper=true)
+public class AnnouncementDTO extends FormDTO{
 	
 	private Integer announcementId;
 

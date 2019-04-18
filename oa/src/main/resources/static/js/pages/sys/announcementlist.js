@@ -1,7 +1,7 @@
 BF={
 	initGrid: function () {
    		 $("#jqGrid").jqGrid({
-	             url:  'http://localhost:8080/announcement/list',
+	             url:  ctxPath +'announcement/list',
 	             mtype: "POST",
 	             datatype: "json",
 	             colNames:["Id", "标题", "创建时间", "内容"],
@@ -31,8 +31,14 @@ BF={
 		var selData = $("#jqGrid").getRowData();
 		// 要判断是否有选择，且只选中一行数据
 		
-		window.location.href = "http://localhost:8080/announcement/"+selData[0].announcementId;
-	}
+		window.location.href = ctxPath+"announcement/"+selData[0].announcementId;
+	},
+	searchData: function (){
+		$("#jqGrid").setGridParam({
+            page: 1,
+            postData: { title :$("#title").val() }
+        }).trigger('reloadGrid');
+   }
 	
 }
     
