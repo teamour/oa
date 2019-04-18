@@ -26,7 +26,7 @@ layui.use(['form','layer','laypage','jquery'],function(){
 		form.on('submit(save)', function(data){
 			layer.msg("hhhh");
 			BF.saveData(data);
-			alert("cccbbbb");
+			alert("bbbb");
 		 });
 		
 });

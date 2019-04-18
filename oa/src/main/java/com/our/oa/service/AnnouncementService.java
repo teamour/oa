@@ -1,9 +1,11 @@
 package com.our.oa.service;
 
-import com.our.oa.dto.AnnouncementDTO;
+import com.our.oa.dto.form.AnnouncementDTO;
+import com.our.oa.dto.list.AnnouncementListDTO;
+import com.our.oa.dto.list.AnnouncementListQueryDTO;
 import com.our.oa.entity.Announcement;
 
-public interface AnnouncementService {
+public interface AnnouncementService extends ListQueryService<AnnouncementListDTO,AnnouncementListQueryDTO> {
 	
 	Announcement getByPrimaryKey(Integer announcementId);
 	

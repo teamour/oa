@@ -18,6 +18,10 @@
 </head>
 <body>
 
+    <input id="title" type="text" >    
+    <button id="btnSearch" class="layui-btn layui-btn-normal" onclick="BF.searchData();">查询</button>
+
+    
     <a id="btnAdd" class="layui-btn" th:href="@{/announcement/}">添加</a>
     <button id="btnUpdate" class="layui-btn layui-btn-normal" onclick="BF.modifyData();" >修改</button>
     <button id="btnDelete" class="layui-btn layui-btn-danger">删除</button>
@@ -25,8 +29,13 @@
     
     <table id="jqGrid"></table>
     <div id="jqGridPager"></div>
-    
+   
+    <script type="text/javascript" th:inline="javascript">
+	   /*<![CDATA[*/
+	  var  ctxPath = /*[[@{/}]]*/ '';
+	   /*]]>*/
+	</script>　
     <script type="text/javascript" th:src="@{/js/pages/sys/announcementlist.js}"></script>
-    
+
 </body>
 </html>

@@ -1,8 +1,6 @@
 package com.our.oa.controller;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -17,9 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.our.oa.dto.AnnouncementDTO;
-import com.our.oa.dto.GridDataDTO;
+import com.github.pagehelper.PageInfo;
+import com.our.oa.dto.GridDTO;
+import com.our.oa.dto.form.AnnouncementDTO;
+import com.our.oa.dto.list.AnnouncementListDTO;
+import com.our.oa.dto.list.AnnouncementListQueryDTO;
 import com.our.oa.service.AnnouncementService;
+import com.our.oa.utils.PageInfoToGridDTOUtils;
 
 @RestController
 @RequestMapping(value="/announcement")
@@ -35,10 +37,12 @@ public class AnnouncementController {
 	}
 	
 	@PostMapping(value="/list")
-	public GridDataDTO<AnnouncementDTO> listData(HttpServletRequest req) {		
-		List<AnnouncementDTO> list= new ArrayList<>();
-		list.add(new AnnouncementDTO(1, "test", "description", new Date()));
-		return new GridDataDTO<>(1, 1, 1, list);
+	public GridDTO<AnnouncementListDTO> listData(HttpServletRequest req,
+			AnnouncementListQueryDTO listQueryDTO) {	
+
+	    PageInfo<AnnouncementListDTO> queryList = announcementService.getQueryList(listQueryDTO);
+	    
+	    return PageInfoToGridDTOUtils.getGridDataResult(queryList);
 	}
 	
 	
@@ -69,7 +73,6 @@ public class AnnouncementController {
 	public String save(@Valid AnnouncementDTO announcementForm, 
 			BindingResult bindingResult) {
 
-		System.out.println("hello");
         if (bindingResult.hasErrors()) {
             return "sys/announcement";
         }

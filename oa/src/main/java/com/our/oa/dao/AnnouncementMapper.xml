@@ -38,9 +38,14 @@
     from oa..t_announcement
     where announcement_id = #{announcementId,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap">
+  <select id="selectQueryList" parameterType="com.our.oa.dto.list.AnnouncementListQueryDTO" resultMap="BaseResultMap">
     select announcement_id, title, create_time, update_time, delete_time, delete_flag, 
     description
-    from oa..t_announcement
+    from t_announcement
+    <where>
+	    <if test="title !=null and title !=''">
+	      title like #{title}
+	    </if>
+    </where>
   </select>
 </mapper>

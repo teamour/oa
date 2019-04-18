@@ -15,9 +15,8 @@ public class UserController {
 	public String login() {
 		// 登录操作.
 		
-		System.out.println("hello");
 		// 成功之后进入home页面
-		return "";
+		return "home";
 	}
 	
 	@PostMapping("/logout")
