@@ -1,9 +1,23 @@
 package com.our.oa.service;
 
+import java.util.List;
+
+import com.our.oa.dto.form.EmployeeDTO;
+import com.our.oa.dto.form.EmployeeSiteDTO;
+import com.our.oa.dto.list.EmployeeListDTO;
+import com.our.oa.dto.list.EmployeeListQueryDTO;
 import com.our.oa.entity.Employee;
 import com.our.oa.entity.EmployeeSite;
 
-public interface EmployeeService {
-	Integer insert(Employee employee,EmployeeSite employeeSite);
-
+public interface EmployeeService extends ListQueryService<EmployeeListDTO,EmployeeListQueryDTO>{
+	
+	int insert(EmployeeDTO emplyoee,EmployeeSiteDTO emplyoeeSite);
+	
+	Employee getByPrimaryKey(Integer EmployeeId);
+	
+	EmployeeSite getByEmployeeId(Integer EmployeeId);
+	
+	List<Employee> findAll();
+	
+	int deleteBydIds(Integer... Ids);
 }
