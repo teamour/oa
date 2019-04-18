@@ -5,11 +5,11 @@
     <id column="interviewer_id" jdbcType="INTEGER" property="interviewerId" />
     <result column="interviewer_code" jdbcType="VARCHAR" property="interviewerCode" />
     <result column="interviewer_name" jdbcType="VARCHAR" property="interviewerName" />
-    <result column="interview_result" jdbcType="BIT" property="interviewResult" />
-    <result column="interview1_time" jdbcType="TIMESTAMP" property="interview1Time" />
-    <result column="interview1_result" jdbcType="BIT" property="interview1Result" />
-    <result column="interview1_handler" jdbcType="INTEGER" property="interview1Handler" />
-    <result column="gender" jdbcType="TINYINT" property="gender" />
+    <result column="interview_result" jdbcType="TINYINT" property="interviewResult" />
+    <result column="interview1_time" jdbcType="DATE" property="interview1Time" />
+    <result column="interview1_result" jdbcType="INTEGER" property="interview1Result" />
+    <result column="interview1_handler" jdbcType="VARCHAR" property="interview1Handler" />
+    <result column="gender" jdbcType="BIT" property="gender" />
     <result column="age" jdbcType="TINYINT" property="age" />
     <result column="city" jdbcType="VARCHAR" property="city" />
     <result column="japanese_socre" jdbcType="INTEGER" property="japaneseSocre" />
@@ -26,14 +26,14 @@
     <result column="marital_status" jdbcType="INTEGER" property="maritalStatus" />
     <result column="expect_salary" jdbcType="INTEGER" property="expectSalary" />
     <result column="friendship_situation_in_japan" jdbcType="VARCHAR" property="friendshipSituationInJapan" />
-    <result column="interview2_time" jdbcType="TIMESTAMP" property="interview2Time" />
-    <result column="interview2_result" jdbcType="BIT" property="interview2Result" />
-    <result column="interview2_handler" jdbcType="INTEGER" property="interview2Handler" />
+    <result column="interview2_time" jdbcType="DATE" property="interview2Time" />
+    <result column="interview2_result" jdbcType="TINYINT" property="interview2Result" />
+    <result column="interview2_handler" jdbcType="VARCHAR" property="interview2Handler" />
     <result column="internship_experience" jdbcType="VARCHAR" property="internshipExperience" />
     <result column="skill_score" jdbcType="INTEGER" property="skillScore" />
-    <result column="interview3_time" jdbcType="TIMESTAMP" property="interview3Time" />
-    <result column="interview3_result" jdbcType="BIT" property="interview3Result" />
-    <result column="interview3_handler" jdbcType="INTEGER" property="interview3Handler" />
+    <result column="interview3_time" jdbcType="DATE" property="interview3Time" />
+    <result column="interview3_result" jdbcType="TINYINT" property="interview3Result" />
+    <result column="interview3_handler" jdbcType="VARCHAR" property="interview3Handler" />
     <result column="prev1_company_name" jdbcType="VARCHAR" property="prev1CompanyName" />
     <result column="prev2_company_name" jdbcType="VARCHAR" property="prev2CompanyName" />
     <result column="prev3_company_name" jdbcType="VARCHAR" property="prev3CompanyName" />
@@ -41,9 +41,9 @@
     <result column="prev5_company_name" jdbcType="VARCHAR" property="prev5CompanyName" />
     <result column="work_intent" jdbcType="INTEGER" property="workIntent" />
     <result column="company_id" jdbcType="INTEGER" property="companyId" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="update_time" jdbcType="DATE" property="updateTime" />
+    <result column="delete_time" jdbcType="DATE" property="deleteTime" />
     <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
     <result column="japanese_conversation_ability" jdbcType="LONGVARCHAR" property="japaneseConversationAbility" />
     <result column="personnel_dept_feedback" jdbcType="LONGVARCHAR" property="personnelDeptFeedback" />
@@ -54,118 +54,179 @@
     <result column="technical_department_feedback" jdbcType="LONGVARCHAR" property="technicalDepartmentFeedback" />
     <result column="interview3_desc" jdbcType="LONGVARCHAR" property="interview3Desc" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from oa..t_interviewer
-    where interviewer_id = #{interviewerId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.our.oa.entity.Interviewer">
-    insert into oa..t_interviewer (interviewer_id, interviewer_code, interviewer_name, 
-      interview_result, interview1_time, interview1_result, 
-      interview1_handler, gender, age, 
-      city, japanese_socre, graduated_school, 
-      profession, graduated_date, education, 
-      certificate, manner, family_situation, 
-      service_situation, nationality, birthplace, 
-      marital_status, expect_salary, friendship_situation_in_japan, 
-      interview2_time, interview2_result, interview2_handler, 
-      internship_experience, skill_score, interview3_time, 
-      interview3_result, interview3_handler, prev1_company_name, 
-      prev2_company_name, prev3_company_name, prev4_company_name, 
-      prev5_company_name, work_intent, company_id, 
-      create_time, update_time, delete_time, 
+  
+  <insert id="addInfoCommit" parameterType="com.our.oa.entity.Interviewer">
+    insert into t_interviewer (interviewer_code, interviewer_name, 
+      interview_result, <if test="interview1Time != ''">interview1_time,</if> 
+      interview1_result,  interview1_handler, 
+      gender, age, 
+      city, japanese_socre, 
+      graduated_school, profession, 
+      <if test="graduatedDate != ''">graduated_date,</if> education, 
+      certificate, manner, 
+      family_situation, service_situation, 
+      nationality, birthplace, 
+      marital_status, expect_salary, 
+      friendship_situation_in_japan, 
+      <if test="interview2Time != ''">interview2_time,</if> interview2_result, 
+      interview2_handler, internship_experience, skill_score, 
+      <if test="interview3Time != ''">interview3_time,</if> 
+      interview3_result, interview3_handler, 
+      prev1_company_name, prev2_company_name, 
+      prev3_company_name, prev4_company_name, 
+      prev5_company_name, work_intent, 
+      company_id, create_time, 
       delete_flag, japanese_conversation_ability, 
-      personnel_dept_feedback, interview1_desc, 
-      personal_situation, working_situation, 
-      interview2_desc, technical_department_feedback, 
-      interview3_desc)
-    values (#{interviewerId,jdbcType=INTEGER}, #{interviewerCode,jdbcType=VARCHAR}, #{interviewerName,jdbcType=VARCHAR}, 
-      #{interviewResult,jdbcType=BIT}, #{interview1Time,jdbcType=TIMESTAMP}, #{interview1Result,jdbcType=BIT}, 
-      #{interview1Handler,jdbcType=INTEGER}, #{gender,jdbcType=TINYINT}, #{age,jdbcType=TINYINT}, 
-      #{city,jdbcType=VARCHAR}, #{japaneseSocre,jdbcType=INTEGER}, #{graduatedSchool,jdbcType=VARCHAR}, 
-      #{profession,jdbcType=VARCHAR}, #{graduatedDate,jdbcType=DATE}, #{education,jdbcType=INTEGER}, 
-      #{certificate,jdbcType=VARCHAR}, #{manner,jdbcType=TINYINT}, #{familySituation,jdbcType=VARCHAR}, 
-      #{serviceSituation,jdbcType=INTEGER}, #{nationality,jdbcType=VARCHAR}, #{birthplace,jdbcType=VARCHAR}, 
-      #{maritalStatus,jdbcType=INTEGER}, #{expectSalary,jdbcType=INTEGER}, #{friendshipSituationInJapan,jdbcType=VARCHAR}, 
-      #{interview2Time,jdbcType=TIMESTAMP}, #{interview2Result,jdbcType=BIT}, #{interview2Handler,jdbcType=INTEGER}, 
-      #{internshipExperience,jdbcType=VARCHAR}, #{skillScore,jdbcType=INTEGER}, #{interview3Time,jdbcType=TIMESTAMP}, 
-      #{interview3Result,jdbcType=BIT}, #{interview3Handler,jdbcType=INTEGER}, #{prev1CompanyName,jdbcType=VARCHAR}, 
-      #{prev2CompanyName,jdbcType=VARCHAR}, #{prev3CompanyName,jdbcType=VARCHAR}, #{prev4CompanyName,jdbcType=VARCHAR}, 
-      #{prev5CompanyName,jdbcType=VARCHAR}, #{workIntent,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP}, 
-      #{deleteFlag,jdbcType=BIT}, #{japaneseConversationAbility,jdbcType=LONGVARCHAR}, 
-      #{personnelDeptFeedback,jdbcType=LONGVARCHAR}, #{interview1Desc,jdbcType=LONGVARCHAR}, 
-      #{personalSituation,jdbcType=LONGVARCHAR}, #{workingSituation,jdbcType=LONGVARCHAR}, 
-      #{interview2Desc,jdbcType=LONGVARCHAR}, #{technicalDepartmentFeedback,jdbcType=LONGVARCHAR}, 
-      #{interview3Desc,jdbcType=LONGVARCHAR})
+      personnel_dept_feedback, 
+      interview1_desc, personal_situation, 
+      working_situation, interview2_desc, 
+      technical_department_feedback, interview3_desc)
+    values (#{interviewerCode}, #{interviewerName}, 
+      #{interviewResult}, <if test="interview1Time != ''">#{interview1Time},</if>
+      #{interview1Result}, #{interview1Handler}, 
+      #{gender}, #{age},
+      #{city}, #{japaneseSocre},
+      #{graduatedSchool}, #{profession}, 
+      <if test="graduatedDate != ''">#{graduatedDate}, </if> #{education},
+      #{certificate}, #{manner}, 
+      #{familySituation}, #{serviceSituation}, 
+      #{nationality}, #{birthplace}, 
+      #{maritalStatus}, #{expectSalary}, 
+      #{friendshipSituationInJapan}, 
+      <if test="interview2Time != ''">#{interview2Time}, </if> #{interview2Result}, 
+      #{interview2Handler},#{internshipExperience},
+      #{skillScore}, <if test="interview3Time != ''">#{interview3Time},
+      </if>#{interview3Result}, #{interview3Handler}, 
+      #{prev1CompanyName}, #{prev2CompanyName}, 
+      #{prev3CompanyName}, #{prev4CompanyName},
+      #{prev5CompanyName}, #{workIntent}, 
+      #{companyId},#{createTime}, 
+      #{deleteFlag}, #{japaneseConversationAbility},
+      #{personnelDeptFeedback}, #{interview1Desc},
+      #{personalSituation}, #{workingSituation}, 
+      #{interview2Desc}, #{technicalDepartmentFeedback},
+      #{interview3Desc})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.Interviewer">
-    update oa..t_interviewer
-    set interviewer_code = #{interviewerCode,jdbcType=VARCHAR},
-      interviewer_name = #{interviewerName,jdbcType=VARCHAR},
-      interview_result = #{interviewResult,jdbcType=BIT},
-      interview1_time = #{interview1Time,jdbcType=TIMESTAMP},
-      interview1_result = #{interview1Result,jdbcType=BIT},
-      interview1_handler = #{interview1Handler,jdbcType=INTEGER},
-      gender = #{gender,jdbcType=TINYINT},
-      age = #{age,jdbcType=TINYINT},
-      city = #{city,jdbcType=VARCHAR},
-      japanese_socre = #{japaneseSocre,jdbcType=INTEGER},
-      graduated_school = #{graduatedSchool,jdbcType=VARCHAR},
-      profession = #{profession,jdbcType=VARCHAR},
-      graduated_date = #{graduatedDate,jdbcType=DATE},
-      education = #{education,jdbcType=INTEGER},
-      certificate = #{certificate,jdbcType=VARCHAR},
-      manner = #{manner,jdbcType=TINYINT},
-      family_situation = #{familySituation,jdbcType=VARCHAR},
-      service_situation = #{serviceSituation,jdbcType=INTEGER},
-      nationality = #{nationality,jdbcType=VARCHAR},
-      birthplace = #{birthplace,jdbcType=VARCHAR},
-      marital_status = #{maritalStatus,jdbcType=INTEGER},
-      expect_salary = #{expectSalary,jdbcType=INTEGER},
-      friendship_situation_in_japan = #{friendshipSituationInJapan,jdbcType=VARCHAR},
-      interview2_time = #{interview2Time,jdbcType=TIMESTAMP},
-      interview2_result = #{interview2Result,jdbcType=BIT},
-      interview2_handler = #{interview2Handler,jdbcType=INTEGER},
-      internship_experience = #{internshipExperience,jdbcType=VARCHAR},
-      skill_score = #{skillScore,jdbcType=INTEGER},
-      interview3_time = #{interview3Time,jdbcType=TIMESTAMP},
-      interview3_result = #{interview3Result,jdbcType=BIT},
-      interview3_handler = #{interview3Handler,jdbcType=INTEGER},
-      prev1_company_name = #{prev1CompanyName,jdbcType=VARCHAR},
-      prev2_company_name = #{prev2CompanyName,jdbcType=VARCHAR},
-      prev3_company_name = #{prev3CompanyName,jdbcType=VARCHAR},
-      prev4_company_name = #{prev4CompanyName,jdbcType=VARCHAR},
-      prev5_company_name = #{prev5CompanyName,jdbcType=VARCHAR},
-      work_intent = #{workIntent,jdbcType=INTEGER},
-      company_id = #{companyId,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
-      delete_flag = #{deleteFlag,jdbcType=BIT},
-      japanese_conversation_ability = #{japaneseConversationAbility,jdbcType=LONGVARCHAR},
-      personnel_dept_feedback = #{personnelDeptFeedback,jdbcType=LONGVARCHAR},
-      interview1_desc = #{interview1Desc,jdbcType=LONGVARCHAR},
-      personal_situation = #{personalSituation,jdbcType=LONGVARCHAR},
-      working_situation = #{workingSituation,jdbcType=LONGVARCHAR},
-      interview2_desc = #{interview2Desc,jdbcType=LONGVARCHAR},
-      technical_department_feedback = #{technicalDepartmentFeedback,jdbcType=LONGVARCHAR},
-      interview3_desc = #{interview3Desc,jdbcType=LONGVARCHAR}
-    where interviewer_id = #{interviewerId,jdbcType=INTEGER}
-  </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select interviewer_id, interviewer_code, interviewer_name, interview_result, interview1_time, 
-    interview1_result, interview1_handler, gender, age, city, japanese_socre, graduated_school, 
-    profession, graduated_date, education, certificate, manner, family_situation, service_situation, 
-    nationality, birthplace, marital_status, expect_salary, friendship_situation_in_japan, 
-    interview2_time, interview2_result, interview2_handler, internship_experience, skill_score, 
-    interview3_time, interview3_result, interview3_handler, prev1_company_name, prev2_company_name, 
-    prev3_company_name, prev4_company_name, prev5_company_name, work_intent, company_id, 
-    create_time, update_time, delete_time, delete_flag, japanese_conversation_ability, 
-    personnel_dept_feedback, interview1_desc, personal_situation, working_situation, 
-    interview2_desc, technical_department_feedback, interview3_desc
-    from oa..t_interviewer
-    where interviewer_id = #{interviewerId,jdbcType=INTEGER}
+  
+  <select id="getCompanyIdAndName" resultMap="companyIdAndName">
+  	select company_id,company_name from sys_company
   </select>
+  
+  <resultMap type="com.our.oa.entity.Company" id="companyIdAndName">
+  	<id column="company_id" property="companyId"/>
+  	<result column="company_name" property="companyName"/>
+  </resultMap>
+  
+  <select id="getInterviewerInfo" resultMap="BaseResultMap">
+  	select interviewer_id, interviewer_code, interviewer_name, interview_result from t_interviewer
+  </select>
+  
+  <select id="checkCode" parameterType="INTEGER" resultType="com.our.oa.entity.Interviewer">
+  	select * from t_interviewer where interviewer_code=#{code}
+  </select>
+  
+  <select id="getDetailInfoById" parameterType="INTEGER" resultMap="BaseResultMap">
+  	select * from t_interviewer where interviewer_id=#{interviewerId}
+  </select>
+  
+  <update id="updateInfoDo" parameterType="com.our.oa.entity.Interviewer">
+  	update t_interviewer
+    set 
+      interviewer_name = #{interviewerName},
+      interview_result = #{interviewResult},
+      interview1_time = #{interview1Time},
+      interview1_result = #{interview1Result},
+      interview1_handler = #{interview1Handler},
+      gender = #{gender},
+      age = #{age},
+      city = #{city},
+      japanese_socre = #{japaneseSocre},
+      graduated_school = #{graduatedSchool},
+      profession = #{profession},
+      graduated_date = #{graduatedDate},
+      education = #{education},
+      certificate = #{certificate},
+      manner = #{manner},
+      family_situation = #{familySituation},
+      service_situation = #{serviceSituation},
+      nationality = #{nationality},
+      birthplace = #{birthplace},
+      marital_status = #{maritalStatus},
+      expect_salary = #{expectSalary},
+      friendship_situation_in_japan = #{friendshipSituationInJapan},
+      interview2_time = #{interview2Time},
+      interview2_result = #{interview2Result},
+      interview2_handler = #{interview2Handler},
+      internship_experience = #{internshipExperience},
+      skill_score = #{skillScore},
+      interview3_time = #{interview3Time},
+      interview3_result = #{interview3Result},
+      interview3_handler = #{interview3Handler},
+      prev1_company_name = #{prev1CompanyName},
+      prev2_company_name = #{prev2CompanyName},
+      prev3_company_name = #{prev3CompanyName},
+      prev4_company_name = #{prev4CompanyName},
+      prev5_company_name = #{prev5CompanyName},
+      work_intent = #{workIntent},
+      company_id = #{companyId},
+      update_time = #{updateTime},
+      delete_flag = #{deleteFlag},
+      japanese_conversation_ability = #{japaneseConversationAbility},
+      personnel_dept_feedback = #{personnelDeptFeedback},
+      interview1_desc = #{interview1Desc},
+      personal_situation = #{personalSituation},
+      working_situation = #{workingSituation},
+      interview2_desc = #{interview2Desc},
+      technical_department_feedback = #{technicalDepartmentFeedback},
+      interview3_desc = #{interview3Desc}
+    where interviewer_id = #{interviewerId}
+  </update>
+  
+  <insert id="addResumeDo" parameterType="com.our.oa.entity.InterviewerResume">
+  	insert into interviewer_resume(interviewer_id, resume_title
+  	  resume_file, create_time
+  	  ) values(#{interviewerId}, #{resumeTitle}, 
+  	  #{resumeFile}, #{createTime},
+  	  )
+  </insert>
+  
+  <select id="getInterviewerByInterviewerCode" parameterType="INTEGER" resultMap="BaseResultMap">
+  	select * from t_interviewer where interviewer_code=#{interviewerCode}
+  </select>
+  
+  <!-- 
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    interviewer_id, interviewer_code, 
+    interviewer_name, interview_result, 
+    interview1_time, interview1_result, 
+    interview1_handler, gender, 
+    age, city, 
+    japanese_socre, graduated_school, 
+    profession, graduated_date, 
+    education, certificate, 
+    manner, family_situation, 
+    service_situation, nationality, 
+    birthplace, marital_status, 
+    expect_salary, friendship_situation_in_japan, 
+    interview2_time, interview2_result, 
+    interview2_handler, internship_experience, 
+    skill_score, interview3_time, 
+    interview3_result, interview3_handler, 
+    prev1_company_name, prev2_company_name, 
+    prev3_company_name, prev4_company_name, 
+    prev5_company_name, work_intent, 
+    company_id, create_time, 
+    update_time, delete_time, 
+    delete_flag, japanese_conversation_ability, 
+    personnel_dept_feedback, interview1_desc, 
+    personal_situation, working_situation, 
+    interview2_desc, technical_department_feedback, 
+    interview3_desc
+    from t_interviewer
+    where interviewer_id = #{interviewerId}
+  </select>
+  
   <select id="selectAll" resultMap="BaseResultMap">
     select interviewer_id, interviewer_code, interviewer_name, interview_result, interview1_time, 
     interview1_result, interview1_handler, gender, age, city, japanese_socre, graduated_school, 
@@ -177,6 +238,7 @@
     create_time, update_time, delete_time, delete_flag, japanese_conversation_ability, 
     personnel_dept_feedback, interview1_desc, personal_situation, working_situation, 
     interview2_desc, technical_department_feedback, interview3_desc
-    from oa..t_interviewer
-  </select>
+    from t_interviewer
+  </select> -->
+  
 </mapper>

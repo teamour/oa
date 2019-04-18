@@ -1,7 +1,7 @@
 package com.our.oa.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,63 +23,63 @@ public class Interviewer implements Serializable {
 
     private String interviewerName;
 
-    private Boolean interviewResult;
+    private int interviewResult;
 
-    private Date interview1Time;
+    private String interview1Time;
 
-    private Boolean interview1Result;
+    private int interview1Result;
 
-    private Integer interview1Handler;
+    private String interview1Handler;
 
-    private Byte gender;
+    private int gender;
 
-    private Byte age;
+    private int age;
 
     private String city;
 
-    private Integer japaneseSocre;
+    private int japaneseSocre;
 
     private String graduatedSchool;
 
     private String profession;
 
-    private Date graduatedDate;
+    private String graduatedDate;
 
-    private Integer education;
+    private int education;
 
     private String certificate;
 
-    private Byte manner;
+    private int manner;
 
     private String familySituation;
 
-    private Integer serviceSituation;
+    private int serviceSituation;
 
     private String nationality;
 
     private String birthplace;
 
-    private Integer maritalStatus;
+    private int maritalStatus;
 
-    private Integer expectSalary;
+    private int expectSalary;
 
     private String friendshipSituationInJapan;
 
-    private Date interview2Time;
+    private String interview2Time;
 
-    private Boolean interview2Result;
+    private int interview2Result;
 
-    private Integer interview2Handler;
+    private String interview2Handler;
 
     private String internshipExperience;
 
-    private Integer skillScore;
+    private int skillScore;
 
-    private Date interview3Time;
+    private String interview3Time;
 
-    private Boolean interview3Result;
+    private int interview3Result;
 
-    private Integer interview3Handler;
+    private String interview3Handler;
 
     private String prev1CompanyName;
 
@@ -91,17 +91,17 @@ public class Interviewer implements Serializable {
 
     private String prev5CompanyName;
 
-    private Integer workIntent;
+    private int workIntent;
 
-    private Integer companyId;
+    private int companyId;
 
-    private Date createTime;
+    private String createTime;
 
-    private Date updateTime;
+    private String updateTime;
 
-    private Date deleteTime;
+    private String deleteTime;
 
-    private Boolean deleteFlag;
+    private int deleteFlag;
 
     private String japaneseConversationAbility;
 
