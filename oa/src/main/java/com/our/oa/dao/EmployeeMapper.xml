@@ -51,14 +51,12 @@
       skill_growth,bank_name,branch_bank,bank_number,
       bank_desc,domestic_address,family_support,
   	  contract_format,employment_insurance,annuity,
-      health_insurance,
+      health_insurance,delete_flag,
       japanese_level,skill_level,create_time
   </sql>
   <!-- company_id来自表sys_company的外键,不可修改 -->
   <insert id="insert" parameterType="com.our.oa.entity.Employee">
-  insert into oasys.t_employee(
-  <include refid="column"/>
-  )
+  insert into oasys.t_employee(<include refid="column"/>)
     values( #{employeeName,jdbcType=VARCHAR},#{position,jdbcType=INTEGER}, #{age,jdbcType=TINYINT},
    #{address,jdbcType=VARCHAR},#{theNearestStation,jdbcType=VARCHAR},#{telephone,jdbcType=VARCHAR},
     #{workingYears,jdbcType=TINYINT}, #{skill1,jdbcType=INTEGER}, #{skill2,jdbcType=INTEGER}, #{skill3,jdbcType=INTEGER},
@@ -201,7 +199,7 @@
      <if test="skillAnalysis!=null and skillAnalysis!=''">
       skill_analysis = #{skillAnalysis,jdbcType=LONGVARCHAR},
      </if>
-     <if test="gender!=null and gender!=''">
+     <if test="skillGrowth!=null and skillGrowth!=''">
       skill_growth = #{skillGrowth,jdbcType=LONGVARCHAR}
 	</if>
 	</set> 
@@ -210,10 +208,20 @@
     </where>
   </update>
   
-    <select id="selectForStudy" resultMap="BaseResultMap">
+  <select id="selectForStudy" resultMap="BaseResultMap">
   select employee_id, employee_name, working_years,
   skill1, skill1_years, skill2, skill2_years, skill3, skill3_years,
   skill_level, japanese_level
   from t_employee
   </select>
+  <update id="deleteById">
+   update oasys.t_employee
+   <set>
+      delete_flag = true
+   </set>
+   <where>
+   	  employee_id = #{id,jdbcType=INTEGER}
+   </where>
+  </update>
+  
 </mapper>

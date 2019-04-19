@@ -61,16 +61,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public int deleteBydIds(Integer... Ids) {
-		int rows = 0;
-		for (Integer employeeId : Ids) {
-			employeeMapper.deleteByPrimaryKey(employeeId);
-			//rows= employeeSiteMapper.deleteByPrimaryKey(employeeId);
-		}
-		return rows;
-	}
-
-	@Override
 	public void update(EmployeeDTO employee , EmployeeSiteDTO emplyoeeSite ) {
 		
 		 employeeMapper.updateByEmployeeId(employee);
@@ -80,6 +70,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<Employee> getEmployeeForSyudy(){
 		return employeeMapper.selectForStudy();
+	}
+
+	@Override
+	public void deleteBydIds(Integer id) {
+		employeeMapper.deleteById(id);
 	}
 	
 	

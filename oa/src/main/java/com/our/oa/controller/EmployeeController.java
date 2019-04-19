@@ -73,7 +73,13 @@ public class EmployeeController {
 			ModelMapper modelMapper = new ModelMapper();
 			dto = modelMapper.map(employee, EmployeeDTO.class);
 			dto1 = modelMapper.map(employeeSite, EmployeeSiteDTO.class);
-		}		
+		}
+		Boolean flag = dto.getDeleteFlag();
+		System.out.println(flag);
+		if (flag) {
+			modelAndView.setViewName("emp/deleted");
+			return modelAndView;
+		}
 		modelAndView.addObject("employee", dto);
 		modelAndView.addObject("employeeSite", dto1);
 		modelAndView.setViewName("emp/emp-manage");
@@ -84,7 +90,11 @@ public class EmployeeController {
 	public String delete(@PathVariable Integer... Ids) {
 		// 获取 页面上选中的id（可以多个） 进行删除炒作
 		
-		employeeService.deleteBydIds(Ids);
+		//employeeService.deleteBydIds(Ids);
+		for (Integer id : Ids) {
+			employeeService.deleteBydIds(id);
+			System.out.println(id);
+		}
 		System.out.println(Ids);
 		// 删除成功后重新进入列表页
 		return "delete ok";
@@ -102,5 +112,10 @@ public class EmployeeController {
         modelAndView.setViewName("emp/employeelist");
         return modelAndView;
 	}
+	
+	
+	
+	
+	
 	
 }

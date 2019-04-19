@@ -2,6 +2,7 @@ package com.our.oa.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +18,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class EmployeeSite implements Serializable {
-    private Integer employeeSiteId;
+	private Integer employeeSiteId;
 
     private Integer employeeId;
 
@@ -68,6 +69,6 @@ public class EmployeeSite implements Serializable {
     private String enterRecord;
 
     private String description;
-
+    
     private static final long serialVersionUID = 1L;
 }

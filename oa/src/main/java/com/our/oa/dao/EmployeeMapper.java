@@ -30,4 +30,5 @@ public interface EmployeeMapper {
 	// create BY wangjiaqin
 	List<Employee> selectForStudy();
 	
+	int deleteById(Integer id);
 }

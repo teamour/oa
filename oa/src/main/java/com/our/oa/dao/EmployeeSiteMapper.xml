@@ -33,7 +33,7 @@
    	  project_id,sales_staff,sales_contact,
       sales_email,office_clerk,office_email,unit_price,settlement_range,
       invoice_file,payment_site,head_office_clerk,
-      description,enter_record,is_need_sales_staff,purchase_order_file,employee_id
+      description,enter_record,is_need_sales_staff,purchase_order_file,employee_id 
   </sql>
   <insert id="insert" parameterType="com.our.oa.entity.EmployeeSite">
   insert into oasys.t_employee_site (<include refid="column"/>)

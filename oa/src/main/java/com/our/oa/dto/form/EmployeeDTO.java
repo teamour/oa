@@ -3,7 +3,6 @@ package com.our.oa.dto.form;
 import java.io.Serializable;
 import java.util.Date;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,15 +25,15 @@ public class EmployeeDTO implements Serializable{
 
     private Date birthday;
 
-    private Integer maritalStatus;
+    private Integer maritalStatus;//婚姻状况
 
-    private Integer companyId;
+    private Integer companyId;//所属公司
 
-    private Integer deptId;
+    private Integer deptId;//部门ID
 
     private Date enterDate;
 
-    private Integer position;
+    private Integer position;//职称
 
     private String address;
 
@@ -79,7 +78,7 @@ public class EmployeeDTO implements Serializable{
     private Integer contractFormat;
 
     private Boolean employmentInsurance;
-
+    
     private Boolean annuity;
 
     private Boolean healthInsurance;
@@ -95,6 +94,6 @@ public class EmployeeDTO implements Serializable{
     private String skillAnalysis;
 
     private String skillGrowth;
-
+    
     private static final long serialVersionUID = 1L;
 }

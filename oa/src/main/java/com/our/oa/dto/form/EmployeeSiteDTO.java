@@ -3,7 +3,6 @@ package com.our.oa.dto.form;
 import java.io.Serializable;
 import java.util.Date;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,58 +15,58 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class EmployeeSiteDTO implements Serializable{
-		private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-		private Integer employeeSiteId;
+	private Integer employeeSiteId;
 
-	    private Integer employeeId;
+    private Integer employeeId;
 
-	    private Integer projectId;
+    private Integer projectId;
 
-	    private Date expectEnterDate;
+    private Date expectEnterDate;
 
-	    private Date enterDate;
+    private Date enterDate;
 
-	    private Date endDate;
+    private Date endDate;
 
-	    private String salesStaff;
+    private String salesStaff;
 
-	    private String salesContact;
+    private String salesContact;
 
-	    private String salesEmail;
+    private String salesEmail;
 
-	    private String officeClerk;
+    private String officeClerk;
 
-	    private String officeEmail;
+    private String officeEmail;
 
-	    private String settlementRange;
+    private String settlementRange;
 
-	    private Integer unitPrice;
+    private Integer unitPrice;
 
-	    private Boolean isNeedSalesStaff;
+    private Boolean isNeedSalesStaff;
 
-	    private String purchaseOrderFile;
+    private String purchaseOrderFile;
 
-	    private String invoiceFile;
+    private String invoiceFile;
 
-	    private String paymentSite;
+    private String paymentSite;
 
-	    private String headOfficeClerk;
+    private String headOfficeClerk;
 
-	    private Integer enterHandler;
+    private Integer enterHandler;
 
-	    private Boolean isEnd;
+    private Boolean isEnd;
 
-	    private Date createTime;
+    private Date createTime;
 
-	    private Date updateTime;
+    private Date updateTime;
 
-	    private Date deleteTime;
+    private Date deleteTime;
 
-	    private Boolean deleteFlag;
+    private Boolean deleteFlag;
 
-	    private String enterRecord;
+    private String enterRecord;
 
-	    private String description;
-
+    private String description;
+    
 }

@@ -19,9 +19,9 @@ public interface EmployeeService extends ListQueryService<EmployeeListDTO,Employ
 	
 	List<Employee> findAll();
 	
-	int deleteBydIds(Integer... Ids);
-	
 	void update(EmployeeDTO employee ,EmployeeSiteDTO employeeSite );
 	
 	List<Employee> getEmployeeForSyudy();
+
+	void deleteBydIds(Integer id);
 }
