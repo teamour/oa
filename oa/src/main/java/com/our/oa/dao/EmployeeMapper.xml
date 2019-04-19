@@ -209,4 +209,11 @@
     	employee_id = #{employeeId,jdbcType=INTEGER}
     </where>
   </update>
+  
+    <select id="selectForStudy" resultMap="BaseResultMap">
+  select employee_id, employee_name, working_years,
+  skill1, skill1_years, skill2, skill2_years, skill3, skill3_years,
+  skill_level, japanese_level
+  from t_employee
+  </select>
 </mapper>

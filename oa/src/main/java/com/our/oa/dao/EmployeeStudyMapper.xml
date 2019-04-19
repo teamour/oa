@@ -20,15 +20,13 @@
     where employee_study_id = #{employeeStudyId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.our.oa.entity.EmployeeStudy">
-    insert into oa..t_employee_study (employee_study_id, employee_id, study_content, 
+    insert into t_employee_study (employee_id, study_content, 
       begin_date, study_time, handler, 
-      learn_cotent, evaluation, create_time, 
-      update_time, delete_time, delete_flag
+      learn_cotent, evaluation
       )
-    values (#{employeeStudyId,jdbcType=INTEGER}, #{employeeId,jdbcType=INTEGER}, #{studyContent,jdbcType=VARCHAR}, 
+    values (#{employeeId,jdbcType=INTEGER}, #{studyContent,jdbcType=VARCHAR}, 
       #{beginDate,jdbcType=DATE}, #{studyTime,jdbcType=VARCHAR}, #{handler,jdbcType=INTEGER}, 
-      #{learnCotent,jdbcType=VARCHAR}, #{evaluation,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=BIT}
+      #{learnCotent,jdbcType=VARCHAR}, #{evaluation,jdbcType=VARCHAR}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.EmployeeStudy">
@@ -49,12 +47,18 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select employee_study_id, employee_id, study_content, begin_date, study_time, handler, 
     learn_cotent, evaluation, create_time, update_time, delete_time, delete_flag
-    from oa..t_employee_study
+    from t_employee_study
     where employee_study_id = #{employeeStudyId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select employee_study_id, employee_id, study_content, begin_date, study_time, handler, 
     learn_cotent, evaluation, create_time, update_time, delete_time, delete_flag
-    from oa..t_employee_study
+    from t_employee_study
   </select>
+  
+  <select id="selectQueryList" parameterType="com.our.oa.dto.list.EmployeeStudyListQueryDTO" resultMap="BaseResultMap">
+    select employee_study_id, employee_id, study_content, begin_date, study_time, handler,learn_cotent,evaluation
+    from t_employee_study
+  </select>
+  
 </mapper>

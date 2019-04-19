@@ -23,4 +23,5 @@ public interface EmployeeService extends ListQueryService<EmployeeListDTO,Employ
 	
 	void update(EmployeeDTO employee ,EmployeeSiteDTO employeeSite );
 	
+	List<Employee> getEmployeeForSyudy();
 }

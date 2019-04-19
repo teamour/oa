@@ -77,7 +77,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		 employeeSiteMapper.updateByEmployeeId(emplyoeeSite);
 	}
 
-	
+	@Override
+	public List<Employee> getEmployeeForSyudy(){
+		return employeeMapper.selectForStudy();
+	}
 	
 	
 

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>增加信息-员工学习</title>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/layui.css}">
+    <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
+    
+    
+</head>
+<body>
+	<a id="btnBack" class="layui-btn" th:href="@{/epst/epstIndex}">《--返回</a>
+	<h2>员工学习-添加</h2>
+	
+	
+	<form class="form-empl" id="addepst" th:action="@{/epst/addepst}" method="POST" >
+		<table>
+			<tr>
+				<td>员工ID</td>
+				<td width="400"><input type="text"  class="layui-input" name="employeeID"></td>
+			</tr>
+			<tr>
+				<td>学习内容</td>
+				<td width="400"><input type="text"  class="layui-input" name="studyContent"></td>
+			</tr>
+			<!-- <tr>
+				<td>开始日期</td>
+				<td width="400"><input type="text"  class="layui-input" name="beginDate" id="beginDate"></td>
+			</tr> -->
+			<tr>
+				<td>学习时间</td>
+				<td width="400"><input type="text"  class="layui-input" name="studyTime"></td>
+			</tr>
+			<tr>
+				<td>负责人</td>
+				<td width="400"><input type="text"  class="layui-input" name="handler"></td>
+			</tr>
+			<tr>
+				<td>学会内容</td>
+				<td width="400"><input type="text"  class="layui-input" name="learnCotent"></td>
+			</tr>
+			<tr>
+				<td>效果评价</td>
+				<td width="400"><input type="text"  class="layui-input" name="evaluation"></td>
+			</tr>
+		</table>
+		<input id="submit" type="submit" class="layui-btn">
+	</form>
+	
+	<script type="text/javascript" th:src="@{/js/layui.js}"></script>
+    <!-- <script type="text/javascript" th:src="@{/js/pages/epst/announcement.js}"></script> -->
+    <script src="/static/build/layui.js"></script>
+<script>
+<!--layui.use('laydate', function(){
+  var laydate = layui.laydate;
+  
+  //执行一个laydate实例
+  laydate.render({
+    elem: '#beginDate' //指定元素
+  });
+});-->
+</script>
+</body>
+</html>
