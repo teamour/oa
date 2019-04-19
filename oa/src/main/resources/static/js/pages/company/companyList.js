@@ -1,20 +1,14 @@
 BF = {
-	testinit: function() {
+	init: function() {
 		const url = "http://localhost:8080/company/list";
 		const testData = $("#form1").serialize();
 
 		$.post(url,testData,null,"json")
 		.done(function(jsonObj,textStatus,jqXHR) {
-			$("#list").append(
-					"<p>" + jsonObj + "</p>"
-					);
 			
-			alert(jsonObj.rows);
+			debugger;
 			
 			$.each(jsonObj.rows, function (index, obj) {
-				
-				alert(obj.companyName);
-				
                 $("#list").append(
                 	"<tr>" +
 					"<td>" + obj.companyName + "</td>" +
@@ -40,5 +34,5 @@ BF = {
 }
 
 $(function() {
-	BF.testinit();
+	BF.init();
 });

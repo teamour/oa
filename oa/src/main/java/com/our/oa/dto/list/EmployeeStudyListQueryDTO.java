@@ -13,8 +13,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString(callSuper=true)
 @EqualsAndHashCode(callSuper=true)
-public class CompanyListQueryDTO extends GridListQueryBaseDTO {
-	private static final long serialVersionUID = 1L;
+public class EmployeeStudyListQueryDTO extends GridListQueryBaseDTO{
+private static final long serialVersionUID = 1L;
 	
-    private String companyName;
+    private String handler;
 }

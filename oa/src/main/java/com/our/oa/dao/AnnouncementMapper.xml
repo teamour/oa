@@ -15,7 +15,7 @@
     where announcement_id = #{announcementId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.our.oa.entity.Announcement">
-    insert into oa..t_announcement (announcement_id, title, create_time, 
+    insert into t_announcement (announcement_id, title, create_time, 
       update_time, delete_time, delete_flag, 
       description)
     values (#{announcementId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 

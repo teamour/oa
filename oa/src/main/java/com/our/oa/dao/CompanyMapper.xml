@@ -21,11 +21,11 @@
     <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from oa..sys_company
+    delete from sys_company
     where company_id = #{companyId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.our.oa.entity.Company">
-    insert into oa..sys_company (company_id, company_name, company_code, 
+    insert into sys_company (company_id, company_name, company_code, 
       address, zip_code, email, 
       telephone, website, is_bp, 
       bank_name, branch_bank, bank_number, 
@@ -39,7 +39,7 @@
       #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=BIT})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.Company">
-    update oa..sys_company
+    update sys_company
     set company_name = #{companyName,jdbcType=VARCHAR},
       company_code = #{companyCode,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
@@ -62,13 +62,13 @@
     select company_id, company_name, company_code, address, zip_code, email, telephone, 
     website, is_bp, bank_name, branch_bank, bank_number, bank_desc, create_time, update_time, 
     delete_time, delete_flag
-    from oa..sys_company
+    from sys_company
     where company_id = #{companyId,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap">
+  <select id="selectQueryList" parameterType="com.our.oa.dto.list.CompanyListQueryDTO" resultMap="BaseResultMap">
     select company_id, company_name, company_code, address, zip_code, email, telephone, 
     website, is_bp, bank_name, branch_bank, bank_number, bank_desc, create_time, update_time, 
     delete_time, delete_flag
-    from oa..sys_company
+    from sys_company
   </select>
 </mapper>
