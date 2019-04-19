@@ -6,7 +6,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,51 +17,33 @@ import com.our.oa.dto.GridDTO;
 import com.our.oa.dto.form.CompanyDTO;
 import com.our.oa.dto.list.CompanyListDTO;
 import com.our.oa.dto.list.CompanyListQueryDTO;
-import com.our.oa.entity.Company;
 import com.our.oa.service.CompanyService;
 import com.our.oa.utils.PageInfoToGridDTOUtils;
 
 @RestController
 @RequestMapping(value = "/company")
 public class CompanyController {
-	@GetMapping(value = "/input")
-	public ModelAndView input(ModelAndView modelAndView) {
-		modelAndView.setViewName("company/input");
-		return modelAndView;
-	}
-	
-	@PostMapping(value = "/input")
-    public ModelAndView input(@Valid CompanyDTO companyForm, ModelAndView modelAndView) {
-		
-		CompanyDTO dto = companyService.getByPrimaryKey(companyForm.getCompanyId());
-		modelAndView.setViewName("company/input");
-		modelAndView.addObject("companyForm", dto);
-		return modelAndView;
-    }
-
 	@Autowired
 	private CompanyService companyService;
 
 	@GetMapping(value = "/list")
 	public ModelAndView list(ModelAndView modelAndView) {
+		
 		modelAndView.setViewName("company/companylist");
 		return modelAndView;
 	}
 	
 	@PostMapping(value="/list")
-	public GridDTO<CompanyListDTO> listData(HttpServletRequest req, CompanyListQueryDTO listQueryDTO) {
-		System.out.println("enter: listData");
+	public GridDTO<CompanyListDTO> listData(HttpServletRequest req, 
+			CompanyListQueryDTO listQueryDTO) {
 		
 		PageInfo<CompanyListDTO> queryList = companyService.getQueryList(listQueryDTO);
-		
-		System.out.println("enter: list size " + queryList.getSize());
-		System.out.println("enter: list pageSize " + queryList.getPageSize());
-		
 		return PageInfoToGridDTOUtils.getGridDataResult(queryList);
 	}
 
 	@GetMapping(value = "/add")
 	public ModelAndView add(ModelAndView modelAndView) {
+		
 		CompanyDTO companyForm = new CompanyDTO();
 		modelAndView.setViewName("company/companyAdd");
 		modelAndView.addObject("companyForm", companyForm);
@@ -75,6 +56,7 @@ public class CompanyController {
 
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("company/companyAdd");
+			modelAndView.addObject("companyForm", companyForm);
 			return modelAndView;
 		}
 
@@ -87,7 +69,8 @@ public class CompanyController {
 	}
 
 	@GetMapping(value = "/editor/{id}")
-	public ModelAndView editor(@PathVariable(name = "id", required = false) Integer id, ModelAndView modelAndView) {
+	public ModelAndView editor(@PathVariable(name = "id", required = false) Integer id, 
+			ModelAndView modelAndView) {
 
 		CompanyDTO dto = companyService.getByPrimaryKey(id);
 		modelAndView.setViewName("company/companyEditor");
@@ -96,10 +79,9 @@ public class CompanyController {
 	}
 
 	@PostMapping(value = "/editor")
-	public ModelAndView editor(@Valid CompanyDTO companyForm, BindingResult bindingResult, ModelAndView modelAndView) {
-
-		System.out.println("cid: " + companyForm.getCompanyId());
-
+	public ModelAndView editor(@Valid CompanyDTO companyForm, BindingResult bindingResult, 
+			ModelAndView modelAndView) {
+		
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("company/companyEditor");
 			return modelAndView;
@@ -114,11 +96,38 @@ public class CompanyController {
 	}
 
 	@GetMapping(value = "/detailed/{id}")
-	public ModelAndView detailed(@PathVariable(name = "id", required = false) Integer id, ModelAndView modelAndView) {
+	public ModelAndView detailed(@PathVariable(name = "id", required = false) Integer id, 
+			ModelAndView modelAndView) {
 
 		CompanyDTO dto = companyService.getByPrimaryKey(id);
 		modelAndView.setViewName("company/companyDetailed");
 		modelAndView.addObject("companyForm", dto);
+		return modelAndView;
+	}
+	
+	@GetMapping(value = "/delete/{id}")
+	public ModelAndView delete(@PathVariable(name = "id", required = false) Integer id, 
+			ModelAndView modelAndView) {
+
+		CompanyDTO dto = companyService.getByPrimaryKey(id);
+		modelAndView.setViewName("company/companyDelete");
+		modelAndView.addObject("companyForm", dto);
+		return modelAndView;
+	}
+	
+	@PostMapping(value = "/delete")
+	public ModelAndView delete(@Valid CompanyDTO companyForm, BindingResult bindingResult, 
+			ModelAndView modelAndView) {
+		
+		if (bindingResult.hasErrors()) {
+			System.out.println(bindingResult.toString());
+		}
+
+		companyService.deleteByPrimaryKey(companyForm.getCompanyId());
+
+		modelAndView.setViewName("company/companyList");
+		modelAndView.addObject("companyForm", companyForm);
+
 		return modelAndView;
 	}
 }

@@ -48,6 +48,7 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public int deleteByPrimaryKey(Integer companyId) {
+		System.out.println("enter deleteByPrimaryKey");
 		mapper.deleteByPrimaryKey(companyId);
 		return 0;
 	}

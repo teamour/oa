@@ -19,54 +19,71 @@
 
 </head>
 <body>
-	<h1>客户信息编辑:</h1>
+	<h1>客户信息删除:</h1>
 
-	<form action="#" th:action="@{/company/editor}"
-		th:object="${companyForm}" method="post" class="layui-form">
-		<p>
-			id: <input th:field="*{companyId}" type="text" />
-		</p>
-		<p>
-			公司名称: <input th:field="*{companyName}" type="text" />
-		</p>
-		<p>
-			公司英文缩写: <input th:field="*{companyCode}" type="text" />
-		</p>
-		<p>
-			公司地址: <input th:field="*{address}" type="text" />
-		</p>
-		<p>
-			邮编: <input th:field="*{zipCode}" type="text" />
-		</p>
-		<p>
-			Email: <input th:field="*{email}" type="text" />
-		</p>
-		<p>
-			公司电话号码: <input th:field="*{telephone}" type="text" />
-		</p>
-		<p>
-			公司网址: <input th:field="*{website}" type="text" />
-		</p>
-		<p>
-			是否是bp公司 （0:否 1:是）: <input th:field="*{isBp}" type="text" />
-		</p>
-		<p>
-			口座銀行: <input th:field="*{bankName}" type="text" />
-		</p>
-		<p>
-			口座支店: <input th:field="*{branchBank}" type="text" />
-		</p>
-		<p>
-			口座番号: <input th:field="*{bankNumber}" type="text" />
-		</p>
-		<p>
-			口座備考: <input th:field="*{bankDesc}" type="text" />
-		</p>
-		<p>
-			<input type="submit" value="修改" />
-			<input type="button" value="返回" />
-		</p>
-
-	</form>
+	<form action="#" th:action="@{/company/delete}" th:object="${companyForm}" 
+		method="post" class="layui-form">
+		
+		<table>
+			<tr style="display:none;">
+		        <td>ID: </td>
+		        <td><input th:field="*{companyId}" type="text" /></td>
+		    </tr>
+			<tr>
+		        <td>名称: </td>
+		        <td><span th:text="*{companyName}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>英文缩写: </td>
+		        <td><span th:text="*{companyCode}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>地址缩写: </td>
+		        <td><span th:text="*{address}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>邮编: </td>
+		        <td><span th:text="*{zipCode}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>Email: </td>
+		        <td><span th:text="*{email}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>电话号码: </td>
+		        <td><span th:text="*{telephone}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>网址: </td>
+		        <td><span th:text="*{website}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>是否是bp公司: </td>
+		        <td><span th:text="*{isBp}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>口座銀行: </td>
+		        <td><span th:text="*{bankName}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>口座支店: </td>
+		        <td><span th:text="*{branchBank}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>口座番号: </td>
+		        <td><span th:text="*{bankNumber}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>口座備考: </td>
+		        <td><span th:text="*{bankDesc}"></span></td>
+		    </tr>
+		    <tr>
+		        <td><a id="btnAdd" class="layui-btn" th:href="@{/company/list}">返回</a></td> 
+		        <td><input type="submit" value="删除" /></td>
+		    </tr>
+		</table>
+		
+    </form>
+    
 </body>
 </html>

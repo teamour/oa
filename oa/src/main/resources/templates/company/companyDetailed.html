@@ -20,11 +20,65 @@
 </head>
 <body>
 	<h1>客户详细信息:</h1>
-	<div id="infos"></div>
 	
 	<div th:object="${companyForm}">
-    	<label>companyId: </label>
-    	<span th:text="*{companyId}"></span><br>
+		<table>
+			<tr style="display:none;">
+		        <td>ID: </td>
+		        <td><input th:field="*{companyId}" type="text" /></td>
+		    </tr>
+			<tr>
+		        <td>名称: </td>
+		        <td><span th:text="*{companyName}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>英文缩写: </td>
+		        <td><span th:text="*{companyCode}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>地址缩写: </td>
+		        <td><span th:text="*{address}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>邮编: </td>
+		        <td><span th:text="*{zipCode}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>Email: </td>
+		        <td><span th:text="*{email}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>电话号码: </td>
+		        <td><span th:text="*{telephone}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>网址: </td>
+		        <td><span th:text="*{website}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>是否是bp公司: </td>
+		        <td><span th:text="*{isBp}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>口座銀行: </td>
+		        <td><span th:text="*{bankName}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>口座支店: </td>
+		        <td><span th:text="*{branchBank}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>口座番号: </td>
+		        <td><span th:text="*{bankNumber}"></span></td>
+		    </tr>
+		    <tr>
+		        <td>口座備考: </td>
+		        <td><span th:text="*{bankDesc}"></span></td>
+		    </tr>
+		</table>
     </div>
+    
+    <a id="btnAdd" class="layui-btn" th:href="@{/company/list}">返回</a>
+
 </body>
 </html>

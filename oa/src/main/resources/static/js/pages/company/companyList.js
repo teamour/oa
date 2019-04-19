@@ -1,28 +1,14 @@
 BF = {
-		modifyData:function(){
-			var selData = $("#jqGrid").getRowData();
-			// 要判断是否有选择，且只选中一行数据
-			
-			window.location.href = ctxPath+"company/editor/"+selData[0].announcementId;
-		},
-		searchData: function (){
-			$("#jqGrid").setGridParam({
-	            page: 1,
-	            postData: { title :$("#title").val() }
-	        }).trigger('reloadGrid');
-	   },
-
-		 
-	   init: function() {
+	init: function() {
 		const url = "http://localhost:8080/company/list";
 		const testData = $("#form1").serialize();
-		
-		debugger;
 
 		$.post(url,testData,null,"json")
 		.done(function(jsonObj,textStatus,jqXHR) {
+			
+			debugger;
+			
 			$.each(jsonObj.rows, function (index, obj) {
-				debugger
                 $("#list").append(
                 	"<tr>" +
 					"<td>" + obj.companyName + "</td>" +
