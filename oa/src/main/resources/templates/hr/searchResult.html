@@ -3,10 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>search</title>
+	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+	<link rel="stylesheet" th:href="@{/css/layui.css}">
 </head>
 <body>
 <div>
-	<table th:field="in:${}">
+	<table border="1" style="border:1px solid black;text-align: center;" th:field="in:${}">
 		<tr>
 			<td>面试人员编号:</td><td><input type="text" name="interviewerCode"></td><td></td>
 		</tr>

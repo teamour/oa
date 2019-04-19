@@ -4,95 +4,95 @@
 <meta charset="UTF-8">
 <title>updateInfo</title>
 </head>
-<script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
-<script type="text/javascript"></script>
-<body>
-<form action="/hr/updateInfoDo">
+	<script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
+	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+	<link rel="stylesheet" th:href="@{/css/layui.css}"><body>
+<form class="layui" action="#" th:action="@{/hr/updateInfoDo}" method="post" th:object="${detailInfo}">
 	<table>
 		<tr>
-			<td><input type="hidden" name="interviewerId" th:value="${detailInfo.interviewerId}"></td>
+			<td><input type="hidden" th:field="*{interviewerId}" th:value="${detailInfo.interviewerId}"></td>
 		</tr>
 		<tr>
-			<td>面试人员编号:</td><td><input type="text" name="interviewerCode" th:value="${detailInfo.interviewerCode}" readonly="readonly"></td><td></td>
+			<td>面试人员编号:</td><td><input type="text" th:field="*{interviewerCode}" th:value="${detailInfo.interviewerCode}" readonly="readonly"></td><td></td>
 		</tr>
 		<tr>
-			<td>姓名:</td><td><input type="text" name="interviewerName" th:value="${detailInfo.interviewerName}"></td><td></td>
+			<td>姓名:</td><td><input type="text" th:field="*{interviewerName}" th:value="${detailInfo.interviewerName}"></td><td></td>
 		</tr>
 		<tr>
 			<td>面情结果:</td>
 			<td>
-				<select name="interviewResult">
-					<option value="-1"></option>
-					<option value="0">不合格</option>
-					<option value="1">合格</option>
+				<select th:field="*{interviewResult}" th:value="${detailInfo.interviewResult}">
+					<option value="0"></option>
+					<option value="1">不合格</option>
+					<option value="2">合格</option>
 				</select>
 			<td>（1面，2面，3面任何一个为NG的时候，可以设置为不合格）</td>
 		</tr>
 		<tr>
-			<td>1面的时间:</td><td><input type="date" name="interview1Time" th:value="${detailInfo.interview1Time}"></td><td></td>
+			<td>1面的时间:</td><td><input type="date" th:field="*{interview1Time}" th:value="${detailInfo.interview1Time}"></td><td></td>
 		</tr>
 		<tr>
 			<td>1面结果:</td>
 			<td>
-				<select name="interview1Result">
-					<option value="-1"></option>
-					<option value="0">不合格</option>
-					<option value="1">合格</option>
+				<select th:field="*{interview1Result}">
+					<option value="0"></option>
+					<option value="1">不合格</option>
+					<option value="2">合格</option>
 				</select>
 			<td></td>
 		</tr>
 		<tr>
-			<td>1面担当:</td><td><input type="text" name="interview1Handler" th:value="${detailInfo.interview1Handler}"></td><td></td>
+			<td>1面担当:</td><td><input type="text" th:field="*{interview1Handler}" th:value="${detailInfo.interview1Handler}"></td><td></td>
 		</tr>
 		<tr>
 			<td>性别:</td>
 			<td>
-				<select name="gender">
+				<select th:field="*{gender}">
 					<option value="0">女</option>
 					<option value="1">男</option>
 				</select>
 			<td></td>
 		</tr>
 		<tr>
-			<td>年龄:</td><td><input type="text" name="age" th:value="${detailInfo.age}"></td><td>岁</td>
+			<td>年龄:</td><td><input type="text" th:field="*{age}" th:value="${detailInfo.age}"></td><td>岁</td>
 		</tr>
 		<tr>
-			<td>城市:</td><td><input type="text" name="city" th:value="${detailInfo.city}"></td><td></td>
+			<td>城市:</td><td><input type="text" th:field="*{city}" th:value="${detailInfo.city}"></td><td></td>
 		</tr>
 		<tr>
-			<td>日语分数:</td><td><input type="text" name="japaneseSocre" th:value="${detailInfo.japaneseSocre}"></td><td></td>
+			<td>日语分数:</td><td><input type="text" th:field="*{japaneseSocre}" th:value="${detailInfo.japaneseSocre}"></td><td></td>
 		</tr>
 		<tr>
-			<td>日语会话能力:</td><td><input type="text" name="japaneseConversationAbility" th:value="${detailInfo.japaneseConversationAbility}"></td><td></td>
+			<td>日语会话能力:</td><td><input type="text" th:field="*{japaneseConversationAbility}" th:value="${detailInfo.japaneseConversationAbility}"></td><td></td>
 		</tr>
 		<tr>
-			<td>毕业大学:</td><td><input type="text" name="graduatedSchool" th:value="${detailInfo.graduatedSchool}"></td><td></td>
+			<td>毕业大学:</td><td><input type="text" th:field="*{graduatedSchool}" th:value="${detailInfo.graduatedSchool}"></td><td></td>
 		</tr>
 		<tr>
-			<td>专业:</td><td><input type="text" name="profession" th:value="${detailInfo.profession}"></td><td></td>
+			<td>专业:</td><td><input type="text" th:field="*{profession}" th:value="${detailInfo.profession}"></td><td></td>
 		</tr>
 		<tr>
-			<td>毕业日期:</td><td><input type="date" name="graduatedDate" th:value="${detailInfo.graduatedDate}"></td><td></td>
+			<td>毕业日期:</td><td><input type="date" th:field="*{graduatedDate}" th:value="${detailInfo.graduatedDate}"></td><td></td>
 		</tr>
 		<tr>
 			<td>学历:</td>
 			<td>
-				<select name="education">
-					<option value="-1"></option>
-					<option value="0">大专</option>
-					<option value="1">本科</option>
-					<option value="2">硕士</option>
-					<option value="3">博士</option>
+				<select th:field="*{education}">
+					<option value="0"></option>
+					<option value="1">大专</option>
+					<option value="2">本科</option>
+					<option value="3">硕士</option>
+					<option value="4">博士</option>
 				</select>
 			<td></td>
 		</tr>
 		<tr>
-			<td>资格证书:</td><td><input type="text" name="certificate" th:value="${detailInfo.certificate}"></td><td></td>
+			<td>资格证书:</td><td><input type="text" th:field="*{certificate}" th:value="${detailInfo.certificate}"></td><td></td>
 		</tr>
 		<tr>
 			<td>マナー:</td><td>
-				<select name="manner">
-					<option value="-1"></option>
+				<select th:field="*{manner}">
+					<option value="0"></option>
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -102,131 +102,131 @@
 			<td>（1-5分）</td>
 		</tr>
 		<tr>
-			<td>人事部意见:</td><td><textarea name="personnelDeptFeedback" th:value="${detailInfo.personnelDeptFeedback}"></textarea></td><td> </td>
+			<td>人事部意见:</td><td><textarea th:field="*{personnelDeptFeedback}" th:value="${detailInfo.personnelDeptFeedback}"></textarea></td><td> </td>
 		</tr>
 		<tr>
-			<td>1面备注:</td><td><textarea name="interview1Desc" th:value="${detailInfo.interview1Desc}"></textarea></td><td> </td>
+			<td>1面备注:</td><td><textarea th:field="*{interview1Desc}" th:value="${detailInfo.interview1Desc}"></textarea></td><td> </td>
 		</tr>
 		<tr>
-			<td>个人情况:</td><td><input type="text" name="personalSituation" th:value="${detailInfo.personalSituation}"></td><td> </td>
+			<td>个人情况:</td><td><input type="text" th:field="*{personalSituation}" th:value="${detailInfo.personalSituation}"></td><td> </td>
 		</tr>
 		<tr>
-			<td>家庭情况:</td><td><input type="text" name="familySituation" th:value="${detailInfo.familySituation}"></td><td> </td>
+			<td>家庭情况:</td><td><input type="text" th:field="*{familySituation}" th:value="${detailInfo.familySituation}"></td><td> </td>
 		</tr>
 		<tr>
 			<td>在职情况:</td>
 			<td>
-				<select name="serviceSituation">
-					<option value="-1"></option>
-					<option value="0">离职</option>
-					<option value="1">在职</option>
+				<select th:field="*{serviceSituation}">
+					<option value="0"></option>
+					<option value="1">离职</option>
+					<option value="2">在职</option>
 				</select>
 			</td><td> </td>
 		</tr>
 		<tr>
-			<td>民    族:</td><td><input type="text" name="nationality" th:value="${detailInfo.nationality}"></td><td> </td>
+			<td>民    族:</td><td><input type="text" th:field="*{nationality}" th:value="${detailInfo.nationality}"></td><td> </td>
 		</tr>
 		<tr>
-			<td>籍    贯:</td><td><input type="text" name="birthplace" th:value="${detailInfo.birthplace}"></td><td> </td>
+			<td>籍    贯:</td><td><input type="text" th:field="*{birthplace}" th:value="${detailInfo.birthplace}"></td><td> </td>
 		</tr>
 		<tr>
 			<td>婚姻状况:</td>
 			<td>
-				<select name="maritalStatus">
-					<option value="-1"></option>
-					<option value="0">未婚</option>
-					<option value="1">已婚</option>
+				<select th:field="*{maritalStatus}">
+					<option value="0"></option>
+					<option value="1">未婚</option>
+					<option value="2">已婚</option>
 				</select>
 			</td><td> </td>
 		</tr>
 		<tr>
-			<td>期望薪资:</td><td><input type="text" name="expectSalary" th:value="${detailInfo.expectSalary}"></td><td> </td>
+			<td>期望薪资:</td><td><input type="text" th:field="*{expectSalary}" th:value="${detailInfo.expectSalary}"></td><td> </td>
 		</tr>
 		<tr>
-			<td>在日朋友关系情况:</td><td><input type="text" name="friendshipSituationInJapan" th:value="${detailInfo.friendshipSituationInJapan}"></td><td> </td>
+			<td>在日朋友关系情况:</td><td><input type="text" th:field="*{friendshipSituationInJapan}" th:value="${detailInfo.friendshipSituationInJapan}"></td><td> </td>
 		</tr>
 		<tr>
-			<td>2面时间:</td><td><input type="date" name="interview2Time" th:value="${detailInfo.interview2Time}"></td><td> </td>
+			<td>2面时间:</td><td><input type="date" th:field="*{interview2Time}" th:value="${detailInfo.interview2Time}"></td><td> </td>
 		</tr>
 		<tr>
 			<td>2面结果:</td>
 			<td>
-				<select name="interview2Result">
-					<option value="-1"></option>
-					<option value="0">不合格</option>
-					<option value="1">合格</option>
+				<select th:field="*{interview2Result}">
+					<option value="0"></option>
+					<option value="1">不合格</option>
+					<option value="2">合格</option>
 				</select>
 			</td><td> </td>
 		</tr>
 		<tr>
-			<td>2面担当:</td><td><input type="text" name="interview2Handler" th:value="${detailInfo.interview2Handler}"></td><td> </td>
+			<td>2面担当:</td><td><input type="text" th:field="*{interview2Handler}" th:value="${detailInfo.interview2Handler}"></td><td> </td>
 		</tr>
 		<tr>
-			<td>2面备注:</td><td><textarea name="interview2Desc" th:value="${detailInfo.interview2Desc}"></textarea></td><td> </td>
+			<td>2面备注:</td><td><textarea th:field="*{interview2Desc}" th:value="${detailInfo.interview2Desc}"></textarea></td><td> </td>
 		</tr>
 		<tr>
-			<td>实际工作年数以及经验能力:</td><td><input type="text" name="workingSituation" th:value="${detailInfo.workingSituation}"></td><td> </td>
+			<td>实际工作年数以及经验能力:</td><td><input type="text" th:field="*{workingSituation}" th:value="${detailInfo.workingSituation}"></td><td> </td>
 		</tr>
 		<tr>
-			<td>实习经验:</td><td><textarea name="internshipExperience" th:value="${detailInfo.internshipExperience}"></textarea></td><td> </td>
+			<td>实习经验:</td><td><textarea th:field="*{internshipExperience}" th:value="${detailInfo.internshipExperience}"></textarea></td><td> </td>
 		</tr>
 		<tr>
-			<td>技术分数:</td><td><input type="text" name="skillScore" th:value="${detailInfo.skillScore}"></td><td> </td>
+			<td>技术分数:</td><td><input type="text" th:field="*{skillScore}" th:value="${detailInfo.skillScore}"></td><td> </td>
 		</tr>
 		
 		<tr>
-			<td>技术部意见:</td><td><textarea name="technicalDepartmentFeedback" th:value="${detailInfo.technicalDepartmentFeedback}"></textarea></td><td> </td>
+			<td>技术部意见:</td><td><textarea th:field="*{technicalDepartmentFeedback}" th:value="${detailInfo.technicalDepartmentFeedback}"></textarea></td><td> </td>
 		</tr>
 		<tr>
-			<td>3面时间:</td><td><input type="date" name="interview3Time" th:value="${detailInfo.interview3Time}"></td><td> </td>
+			<td>3面时间:</td><td><input type="date" th:field="*{interview3Time}" th:value="${detailInfo.interview3Time}"></td><td> </td>
 		</tr>
 		<tr>
 			<td>3面结果:</td>
 			<td>
-				<select name="interview3Result">
-					<option value="-1"></option>
-					<option value="0">不合格</option>
-					<option value="1">合格</option>
+				<select th:field="*{interview3Result}">
+					<option value="0"></option>
+					<option value="1">不合格</option>
+					<option value="2">合格</option>
 				</select>
 			</td><td> </td>
 		</tr>
 		<tr>
-			<td>3面担当:</td><td><input type="text" name="interview3Handler" th:value="${detailInfo.interview3Handler}"></td><td> </td>
+			<td>3面担当:</td><td><input type="text" th:field="*{interview3Handler}" th:value="${detailInfo.interview3Handler}"></td><td> </td>
 		</tr>
 		<tr>
-			<td>3面备注:</td><td><input type="text" name="interview3Desc" th:value="${detailInfo.interview3Desc}"></td><td> </td>
+			<td>3面备注:</td><td><input type="text" th:field="*{interview3Desc}" th:value="${detailInfo.interview3Desc}"></td><td> </td>
 		</tr>
 		<tr>
-			<td>就职公司1:</td><td><input type="text" name="prev1CompanyName" th:value="${detailInfo.prev1CompanyName}"></td><td> </td>
+			<td>就职公司1:</td><td><input type="text" th:field="*{prev1CompanyName}" th:value="${detailInfo.prev1CompanyName}"></td><td> </td>
 		</tr>
 		<tr>
-			<td>就职公司2:</td><td><input type="text" name="prev2CompanyName" th:value="${detailInfo.prev2CompanyName}"></td><td> </td>
+			<td>就职公司2:</td><td><input type="text" th:field="*{prev2CompanyName}" th:value="${detailInfo.prev2CompanyName}"></td><td> </td>
 		</tr>
 		<tr>
-			<td>就职公司3:</td><td><input type="text" name="prev3CompanyName" th:value="${detailInfo.prev3CompanyName}"></td><td> </td>
+			<td>就职公司3:</td><td><input type="text" th:field="*{prev3CompanyName}" th:value="${detailInfo.prev3CompanyName}"></td><td> </td>
 		</tr>
 		<tr>
-			<td>就职公司4:</td><td><input type="text" name="prev4CompanyName" th:value="${detailInfo.prev4CompanyName}"></td><td> </td>
+			<td>就职公司4:</td><td><input type="text" th:field="*{prev4CompanyName}" th:value="${detailInfo.prev4CompanyName}"></td><td> </td>
 		</tr>
 		<tr>
-			<td>就职公司5:</td><td><input type="text" name="prev5CompanyName" th:value="${detailInfo.prev5CompanyName}"></td><td> </td>
+			<td>就职公司5:</td><td><input type="text" th:field="*{prev5CompanyName}" th:value="${detailInfo.prev5CompanyName}"></td><td> </td>
 		</tr>
 		<tr>
 			<td>工作意向:</td>
 			<td>
-				<select name="workIntent">
-					<option value="-1"></option>
-					<option value="0">0</option>
+				<select th:field="*{workIntent}">
+					<option value="0"></option>
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
+					<option value="4">4</option>
 				</select>
 			</td><td></td>
 		</tr>
 		<tr>
 			<td>招入公司id:</td>
 			<td>
-				<select name="companyId">
+				<select th:field="*{companyId}">
 					<option th:each="com : ${company}" th:value="${com.companyId}" th:text="${com.companyName}"></option>
 				</select>
 			<td></td>
@@ -234,9 +234,9 @@
 		<tr>
 			<td>是否已删除:</td>
 			<td>
-				<select class="a1" name="deleteFlag">
-					<option class="a2" value="0">未删除</option>
-					<option class="a2" value="1">已删除</option>
+				<select th:field="*{deleteFlag}">
+					<option value="0">未删除</option>
+					<option value="1">已删除</option>
 				</select>
 			</td><td></td>
 		</tr>

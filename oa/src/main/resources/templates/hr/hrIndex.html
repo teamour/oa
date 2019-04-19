@@ -1,34 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>hr index</title>
-<script type="text/javascript"></script>
+	<meta charset="UTF-8">
+	<title>hr index</title>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	
+	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+	<link rel="stylesheet" th:href="@{/css/layui.css}">
+	<script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
+	<script type="text/javascript"></script>
 </head>
 <body>
 <div>
-	<form action="search" method="post">
-		<p>
-		<input id="searchBox" type="text" name="search" placeholder="请输入关键词">
-		<input type="submit" value="搜索">
-		</p>
-		<p>
-		<span>姓名</span><input type="checkbox" onblur="chooseBox()">
-		<span>日期</span><input type="checkbox" name="interview1Time">
-		<span>hr担当姓名</span><input type="checkbox" name="interview1Handler">
-		</p>
-	</form>
+	<input id="search" type="text">
+	<button id="btnSearch" class="layui-btn layui-btn-normal" onclick="BF.searchData()">搜索</button>
 </div>
+
 <div>
-	<p>
-	<a href="addInfoShow">添加面试人员</a>
-	</p>
-	<p>
-	<a href="visaLogin">签证办理登入</a>
-	</p>
-	</div>
+	<a id="btnAdd" class="layui-btn" th:href="@{addInfoShow}">添加面试人员</a>
+	<a id="btnVisaLogin" class="layui-btn" th:href="@{visaLogin}">签证办理登入</a>
+</div>
+
 <div>
-	<table style="text-align: center;">
+	<table border="1" style="border:1px solid black;text-align: center;">
 		<tr>
 			<th colspan="6"><strong>面试人员</strong></th>
 		</tr>

@@ -121,7 +121,7 @@
   	select interviewer_id, interviewer_code, interviewer_name, interview_result from t_interviewer
   </select>
   
-  <select id="checkCode" parameterType="INTEGER" resultType="com.our.oa.entity.Interviewer">
+  <select id="checkCode" parameterType="STRING" resultType="com.our.oa.entity.Interviewer">
   	select * from t_interviewer where interviewer_code=#{code}
   </select>
   
@@ -134,7 +134,7 @@
     set 
       interviewer_name = #{interviewerName},
       interview_result = #{interviewResult},
-      interview1_time = #{interview1Time},
+      <if test="interview1Time != ''">interview1_time = #{interview1Time},</if>
       interview1_result = #{interview1Result},
       interview1_handler = #{interview1Handler},
       gender = #{gender},
@@ -154,12 +154,12 @@
       marital_status = #{maritalStatus},
       expect_salary = #{expectSalary},
       friendship_situation_in_japan = #{friendshipSituationInJapan},
-      interview2_time = #{interview2Time},
+      <if test="interview2Time != ''">interview2_time = #{interview2Time},</if>
       interview2_result = #{interview2Result},
       interview2_handler = #{interview2Handler},
       internship_experience = #{internshipExperience},
       skill_score = #{skillScore},
-      interview3_time = #{interview3Time},
+      <if test="interview3Time != ''">interview3_time = #{interview3Time},</if>
       interview3_result = #{interview3Result},
       interview3_handler = #{interview3Handler},
       prev1_company_name = #{prev1CompanyName},
@@ -190,7 +190,7 @@
   	  )
   </insert>
   
-  <select id="getInterviewerByInterviewerCode" parameterType="INTEGER" resultMap="BaseResultMap">
+  <select id="getInterviewerByInterviewerCode" parameterType="STRING" resultMap="BaseResultMap">
   	select * from t_interviewer where interviewer_code=#{interviewerCode}
   </select>
   

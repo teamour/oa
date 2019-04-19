@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>detailInfo</title>
+	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+	<link rel="stylesheet" th:href="@{/css/layui.css}">
 </head>
 <body>
-<table>
+<table border="1" style="border:1px solid black;">
 	<tr>
 		<th colspan="6" align="center">面试人员详细信息</th>
 	</tr>
@@ -16,9 +18,9 @@
 	<tr>
 		<td>面情结果:</td>
 		<td>
-			<span th:if="${detailInfo.interviewResult == -1}" th:text="null"></span>
-			<span th:if="${detailInfo.interviewResult == 0}" th:text="不合格"></span>
-			<span th:if="${detailInfo.interviewResult == 1}" th:text="合格"></span>
+			<span th:if="${detailInfo.interviewResult == 0}" th:text="null"></span>
+			<span th:if="${detailInfo.interviewResult == 1}" th:text="不合格"></span>
+			<span th:if="${detailInfo.interviewResult == 2}" th:text="合格"></span>
 		</td>
 		<td></td>
 		<td>1面的时间:</td><td th:text="${detailInfo.interview1Time}"></td><td></td>
@@ -26,9 +28,9 @@
 	<tr>
 		<td>1面结果:</td>
 		<td>
-			<span th:if="${detailInfo.interview1Result == -1}" th:text="null"></span>
-			<span th:if="${detailInfo.interview1Result == 0}" th:text="不合格"></span>
-			<span th:if="${detailInfo.interview1Result == 1}" th:text="合格"></span>
+			<span th:if="${detailInfo.interview1Result == 0}" th:text="null"></span>
+			<span th:if="${detailInfo.interview1Result == 1}" th:text="不合格"></span>
+			<span th:if="${detailInfo.interview1Result == 2}" th:text="合格"></span>
 		</td>
 		<td></td>
 		<td>1面担当:</td><td th:text="${detailInfo.interview1Handler}"></td><td></td>
@@ -56,11 +58,11 @@
 	<tr>
 		<td>学历:</td>
 		<td>
-			<span th:if="${detailInfo.education == -1}" th:text="null"></span>
-			<span th:if="${detailInfo.education == 0}" th:text="大专"></span>
-			<span th:if="${detailInfo.education == 1}" th:text="本科"></span>
-			<span th:if="${detailInfo.education == 2}" th:text="硕士"></span>
-			<span th:if="${detailInfo.education == 3}" th:text="博士"></span>
+			<span th:if="${detailInfo.education == 0}" th:text="null"></span>
+			<span th:if="${detailInfo.education == 1}" th:text="大专"></span>
+			<span th:if="${detailInfo.education == 2}" th:text="本科"></span>
+			<span th:if="${detailInfo.education == 3}" th:text="硕士"></span>
+			<span th:if="${detailInfo.education == 4}" th:text="博士"></span>
 		</td>
 		<td></td>
 		<td>资格证书:</td><td th:text="${detailInfo.certificate}"><input type="text" name="certificate"></td><td></td>
@@ -68,7 +70,7 @@
 	<tr>
 		<td>マナー:</td>
 		<td>
-			<span th:if="${detailInfo.manner == -1}" th:text="null"></span>
+			<span th:if="${detailInfo.manner == 0}" th:text="null"></span>
 			<span th:if="${detailInfo.manner == 1}" th:text="1"></span>
 			<span th:if="${detailInfo.manner == 2}" th:text="2"></span>
 			<span th:if="${detailInfo.manner == 3}" th:text="3"></span>
@@ -86,9 +88,9 @@
 		<td>家庭情况:</td><td th:text="${detailInfo.familySituation}"></td><td> </td>
 		<td>在职情况:</td>
 		<td>
-			<span th:if="${detailInfo.serviceSituation == -1}" th:text="null"></span>
-			<span th:if="${detailInfo.serviceSituation == 0}" th:text="离职"></span>
-			<span th:if="${detailInfo.serviceSituation == 1}" th:text="在职"></span>
+			<span th:if="${detailInfo.serviceSituation == 0}" th:text="null"></span>
+			<span th:if="${detailInfo.serviceSituation == 1}" th:text="离职"></span>
+			<span th:if="${detailInfo.serviceSituation == 2}" th:text="在职"></span>
 		</td>
 		<td></td>
 	</tr>
@@ -99,9 +101,9 @@
 	<tr>
 		<td>婚姻状况:</td>
 		<td>
-			<span th:if="${detailInfo.maritalStatus == -1}" th:text="null"></span>
-			<span th:if="${detailInfo.maritalStatus == 0}" th:text="未婚"></span>
-			<span th:if="${detailInfo.maritalStatus == 1}" th:text="已婚"></span>
+			<span th:if="${detailInfo.maritalStatus == 0}" th:text="null"></span>
+			<span th:if="${detailInfo.maritalStatus == 1}" th:text="未婚"></span>
+			<span th:if="${detailInfo.maritalStatus == 2}" th:text="已婚"></span>
 		</td>
 		<td></td>
 		<td>期望薪资:</td><td th:text="${detailInfo.expectSalary}"></td><td> </td>
@@ -113,9 +115,9 @@
 	<tr>
 		<td>2面结果:</td>
 		<td>
-			<span th:if="${detailInfo.interview2Result == -1}" th:text="null"></span>
-			<span th:if="${detailInfo.interview2Result == 0}" th:text="不合格"></span>
-			<span th:if="${detailInfo.interview2Result == 1}" th:text="合格"></span>
+			<span th:if="${detailInfo.interview2Result == 0}" th:text="null"></span>
+			<span th:if="${detailInfo.interview2Result == 1}" th:text="不合格"></span>
+			<span th:if="${detailInfo.interview2Result == 2}" th:text="合格"></span>
 		</td>
 		<td></td>
 		<td>2面担当:</td><td th:text="${detailInfo.interview2Handler}"></td><td> </td>
@@ -136,9 +138,9 @@
 	<tr>
 		<td>3面结果:</td>
 		<td>
-			<span th:if="${detailInfo.interview3Result == -1}" th:text="null"></span>
-			<span th:if="${detailInfo.interview3Result == 0}" th:text="不合格"></span>
-			<span th:if="${detailInfo.interview3Result == 1}" th:text="合格"></span>
+			<span th:if="${detailInfo.interview3Result == 0}" th:text="null"></span>
+			<span th:if="${detailInfo.interview3Result == 1}" th:text="不合格"></span>
+			<span th:if="${detailInfo.interview3Result == 2}" th:text="合格"></span>
 		</td>
 		<td></td>
 		<td>3面担当:</td><td th:text="${detailInfo.interview3Handler}"></td><td> </td>
@@ -158,11 +160,11 @@
 	<tr>
 		<td>工作意向:</td>
 		<td>
-			<span th:if="${detailInfo.workIntent == -1}" th:text="null"></span>
-			<span th:if="${detailInfo.workIntent == 0}" th:text="0"></span>
+			<span th:if="${detailInfo.workIntent == 0}" th:text="null"></span>
 			<span th:if="${detailInfo.workIntent == 1}" th:text="1"></span>
 			<span th:if="${detailInfo.workIntent == 2}" th:text="2"></span>
 			<span th:if="${detailInfo.workIntent == 3}" th:text="3"></span>
+			<span th:if="${detailInfo.workIntent == 4}" th:text="4"></span>
 		</td>
 		<td></td>
 		<td>招入公司id:</td><td th:text="${detailInfo.companyId}"><td></td>
@@ -171,7 +173,7 @@
 		<td>是否已删除:</td>
 		<td>
 			<span th:if="${detailInfo.deleteFlag == 0}" th:text="未删除"></span>
-			<span th:if="${detailInfo.deleteFlag == -1}" th:text="已删除"></span>
+			<span th:if="${detailInfo.deleteFlag == 1}" th:text="已删除"></span>
 		</td>
 		<td></td>
 		<td></td>

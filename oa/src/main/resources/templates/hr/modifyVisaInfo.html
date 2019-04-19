@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>modify visa info</title>
+	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+	<link rel="stylesheet" th:href="@{/css/layui.css}">
+</head>
+<body>
+	<form action="#" th:action="@{/hr/modifyVisaInfoDo}" method="post" th:object="${interviewerVisaHandle}">
+		<table border="1" style="border:1px solid black;">
+		<tr>
+			<th colspan="11">签证办理编辑</th>
+		</tr>
+		<tr>
+			<td>No</td><td><input type="text" th:field="*{interviewerId}" th:value="${interviewerVisaHandle.interviewerId}" readonly="readonly"></td>
+		</tr>
+		<tr>
+			<td>姓名</td><td><input type="text" th:value="${interviewerVisaHandle.interviewer.interviewerName}" readonly="readonly"></td>
+		<tr>
+			<td>邮寄情况</td>
+			<td>
+				<select th:field="*{mailingSituation}" th:value="${interviewerVisaHandle.mailingSituation}">
+					<option value="0">未邮寄</option>
+					<option value="1">邮寄中</option>
+					<option value="2">已收到</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>材料准备情况</td>
+			<td>
+				<select th:field="*{materialPrepareSituation}" th:value="${interviewerVisaHandle.materialPrepareSituation}">
+					<option value="0">未准备</option>
+					<option value="1">准备中</option>
+					<option value="2">准备结束</option>
+				</select>
+		</tr>
+		<tr>
+			<td>申请材料是否已准备好</td>
+			<td>
+				<select th:field="*{applicationMaterial}" th:value="${interviewerVisaHandle.applicationMaterial}">
+					<option value="0">否</option>
+					<option value="1">是</option>
+				</select>
+		</tr>
+		<tr>
+			<td>自译日文简历</td>
+			<td>
+				<select th:field="*{selfJapaneseResume}" th:value="${interviewerVisaHandle.selfJapaneseResume}">
+					<option value="0">没有</option>
+					<option value="1">有</option>
+				</select>
+		</tr>
+		<tr>
+			<td>简历翻译检查</td>
+			<td>
+				<select th:field="*{checkResume}" th:value="${interviewerVisaHandle.checkResume}">
+					<option value="0">未检查</option>
+					<option value="1">已检查</option>
+				</select>
+		</tr>
+		<tr>
+			<td>预计递交日</td><td><input type="date" th:field="*{expectSubmitDate}" th:value="${interviewerVisaHandle.expectSubmitDate}"></td>
+		</tr>
+		<tr>
+			<td>实际递交日</td><td><input type="date" th:field="*{actualSubmitDate}" th:value="${interviewerVisaHandle.actualSubmitDate}"></td>
+		</tr>
+		<tr>
+			<td>签证办理担当</td><td><input type="text" th:field="*{visaHandleHandler}" th:value="${interviewerVisaHandle.visaHandleHandler}"></td>
+		</tr>
+		<tr>
+			<td>赴日通知担当</td><td><input type="text" th:field="*{noticeHandler}" th:value="${interviewerVisaHandle.noticeHandler}"></td>
+		</tr>
+		<tr>
+			<td>其他担当</td><td><input type="text" th:field="*{otherHandlerf}" th:value="${interviewerVisaHandle.otherHandlerf}"></td>
+		</tr>
+		<tr>
+			<td>备考</td><td><input type="text" th:field="*{description}" th:value="${interviewerVisaHandle.description}"></td>
+		</tr>
+		<tr>
+			<td>是否完成关闭</td>
+			<td>
+				<select th:field="*{isCompleted}" th:value="${interviewerVisaHandle.isCompleted}">
+					<option value="0">未删除</option>
+					<option value="1">已删除</option>
+				</select>
+		</tr>
+		<tr>
+			<td>是否已删除</td>
+			<td>
+				<select th:field="*{deleteFlag}" th:value="${interviewerVisaHandle.deleteFlag}">
+					<option value="0">未删除</option>
+					<option value="1">已删除</option>
+				</select>
+		</tr>
+		<tr>
+			<td><input type="submit" value="保存"></td>
+		</tr>
+	</table>
+	</form>
+	
+	
+	
+	
+</body>
+</html>

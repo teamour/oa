@@ -1,10 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>visa info list</title>
+	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+	<link rel="stylesheet" th:href="@{/css/layui.css}">
 </head>
 <body>
-	info
+	<table border="1" style="border:1px solid black;text-align: center;">
+		<tr>
+			<th colspan="22">签证材料准备情况</th>
+		</tr>
+		<tr>
+			<td rowspan="2">No</td>
+			<td rowspan="2">姓名</td>
+			<td rowspan="2">邮寄情况</td>
+			<td rowspan="2">材料准备情况</td>
+			<td colspan="18">准备递交材料</td>
+		</tr>
+		<tr>
+			<td>申请材料</td>
+			<td>自译日文简历</td>
+			<td>简历翻译检查</td>
+			<td>预计递交日</td>
+			<td>实际递交日</td>
+			<td>签证办理担当</td>
+			<td>赴日通知担当</td>
+			<td>其他担当</td>
+			<td>备考</td>
+			<td>是否完成关闭</td>
+			<td>创建时间</td>
+			<td>修改时间</td>
+			<td>删除时间</td>
+			<td>是否已删除</td>
+		</tr>
+		<tr th:each="iv:${interviewerVisaHandle}">
+			<td th:text="${iv.interviewerId}"></td>
+			<td th:text="${iv.interviewer.interviewerName}"></td>
+			<td th:switch="${iv.mailingSituation}">
+				<span th:case="'0'" th:text="未邮寄"></span>
+				<span th:case="'1'" th:text="邮寄中"></span>
+				<span th:case="'2'" th:text="已收到"></span>
+			</td>
+			<td th:switch="${iv.materialPrepareSituation}">
+				<span th:case="'0'" th:text="未准备"></span>
+				<span th:case="'1'" th:text="准备中"></span>
+				<span th:case="'2'" th:text="准备完毕"></span>
+			</td>
+			<td th:switch="${iv.applicationMaterial}">
+				<span th:case="'0'" th:text="否"></span>
+				<span th:case="'1'" th:text="是"></span>
+			</td>
+			<td th:switch="${iv.selfJapaneseResume}">
+				<span th:case="'0'" th:text="没有"></span>
+				<span th:case="'1'" th:text="有"></span>
+			</td>
+			<td th:switch="${iv.checkResume}">
+				<span th:case="'0'" th:text="未检查"></span>
+				<span th:case="'1'" th:text="已检查"></span>
+			</td>
+			<td th:text="${iv.expectSubmitDate}"></td>
+			<td th:text="${iv.actualSubmitDate}"></td>
+			<td th:text="${iv.visaHandleHandler}"></td>
+			<td th:text="${iv.noticeHandler}"></td>
+			<td th:text="${iv.otherHandlerf}"></td>
+			<td th:text="${iv.description}"></td>
+			<td th:switch="${iv.isCompleted}">
+				<span th:case="'0'" th:text="否"></span>
+				<span th:case="'1'" th:text="是"></span>
+			</td>
+			<td th:text="${iv.createTime}"></td>
+			<td th:text="${iv.updateTime}"></td>
+			<td th:text="${iv.deleteTime}"></td>
+			<td th:switch="${iv.deleteFlag}">
+				<span th:case="'0'" th:text="未删除"></span>
+				<span th:case="'1'" th:text="已删除"></span>
+			</td>
+			<td colspan="2"><a th:href="@{modifyVisaInfoShow(interviewerId=${iv.interviewerId})}">编辑</a></td>
+		</tr>
+		<tr>
+		</tr>
+	</table>
 </body>
 </html>

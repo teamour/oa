@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>visaLogin</title>
+	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+	<link rel="stylesheet" th:href="@{/css/layui.css}">
 </head>
 <body>
-	<form action="visaLoginDo" method="post">
+	<form action="#" th:action="@{visaLoginDo}" method="post">
 		<input type="text" name="interviewerCode">
 		<input type="submit" value="登录">
 	</form>
