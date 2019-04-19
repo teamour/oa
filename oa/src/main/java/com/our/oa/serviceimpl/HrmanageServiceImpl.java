@@ -9,9 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.our.oa.dao.InterviewerMapper;
+import com.our.oa.dao.InterviewerVisaHandleMapper;
+import com.our.oa.dto.form.InterviewerDTO;
+import com.our.oa.dto.list.InterviewerListDTO;
+import com.our.oa.dto.list.InterviewerListQueryDTO;
 import com.our.oa.entity.Company;
 import com.our.oa.entity.Interviewer;
 import com.our.oa.entity.InterviewerResume;
+import com.our.oa.entity.InterviewerVisaHandle;
 import com.our.oa.service.HrmanageService;
 
 @Service
@@ -19,11 +24,14 @@ public class HrmanageServiceImpl implements HrmanageService{
 
 	@Autowired
 	private InterviewerMapper interviewerMapper;
+	
+	@Autowired
+	private InterviewerVisaHandleMapper InterviewerVisaHandleMapper;
 
 	@Override
-	public boolean addInfoCommit(Interviewer interviewer) {
-		interviewer.setCreateTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-		return interviewerMapper.addInfoCommit(interviewer) > 0;
+	public boolean addInfoCommit(InterviewerDTO interviewerInfoForm) {
+		interviewerInfoForm.setCreateTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+		return interviewerMapper.addInfoCommit(interviewerInfoForm) > 0;
 	}
 
 	@Override
@@ -37,11 +45,14 @@ public class HrmanageServiceImpl implements HrmanageService{
 	}
 
 	@Override
-	public int getCode() {
+	public String getCode() {
 		Random random = new Random();
-		int code = random.nextInt(89999)+10000;
+		int num = random.nextInt(899)+100;
+		String nowtime = new SimpleDateFormat("yyyyMMdd").format(new Date());
+		String code = nowtime + num;
 		while(interviewerMapper.checkCode(code) != null) {
-			code = random.nextInt(89999)+10000;
+			num = random.nextInt(899)+100;
+			code = nowtime + num;
 		}
 		return  code;
 	}
@@ -53,6 +64,7 @@ public class HrmanageServiceImpl implements HrmanageService{
 
 	@Override
 	public boolean updateInfoDo(Interviewer interviewer) {
+		interviewer.setUpdateTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 		return interviewerMapper.updateInfoDo(interviewer) > 0;
 	}
 
@@ -65,8 +77,19 @@ public class HrmanageServiceImpl implements HrmanageService{
 	}
 
 	@Override
-	public boolean getInterviewerByInterviewerCode(int interviewerCode) {
-		return interviewerMapper.getInterviewerByInterviewerCode(interviewerCode) != null;
+	public Interviewer getInterviewerByInterviewerCode(String interviewerCode) {
+		return interviewerMapper.getInterviewerByInterviewerCode(interviewerCode);
+	}
+
+	@Override
+	public InterviewerVisaHandle getInterviewerVisaHandleByInterviewerId(int interviewerId) {
+		return InterviewerVisaHandleMapper.getInterviewerVisaHandleByInterviewerId(interviewerId);
+	}
+
+	@Override
+	public List<InterviewerListDTO> getGridList(InterviewerListQueryDTO g) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

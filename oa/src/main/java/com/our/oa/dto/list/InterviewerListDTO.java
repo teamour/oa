@@ -17,11 +17,13 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString(callSuper=true)
 @EqualsAndHashCode(callSuper=true)
-public class CompanyListDTO extends GridListDTO {
+public class InterviewerListDTO extends GridListDTO {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Integer interviewerId;
+	private Integer announcementId;
+
+    private String title;
 
 	private Date createTime;
 }

@@ -20,13 +20,40 @@
     <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
     <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
     <result column="description" jdbcType="LONGVARCHAR" property="description" />
+    <association property="interviewer" javaType="com.our.oa.entity.Interviewer">
+    	<id column="interviewer_id" property="interviewerId"/>
+    	<result column="interviewer_name" property="interviewerName"/>
+    </association>
   </resultMap>
+  
+  <select id="getInterviewerVisaHandleByInterviewerId" parameterType="INTEGER" resultMap="BaseResultMap">
+  	select 
+  	visa_handle_id, t_interviewer_visa_handle.interviewer_id, 
+  	material_prepare_situation, mailing_situation, 
+    application_material, self_japanese_resume, 
+    check_resume, expect_submit_date, 
+    actual_submit_date, visa_handle_handler, 
+    notice_handler, other_handlerf, 
+    is_completed, t_interviewer_visa_handle.create_time, 
+    t_interviewer_visa_handle.update_time, t_interviewer_visa_handle.delete_time, 
+    t_interviewer_visa_handle.delete_flag, description, 
+    t_interviewer.interviewer_name
+    from t_interviewer_visa_handle left join t_interviewer on 
+    t_interviewer.interviewer_id=t_interviewer_visa_handle.interviewer_id
+    where t_interviewer_visa_handle.interviewer_id=#{interviewerId}
+  </select>
+  
+  
+  
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from oa..t_interviewer_visa_handle
+    delete from t_interviewer_visa_handle
     where visa_handle_id = #{visaHandleId,jdbcType=INTEGER}
   </delete>
+  
   <insert id="insert" parameterType="com.our.oa.entity.InterviewerVisaHandle">
-    insert into oa..t_interviewer_visa_handle (visa_handle_id, interviewer_id, material_prepare_situation, 
+    insert into t_interviewer_visa_handle (visa_handle_id, interviewer_id, material_prepare_situation, 
       mailing_situation, application_material, self_japanese_resume, 
       check_resume, expect_submit_date, actual_submit_date, 
       visa_handle_handler, notice_handler, other_handlerf, 
@@ -41,8 +68,9 @@
       #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=BIT}, #{description,jdbcType=LONGVARCHAR}
       )
   </insert>
+  
   <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.InterviewerVisaHandle">
-    update oa..t_interviewer_visa_handle
+    update t_interviewer_visa_handle
     set interviewer_id = #{interviewerId,jdbcType=INTEGER},
       material_prepare_situation = #{materialPrepareSituation,jdbcType=TINYINT},
       mailing_situation = #{mailingSituation,jdbcType=TINYINT},
@@ -62,19 +90,21 @@
       description = #{description,jdbcType=LONGVARCHAR}
     where visa_handle_id = #{visaHandleId,jdbcType=INTEGER}
   </update>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select visa_handle_id, interviewer_id, material_prepare_situation, mailing_situation, 
     application_material, self_japanese_resume, check_resume, expect_submit_date, actual_submit_date, 
     visa_handle_handler, notice_handler, other_handlerf, is_completed, create_time, update_time, 
     delete_time, delete_flag, description
-    from oa..t_interviewer_visa_handle
+    from t_interviewer_visa_handle
     where visa_handle_id = #{visaHandleId,jdbcType=INTEGER}
   </select>
+  
   <select id="selectAll" resultMap="BaseResultMap">
     select visa_handle_id, interviewer_id, material_prepare_situation, mailing_situation, 
     application_material, self_japanese_resume, check_resume, expect_submit_date, actual_submit_date, 
     visa_handle_handler, notice_handler, other_handlerf, is_completed, create_time, update_time, 
     delete_time, delete_flag, description
-    from oa..t_interviewer_visa_handle
+    from t_interviewer_visa_handle
   </select>
 </mapper>

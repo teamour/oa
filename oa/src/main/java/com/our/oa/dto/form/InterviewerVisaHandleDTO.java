@@ -1,6 +1,8 @@
-package com.our.oa.entity;
+package com.our.oa.dto.form;
 
 import java.io.Serializable;
+
+import com.our.oa.entity.Interviewer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +18,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class InterviewerVisaHandle implements Serializable {
+public class InterviewerVisaHandleDTO implements Serializable {
     private Integer visaHandleId;
 
     private Integer interviewerId;

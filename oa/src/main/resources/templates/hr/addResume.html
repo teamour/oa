@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>add resume</title>
+	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+	<link rel="stylesheet" th:href="@{/css/layui.css}">
+</head>
+<body>
+	<form action="#" th:action="addResumeDo" enctype="multipart/form-data" method="post">
+		<input type="file" name="file">
+		<input type="submit" value="提交">
+	</form>
+</body>
+</html>

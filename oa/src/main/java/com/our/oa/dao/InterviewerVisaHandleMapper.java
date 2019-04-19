@@ -16,4 +16,7 @@ public interface InterviewerVisaHandleMapper {
     List<InterviewerVisaHandle> selectAll();
 
     int updateByPrimaryKey(InterviewerVisaHandle record);
+
+	InterviewerVisaHandle getInterviewerVisaHandleByInterviewerId(int interviewerId);
+	
 }

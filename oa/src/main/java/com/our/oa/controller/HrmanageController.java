@@ -2,14 +2,18 @@ package com.our.oa.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.our.oa.dto.form.InterviewerDTO;
 import com.our.oa.entity.Company;
 import com.our.oa.entity.Interviewer;
+import com.our.oa.entity.InterviewerVisaHandle;
 import com.our.oa.service.HrmanageService;
 /**
  * hr manage
@@ -53,10 +57,13 @@ public class HrmanageController {
 	 */
 	@RequestMapping(value="/addInfoShow")
 	public ModelAndView addInfoShow(ModelAndView modelAndView) {
+		InterviewerDTO interviewer = new InterviewerDTO();
 		modelAndView.setViewName("hr/addInfo");
-		modelAndView.addObject("code",  hrmanageServiceImpl.getCode());
+		interviewer.setInterviewerCode(hrmanageServiceImpl.getCode());
+//		modelAndView.addObject("interviewerCode",  hrmanageServiceImpl.getCode());
 		List<Company> company = hrmanageServiceImpl.getCompanyIdAndName();
 		modelAndView.addObject("company", company);
+		modelAndView.addObject("interviewerInfoForm", interviewer);
 		return modelAndView;
 	}
 	
@@ -67,8 +74,8 @@ public class HrmanageController {
 	 * @return
 	 */
 	@RequestMapping(value="/addInfoCommit")
-	public ModelAndView addInfoCommit(ModelAndView modelAndView,Interviewer interviewer) {
-		if(hrmanageServiceImpl.addInfoCommit(interviewer)) {
+	public ModelAndView addInfoCommit(ModelAndView modelAndView,@Valid InterviewerDTO interviewerInfoForm) {
+		if(hrmanageServiceImpl.addInfoCommit(interviewerInfoForm)) {
 			modelAndView.setView(new RedirectView("hrIndex"));
 		}else {
 			modelAndView.setViewName("hr/error");
@@ -97,6 +104,7 @@ public class HrmanageController {
 	public ModelAndView updateInfo(ModelAndView modelAndView,int interviewerId) {
 		modelAndView.setViewName("hr/updateInfo");
 		modelAndView.addObject("detailInfo", hrmanageServiceImpl.getDetailInfoById(interviewerId));
+		modelAndView.addObject("company", hrmanageServiceImpl.getCompanyIdAndName());
 		return modelAndView;
 	}
 	
@@ -109,7 +117,7 @@ public class HrmanageController {
 	public ModelAndView updateInfoDo(ModelAndView modelAndView,int interviewerId,Interviewer interviewer) {
 		modelAndView.addObject("detailInfo", hrmanageServiceImpl.getDetailInfoById(interviewerId));
 		if(hrmanageServiceImpl.updateInfoDo(interviewer)) {
-			modelAndView.setViewName("hr/detailInfo");
+			modelAndView.setView(new RedirectView("detailInfo?interviewerId="+interviewerId));
 			return modelAndView;
 		}else {
 			modelAndView.setViewName("hr/error");
@@ -159,10 +167,10 @@ public class HrmanageController {
 	 * @return
 	 */
 	@RequestMapping("/visaLoginDo")
-	public ModelAndView visaLoginDo(ModelAndView modelAndView,int interviewerCode) {
-		if (hrmanageServiceImpl.getInterviewerByInterviewerCode(interviewerCode)) {
-			modelAndView.setView(new RedirectView("visaInfo?interviewerCode="+interviewerCode));
-			
+	public ModelAndView visaLoginDo(ModelAndView modelAndView,String interviewerCode) {
+		Interviewer interviewer = hrmanageServiceImpl.getInterviewerByInterviewerCode(interviewerCode);
+		if (interviewer != null) {
+			modelAndView.setView(new RedirectView("visaInfoShow?interviewerId="+interviewer.getInterviewerId()));
 		}else {
 			modelAndView.setView(new RedirectView("visaLogin"));
 		}
@@ -174,9 +182,38 @@ public class HrmanageController {
 	 * @param modelAndView
 	 * @return
 	 */
-	@RequestMapping("/visaInfo")
-	public ModelAndView visaInfo(ModelAndView modelAndView,int interviewerCode) {
-		System.out.println(interviewerCode);
+	@RequestMapping("/visaInfoShow")
+	public ModelAndView visaInfoShow(ModelAndView modelAndView,int interviewerId) {
+		InterviewerVisaHandle interviewerVisaHandle = hrmanageServiceImpl.getInterviewerVisaHandleByInterviewerId(interviewerId);
+		modelAndView.addObject("interviewerVisaHandle", interviewerVisaHandle);
+		System.out.println(interviewerVisaHandle.getInterviewerId());
+		modelAndView.setViewName("hr/visaInfo");
+		return modelAndView;
+	}
+	
+	/**
+	 * modify visa info
+	 * @param modelAndView
+	 * @return
+	 */
+	@RequestMapping("/modifyVisaInfoShow")
+	public ModelAndView modifyVisaInfoShow(ModelAndView modelAndView,int interviewerId) {
+		InterviewerVisaHandle interviewerVisaHandle = hrmanageServiceImpl.getInterviewerVisaHandleByInterviewerId(interviewerId);
+		modelAndView.addObject("interviewerVisaHandle", interviewerVisaHandle);
+		modelAndView.setViewName("hr/modifyVisaInfo");
+		return modelAndView;
+	}
+	
+	/**
+	 * modify visa info
+	 * @param modelAndView
+	 * @return
+	 */
+	@RequestMapping("/modifyVisaInfoDo")
+	public ModelAndView modifyVisaInfoShowDo(ModelAndView modelAndView,InterviewerVisaHandle interviewerVisaHandle) {
+		System.out.println(interviewerVisaHandle);
+		
+		
 		
 		modelAndView.setViewName("hr/visaInfo");
 		return modelAndView;
