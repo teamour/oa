@@ -24,4 +24,6 @@ public interface EmployeeMapper {
 	
 	List<Employee> selectQueryList(EmployeeListQueryDTO queryDTO);
 	
+	int updateByEmployeeId(EmployeeDTO employee);
+	
 }

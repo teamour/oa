@@ -227,5 +227,31 @@
 	
     <script type="text/javascript" th:src="@{/js/layui.js}"></script>
     <script type="text/javascript" th:src="@{/js/pages/emp/announcement.js}"></script>
+<!--     <script type="text/javascript">
+        
+    function login() {
+    	debugger
+        	 
+        	    	$.ajax({
+        	    			url:"http://localhost:8080/emp/",
+        	    			type:"post",
+        	    			async: false,
+        	    			data: $('#form1').serialize(),
+        	    			contentType: "application/json; charset=utf-8",  
+        	    	        dataType: "json",
+        	    	        success: function (result) {
+        	                    console.log(result);//打印服务端返回的数据(调试用)
+        	                    if (result.resultCode == 200) {
+        	                        alert("SUCCESS");
+        	                    }
+        	                    ;
+        	                },
+        	    	        error:function(){
+        	    	        	layer.msg("error!");
+        	    	        }
+        	    	
+        	    }
+        }
+    </script> -->
 </body>
 </html>

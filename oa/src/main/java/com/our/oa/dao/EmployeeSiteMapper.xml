@@ -62,4 +62,84 @@
      employee_id = #{employeeId,jdbcType=INTEGER}
     </where>
   </delete> -->
+  <update id="updateByEmployeeId" parameterType="com.our.oa.entity.EmployeeSite">
+    update oasys.t_employee_site
+    <set>
+     <if test="projectId!=null and projectId!=''">
+      project_id = #{projectId,jdbcType=INTEGER},
+     </if> 
+     <if test="expectEnterDate!=null and expectEnterDate!=''"> 
+      expect_enter_date = #{expectEnterDate,jdbcType=DATE},
+     </if> 
+     <if test="enterDate!=null and enterDate!=''"> 
+      enter_date = #{enterDate,jdbcType=DATE},
+     </if> 
+     <if test="endDate!=null and endDate!=''">
+      end_date = #{endDate,jdbcType=DATE},
+     </if> 
+     <if test="salesStaff!=null and salesStaff!=''"> 
+      sales_staff = #{salesStaff,jdbcType=VARCHAR},
+     </if> 
+     <if test="salesContact!=null and salesContact!=''"> 
+      sales_contact = #{salesContact,jdbcType=VARCHAR},
+     </if> 
+     <if test="salesEmail!=null and salesEmail!=''"> 
+      sales_email = #{salesEmail,jdbcType=VARCHAR},
+     </if> 
+     <if test="officeClerk!=null and officeClerk!=''"> 
+      office_clerk = #{officeClerk,jdbcType=VARCHAR},
+     </if> 
+     <if test="officeEmail!=null and officeEmail!=''"> 
+      office_email = #{officeEmail,jdbcType=VARCHAR},
+     </if> 
+     <if test="settlementRange!=null and settlementRange!=''"> 
+      settlement_range = #{settlementRange,jdbcType=VARCHAR},
+     </if> 
+     <if test="unitPrice!=null and unitPrice!=''"> 
+      unit_price = #{unitPrice,jdbcType=INTEGER},
+     </if> 
+     <if test="isNeedSalesStaff!=null and isNeedSalesStaff!=''"> 
+      is_need_sales_staff = #{isNeedSalesStaff,jdbcType=BIT},
+     </if> 
+     <if test="purchaseOrderFile!=null and purchaseOrderFile!=''"> 
+      purchase_order_file = #{purchaseOrderFile,jdbcType=VARCHAR},
+     </if> 
+     <if test="invoiceFile!=null and invoiceFile!=''"> 
+      invoice_file = #{invoiceFile,jdbcType=VARCHAR},
+     </if> 
+     <if test="paymentSite!=null and paymentSite!=''"> 
+      payment_site = #{paymentSite,jdbcType=VARCHAR},
+     </if> 
+     <if test="headOfficeClerk!=null and headOfficeClerk!=''"> 
+      head_office_clerk = #{headOfficeClerk,jdbcType=VARCHAR},
+     </if> 
+     <if test="enterHandler!=null and enterHandler!=''"> 
+      enter_handler = #{enterHandler,jdbcType=INTEGER},
+     </if> 
+     <if test="isEnd!=null and isEnd!=''"> 
+      is_end = #{isEnd,jdbcType=BIT},
+     </if> 
+     <if test="createTime!=null and createTime!=''"> 
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+     </if> 
+     <if test="updateTime!=null and updateTime!=''"> 
+      update_time = #{now(),jdbcType=TIMESTAMP},
+     </if> 
+     <if test="deleteTime!=null and deleteTime!=''"> 
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+     </if> 
+     <if test="deleteFlag!=null and deleteFlag!=''"> 
+      delete_flag = #{deleteFlag,jdbcType=BIT},
+     </if> 
+     <if test="enterRecord!=null and enterRecord!=''"> 
+      enter_record = #{enterRecord,jdbcType=LONGVARCHAR},
+     </if> 
+     <if test="description!=null and description!=''"> 
+      description = #{description,jdbcType=LONGVARCHAR}
+     </if> 
+    </set>
+    <where> 
+     employee_id = #{employeeId,jdbcType=INTEGER}
+    </where>
+  </update>
 </mapper>

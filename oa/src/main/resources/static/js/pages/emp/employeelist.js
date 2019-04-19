@@ -6,7 +6,7 @@ BF={
 		             datatype: "json",
 		             colNames:["Id", "标题", "创建时间", "内容"],
 		             colModel: [
-		                 { label: 'employeeId', name: 'employeeId',hidden:true, width: 75 },
+		                 { input: 'employeeId', name: 'employeeId',hidden:true, width: 75 },
 		                 { label: 'employeeName', name: 'employeeName', width: 150 },
 		                 { label: 'createTime', name: 'createTime', width: 150,
 						formatter : 'date', formatoptions: { srcformat : 'Y-m-d H:i:s', newformat :'ShortDate'}},
@@ -31,7 +31,8 @@ BF={
 			var selData = $("#jqGrid").getRowData();
 			// 要判断是否有选择，且只选中一行数据
 			
-			window.location.href = ctxPath+"emp/"+selData[0].announcementId;
+			
+			window.location.href = ctxPath+"emp/"+selData[0].employeeId;
 		},
 		searchData: function (){
 			$("#jqGrid").setGridParam({

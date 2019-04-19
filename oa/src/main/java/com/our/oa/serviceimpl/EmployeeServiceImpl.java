@@ -28,11 +28,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private EmployeeSiteMapper employeeSiteMapper;
 	
 	@Override
-	public int insert(EmployeeDTO employee,EmployeeSiteDTO emplyoeeSite) {
+	public int insert(EmployeeDTO employee,EmployeeSiteDTO employeeSite) {
 		  	 int rows = employeeMapper.insert(employee);
 		  	 int lastId = employeeMapper.findNowId();//employee表添加的最新id
-		  	 emplyoeeSite.setEmployeeId(lastId);
-		  	 employeeSiteMapper.insert(emplyoeeSite);
+		  	 employeeSite.setEmployeeId(lastId);
+		  	 employeeSiteMapper.insert(employeeSite);
 			 return rows;
 	}
 
@@ -68,6 +68,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 			//rows= employeeSiteMapper.deleteByPrimaryKey(employeeId);
 		}
 		return rows;
+	}
+
+	@Override
+	public void update(EmployeeDTO employee , EmployeeSiteDTO emplyoeeSite ) {
+		
+		 employeeMapper.updateByEmployeeId(employee);
+		 employeeSiteMapper.updateByEmployeeId(emplyoeeSite);
 	}
 
 	

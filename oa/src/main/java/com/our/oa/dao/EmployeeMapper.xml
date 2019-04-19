@@ -87,4 +87,126 @@
      employee_id = #{employeeId,jdbcType=INTEGER}
     </where>
   </delete>
+  <update id="updateByEmployeeId" parameterType="com.our.oa.entity.Employee">
+    update oasys.t_employee
+    <set>
+     <if test="gender!=null and gender!=''">
+      gender = #{gender,jdbcType=TINYINT},
+     </if>
+     <if test="age!=null and age!=''">
+      age = #{age,jdbcType=TINYINT},
+     </if>
+     <if test="birthday!=null and birthday!=''">
+      birthday = #{birthday,jdbcType=DATE},
+     </if> 
+     <if test="maritalStatus!=null and maritalStatus!=''">
+      marital_status = #{maritalStatus,jdbcType=INTEGER},
+     </if> 
+     <if test="companyId!=null and companyId!=''">
+      company_id = #{companyId,jdbcType=INTEGER},
+     </if>
+     <if test="deptId!=null and deptId!=''">
+      dept_id = #{deptId,jdbcType=INTEGER},
+     </if> 
+     <if test="enterDate!=null and enterDate!=''">
+      enter_date = #{enterDate,jdbcType=DATE},
+     </if>
+     <if test="position!=null and position!=''">
+      position = #{position,jdbcType=INTEGER},
+     </if>
+     <if test="address!=null and address!=''">
+      address = #{address,jdbcType=VARCHAR},
+     </if>
+     <if test="theNearestStation!=null and theNearestStation!=''">
+      the_nearest_station = #{theNearestStation,jdbcType=VARCHAR},
+     </if>
+     <if test="telephone!=null and gender!=''">
+      telephone = #{telephone,jdbcType=VARCHAR},
+     </if>
+     <if test="workingYears!=null and workingYears!=''">
+      working_years = #{workingYears,jdbcType=TINYINT},
+     </if>
+     <if test="skill1!=null and skill1!=''">
+      skill1 = #{skill1,jdbcType=INTEGER},
+     </if>
+     <if test="skill1Years!=null and skill1Years!=''">
+      skill1_years = #{skill1Years,jdbcType=TINYINT},
+     </if>
+     <if test="skill2!=null and skill2!=''">
+      skill2 = #{skill2,jdbcType=INTEGER},
+     </if>
+     <if test="skill2Years!=null and skill2Years!=''">
+      skill2_years = #{skill2Years,jdbcType=TINYINT},
+     </if>
+     <if test="skill3!=null and skill3!=''">
+      skill3 = #{skill3,jdbcType=INTEGER},
+     </if>
+     <if test="skill3Years!=null and skill3Years!=''">
+      skill3_years = #{skill3Years,jdbcType=TINYINT},
+     </if>
+     <if test="skillScore!=null and skillScore!=''">
+      skill_score = #{skillScore,jdbcType=TINYINT},
+     </if>
+     <if test="skillLevel!=null and skillLevel!=''">
+      skill_level = #{skillLevel,jdbcType=INTEGER},
+     </if>
+     <if test="japaneseLevel!=null and japaneseLevel!=''">
+      japanese_level = #{japaneseLevel,jdbcType=INTEGER},
+     </if>
+     <if test="salary!=null and salary!=''">
+      salary = #{salary,jdbcType=INTEGER},
+     </if>
+     <if test="bankName!=null and bankName!=''">
+      bank_name = #{bankName,jdbcType=VARCHAR},
+     </if>
+     <if test="branchBank!=null and branchBank!=''">
+      branch_bank = #{branchBank,jdbcType=VARCHAR},
+     </if>
+     <if test="bankNumber!=null and bankNumber!=''">
+      bank_number = #{bankNumber,jdbcType=VARCHAR},
+     </if>
+     <if test="bankDesc!=null and bankDesc!=''">
+      bank_desc = #{bankDesc,jdbcType=VARCHAR},
+     </if>
+     <if test="domesticAddress!=null and domesticAddress!=''">
+      domestic_address = #{domesticAddress,jdbcType=VARCHAR},
+     </if>
+     <if test="familySupport!=null and familySupport!=''">
+      family_support = #{familySupport,jdbcType=TINYINT},
+     </if>
+     <if test="contractFormat!=null and contractFormat!=''">
+      contract_format = #{contractFormat,jdbcType=INTEGER},
+     </if>
+     <if test="employmentInsurance!=null and employmentInsurance!=''">
+      employment_insurance = #{employmentInsurance,jdbcType=BIT},
+     </if>
+     <if test="annuity!=null and annuity!=''">
+      annuity = #{annuity,jdbcType=BIT},
+     </if>
+     <if test="healthInsurance!=null and healthInsurance!=''">
+      health_insurance = #{healthInsurance,jdbcType=BIT},
+     </if>
+     <if test="createTime!=null and createTime!=''">
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+     </if>
+     <if test="updateTime!=null and updateTime!=''">
+      update_time = #{now(),jdbcType=TIMESTAMP},
+     </if>
+     <if test="deleteTime!=null and deleteTime!=''">
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+     </if>
+     <if test="deleteFlag!=null and deleteFlag!=''">
+      delete_flag = #{deleteFlag,jdbcType=BIT},
+     </if>
+     <if test="skillAnalysis!=null and skillAnalysis!=''">
+      skill_analysis = #{skillAnalysis,jdbcType=LONGVARCHAR},
+     </if>
+     <if test="gender!=null and gender!=''">
+      skill_growth = #{skillGrowth,jdbcType=LONGVARCHAR}
+	</if>
+	</set> 
+    <where> 
+    	employee_id = #{employeeId,jdbcType=INTEGER}
+    </where>
+  </update>
 </mapper>

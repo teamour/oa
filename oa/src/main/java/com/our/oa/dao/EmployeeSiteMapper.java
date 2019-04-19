@@ -19,4 +19,5 @@ public interface EmployeeSiteMapper {
 
     int updateByPrimaryKey(EmployeeSite record);
     
+    int updateByEmployeeId(EmployeeSiteDTO record);
 }

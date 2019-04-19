@@ -7,8 +7,8 @@
 
 <body>
 <div  style="width:100%;text-align:center">
-	<form >
-		<table>
+	<form class="form-empl" id="addEmp" th:action="@{/emp/update/25}" method="POST" >
+		<table >
 			<tr>
 				<td>名前:</td><td><input type="text" th:text="${employee.employeeName}" name="employeeName" ></td>
 			</tr>
@@ -171,6 +171,10 @@
 			</tr>
 			<tr>
 				<td>是否需要营业:</td><td><input type="text" name="isNeedSalesStaff"  th:text="${employeeSite.isNeedSalesStaff}"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" value="保存" style="width: 100px;"></td><td></td>
+				<td colspan="2" align="center"><input type="reset" value="重置" style="width: 100px;"></td><td></td>
 			</tr>
 		</table>
 	</form>

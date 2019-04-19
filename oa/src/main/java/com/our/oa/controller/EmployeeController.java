@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,11 +55,9 @@ public class EmployeeController {
 	@PostMapping(value="/")
 	public ModelAndView save(@Valid EmployeeDTO emplyoee,EmployeeSiteDTO emplyoeeSite,
 			BindingResult bindingResult,ModelAndView modelAndView) {
-        if (bindingResult.hasErrors()) {
-        	modelAndView.setViewName("emp/employee");
-            return modelAndView;
-        }
-        employeeService.insert(emplyoee,emplyoeeSite);
+        	 employeeService.insert(emplyoee,emplyoeeSite);
+			
+       
         // 保存成功后返回列表页
         modelAndView.setViewName("emp/employeelist");
         return modelAndView;
@@ -91,5 +90,17 @@ public class EmployeeController {
 		return "delete ok";
 	}
 	
+	@PostMapping(value="/update/{id}")
+	public ModelAndView Update(@Valid EmployeeDTO emplyoee,EmployeeSiteDTO emplyoeeSite,
+			BindingResult bindingResult,ModelAndView modelAndView,
+			@PathVariable(name="id",required=false)Integer id) {
+			emplyoee.setEmployeeId(id);
+			emplyoeeSite.setEmployeeId(id);
+			employeeService.update(emplyoee,emplyoeeSite );
+			System.out.println(emplyoeeSite.getEmployeeId());
+        // 保存成功后返回列表页
+        modelAndView.setViewName("emp/employeelist");
+        return modelAndView;
+	}
 	
 }

@@ -11,7 +11,7 @@ import com.our.oa.entity.EmployeeSite;
 
 public interface EmployeeService extends ListQueryService<EmployeeListDTO,EmployeeListQueryDTO>{
 	
-	int insert(EmployeeDTO emplyoee,EmployeeSiteDTO emplyoeeSite);
+	int insert(EmployeeDTO emplyoee,EmployeeSiteDTO employeeSite);
 	
 	Employee getByPrimaryKey(Integer EmployeeId);
 	
@@ -20,4 +20,7 @@ public interface EmployeeService extends ListQueryService<EmployeeListDTO,Employ
 	List<Employee> findAll();
 	
 	int deleteBydIds(Integer... Ids);
+	
+	void update(EmployeeDTO employee ,EmployeeSiteDTO employeeSite );
+	
 }
