@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>增加信息-员工学习</title>
@@ -29,10 +29,10 @@
 				<td>学习内容</td>
 				<td width="400"><input type="text"  class="layui-input" name="studyContent"></td>
 			</tr>
-			<!-- <tr>
+			<tr>
 				<td>开始日期</td>
-				<td width="400"><input type="text"  class="layui-input" name="beginDate" id="beginDate"></td>
-			</tr> -->
+				<td width="400"><input type="date"  class="layui-input" name="beginDate" id="beginDate"></td>
+			</tr>
 			<tr>
 				<td>学习时间</td>
 				<td width="400"><input type="text"  class="layui-input" name="studyTime"></td>
@@ -57,14 +57,14 @@
     <!-- <script type="text/javascript" th:src="@{/js/pages/epst/announcement.js}"></script> -->
     <script src="/static/build/layui.js"></script>
 <script>
-<!--layui.use('laydate', function(){
+layui.use('laydate', function(){
   var laydate = layui.laydate;
   
   //执行一个laydate实例
   laydate.render({
     elem: '#beginDate' //指定元素
   });
-});-->
+});
 </script>
 </body>
 </html>

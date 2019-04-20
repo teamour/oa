@@ -23,7 +23,7 @@ public class EmployeeStudy implements Serializable {
 
     private String studyContent;
 
-    private Date beginDate;
+    private String beginDate;
 
     private String studyTime;
 

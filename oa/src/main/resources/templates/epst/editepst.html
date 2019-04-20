@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>修改学习信息</title>
@@ -16,19 +16,19 @@
 <a id="btnBack" class="layui-btn" th:href="@{/epst/epstIndex}">《--返回</a>
 	<h2>员工学习-修改</h2>
 	
-	<form class="form-empl" id="editepst" th:action="@{/epst/editepst}" method="POST" >
+	<form class="form-empl" id="editepst" th:action="@{/epst/editepst/3}" method="POST" >
 		<table>
 			<tr>
 				<td>员工ID</td>
-				<td width="400"><input type="text"  class="layui-input" name="employeeId" ></td>
+				<td width="400"><input type="text"  class="layui-input" name="employeeId" th:text="${employeeStudy.employeeId}"></td>
 			</tr>
 			<tr>
 				<td>学习内容</td>
-				<td width="400"><input type="text"  class="layui-input" name="studyContent" placeholder="${employeeStudy.studyContent}"></td>
+				<td width="400"><input type="text"  class="layui-input" name="studyContent" th:text="${employeeStudy.studyContent}"></td>
 			</tr>
 			<tr>
 				<td>开始日期</td>
-				<td width="400"><input type="text"  class="layui-input" name="beginDate" id="beginDate"></td>
+				<td width="400"><input type="date"  class="layui-input" name="beginDate" id="beginDate"></td>
 			</tr>
 			<tr>
 				<td>学习时间</td>
@@ -49,5 +49,16 @@
 		</table>
 		<input id="submit" type="submit" class="layui-btn">
 	</form>
+	
+	<script>
+layui.use('laydate', function(){
+  var laydate = layui.laydate;
+  
+  //执行一个laydate实例
+  laydate.render({
+    elem: '#beginDate' //指定元素
+  });
+});
+</script>
 </body>
 </html>

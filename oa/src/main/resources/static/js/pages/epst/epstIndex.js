@@ -40,7 +40,7 @@ BF={
 	searchData: function (){
 		$("#jqGrid").setGridParam({
             page: 1,
-            postData: { title :$("#title").val() }
+            postData: { employeeId :$("#employeeId").val() }
         }).trigger('reloadGrid');
    }
 	

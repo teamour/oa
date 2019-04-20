@@ -26,7 +26,7 @@ public class EmployeeStudyListDTO extends GridListDTO{
 
 	private String studyContent;
 
-	private Date beginDate;
+	private String beginDate;
 
 	private String studyTime;
 

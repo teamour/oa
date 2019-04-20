@@ -27,7 +27,7 @@ private static final long serialVersionUID = 1L;
 
 	private String studyContent;
 
-	private Date beginDate;
+	private String beginDate;
 
 	private String studyTime;
 

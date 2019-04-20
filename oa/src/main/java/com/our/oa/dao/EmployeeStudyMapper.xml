@@ -5,7 +5,7 @@
     <id column="employee_study_id" jdbcType="INTEGER" property="employeeStudyId" />
     <result column="employee_id" jdbcType="INTEGER" property="employeeId" />
     <result column="study_content" jdbcType="VARCHAR" property="studyContent" />
-    <result column="begin_date" jdbcType="DATE" property="beginDate" />
+    <result column="begin_date" property="beginDate" />
     <result column="study_time" jdbcType="VARCHAR" property="studyTime" />
     <result column="handler" jdbcType="INTEGER" property="handler" />
     <result column="learn_cotent" jdbcType="VARCHAR" property="learnCotent" />
@@ -25,12 +25,12 @@
       learn_cotent, evaluation
       )
     values (#{employeeId,jdbcType=INTEGER}, #{studyContent,jdbcType=VARCHAR}, 
-      #{beginDate,jdbcType=DATE}, #{studyTime,jdbcType=VARCHAR}, #{handler,jdbcType=INTEGER}, 
+      #{beginDate}, #{studyTime,jdbcType=VARCHAR}, #{handler,jdbcType=INTEGER}, 
       #{learnCotent,jdbcType=VARCHAR}, #{evaluation,jdbcType=VARCHAR}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.EmployeeStudy">
-    update oa..t_employee_study
+    update t_employee_study
     set employee_id = #{employeeId,jdbcType=INTEGER},
       study_content = #{studyContent,jdbcType=VARCHAR},
       begin_date = #{beginDate,jdbcType=DATE},
@@ -38,12 +38,18 @@
       handler = #{handler,jdbcType=INTEGER},
       learn_cotent = #{learnCotent,jdbcType=VARCHAR},
       evaluation = #{evaluation,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
-      delete_flag = #{deleteFlag,jdbcType=BIT}
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP}
     where employee_study_id = #{employeeStudyId,jdbcType=INTEGER}
   </update>
+  
+  <update id="updateForDelete" parameterType="com.our.oa.entity.EmployeeStudy">
+    update t_employee_study
+    set delete_flag = true
+    where employee_study_id = #{employeeStudyId,jdbcType=INTEGER}
+  </update>
+  
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select employee_study_id, employee_id, study_content, begin_date, study_time, handler, 
     learn_cotent, evaluation, create_time, update_time, delete_time, delete_flag
@@ -59,6 +65,11 @@
   <select id="selectQueryList" parameterType="com.our.oa.dto.list.EmployeeStudyListQueryDTO" resultMap="BaseResultMap">
     select employee_study_id, employee_id, study_content, begin_date, study_time, handler,learn_cotent,evaluation
     from t_employee_study
+    <where>
+	    <if test="employeeId !=null and employeeId !=''">
+	      employee_id like #{employeeId}
+	    </if>
+    </where>
   </select>
   
 </mapper>

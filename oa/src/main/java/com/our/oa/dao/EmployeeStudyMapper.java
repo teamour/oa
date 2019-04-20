@@ -23,4 +23,7 @@ public interface EmployeeStudyMapper {
 
     int updateByPrimaryKey(EmployeeStudy record);
     
+    int setDeleteFleg(Integer employeeStudyId);
+    
+    int updateForDelete(Integer employeeStudyId);
 }

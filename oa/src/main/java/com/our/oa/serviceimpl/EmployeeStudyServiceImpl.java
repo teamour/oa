@@ -61,5 +61,24 @@ public class EmployeeStudyServiceImpl implements EmployeeStudyService{
 		// TODO Auto-generated method stub
 		return employeeStudyMapper.deleteByPrimaryKey(employeeStudyId);
 	}
+
+	@Override
+	public int deleteBydIds(Integer... Ids) {
+		int rows = 0;
+		for (Integer employeeStudyId : Ids) {
+			employeeStudyMapper.deleteByPrimaryKey(employeeStudyId);
+			//rows= employeeSiteMapper.deleteByPrimaryKey(employeeId);
+		}
+		return rows;
+	}
+
+	@Override
+	public int updateForDelete(Integer employeeStudyId) {
+		// TODO Auto-generated method stub
+		employeeStudyMapper.updateForDelete(employeeStudyId);
+		return 0;
+	}
+
+
 	
 }

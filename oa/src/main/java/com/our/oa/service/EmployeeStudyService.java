@@ -16,5 +16,9 @@ public interface EmployeeStudyService extends ListQueryService<EmployeeStudyList
 	int update(EmployeeStudyDTO dto);
 	
 	int deleteByPrimaryKey(Integer employeeStudyId);
+	
+	int deleteBydIds(Integer... Ids);
+	
 
+	int updateForDelete(Integer employeeStudyId);
 }
