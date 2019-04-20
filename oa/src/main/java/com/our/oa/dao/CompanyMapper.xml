@@ -66,9 +66,6 @@
     where company_id = #{companyId,jdbcType=INTEGER}
   </select>
   <select id="selectQueryList" parameterType="com.our.oa.dto.list.CompanyListQueryDTO" resultMap="BaseResultMap">
-    select company_id, company_name, company_code, address, zip_code, email, telephone, 
-    website, is_bp, bank_name, branch_bank, bank_number, bank_desc, create_time, update_time, 
-    delete_time, delete_flag
-    from sys_company
+    select * from sys_company limit #{startIndex},#{rows}
   </select>
 </mapper>
