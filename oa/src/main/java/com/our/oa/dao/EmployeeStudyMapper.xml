@@ -65,11 +65,6 @@
   <select id="selectQueryList" parameterType="com.our.oa.dto.list.EmployeeStudyListQueryDTO" resultMap="BaseResultMap">
     select employee_study_id, employee_id, study_content, begin_date, study_time, handler,learn_cotent,evaluation
     from t_employee_study
-    <where>
-	    <if test="employeeId !=null and employeeId !=''">
-	      employee_id like #{employeeId}
-	    </if>
-    </where>
   </select>
   
 </mapper>

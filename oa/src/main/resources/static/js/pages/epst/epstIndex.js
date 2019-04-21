@@ -2,7 +2,7 @@ BF={
 	initGrid: function () {
    		 $("#jqGrid").jqGrid({
 	             url:  ctxPath +'epst/',
-	             mtype: "POST",
+	             mtype: "GET",
 	             datatype: "json",
 	             colNames:["id","员工Id", "学习内容", "开始日期", "学习时间", "负责人", "学会内容", "效果评价"],
 	             colModel: [
@@ -30,13 +30,13 @@ BF={
 	             jsonReader:{ 
 	            	 repeatitems:false },
 	            	 loadonce:true,
-	            	 sortname:'employeeId',
+	            	 sortname:'employeeStudyId',
 	            	 sortorder: "asc",
 	         		caption: "员工学习"
 	         });
    		 
-   		jQuery("#jqGrid").jqGrid('navGrid','#jqGridPager',{del:false,add:false,edit:false,search:false});
-   		jQuery("#jqGrid").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
+   	/*	jQuery("#jqGrid").jqGrid('navGrid','#jqGridPager',{del:false,add:false,edit:false,search:false});
+   		jQuery("#jqGrid").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});*/
 
 
 	},
@@ -44,12 +44,12 @@ BF={
 		var selData = $("#jqGrid").getRowData();
 		// 要判断是否有选择，且只选中一行数据
 		var rowId=$("#gridSimeiteisiGyoumu").jqGrid('getGridParam','selrow');
-		window.location.href = ctxPath+"epst/addepst"+selData[0].employeeStudyId;
+		window.location.href = ctxPath+"epst/editepst/"+selData[0].employeeStudyId;
 	},
 	searchData: function (){
 		$("#jqGrid").setGridParam({
             page: 1,
-            postData: { employeeId :$("#employeeId").val() }
+            postData: { employeeId :$("#employeeStudyId").val() }
         }).trigger('reloadGrid');
    }
 	
