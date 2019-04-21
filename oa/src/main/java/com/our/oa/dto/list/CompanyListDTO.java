@@ -21,7 +21,38 @@ public class CompanyListDTO extends GridListDTO {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Integer interviewerId;
+	 private Integer companyId;
 
-	private Date createTime;
+	    private String companyName;
+
+	    private String companyCode;
+
+	    private String address;
+
+	    private String zipCode;
+
+	    private String email;
+
+	    private String telephone;
+
+	    private String website;
+
+	    private Boolean isBp;
+
+	    private String bankName;
+
+	    private String branchBank;
+
+	    private String bankNumber;
+
+	    private String bankDesc;
+
+	    private Date createTime;
+
+	    private Date updateTime;
+
+	    private Date deleteTime;
+
+	    private Boolean deleteFlag;
+
 }
