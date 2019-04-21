@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.our.oa.dao.EmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.our.oa.entity.Employee">
+    <id column="employee_id" jdbcType="INTEGER" property="employeeId" />
+    <result column="employee_name" jdbcType="VARCHAR" property="employeeName" />
+    <result column="gender" jdbcType="TINYINT" property="gender" />
+    <result column="age" jdbcType="TINYINT" property="age" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="marital_status" jdbcType="INTEGER" property="maritalStatus" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="dept_id" jdbcType="INTEGER" property="deptId" />
+    <result column="enter_date" jdbcType="DATE" property="enterDate" />
+    <result column="position" jdbcType="INTEGER" property="position" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="the_nearest_station" jdbcType="VARCHAR" property="theNearestStation" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="working_years" jdbcType="TINYINT" property="workingYears" />
+    <result column="skill1" jdbcType="INTEGER" property="skill1" />
+    <result column="skill1_years" jdbcType="TINYINT" property="skill1Years" />
+    <result column="skill2" jdbcType="INTEGER" property="skill2" />
+    <result column="skill2_years" jdbcType="TINYINT" property="skill2Years" />
+    <result column="skill3" jdbcType="INTEGER" property="skill3" />
+    <result column="skill3_years" jdbcType="TINYINT" property="skill3Years" />
+    <result column="skill_score" jdbcType="TINYINT" property="skillScore" />
+    <result column="skill_level" jdbcType="INTEGER" property="skillLevel" />
+    <result column="japanese_level" jdbcType="INTEGER" property="japaneseLevel" />
+    <result column="salary" jdbcType="INTEGER" property="salary" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="branch_bank" jdbcType="VARCHAR" property="branchBank" />
+    <result column="bank_number" jdbcType="VARCHAR" property="bankNumber" />
+    <result column="bank_desc" jdbcType="VARCHAR" property="bankDesc" />
+    <result column="domestic_address" jdbcType="VARCHAR" property="domesticAddress" />
+    <result column="family_support" jdbcType="TINYINT" property="familySupport" />
+    <result column="contract_format" jdbcType="INTEGER" property="contractFormat" />
+    <result column="employment_insurance" jdbcType="BIT" property="employmentInsurance" />
+    <result column="annuity" jdbcType="BIT" property="annuity" />
+    <result column="health_insurance" jdbcType="BIT" property="healthInsurance" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
+    <result column="skill_analysis" jdbcType="LONGVARCHAR" property="skillAnalysis" />
+    <result column="skill_growth" jdbcType="LONGVARCHAR" property="skillGrowth" />
+  </resultMap>
+  <!-- 所有用到的参数 -->
+    <sql id="column">
+  	  employee_name,position,age,address,
+      the_nearest_station,telephone,working_years,
+      skill1,skill2,skill3,skill_score,skill_analysis,
+      skill_growth,bank_name,branch_bank,bank_number,
+      bank_desc,domestic_address,family_support,
+  	  contract_format,employment_insurance,annuity,
+      health_insurance,delete_flag,
+      japanese_level,skill_level,create_time
+  </sql>
+  <!-- company_id来自表sys_company的外键,不可修改 -->
+  <insert id="insert" parameterType="com.our.oa.entity.Employee">
+  insert into oasys.t_employee(<include refid="column"/>)
+    values( #{employeeName,jdbcType=VARCHAR},#{position,jdbcType=INTEGER}, #{age,jdbcType=TINYINT},
+   #{address,jdbcType=VARCHAR},#{theNearestStation,jdbcType=VARCHAR},#{telephone,jdbcType=VARCHAR},
+    #{workingYears,jdbcType=TINYINT}, #{skill1,jdbcType=INTEGER}, #{skill2,jdbcType=INTEGER}, #{skill3,jdbcType=INTEGER},
+    #{skillScore,jdbcType=TINYINT},#{skillAnalysis,jdbcType=LONGVARCHAR},#{skillGrowth,jdbcType=LONGVARCHAR},
+    #{bankName,jdbcType=VARCHAR},#{branchBank,jdbcType=VARCHAR},
+    #{bankNumber,jdbcType=VARCHAR},#{bankDesc,jdbcType=VARCHAR},#{domesticAddress,jdbcType=VARCHAR},
+    #{familySupport,jdbcType=TINYINT}, #{contractFormat,jdbcType=INTEGER},
+    #{employmentInsurance,jdbcType=BIT},#{annuity,jdbcType=BIT},#{healthInsurance,jdbcType=BIT},
+   #{japaneseLevel,jdbcType=INTEGER},#{skillLevel,jdbcType=INTEGER},now())
+  </insert>
+  <select id="findNowId" resultType="int">
+   select  LAST_INSERT_ID()
+  </select>
+  <select id="selectQueryList" parameterType="com.our.oa.dto.list.EmployeeListQueryDTO" resultMap="BaseResultMap">
+    select <include refid="column"/>
+    from t_employee
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select <include refid="column"/>
+    from oasys.t_employee
+    where employee_id = #{employeeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  	delete from oasys.t_employee
+    <where>
+     employee_id = #{employeeId,jdbcType=INTEGER}
+    </where>
+  </delete>
+  <update id="updateByEmployeeId" parameterType="com.our.oa.entity.Employee">
+    update oasys.t_employee
+    <set>
+     <if test="gender!=null and gender!=''">
+      gender = #{gender,jdbcType=TINYINT},
+     </if>
+     <if test="age!=null and age!=''">
+      age = #{age,jdbcType=TINYINT},
+     </if>
+     <if test="birthday!=null and birthday!=''">
+      birthday = #{birthday,jdbcType=DATE},
+     </if> 
+     <if test="maritalStatus!=null and maritalStatus!=''">
+      marital_status = #{maritalStatus,jdbcType=INTEGER},
+     </if> 
+     <if test="companyId!=null and companyId!=''">
+      company_id = #{companyId,jdbcType=INTEGER},
+     </if>
+     <if test="deptId!=null and deptId!=''">
+      dept_id = #{deptId,jdbcType=INTEGER},
+     </if> 
+     <if test="enterDate!=null and enterDate!=''">
+      enter_date = #{enterDate,jdbcType=DATE},
+     </if>
+     <if test="position!=null and position!=''">
+      position = #{position,jdbcType=INTEGER},
+     </if>
+     <if test="address!=null and address!=''">
+      address = #{address,jdbcType=VARCHAR},
+     </if>
+     <if test="theNearestStation!=null and theNearestStation!=''">
+      the_nearest_station = #{theNearestStation,jdbcType=VARCHAR},
+     </if>
+     <if test="telephone!=null and gender!=''">
+      telephone = #{telephone,jdbcType=VARCHAR},
+     </if>
+     <if test="workingYears!=null and workingYears!=''">
+      working_years = #{workingYears,jdbcType=TINYINT},
+     </if>
+     <if test="skill1!=null and skill1!=''">
+      skill1 = #{skill1,jdbcType=INTEGER},
+     </if>
+     <if test="skill1Years!=null and skill1Years!=''">
+      skill1_years = #{skill1Years,jdbcType=TINYINT},
+     </if>
+     <if test="skill2!=null and skill2!=''">
+      skill2 = #{skill2,jdbcType=INTEGER},
+     </if>
+     <if test="skill2Years!=null and skill2Years!=''">
+      skill2_years = #{skill2Years,jdbcType=TINYINT},
+     </if>
+     <if test="skill3!=null and skill3!=''">
+      skill3 = #{skill3,jdbcType=INTEGER},
+     </if>
+     <if test="skill3Years!=null and skill3Years!=''">
+      skill3_years = #{skill3Years,jdbcType=TINYINT},
+     </if>
+     <if test="skillScore!=null and skillScore!=''">
+      skill_score = #{skillScore,jdbcType=TINYINT},
+     </if>
+     <if test="skillLevel!=null and skillLevel!=''">
+      skill_level = #{skillLevel,jdbcType=INTEGER},
+     </if>
+     <if test="japaneseLevel!=null and japaneseLevel!=''">
+      japanese_level = #{japaneseLevel,jdbcType=INTEGER},
+     </if>
+     <if test="salary!=null and salary!=''">
+      salary = #{salary,jdbcType=INTEGER},
+     </if>
+     <if test="bankName!=null and bankName!=''">
+      bank_name = #{bankName,jdbcType=VARCHAR},
+     </if>
+     <if test="branchBank!=null and branchBank!=''">
+      branch_bank = #{branchBank,jdbcType=VARCHAR},
+     </if>
+     <if test="bankNumber!=null and bankNumber!=''">
+      bank_number = #{bankNumber,jdbcType=VARCHAR},
+     </if>
+     <if test="bankDesc!=null and bankDesc!=''">
+      bank_desc = #{bankDesc,jdbcType=VARCHAR},
+     </if>
+     <if test="domesticAddress!=null and domesticAddress!=''">
+      domestic_address = #{domesticAddress,jdbcType=VARCHAR},
+     </if>
+     <if test="familySupport!=null and familySupport!=''">
+      family_support = #{familySupport,jdbcType=TINYINT},
+     </if>
+     <if test="contractFormat!=null and contractFormat!=''">
+      contract_format = #{contractFormat,jdbcType=INTEGER},
+     </if>
+     <if test="employmentInsurance!=null and employmentInsurance!=''">
+      employment_insurance = #{employmentInsurance,jdbcType=BIT},
+     </if>
+     <if test="annuity!=null and annuity!=''">
+      annuity = #{annuity,jdbcType=BIT},
+     </if>
+     <if test="healthInsurance!=null and healthInsurance!=''">
+      health_insurance = #{healthInsurance,jdbcType=BIT},
+     </if>
+     <if test="createTime!=null and createTime!=''">
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+     </if>
+     <if test="updateTime!=null and updateTime!=''">
+      update_time = #{now(),jdbcType=TIMESTAMP},
+     </if>
+     <if test="deleteTime!=null and deleteTime!=''">
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+     </if>
+     <if test="deleteFlag!=null and deleteFlag!=''">
+      delete_flag = #{deleteFlag,jdbcType=BIT},
+     </if>
+     <if test="skillAnalysis!=null and skillAnalysis!=''">
+      skill_analysis = #{skillAnalysis,jdbcType=LONGVARCHAR},
+     </if>
+     <if test="skillGrowth!=null and skillGrowth!=''">
+      skill_growth = #{skillGrowth,jdbcType=LONGVARCHAR}
+	</if>
+	</set> 
+    <where> 
+    	employee_id = #{employeeId,jdbcType=INTEGER}
+    </where>
+  </update>
+  
+  <select id="selectForStudy" resultMap="BaseResultMap">
+  select employee_id, employee_name, working_years,
+  skill1, skill1_years, skill2, skill2_years, skill3, skill3_years,
+  skill_level, japanese_level
+  from t_employee
+  </select>
+  <update id="deleteById">
+   update oasys.t_employee
+   <set>
+      delete_flag = true
+   </set>
+   <where>
+   	  employee_id = #{id,jdbcType=INTEGER}
+   </where>
+  </update>
+  
+</mapper>
