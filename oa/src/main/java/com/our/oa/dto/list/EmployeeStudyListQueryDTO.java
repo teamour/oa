@@ -16,5 +16,5 @@ import lombok.ToString;
 public class EmployeeStudyListQueryDTO extends GridListQueryBaseDTO{
 private static final long serialVersionUID = 1L;
 	
-    private int employeeId;
+    private int employeeStudyId;
 }

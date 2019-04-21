@@ -86,7 +86,7 @@ public class EmployeeStudyController {
 	        return obj.toString();
 			
 	}
-	@PostMapping(value="/")
+	@GetMapping(value="/")
 	public GridDTO<EmployeeStudyListDTO> listDate(HttpServletRequest req,
 			EmployeeStudyListQueryDTO listQueryDTO){
 		PageInfo<EmployeeStudyListDTO> queryList = employeeStudyService.getQueryList(listQueryDTO);
