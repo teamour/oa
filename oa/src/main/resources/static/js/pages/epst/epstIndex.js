@@ -30,7 +30,7 @@ BF={
 	             jsonReader:{ 
 	            	 repeatitems:false },
 	            	 loadonce:true,
-	            	 sortname:'employeeStudyId',
+	            	 sortname:'employeeId',
 	            	 sortorder: "asc",
 	         		caption: "员工学习"
 	         });
