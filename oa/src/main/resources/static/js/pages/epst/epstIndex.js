@@ -27,8 +27,17 @@ BF={
 	             rowNum: 10,
 	             rowList: [5, 10, 50, 100, 500],
 	             multiselect: true,
-	             jsonReader:{ repeatitems:false }
+	             jsonReader:{ 
+	            	 repeatitems:false },
+	            	 loadonce:true,
+	            	 sortname:'employeeStudyId',
+	            	 sortorder: "asc",
+	         		caption: "员工学习"
 	         });
+   		 
+   		jQuery("#jqGrid").jqGrid('navGrid','#jqGridPager',{del:false,add:false,edit:false,search:false});
+   		jQuery("#jqGrid").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
+
 
 	},
 	modifyData:function(){
