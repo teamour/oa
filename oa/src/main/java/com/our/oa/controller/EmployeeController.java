@@ -73,16 +73,20 @@ public class EmployeeController {
 			ModelMapper modelMapper = new ModelMapper();
 			dto = modelMapper.map(employee, EmployeeDTO.class);
 			dto1 = modelMapper.map(employeeSite, EmployeeSiteDTO.class);
+			
 		}
-		Boolean flag = dto.getDeleteFlag();
-		System.out.println(flag);
-		if (flag) {
-			modelAndView.setViewName("emp/deleted");
-			return modelAndView;
-		}
+		
+		
+		  Boolean flag = dto.getDeleteFlag(); System.out.println(flag); 
+		  if (!flag) {
+		  modelAndView.setViewName("emp/deleted"); 
+		  return modelAndView; }
+		 
+		 
 		modelAndView.addObject("employee", dto);
 		modelAndView.addObject("employeeSite", dto1);
 		modelAndView.setViewName("emp/emp-manage");
+		
 		return modelAndView;
 	}
 	// 删除
@@ -112,10 +116,5 @@ public class EmployeeController {
         modelAndView.setViewName("emp/employeelist");
         return modelAndView;
 	}
-	
-	
-	
-	
-	
 	
 }
