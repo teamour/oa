@@ -1,6 +1,8 @@
 package com.our.oa.dao;
 
+import com.our.oa.dto.list.CustomerListQueryDTO;
 import com.our.oa.entity.Customer;
+
 import java.util.List;
 
 /**
@@ -14,6 +16,8 @@ public interface CustomerMapper {
     Customer selectByPrimaryKey(Integer customerId);
 
     List<Customer> selectAll();
+    
+    List<Customer> selectQueryList(CustomerListQueryDTO DTO);
 
     int updateByPrimaryKey(Customer record);
 }

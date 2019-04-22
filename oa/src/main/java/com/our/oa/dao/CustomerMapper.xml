@@ -33,11 +33,11 @@
     <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from oa..t_customer
+    delete from t_customer
     where customer_id = #{customerId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.our.oa.entity.Customer">
-    insert into oa..t_customer (customer_id, customer_name, website, 
+    insert into t_customer (customer_id, customer_name, website, 
       registered_capital, employee_number, establish_date, 
       company_type, address, zip_code, 
       ceo, main_business, cooperation_direction, 
@@ -59,7 +59,7 @@
       #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=BIT})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.Customer">
-    update oa..t_customer
+    update t_customer
     set customer_name = #{customerName,jdbcType=VARCHAR},
       website = #{website,jdbcType=VARCHAR},
       registered_capital = #{registeredCapital,jdbcType=INTEGER},
@@ -96,7 +96,7 @@
     cooperation_intention, is_upper, contact_channel, sales_staff, sales_telephone, sales_email, 
     skill_require, proposal1_email, proposal1_handler, proposal2_email, proposal2_handler, 
     proposal3_email, proposal3_handler, create_time, update_time, delete_time, delete_flag
-    from oa..t_customer
+    from t_customer
     where customer_id = #{customerId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
@@ -105,6 +105,9 @@
     cooperation_intention, is_upper, contact_channel, sales_staff, sales_telephone, sales_email, 
     skill_require, proposal1_email, proposal1_handler, proposal2_email, proposal2_handler, 
     proposal3_email, proposal3_handler, create_time, update_time, delete_time, delete_flag
-    from oa..t_customer
+    from t_customer
+  </select>
+  <select id="selectQueryList" resultMap="BaseResultMap">
+    select * from t_customer
   </select>
 </mapper>
