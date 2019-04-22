@@ -74,13 +74,13 @@
     select <include refid="column"/>
     from t_employee
     <where>
-     delete_flag =false
+     delete_flag =0
     </where>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select <include refid="column"/>
     from oasys.t_employee
-    where employee_id = #{employeeId,jdbcType=INTEGER}
+    where employee_id = #{employeeId,jdbcType=INTEGER} and  delete_flag =0
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
   	delete from oasys.t_employee
@@ -226,5 +226,13 @@
    	  employee_id = #{id,jdbcType=INTEGER}
    </where>
   </update>
-  
+  <select id="getEmployeeId" resultType="int">
+   select count(employee_id) 
+   from 
+   oasys.t_employee 
+   <where>
+     employee_id = #{employeeId,jdbcType=INTEGER}
+    and delete_flag =0
+   </where>
+  </select>
 </mapper>
