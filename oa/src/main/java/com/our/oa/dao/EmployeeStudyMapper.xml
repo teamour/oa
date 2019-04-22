@@ -16,36 +16,54 @@
     <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from oa..t_employee_study
+    delete from t_employee_study
     where employee_study_id = #{employeeStudyId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.our.oa.entity.EmployeeStudy">
     insert into t_employee_study (employee_id, study_content, 
       begin_date, study_time, handler, 
-      learn_cotent, evaluation
+      learn_cotent, evaluation, create_time
       )
     values (#{employeeId,jdbcType=INTEGER}, #{studyContent,jdbcType=VARCHAR}, 
       #{beginDate}, #{studyTime,jdbcType=VARCHAR}, #{handler,jdbcType=INTEGER}, 
-      #{learnCotent,jdbcType=VARCHAR}, #{evaluation,jdbcType=VARCHAR}
+      #{learnCotent,jdbcType=VARCHAR}, #{evaluation,jdbcType=VARCHAR},now()
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.EmployeeStudy">
     update t_employee_study
-    set employee_id = #{employeeId,jdbcType=INTEGER},
-      study_content = #{studyContent,jdbcType=VARCHAR},
-      begin_date = #{beginDate,jdbcType=DATE},
-      study_time = #{studyTime,jdbcType=VARCHAR},
-      handler = #{handler,jdbcType=INTEGER},
-      learn_cotent = #{learnCotent,jdbcType=VARCHAR},
-      evaluation = #{evaluation,jdbcType=VARCHAR},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      delete_time = #{deleteTime,jdbcType=TIMESTAMP}
-    where employee_study_id = #{employeeStudyId,jdbcType=INTEGER}
+    <set>
+    <if test="employeeId!=null and employeeId!=''">
+    employee_id = #{employeeId,jdbcType=INTEGER},
+    </if>
+    <if test="studyContent!=null and studyContent!=''">
+    study_content = #{studyContent,jdbcType=VARCHAR},
+    </if>
+    <if test="beginDate!=null and beginDate!=''">
+    begin_date = #{beginDate,jdbcType=DATE},
+    </if>
+    <if test="studyTime!=null and studyTime!=''">
+    study_time = #{studyTime,jdbcType=VARCHAR},
+    </if>
+    <if test="handler!=null and handler!=''">
+    handler = #{handler,jdbcType=INTEGER},
+    </if>
+    <if test="learnCotent!=null and learnCotent!=''">
+    learn_cotent = #{learnCotent,jdbcType=VARCHAR},
+    </if>
+    <if test="evaluation!=null and evaluation!=''">
+    evaluation = #{evaluation,jdbcType=VARCHAR},
+    </if>
+    update_time = now()
+    </set>
+    <where>
+    employee_study_id = #{employeeStudyId,jdbcType=INTEGER}
+    </where>
   </update>
   
   <update id="updateForDelete" parameterType="com.our.oa.entity.EmployeeStudy">
     update t_employee_study
-    set delete_flag = true
+    set delete_flag = true,
+    	delete_time = now()
     where employee_study_id = #{employeeStudyId,jdbcType=INTEGER}
   </update>
   
@@ -54,17 +72,26 @@
     select employee_study_id, employee_id, study_content, begin_date, study_time, handler, 
     learn_cotent, evaluation, create_time, update_time, delete_time, delete_flag
     from t_employee_study
-    where employee_study_id = #{employeeStudyId,jdbcType=INTEGER}
+    <where>
+    employee_study_id = #{employeeStudyId,jdbcType=INTEGER} and delete_flag = 0
+    </where>
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select employee_study_id, employee_id, study_content, begin_date, study_time, handler, 
     learn_cotent, evaluation, create_time, update_time, delete_time, delete_flag
     from t_employee_study
+    <where>
+    delete_flag = 0
+    </where>
   </select>
   
   <select id="selectQueryList" parameterType="com.our.oa.dto.list.EmployeeStudyListQueryDTO" resultMap="BaseResultMap">
-    select employee_study_id, employee_id, study_content, begin_date, study_time, handler,learn_cotent,evaluation
+    select employee_study_id, employee_id, study_content, begin_date, study_time, handler
+    ,learn_cotent,evaluation,delete_flag
     from t_employee_study
+    <where>
+    delete_flag = 0
+    </where>
   </select>
   
 </mapper>

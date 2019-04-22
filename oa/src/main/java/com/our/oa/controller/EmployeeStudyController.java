@@ -164,16 +164,16 @@ public class EmployeeStudyController {
 	}
 
 	// 删除
-		@RequestMapping(value = "/deleteByIds/{Ids}" )
-		public String delete(@PathVariable Integer... Ids) {
+		@RequestMapping(value = "/deleteByIds" )
+		public String delete( Integer... ids) {
 			// 获取 页面上选中的id（可以多个） 进行删除炒作
 			
 			//employeeService.deleteBydIds(Ids);
-			for (Integer id : Ids) {
+			for (Integer id : ids) {
 				employeeStudyService.updateForDelete(id);
 				System.out.println(id);
 			}
-			System.out.println(Ids);
+			System.out.println(ids);
 			// 删除成功后重新进入列表页
 			return "delete ok";
 		}
