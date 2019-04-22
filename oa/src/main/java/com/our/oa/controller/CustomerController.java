@@ -1,0 +1,76 @@
+package com.our.oa.controller;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.github.pagehelper.PageInfo;
+import com.our.oa.dto.GridDTO;
+import com.our.oa.dto.form.CustomerDTO;
+import com.our.oa.dto.list.CustomerListDTO;
+import com.our.oa.dto.list.CustomerListQueryDTO;
+import com.our.oa.service.CustomerService;
+import com.our.oa.utils.PageInfoToGridDTOUtils;
+
+@RestController
+@RequestMapping(value = "/customer")
+public class CustomerController {
+	
+	@Autowired
+	private CustomerService service;
+
+	@GetMapping(value = "/list")
+	public ModelAndView list(ModelAndView modelAndView) {
+		
+		modelAndView.setViewName("customer/customerList");
+		return modelAndView;
+	}
+	
+	@PostMapping(value="/list")
+	public GridDTO<CustomerListDTO> listData(CustomerListQueryDTO listQueryDTO) {
+		
+		System.out.println("@PostMapping: list");
+		
+		PageInfo<CustomerListDTO> queryList = service.getQueryList(listQueryDTO);
+		
+		System.out.println("size: " + queryList.getSize());
+		
+		return PageInfoToGridDTOUtils.getGridDataResult(queryList);
+	}
+	
+	@GetMapping(value = "/add")
+	public ModelAndView add(ModelAndView modelAndView) {
+		
+		CustomerDTO form = new CustomerDTO();
+		modelAndView.setViewName("customer/customerAdd");
+		modelAndView.addObject("form", form);
+		return modelAndView;
+	}
+
+	@PostMapping(value = "/add")
+	public ModelAndView add(@Valid CustomerDTO form, BindingResult bindingResult, 
+			ModelAndView modelAndView) {
+
+		if (bindingResult.hasErrors()) {
+			for (int i = 0; i < bindingResult.getErrorCount(); i++) {
+				System.out.println(bindingResult.getAllErrors().get(i).getDefaultMessage());
+			}
+			
+			modelAndView.setViewName("customer/customerAdd");
+			modelAndView.addObject("form", form);
+			return modelAndView;
+		}
+		service.insert(form);
+
+		modelAndView.setViewName("customer/customerList");
+		modelAndView.addObject("form", form);
+
+		return modelAndView;
+	}
+}

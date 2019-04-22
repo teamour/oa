@@ -2,6 +2,9 @@ package com.our.oa.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,6 +30,7 @@ public class Customer implements Serializable {
 
     private Integer employeeNumber;
 
+    @DateTimeFormat
     private Date establishDate;
 
     private Integer companyType;
@@ -67,10 +71,13 @@ public class Customer implements Serializable {
 
     private String proposal3Handler;
 
+    @DateTimeFormat
     private Date createTime;
 
+    @DateTimeFormat
     private Date updateTime;
 
+    @DateTimeFormat
     private Date deleteTime;
 
     private Boolean deleteFlag;
