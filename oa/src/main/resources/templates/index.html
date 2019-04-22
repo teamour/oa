@@ -29,12 +29,12 @@
 </head>
 <body>
     <div class="login">
-        <form method="post" th:action="@{/login}" class="layui-form" >
+        <form method="post">
             <div class="layui-form-item">
-              <input name="email" th:placeholder="#{index.placeholder.email}"  type="text" lay-verify="required" class="layui-input" autocomplete="off">
+              <input id="usernameId" name="email" th:placeholder="#{index.placeholder.email}"  type="text" lay-verify="required" class="layui-input" autocomplete="off">
             </div>
             <div class="layui-form-item">
-              <input name="password" th:placeholder="#{index.placeholder.password}" lay-verify="required" type="password" class="layui-input" autocomplete="off">
+              <input id="passwordId" name="password" th:placeholder="#{index.placeholder.password}" lay-verify="required" type="password" class="layui-input" autocomplete="off">
             </div>
             <div class="layui-form-item">
               <button class="layui-btn" lay-submit="" lay-filter="login" style="width:100%;" ><p th:text="#{index.btn.login.value}"></p></button>

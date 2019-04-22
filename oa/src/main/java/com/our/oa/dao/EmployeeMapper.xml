@@ -44,7 +44,7 @@
     <result column="skill_growth" jdbcType="LONGVARCHAR" property="skillGrowth" />
   </resultMap>
   <!-- 所有用到的参数 -->
-    <sql id="column">
+  <sql id="column">
   	  employee_name,position,age,address,
       the_nearest_station,telephone,working_years,
       skill1,skill2,skill3,skill_score,skill_analysis,
@@ -73,6 +73,9 @@
   <select id="selectQueryList" parameterType="com.our.oa.dto.list.EmployeeListQueryDTO" resultMap="BaseResultMap">
     select <include refid="column"/>
     from t_employee
+    <where>
+     delete_flag =false
+    </where>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select <include refid="column"/>

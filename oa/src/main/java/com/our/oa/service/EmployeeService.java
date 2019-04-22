@@ -15,7 +15,7 @@ public interface EmployeeService extends ListQueryService<EmployeeListDTO,Employ
 	
 	 int insert(EmployeeDTO employee,EmployeeSiteDTO employeeSite) ;
 
-	List<Employee> findAll();
+	 List<Employee> findAll();
 
 	 List<EmployeeListDTO> getGridList(EmployeeListQueryDTO g) ;
 	
@@ -23,7 +23,7 @@ public interface EmployeeService extends ListQueryService<EmployeeListDTO,Employ
 
 	 EmployeeSite getByEmployeeId(Integer employeeId);
 
-	void update(EmployeeDTO employee , EmployeeSiteDTO emplyoeeSite ) ;
+	 void update(EmployeeDTO employee , EmployeeSiteDTO emplyoeeSite ) ;
 
 	 List<Employee> getEmployeeForSyudy();
 

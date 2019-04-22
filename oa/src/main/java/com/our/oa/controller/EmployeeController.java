@@ -62,44 +62,54 @@ public class EmployeeController {
         modelAndView.setViewName("emp/employeelist");
         return modelAndView;
 	}
+	//根据ID查询员工
 	@GetMapping(value= "/{id}")
-	public ModelAndView view(@PathVariable(name="id",required=false)Integer id, ModelAndView modelAndView) {
+	public ModelAndView view(@PathVariable(name="id",required=false)Integer id, 
+			ModelAndView modelAndView) {
 		EmployeeDTO dto = new EmployeeDTO();
 		EmployeeSiteDTO dto1 = new EmployeeSiteDTO();
-		if(null != id && id > 0) {
+		 try {
+			 if(StringUtils.isEmpty(id)&& id > 0) {
 			// 模拟查找数据
 			Employee employee = employeeService.getByPrimaryKey(id);
 			EmployeeSite employeeSite = employeeService.getByEmployeeId(id);
 			ModelMapper modelMapper = new ModelMapper();
 			dto = modelMapper.map(employee, EmployeeDTO.class);
 			dto1 = modelMapper.map(employeeSite, EmployeeSiteDTO.class);
-			
-		}
+			 }
+			Boolean flag = dto.getDeleteFlag(); 
+			//System.out.println(flag); 
+			if (StringUtils.isEmpty(flag)&&flag==true) {
+			modelAndView.setViewName("emp/deleted"); 
+			modelAndView.addObject("employee", dto);
+			modelAndView.addObject("employeeSite", dto1);
+			modelAndView.setViewName("emp/emp-manage");
+			return modelAndView;}
+		  	} catch (Exception e) {
+			modelAndView.setViewName("emp/error"); 
+		  	}
+		return modelAndView;
+	}
+	//根据输入内容检索
+	@PostMapping(value= "/{employee}")
+	public ModelAndView view(ModelAndView modelAndView,
+			@PathVariable(name="employee",required=false) EmployeeDTO emplyoee) {
+		System.out.println(emplyoee.getEmployeeName());
 		
-		
-		  Boolean flag = dto.getDeleteFlag(); System.out.println(flag); 
-		  if (!flag) {
-		  modelAndView.setViewName("emp/deleted"); 
-		  return modelAndView; }
-		 
-		 
-		modelAndView.addObject("employee", dto);
-		modelAndView.addObject("employeeSite", dto1);
-		modelAndView.setViewName("emp/emp-manage");
 		
 		return modelAndView;
 	}
 	// 删除
-	@RequestMapping(value = "/deleteByIds/{Ids}" )
-	public String delete(@PathVariable Integer... Ids) {
+	@RequestMapping(value = "/deleteByIds" )
+	public String delete(Integer... ids) {
 		// 获取 页面上选中的id（可以多个） 进行删除炒作
 		
 		//employeeService.deleteBydIds(Ids);
-		for (Integer id : Ids) {
+		for (Integer id : ids) {
 			employeeService.deleteBydIds(id);
 			System.out.println(id);
 		}
-		System.out.println(Ids);
+		System.out.println(ids);
 		// 删除成功后重新进入列表页
 		return "delete ok";
 	}
@@ -116,5 +126,12 @@ public class EmployeeController {
         modelAndView.setViewName("emp/employeelist");
         return modelAndView;
 	}
+	
+	@GetMapping("/test")
+	public ModelAndView justTest(ModelAndView modelAndView) {
+		modelAndView.setViewName("emp/delete");
+		return modelAndView;
+	}
+	
 	
 }

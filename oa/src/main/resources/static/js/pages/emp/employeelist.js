@@ -44,8 +44,25 @@ BF={
 	            page: 1,
 	            postData: { title :$("#title").val() }
 	        }).trigger('reloadGrid');
+	   },
+	   deleteByIds:function(){
+		   debugger
+		   var ids = $("#jqGrid").jqGrid("getGridParam","selarrrow");
+		   
+		   if(!confirm("您确认删除吗"))return;
+		   //1.定义请求的url
+		   var url="http://localhost:8080/emp/deleteByIds";
+		   //2.定义请求的参数
+		   if(ids.length==0){
+			   alert("请选择");
+			   return;
+		   }
+		   var params={"ids":ids.toString()};//ids=1,2,3,4
+		   //3.执行异步删除操作
+		   $.post(url,params,function(result){});
+		   
+		   
 	   }
-	  
 }
     
 $(function () { 
