@@ -24,12 +24,10 @@ BF={
 	             rownumber:true,
 	             viewrecords: true, 
 	             pager: '#jqGridPager',
-	             rowNum: 10,
 	             rowList: [5, 10, 50, 100, 500],
 	             multiselect: true,
 	             jsonReader:{ 
 	            	 repeatitems:false },
-	            	 loadonce:true,
 	            	 sortname:'employeeStudyId',
 	            	 sortorder: "asc",
 	         		caption: "员工学习"
@@ -41,10 +39,11 @@ BF={
 
 	},
 	modifyData:function(){
+		debugger
 		var selData = $("#jqGrid").getRowData();
 		// 要判断是否有选择，且只选中一行数据
-		var rowId=$("#gridSimeiteisiGyoumu").jqGrid('getGridParam','selrow');
-		window.location.href = ctxPath+"epst/editepst/"+selData[0].employeeStudyId;
+		var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
+		window.location.href = ctxPath+"epst/editepst/"+selData[rowId-1].employeeStudyId;
 	},
 	searchData: function (){
 		$("#jqGrid").setGridParam({

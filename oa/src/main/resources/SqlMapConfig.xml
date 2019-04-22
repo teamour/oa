@@ -9,7 +9,7 @@
         <property name="helperDialect" value="mysql"/>
         <property name="reasonable" value="reasonable"/>
         <property name="supportMethodsArguments" value="true"/>
-        <property name="params" value="true"/>
+        <property name="params" value="count=countSql"/>
         <property name="autoRuntimeDialect" value="false"/>
     </plugin>
 </plugins>
