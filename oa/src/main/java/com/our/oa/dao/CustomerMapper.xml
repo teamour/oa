@@ -91,13 +91,7 @@
     where customer_id = #{customerId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select customer_id, customer_name, website, registered_capital, employee_number, 
-    establish_date, company_type, address, zip_code, ceo, main_business, cooperation_direction, 
-    cooperation_intention, is_upper, contact_channel, sales_staff, sales_telephone, sales_email, 
-    skill_require, proposal1_email, proposal1_handler, proposal2_email, proposal2_handler, 
-    proposal3_email, proposal3_handler, create_time, update_time, delete_time, delete_flag
-    from t_customer
-    where customer_id = #{customerId,jdbcType=INTEGER}
+    select * from customer_id
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select customer_id, customer_name, website, registered_capital, employee_number, 

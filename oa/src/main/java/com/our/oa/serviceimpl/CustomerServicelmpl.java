@@ -42,7 +42,7 @@ public class CustomerServicelmpl implements CustomerService {
 
 	@Override
 	public int deleteByPrimaryKey(Integer id) {
-		// TODO Auto-generated method stub
+		mapper.deleteByPrimaryKey(id);
 		return 0;
 	}
 
