@@ -18,7 +18,7 @@
   </resultMap>
   <!-- 根据email和password简易查询 -->
   <select id="findByEP" parameterType="com.our.oa.entity.User" resultType="int">
-   select count(*) from sys_user 
+   select count(user_id) from sys_user 
    <where> 
    	email = #{email} and user_pwd = #{userPwd}
    </where>

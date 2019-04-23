@@ -1,7 +1,5 @@
 package com.our.oa.dto.list;
 
-import java.util.Date;
-
 import com.our.oa.dto.GridListDTO;
 
 import lombok.AllArgsConstructor;
@@ -21,9 +19,12 @@ public class InterviewerListDTO extends GridListDTO {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Integer announcementId;
+	private Integer interviewerId;
 
-    private String title;
+	private String interviewerCode;
+	
+	private String interviewerName;
+	
+	private Integer interviewResult;
 
-	private Date createTime;
 }

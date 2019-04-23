@@ -15,13 +15,8 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public Integer selectByEmail(User user) {
-		
-		String email = user.getEmail();
-		String userPwd = user.getUserPwd();
 		//根据email和password去数据库查询
-		int rows = userMapper.findByEP(email,userPwd);
-		
-		
+		int rows = userMapper.findByEP(user);
 		return rows;
 	}
 

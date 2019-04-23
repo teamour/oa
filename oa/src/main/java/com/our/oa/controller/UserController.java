@@ -22,17 +22,13 @@ public class UserController {
 	
 	@PostMapping("/login")
 	public String login(User user) {
-		// 登录操作(暂用查询数据库方法).
+		System.out.println(user.getEmail());
+		System.out.println(user.getUserPwd());
 		Integer rows = userService.selectByEmail(user);
-		try {
-			System.out.println(user.getEmail());
-			System.out.println(user.getUserPwd());
 			System.out.println(rows);
 			if (rows==0) {
-				return "邮箱或者密码错误";
+				return "账号或密码不存在";
 			}
-		} catch (Exception e) {}
-		
 		// 成功之后进入home页面
 		return "home";
 	}

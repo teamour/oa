@@ -25,11 +25,27 @@
     <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
     <result column="skill_ability" jdbcType="LONGVARCHAR" property="skillAbility" />
     <result column="description" jdbcType="LONGVARCHAR" property="description" />
+    <association property="interviewer" javaType="com.our.oa.entity.Interviewer">
+    	<id column="interviewer_id" property="interviewerId"/>
+    	<result column="interviewer_name" property="interviewerName"/>
+    	<result column="interviewer_code" property="interviewerCode"/>
+    </association>
   </resultMap>
+  
+  <select id="getAll" resultMap="BaseResultMap">
+    select 
+    test_id, t_interviewer_test.interviewer_id, 
+    t_interviewer.interviewer_code, t_interviewer.interviewer_name, 
+    test_score
+    from t_interviewer_test left join t_interviewer on 
+    t_interviewer.interviewer_id=t_interviewer_test.interviewer_id
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from oa..t_interviewer_test
     where test_id = #{testId,jdbcType=INTEGER}
   </delete>
+  
   <insert id="insert" parameterType="com.our.oa.entity.InterviewerTest">
     insert into oa..t_interviewer_test (test_id, interviewer_id, handler1, 
       handler2, test_score, is_pass, 
@@ -50,6 +66,7 @@
       #{deleteFlag,jdbcType=BIT}, #{skillAbility,jdbcType=LONGVARCHAR}, #{description,jdbcType=LONGVARCHAR}
       )
   </insert>
+  
   <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.InterviewerTest">
     update oa..t_interviewer_test
     set interviewer_id = #{interviewerId,jdbcType=INTEGER},
@@ -76,19 +93,31 @@
       description = #{description,jdbcType=LONGVARCHAR}
     where test_id = #{testId,jdbcType=INTEGER}
   </update>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select test_id, interviewer_id, handler1, handler2, test_score, is_pass, japanese_certificate, 
     english_certificate, computer_certificate, japanese_listen, japanese_speak, japanese_read, 
     japanese_write, english_listen, english_speak, english_read, english_write, create_time, 
     update_time, delete_time, delete_flag, skill_ability, description
-    from oa..t_interviewer_test
+    from t_interviewer_test
     where test_id = #{testId,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select test_id, interviewer_id, handler1, handler2, test_score, is_pass, japanese_certificate, 
-    english_certificate, computer_certificate, japanese_listen, japanese_speak, japanese_read, 
-    japanese_write, english_listen, english_speak, english_read, english_write, create_time, 
-    update_time, delete_time, delete_flag, skill_ability, description
-    from oa..t_interviewer_test
+  
+  <select id="getAll111" resultMap="BaseResultMap">
+    select 
+    test_id, t_interviewer_test.interviewer_id, 
+    t_interviewer.interviewer_code, t_interviewer.interviewer_name, 
+    handler1, handler2, 
+    test_score, is_pass, 
+    japanese_certificate, english_certificate, 
+    computer_certificate, japanese_listen, 
+    japanese_speak, japanese_read, 
+    japanese_write, english_listen, 
+    english_speak, english_read, 
+    english_write, t_interviewer_test.delete_flag, 
+    skill_ability, description
+    from t_interviewer_test left join t_interviewer on 
+    t_interviewer.interviewer_id=t_interviewer_test.interviewer_id
   </select>
+  
 </mapper>

@@ -17,5 +17,5 @@ public class CustomerListQueryDTO  extends GridListQueryBaseDTO {
 	
 	private static final long serialVersionUID = 1L;
 	
-    private String title;
+    private String customerName;
 }

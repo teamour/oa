@@ -1,7 +1,8 @@
 BF={
     saveData:function(data){
+    	debugger
     	$.ajax({
-    			url:"http://localhost:8080/emp/",
+    			url:"http://localhost:8080/emp",
     			type:"post",
     			async: false,
     			data:JSON.stringify(data),
@@ -14,9 +15,13 @@ BF={
     	        	layer.msg("error!");
     	        }
     	});
+    	 
+    	 
+		   
     }
 }
 layui.use(['form','layer','laypage','jquery'],function(){
+	debugger
    var  form = layui.form;
 		layer = parent.layer === undefined ? layui.layer : parent.layer,
 		laypage = layui.laypage,

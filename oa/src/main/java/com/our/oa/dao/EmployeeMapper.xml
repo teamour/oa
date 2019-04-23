@@ -71,11 +71,11 @@
    select  LAST_INSERT_ID()
   </select>
   <select id="selectQueryList" parameterType="com.our.oa.dto.list.EmployeeListQueryDTO" resultMap="BaseResultMap">
-    select <include refid="column"/>
+    select <include refid="column"/>,employee_id
     from t_employee
-    <where>
-     delete_flag =0
-    </where>
+  <where>
+    delete_flag = 0
+  </where>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select <include refid="column"/>
@@ -217,15 +217,17 @@
   skill_level, japanese_level
   from t_employee
   </select>
+  <!-- 改变数据库状态 -->
   <update id="deleteById">
    update oasys.t_employee
    <set>
-      delete_flag = true
+      delete_flag = 1
    </set>
    <where>
    	  employee_id = #{id,jdbcType=INTEGER}
    </where>
   </update>
+	<!-- 给员工学习用的方法 -->
   <select id="getEmployeeId" resultType="int">
    select count(employee_id) 
    from 

@@ -43,6 +43,7 @@ public class EmployeeController {
 	public GridDTO<EmployeeListDTO> listData(HttpServletRequest req,
 			EmployeeListQueryDTO listQueryDTO) {	
 	    PageInfo<EmployeeListDTO> queryList = employeeService.getQueryList(listQueryDTO);
+	    System.out.println(listQueryDTO.getEmployeeId());
 	    return PageInfoToGridDTOUtils.getGridDataResult(queryList);
 	}
 	@GetMapping(value= {"","/"})
@@ -53,51 +54,28 @@ public class EmployeeController {
 		return modelAndView;
 	}
 	@PostMapping(value="/")
-	public ModelAndView save(@Valid EmployeeDTO emplyoee,EmployeeSiteDTO emplyoeeSite,
+	public ModelAndView save(@Valid EmployeeDTO emplyoee,@Valid EmployeeSiteDTO emplyoeeSite,
 			BindingResult bindingResult,ModelAndView modelAndView) {
-        	 employeeService.insert(emplyoee,emplyoeeSite);
-			
-       
-        // 保存成功后返回列表页
-        modelAndView.setViewName("emp/employeelist");
-        return modelAndView;
+        	 
+		employeeService.insert(emplyoee,emplyoeeSite);
+        return new ModelAndView("redirect:list");
 	}
 	//根据ID查询员工
 	@GetMapping(value= "/{id}")
 	public ModelAndView view(@PathVariable(name="id",required=false)Integer id, 
 			ModelAndView modelAndView) {
-		EmployeeDTO dto = new EmployeeDTO();
-		EmployeeSiteDTO dto1 = new EmployeeSiteDTO();
-		 try {
-			 if(StringUtils.isEmpty(id)&& id > 0) {
-			// 模拟查找数据
+			System.out.println(id);
+			EmployeeDTO dto = new EmployeeDTO();
+			EmployeeSiteDTO dto1 = new EmployeeSiteDTO();
 			Employee employee = employeeService.getByPrimaryKey(id);
 			EmployeeSite employeeSite = employeeService.getByEmployeeId(id);
 			ModelMapper modelMapper = new ModelMapper();
 			dto = modelMapper.map(employee, EmployeeDTO.class);
 			dto1 = modelMapper.map(employeeSite, EmployeeSiteDTO.class);
-			 }
-			Boolean flag = dto.getDeleteFlag(); 
-			//System.out.println(flag); 
-			if (StringUtils.isEmpty(flag)&&flag==true) {
-			modelAndView.setViewName("emp/deleted"); 
 			modelAndView.addObject("employee", dto);
 			modelAndView.addObject("employeeSite", dto1);
-			modelAndView.setViewName("emp/emp-manage");
-			return modelAndView;}
-		  	} catch (Exception e) {
-			modelAndView.setViewName("emp/error"); 
-		  	}
-		return modelAndView;
-	}
-	//根据输入内容检索
-	@PostMapping(value= "/{employee}")
-	public ModelAndView view(ModelAndView modelAndView,
-			@PathVariable(name="employee",required=false) EmployeeDTO emplyoee) {
-		System.out.println(emplyoee.getEmployeeName());
-		
-		
-		return modelAndView;
+			modelAndView.setViewName("emp/employeeedit");
+			return modelAndView;
 	}
 	// 删除
 	@RequestMapping(value = "/deleteByIds" )
@@ -115,7 +93,7 @@ public class EmployeeController {
 	}
 	
 	@PostMapping(value="/update/{id}")
-	public ModelAndView Update(@Valid EmployeeDTO emplyoee,EmployeeSiteDTO emplyoeeSite,
+	public ModelAndView Update(@Valid EmployeeDTO emplyoee,@Valid EmployeeSiteDTO emplyoeeSite,
 			BindingResult bindingResult,ModelAndView modelAndView,
 			@PathVariable(name="id",required=false)Integer id) {
 			emplyoee.setEmployeeId(id);
@@ -125,12 +103,6 @@ public class EmployeeController {
         // 保存成功后返回列表页
         modelAndView.setViewName("emp/employeelist");
         return modelAndView;
-	}
-	
-	@GetMapping("/test")
-	public ModelAndView justTest(ModelAndView modelAndView) {
-		modelAndView.setViewName("emp/delete");
-		return modelAndView;
 	}
 	
 	

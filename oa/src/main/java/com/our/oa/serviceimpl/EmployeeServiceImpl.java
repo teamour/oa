@@ -75,8 +75,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public void deleteBydIds(Integer id) {
 		employeeMapper.deleteById(id);
+		employeeSiteMapper.deleteById(id);
 	}
-	
 	
 
 }

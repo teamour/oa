@@ -90,7 +90,10 @@
     ,learn_cotent,evaluation,delete_flag
     from t_employee_study
     <where>
-    delete_flag = 0
+    <if test="employeeId!=null and employeeId!=''">
+      employee_id like #{employeeId} and
+    </if>
+    delete_flag = 0 
     </where>
   </select>
   

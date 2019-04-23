@@ -1,10 +1,11 @@
-package com.our.oa.entity;
+package com.our.oa.dto.list;
 
-import java.io.Serializable;
-import java.util.Date;
+import com.our.oa.dto.GridListDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -15,8 +16,9 @@ import lombok.ToString;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class InterviewerTest implements Serializable {
+@ToString(callSuper=true)
+@EqualsAndHashCode(callSuper=true)
+public class InterviewerTestListDTO extends GridListDTO {
     private Integer testId;
 
     private Integer interviewerId;
@@ -51,19 +53,13 @@ public class InterviewerTest implements Serializable {
 
     private Integer englishWrite;
 
-    private Date createTime;
-
-    private Date updateTime;
-
-    private Date deleteTime;
+    private String createTime;
 
     private Boolean deleteFlag;
 
     private String skillAbility;
 
     private String description;
-    
-    private Interviewer interviewer;
 
     private static final long serialVersionUID = 1L;
 }

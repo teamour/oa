@@ -19,5 +19,5 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
     
-    int findByEP(@Param(value="email") String email,@Param(value="userPwd") String userPwd);
+    int findByEP(User user);
 }

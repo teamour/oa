@@ -25,6 +25,9 @@
 		method="post">
 
 		<table>
+			<tr style="display:none;">
+				<td><input th:field="*{customerId}" type="text" /></td>
+		    </tr>
 			<tr>
 		        <td>客户公司名称: </td>
 		        <td><input th:field="*{customerName}" type="text" /></td>
@@ -155,7 +158,8 @@
 		    </tr>
 		</table>
 		
-	 	<input type="submit" class="layui-btn" value="修改" />
+	 	<input type="submit" class="layui-btn layui-btn-normal" value="修改" />
+	 	<a id="btnBack" class="layui-btn layui-btn-normal" th:href="@{/customer/list}">返回</a>
 		
 	</form>
 	

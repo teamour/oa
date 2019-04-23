@@ -69,11 +69,13 @@ BF={
 		   var params={"ids":ids.toString()};//ids=1,2,3,4
 		   //3.执行异步删除操作
 		   $.post(url,params,function(result){});
+		   //刷新
+		   $("#jqGrid").jqGrid().trigger("reloadGrid");
 	},
 	searchData: function (){
 		$("#jqGrid").setGridParam({
             page: 1,
-            postData: { employeeId :$("#employeeStudyId").val() }
+            postData: { employeeId :$("#title").val() }
         }).trigger('reloadGrid');
    }
 	

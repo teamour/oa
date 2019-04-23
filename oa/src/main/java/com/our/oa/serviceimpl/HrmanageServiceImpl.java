@@ -1,6 +1,7 @@
 package com.our.oa.serviceimpl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.our.oa.dao.InterviewerMapper;
 import com.our.oa.dao.InterviewerVisaHandleMapper;
 import com.our.oa.dto.form.InterviewerDTO;
+import com.our.oa.dto.form.InterviewerVisaHandleDTO;
 import com.our.oa.dto.list.InterviewerListDTO;
 import com.our.oa.dto.list.InterviewerListQueryDTO;
 import com.our.oa.entity.Company;
@@ -18,6 +20,7 @@ import com.our.oa.entity.Interviewer;
 import com.our.oa.entity.InterviewerResume;
 import com.our.oa.entity.InterviewerVisaHandle;
 import com.our.oa.service.HrmanageService;
+import com.our.oa.utils.ModelMapperUtils;
 
 @Service
 public class HrmanageServiceImpl implements HrmanageService{
@@ -30,18 +33,14 @@ public class HrmanageServiceImpl implements HrmanageService{
 
 	@Override
 	public boolean addInfoCommit(InterviewerDTO interviewerInfoForm) {
-		interviewerInfoForm.setCreateTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-		return interviewerMapper.addInfoCommit(interviewerInfoForm) > 0;
+		Interviewer interviewer = ModelMapperUtils.getModelMapper().map(interviewerInfoForm, Interviewer.class);
+		interviewer.setCreateTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+		return interviewerMapper.addInfoCommit(interviewer) > 0;
 	}
 
 	@Override
 	public List<Company> getCompanyIdAndName() {
 		return interviewerMapper.getCompanyIdAndName();
-	}
-
-	@Override
-	public List<Interviewer> getInterviewerInfo() {
-		return interviewerMapper.getInterviewerInfo();
 	}
 
 	@Override
@@ -88,9 +87,23 @@ public class HrmanageServiceImpl implements HrmanageService{
 
 	@Override
 	public List<InterviewerListDTO> getGridList(InterviewerListQueryDTO g) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Interviewer> list = null;
+		if(g.getInterviewerName() == null || g.getInterviewerName() == "") {
+			 list = interviewerMapper.getAllInterviewers();
+		}else{
+			list = interviewerMapper.getInterviewerBySearch(g);
+		}
+		if(!list.isEmpty()) {
+			return ModelMapperUtils.mapCollection(list, InterviewerListDTO.class);
+		}
+		return new ArrayList<InterviewerListDTO>();
 	}
-	
+
+	@Override
+	public boolean modifyVisaInfo(InterviewerVisaHandleDTO interviewerVisaHandleDTO) {
+		interviewerVisaHandleDTO.setUpdateTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+		return InterviewerVisaHandleMapper.modifyVisaInfo(interviewerVisaHandleDTO) > 0;
+	}
+
 
 }

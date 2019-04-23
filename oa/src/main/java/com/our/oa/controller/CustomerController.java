@@ -1,9 +1,9 @@
 package com.our.oa.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.runner.ReactiveWebApplicationContextRunner;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
 import com.our.oa.dto.GridDTO;
-import com.our.oa.dto.form.CompanyDTO;
 import com.our.oa.dto.form.CustomerDTO;
 import com.our.oa.dto.list.CustomerListDTO;
 import com.our.oa.dto.list.CustomerListQueryDTO;
@@ -35,7 +34,9 @@ public class CustomerController {
 	}
 	
 	@PostMapping(value="/list")
-	public GridDTO<CustomerListDTO> listData(CustomerListQueryDTO listQueryDTO) {
+	public GridDTO<CustomerListDTO> listData(HttpServletRequest req,
+			CustomerListQueryDTO listQueryDTO) {
+		
 		PageInfo<CustomerListDTO> queryList = service.getQueryList(listQueryDTO);
 		return PageInfoToGridDTOUtils.getGridDataResult(queryList);
 	}
@@ -56,18 +57,10 @@ public class CustomerController {
 			for (int i = 0; i < bindingResult.getErrorCount(); i++) {
 				System.out.println(bindingResult.getAllErrors().get(i).getDefaultMessage());
 			}
-			
-			modelAndView.setViewName("customer/customerAdd");
-			modelAndView.addObject("form", form);
-			return modelAndView;
+			return new ModelAndView("redirect:/customer/add");
 		}
-		
 		service.insert(form);
-
-		modelAndView.setViewName("customer/customerList");
-		modelAndView.addObject("form", form);
-
-		return modelAndView;
+		return new ModelAndView("redirect:/customer/list");
 	}
 	
 	@GetMapping(value = "/edit/{id}")
@@ -85,16 +78,13 @@ public class CustomerController {
 			ModelAndView modelAndView) {
 		
 		if (bindingResult.hasErrors()) {
-			modelAndView.setViewName("customer/customerEdit");
-			return modelAndView;
+			for (int i = 0; i < bindingResult.getErrorCount(); i++) {
+				System.out.println(bindingResult.getAllErrors().get(i).getDefaultMessage());
+			}
+			return new ModelAndView("redirect:/customer/edit");
 		}
-
 		service.updateByPrimaryKey(form);
-
-		modelAndView.setViewName("customer/customerList");
-		modelAndView.addObject("form", form);
-
-		return modelAndView;
+		return new ModelAndView("redirect:/customer/list");
 	}
 	
 	@GetMapping(value = "/detailed/{id}")
@@ -106,13 +96,13 @@ public class CustomerController {
 		modelAndView.addObject("form", dto);
 		return modelAndView;
 	}
-
-	@GetMapping(value = "/delete/{id}")
-	public ModelAndView delete(@PathVariable(name = "id", required = false) Integer id, 
-			ModelAndView modelAndView) {
+	
+	@PostMapping(value = "/delete" )
+	public ModelAndView delete(Integer... rows) {
+		for (Integer id : rows) {
+			service.deleteByPrimaryKey(id);
+		}
 		
-		service.deleteByPrimaryKey(id);
-		modelAndView.setViewName("customer/customerList");
-		return modelAndView;
+		return new ModelAndView("redirect:/customer/list");
 	}
 }

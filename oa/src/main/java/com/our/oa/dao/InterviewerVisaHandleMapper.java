@@ -1,5 +1,6 @@
 package com.our.oa.dao;
 
+import com.our.oa.dto.form.InterviewerVisaHandleDTO;
 import com.our.oa.entity.InterviewerVisaHandle;
 import java.util.List;
 
@@ -13,10 +14,12 @@ public interface InterviewerVisaHandleMapper {
 
     InterviewerVisaHandle selectByPrimaryKey(Integer visaHandleId);
 
-    List<InterviewerVisaHandle> selectAll();
+    List<InterviewerVisaHandleDTO> selectAll();
 
     int updateByPrimaryKey(InterviewerVisaHandle record);
 
 	InterviewerVisaHandle getInterviewerVisaHandleByInterviewerId(int interviewerId);
+
+	int modifyVisaInfo(InterviewerVisaHandleDTO interviewerVisaHandleDTO);
 	
 }
