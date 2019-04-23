@@ -26,9 +26,10 @@ public interface EmployeeMapper {
 	
 	int updateByEmployeeId(EmployeeDTO employee);
 	
-	
 	// create BY wangjiaqin
 	List<Employee> selectForStudy();
 	
 	int deleteById(Integer id);
+	
+	int getEmployeeId(Integer employeeId);
 }

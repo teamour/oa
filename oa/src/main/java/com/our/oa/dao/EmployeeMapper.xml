@@ -44,15 +44,15 @@
     <result column="skill_growth" jdbcType="LONGVARCHAR" property="skillGrowth" />
   </resultMap>
   <!-- 所有用到的参数 -->
-    <sql id="column">
+  <sql id="column">
   	  employee_name,position,age,address,
       the_nearest_station,telephone,working_years,
       skill1,skill2,skill3,skill_score,skill_analysis,
       skill_growth,bank_name,branch_bank,bank_number,
       bank_desc,domestic_address,family_support,
   	  contract_format,employment_insurance,annuity,
-      health_insurance,delete_flag,
-      japanese_level,skill_level,create_time
+      health_insurance,
+      japanese_level,skill_level,create_time,delete_flag
   </sql>
   <!-- company_id来自表sys_company的外键,不可修改 -->
   <insert id="insert" parameterType="com.our.oa.entity.Employee">
@@ -65,7 +65,7 @@
     #{bankNumber,jdbcType=VARCHAR},#{bankDesc,jdbcType=VARCHAR},#{domesticAddress,jdbcType=VARCHAR},
     #{familySupport,jdbcType=TINYINT}, #{contractFormat,jdbcType=INTEGER},
     #{employmentInsurance,jdbcType=BIT},#{annuity,jdbcType=BIT},#{healthInsurance,jdbcType=BIT},
-   #{japaneseLevel,jdbcType=INTEGER},#{skillLevel,jdbcType=INTEGER},now())
+   #{japaneseLevel,jdbcType=INTEGER},#{skillLevel,jdbcType=INTEGER},now(),false)
   </insert>
   <select id="findNowId" resultType="int">
    select  LAST_INSERT_ID()
@@ -73,11 +73,14 @@
   <select id="selectQueryList" parameterType="com.our.oa.dto.list.EmployeeListQueryDTO" resultMap="BaseResultMap">
     select <include refid="column"/>
     from t_employee
+    <where>
+     delete_flag =0
+    </where>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select <include refid="column"/>
     from oasys.t_employee
-    where employee_id = #{employeeId,jdbcType=INTEGER}
+    where employee_id = #{employeeId,jdbcType=INTEGER} and  delete_flag =0
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
   	delete from oasys.t_employee
@@ -223,5 +226,13 @@
    	  employee_id = #{id,jdbcType=INTEGER}
    </where>
   </update>
-  
+  <select id="getEmployeeId" resultType="int">
+   select count(employee_id) 
+   from 
+   oasys.t_employee 
+   <where>
+     employee_id = #{employeeId,jdbcType=INTEGER}
+    and delete_flag =0
+   </where>
+  </select>
 </mapper>

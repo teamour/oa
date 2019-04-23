@@ -23,7 +23,11 @@ BF={
 		             rowNum: 10,
 		             rowList: [5, 10, 50, 100, 500],
 		             multiselect: true,
-		             jsonReader:{ repeatitems:false }
+		             jsonReader:{  repeatitems:false },
+	            	 loadonce:true,
+	            	 sortname:'employeeId',
+	            	 sortorder: "asc",
+	         		 caption: "员工记录"
 		             
 		         });
 
@@ -40,8 +44,41 @@ BF={
 	            page: 1,
 	            postData: { title :$("#title").val() }
 	        }).trigger('reloadGrid');
+	   },
+	   deleteByIds:function(){
+		   debugger
+		   var ids = $("#jqGrid").jqGrid("getGridParam","selarrrow");
+		   
+		   if(!confirm("您确认删除吗"))return;
+		   //1.定义请求的url
+		   var url="http://localhost:8080/emp/deleteByIds";
+		   //2.定义请求的参数
+		   if(ids.length==0){
+			   alert("请选择");
+			   return;
+		   }
+		   var params={"ids":ids.toString()};//ids=1,2,3,4
+		   //3.执行异步删除操作
+		   $.post(url,params,function(result){}).
+		   .done(function(data1,textStatus,jqXHR) {
+			   window.location.reload();
+			})
+			// 5. failは、通信に失敗した時に実行される
+			.fail(function(jqXHR, textStatus, errorThrown ) {
+				alert("请求失败");
+			})
+			// 6. alwaysは、成功/失敗に関わらず実行される
+			.always(function() {
+				$("#span4").text("完了しました");
+			});
+		   
+		   
+		   
+		   $("#jqGrid").setGridParam({
+	            page: 1,
+	            postData: { title :$("#title").val() }
+	        }).trigger('reloadGrid');
 	   }
-	  
 }
     
 $(function () { 

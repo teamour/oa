@@ -1,6 +1,16 @@
 BF={
 		userLogin:function(){
-			alert("hhhahah");
+			  var params={
+						 email:$("#usernameId").val(),
+						 userPwd:$("#passwordId").val()
+						 [Ids:$("#passwordId").val()]
+					  }
+					  var url="http://localhost:8080/user/login";
+					  console.log("params",params);
+					  $.post(url,params,function(){
+						location.href="http://localhost:8080/user/home";
+						  })
+						 
 		}
 }
 layui.use(['form','layer','laypage','jquery'],function(){

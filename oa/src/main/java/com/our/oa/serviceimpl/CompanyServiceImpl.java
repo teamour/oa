@@ -9,10 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.our.oa.dao.CompanyMapper;
 import com.our.oa.dto.form.CompanyDTO;
-import com.our.oa.dto.list.AnnouncementListDTO;
 import com.our.oa.dto.list.CompanyListDTO;
 import com.our.oa.dto.list.CompanyListQueryDTO;
-import com.our.oa.entity.Announcement;
 import com.our.oa.entity.Company;
 import com.our.oa.service.CompanyService;
 import com.our.oa.utils.ModelMapperUtils;
