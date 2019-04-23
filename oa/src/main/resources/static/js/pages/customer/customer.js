@@ -25,7 +25,6 @@ BF={
 	             multiselect: true,
 	             jsonReader:{ repeatitems:false }
 	         });
-
 	},
 	detailedData:function(){
 		var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
