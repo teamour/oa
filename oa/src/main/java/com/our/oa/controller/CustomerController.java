@@ -1,5 +1,6 @@
 package com.our.oa.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,9 @@ public class CustomerController {
 	}
 	
 	@PostMapping(value="/list")
-	public GridDTO<CustomerListDTO> listData(CustomerListQueryDTO listQueryDTO) {
+	public GridDTO<CustomerListDTO> listData(HttpServletRequest req,
+			CustomerListQueryDTO listQueryDTO) {
+		
 		PageInfo<CustomerListDTO> queryList = service.getQueryList(listQueryDTO);
 		return PageInfoToGridDTOUtils.getGridDataResult(queryList);
 	}

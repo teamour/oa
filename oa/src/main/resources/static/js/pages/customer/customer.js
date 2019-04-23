@@ -23,11 +23,7 @@ BF={
 	             rowNum: 10,
 	             rowList: [5, 10, 50, 100, 500],
 	             multiselect: true,
-	             jsonReader:{ repeatitems:false },
-            	 loadonce: true,
-//            	 sortname:'customerId',
-//            	 sortorder: "asc",
-//         		 caption: "员工记录"
+	             jsonReader:{ repeatitems:false }
 	         });
 
 	},
@@ -81,7 +77,7 @@ BF={
 	searchData: function (){
 		$("#jqGrid").setGridParam({
             page: 1,
-            postData: { title :$("#title").val() }
+            postData: { customerName :$("#title").val() }
         }).trigger('reloadGrid');
    }
 }

@@ -106,8 +106,8 @@
   <select id="selectQueryList" resultMap="BaseResultMap">
     select * from t_customer
     <where>
-	    <if test="title !=null and title !=''">
-	      title like #{title}
+	    <if test="customerName !=null and customerName !=''">
+	      customer_name like Concat('%',#{customerName},'%') 
 	    </if>
     </where>
   </select>
