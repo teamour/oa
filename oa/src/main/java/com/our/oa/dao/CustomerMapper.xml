@@ -33,7 +33,7 @@
     <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_customer
+   	delete from t_customer
     where customer_id = #{customerId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.our.oa.entity.Customer">
@@ -91,7 +91,9 @@
     where customer_id = #{customerId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select * from customer_id
+    select * 
+    from t_customer 
+    where customer_id = #{customerId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select customer_id, customer_name, website, registered_capital, employee_number, 

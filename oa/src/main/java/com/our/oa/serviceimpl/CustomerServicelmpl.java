@@ -55,7 +55,9 @@ public class CustomerServicelmpl implements CustomerService {
 
 	@Override
 	public int updateByPrimaryKey(CustomerDTO DTO) {
-		// TODO Auto-generated method stub
+		ModelMapper modelMapper = new ModelMapper();
+		Customer record = modelMapper.map(DTO, Customer.class);
+		mapper.updateByPrimaryKey(record);
 		return 0;
 	}
 }
