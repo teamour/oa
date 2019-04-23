@@ -57,18 +57,10 @@ public class CustomerController {
 			for (int i = 0; i < bindingResult.getErrorCount(); i++) {
 				System.out.println(bindingResult.getAllErrors().get(i).getDefaultMessage());
 			}
-			
-			modelAndView.setViewName("customer/customerAdd");
-			modelAndView.addObject("form", form);
-			return modelAndView;
+			return new ModelAndView("redirect:/customer/add");
 		}
-		
 		service.insert(form);
-
-		modelAndView.setViewName("customer/customerList");
-		modelAndView.addObject("form", form);
-
-		return modelAndView;
+		return new ModelAndView("redirect:/customer/list");
 	}
 	
 	@GetMapping(value = "/edit/{id}")
@@ -89,18 +81,10 @@ public class CustomerController {
 			for (int i = 0; i < bindingResult.getErrorCount(); i++) {
 				System.out.println(bindingResult.getAllErrors().get(i).getDefaultMessage());
 			}
-			
-			modelAndView.setViewName("customer/customerEdit");
-			modelAndView.addObject("form", form);
-			return modelAndView;
+			return new ModelAndView("redirect:/customer/edit");
 		}
-
 		service.updateByPrimaryKey(form);
-
-		modelAndView.setViewName("customer/customerList");
-		modelAndView.addObject("form", form);
-
-		return modelAndView;
+		return new ModelAndView("redirect:/customer/list");
 	}
 	
 	@GetMapping(value = "/detailed/{id}")
@@ -112,23 +96,13 @@ public class CustomerController {
 		modelAndView.addObject("form", dto);
 		return modelAndView;
 	}
-
-	@GetMapping(value = "/delete/{id}")
-	public ModelAndView delete(@PathVariable(name = "id", required = false) Integer id, 
-			ModelAndView modelAndView) {
-		
-		service.deleteByPrimaryKey(id);
-		modelAndView.setViewName("customer/customerList");
-		return modelAndView;
-	}
 	
 	@PostMapping(value = "/delete" )
-	public ModelAndView delete(ModelAndView modelAndView, Integer... rows) {
+	public ModelAndView delete(Integer... rows) {
 		for (Integer id : rows) {
 			service.deleteByPrimaryKey(id);
 		}
 		
-		modelAndView.setViewName("customer/customerList");
-		return modelAndView;
+		return new ModelAndView("redirect:/customer/list");
 	}
 }

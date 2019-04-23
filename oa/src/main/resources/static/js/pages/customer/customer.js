@@ -25,7 +25,7 @@ BF={
 	             rowNum: 10,
 	             rowList: [5, 10, 50, 100, 500],
 	             multiselect: true,
-	             jsonReader:{ repeatitems:false }
+	             jsonReader:{ repeatitems:false },
 	         });
 	},
 	detailedData:function(){
