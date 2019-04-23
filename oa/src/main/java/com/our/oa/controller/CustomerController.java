@@ -85,7 +85,12 @@ public class CustomerController {
 			ModelAndView modelAndView) {
 		
 		if (bindingResult.hasErrors()) {
+			for (int i = 0; i < bindingResult.getErrorCount(); i++) {
+				System.out.println(bindingResult.getAllErrors().get(i).getDefaultMessage());
+			}
+			
 			modelAndView.setViewName("customer/customerEdit");
+			modelAndView.addObject("form", form);
 			return modelAndView;
 		}
 
@@ -112,6 +117,16 @@ public class CustomerController {
 			ModelAndView modelAndView) {
 		
 		service.deleteByPrimaryKey(id);
+		modelAndView.setViewName("customer/customerList");
+		return modelAndView;
+	}
+	
+	@PostMapping(value = "/delete" )
+	public ModelAndView delete(ModelAndView modelAndView, Integer... rows) {
+		for (Integer id : rows) {
+			service.deleteByPrimaryKey(id);
+		}
+		
 		modelAndView.setViewName("customer/customerList");
 		return modelAndView;
 	}

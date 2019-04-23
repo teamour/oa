@@ -36,6 +36,7 @@ BF={
 		
 		// 如果没有选择跳过
 		if(rowId==null){
+			alert("请先选择要查看的项");
 			return;
 		}
 		
@@ -43,25 +44,39 @@ BF={
 	},
 	modifyData:function(){
 		var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
-		
+		debugger;
 		// 如果没有选择跳过
 		if(rowId==null){
+			alert("请先选择要修改的项");
 			return;
 		}
 		
 		window.location.href = ctxPath+"customer/edit/"+rowId;
 	},
 	deleteData:function(){
-		confirm("确定要删除该信息吗?");
-		
-		var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
+		var rows=$("#jqGrid").jqGrid('getGridParam','selarrrow');
 		
 		// 如果没有选择跳过
-		if(rowId==null){
+		if(rows.length==0){
+			alert("请先选择要删除的项");
 			return;
 		}
 		
-		window.location.href = ctxPath+"customer/delete/"+rowId;
+		confirm("确定要删除吗?");
+		
+		var url="http://localhost:8080/customer/delete";
+		var params={"rows":rows.toString()};
+		
+		$.post(url,params,function(result){})
+			.done(function(data,textStatus,jqXHR) {
+			   
+			})
+			.fail(function(jqXHR, textStatus, errorThrown ) {
+				alert("请求失败");
+			})
+			.always(function() {
+				window.location.reload();
+			});
 	},
 	searchData: function (){
 		$("#jqGrid").setGridParam({
