@@ -23,7 +23,7 @@
 		<table>
 			<tr>
 				<td>员工ID</td>
-				<td width="400"><input type="text"  class="layui-input" name="employeeId"></td>
+				<td width="400"><input type="text"  class="layui-input" name="employeeId" placeholder="清对照员工表"></td>
 			</tr>
 			<tr>
 				<td>学习内容</td>
@@ -39,7 +39,7 @@
 			</tr>
 			<tr>
 				<td>负责人</td>
-				<td width="400"><input type="text"  class="layui-input" name="handler"></td>
+				<td width="400"><input type="text"  class="layui-input" name="handler" placeholder="负责人id" oninput="value=value.replace(/[^\d]/g,'')"></td>
 			</tr>
 			<tr>
 				<td>学会内容</td>
@@ -47,7 +47,7 @@
 			</tr>
 			<tr>
 				<td>效果评价</td>
-				<td width="400"><input type="text"  class="layui-input" name="evaluation"></td>
+				<td width="400"><input type="text"  class="layui-input" name="evaluation" placeholder="评分为1-5" oninput="value=value.replace(/[^\d]/g,'')"></td>
 			</tr>
 		</table>
 		<input id="submit" type="submit" class="layui-btn">

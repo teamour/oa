@@ -89,13 +89,14 @@ public class EmployeeStudyController {
 	@GetMapping(value="/")
 	public GridDTO<EmployeeStudyListDTO> listDate(HttpServletRequest req,
 			EmployeeStudyListQueryDTO listQueryDTO){
+		System.out.println("进来了！！！");
 		PageInfo<EmployeeStudyListDTO> queryList = employeeStudyService.getQueryList(listQueryDTO);
 	    return PageInfoToGridDTOUtils.getGridDataResult(queryList);
 		
 	}
 	
 	@PostMapping(value="/addepst")
-	public ModelAndView save(@Valid EmployeeStudyDTO employeeForm, 
+	public ModelAndView save(@Valid EmployeeStudyDTO employeeStudyForm, 
 			BindingResult bindingResult,ModelAndView modelAndView) {
 		
         if (bindingResult.hasErrors()) {
@@ -115,8 +116,9 @@ public class EmployeeStudyController {
             return modelAndView;
         }
         
-        employeeStudyService.insert(employeeForm);
-        System.out.println(employeeForm.getBeginDate());
+        employeeStudyService.insert(employeeStudyForm);
+        
+        System.out.println(employeeStudyForm.getBeginDate());
         // 保存成功后返回列表页
         modelAndView.setViewName("epst/epstIndex");
         System.out.println("secuss!");
@@ -177,4 +179,5 @@ public class EmployeeStudyController {
 			// 删除成功后重新进入列表页
 			return "delete ok";
 		}
+		
 }
