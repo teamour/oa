@@ -16,7 +16,7 @@
 			<td>No</td><td><input type="text" th:field="*{interviewerId}" th:value="${interviewerVisaHandle.interviewerId}" readonly="readonly"></td>
 		</tr>
 		<tr>
-			<td>姓名</td><td><input type="text" th:value="${interviewerVisaHandle.interviewer.interviewerName}" readonly="readonly"></td>
+			<td>姓名</td><td><input type="text" th:field="*{interviewer.interviewerName}" th:value="${interviewerVisaHandle.interviewer.interviewerName}" readonly="readonly"></td>
 		<tr>
 			<td>邮寄情况</td>
 			<td>
@@ -95,7 +95,7 @@
 				</select>
 		</tr>
 		<tr>
-			<td><input type="submit" value="保存"></td>
+			<td><input type="submit" value="保存"></td><td><a th:href="@{hrIndex}">返回首页</a></td>
 		</tr>
 	</table>
 	</form>

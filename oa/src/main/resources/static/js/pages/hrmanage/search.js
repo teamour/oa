@@ -1,7 +1,7 @@
 BF={
 	initGrid: function () {
    		 $("#jqGrid").jqGrid({
-	             url:  ctxPath +'hr/hrIndex',
+	             url:  ctxPath +'hr/search',
 	             mtype: "POST",
 	             datatype: "json",
 	             colNames:["Id", "面试人员编号", "面试人员姓名", "面情结果"],
@@ -37,23 +37,21 @@ BF={
 
 	},
 	modifyData:function(){
-		var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
-		
-		if(rowId == null || rowId == ''){
-			return;
-		}
+		var selData = $("#jqGrid").getRowData();
 		// 要判断是否有选择，且只选中一行数据
 		
-		window.location.href = ctxPath+"hr/updateInfo?interviewerId="+rowId;
+		window.location.href = ctxPath+"hr/updateInfo?interviewerId="+selData[0].interviewerId;
 	},
 	selectData:function(){
-		var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
-		if(rowId == null || rowId == ''){
-			return;
-		}
-		window.location.href = ctxPath+"hr/detailInfo?interviewerId="+rowId;
+		var selData = $("#jqGrid").getRowData();
+		// 要判断是否有选择，且只选中一行数据
+		
+		window.location.href = ctxPath+"hr/detailInfo?interviewerId="+selData[0].interviewerId;
 	},
 	searchData:function(){
+		var search = $("#search").val();
+		alert(search);
+		window.location.href = ctxPath+"hr/search?interviewerName="+search;
 		
 //		$("#jqGrid").setGridParam({
 //            page: 1,

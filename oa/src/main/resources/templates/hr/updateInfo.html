@@ -6,7 +6,9 @@
 </head>
 	<script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
 	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
-	<link rel="stylesheet" th:href="@{/css/layui.css}"><body>
+	<link rel="stylesheet" th:href="@{/css/layui.css}">
+<body>
+<div><a th:href="@{hrIndex}">返回首页</a></div>
 <form class="layui" action="#" th:action="@{/hr/updateInfoDo}" method="post" th:object="${detailInfo}">
 	<table>
 		<tr>

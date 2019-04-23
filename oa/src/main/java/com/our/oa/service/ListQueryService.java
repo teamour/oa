@@ -22,4 +22,5 @@ public interface ListQueryService<G extends GridListDTO,Q extends GridListQueryB
 	 * 列表查询
 	 */
 	List<G> getGridList(Q g);
+
 }

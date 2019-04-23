@@ -3,6 +3,7 @@ package com.our.oa.service;
 import java.util.List;
 
 import com.our.oa.dto.form.InterviewerDTO;
+import com.our.oa.dto.form.InterviewerVisaHandleDTO;
 import com.our.oa.dto.list.InterviewerListDTO;
 import com.our.oa.dto.list.InterviewerListQueryDTO;
 import com.our.oa.entity.Company;
@@ -14,8 +15,6 @@ public interface HrmanageService extends ListQueryService<InterviewerListDTO, In
 	boolean addInfoCommit(InterviewerDTO interviewerInfoForm);
 
 	List<Company> getCompanyIdAndName();
-
-	List<Interviewer> getInterviewerInfo();
 
 	String getCode();
 
@@ -29,5 +28,6 @@ public interface HrmanageService extends ListQueryService<InterviewerListDTO, In
 
 	InterviewerVisaHandle getInterviewerVisaHandleByInterviewerId(int interviewerId);
 
-	
+	boolean modifyVisaInfo(InterviewerVisaHandleDTO interviewerVisaHandleDTO);
+
 }

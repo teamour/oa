@@ -2,19 +2,34 @@ package com.our.oa.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.github.pagehelper.PageInfo;
+import com.our.oa.dto.GridDTO;
 import com.our.oa.dto.form.InterviewerDTO;
+import com.our.oa.dto.form.InterviewerVisaHandleDTO;
+import com.our.oa.dto.list.InterviewerListDTO;
+import com.our.oa.dto.list.InterviewerListQueryDTO;
+import com.our.oa.dto.list.InterviewerTestListDTO;
+import com.our.oa.dto.list.InterviewerTestListQueryDTO;
+import com.our.oa.dto.list.InterviewerVisaHandleListDTO;
+import com.our.oa.dto.list.InterviewerVisaHandleListQueryDTO;
 import com.our.oa.entity.Company;
 import com.our.oa.entity.Interviewer;
 import com.our.oa.entity.InterviewerVisaHandle;
 import com.our.oa.service.HrmanageService;
+import com.our.oa.service.InterviewerTestService;
+import com.our.oa.service.VisaHandleService;
+import com.our.oa.utils.PageInfoToGridDTOUtils;
 /**
  * hr manage
  * @author hk
@@ -27,35 +42,40 @@ public class HrmanageController {
 	@Autowired
 	private HrmanageService hrmanageServiceImpl;
 	
-	/**
-	 * home page
-	 * @param modelAndView
-	 * @return
-	 */
-	@RequestMapping("/hrIndex")
+	@Autowired
+	private VisaHandleService visaHandleServiceImpl;
+	
+	@Autowired
+	private InterviewerTestService interviewerTestServiceImpl;
+	
+	@GetMapping("/hrIndex")
 	public ModelAndView hrIndex(ModelAndView modelAndView) {
 		modelAndView.setViewName("hr/hrIndex");
-		List<Interviewer> interviewer = hrmanageServiceImpl.getInterviewerInfo();
-		modelAndView.addObject("interviewer", interviewer);
 		return modelAndView;
 	}
 	
-	/**
-	 * search
-	 * @return
-	 */
-	@RequestMapping(value="/search")
-	public ModelAndView search(ModelAndView modelAndView,String search,String interviewerName) {
-		modelAndView.setViewName("hr/searchResult");
-//		List<Interviewer> list = hrmanageServiceImpl.getSearchInfo(search);
+	@PostMapping("/hrIndex")
+	public GridDTO<InterviewerListDTO> hrIndexdata(HttpServletRequest req,
+			InterviewerListQueryDTO queryDTO){
+		PageInfo<InterviewerListDTO> queryList = hrmanageServiceImpl.getQueryList(queryDTO);
+		return PageInfoToGridDTOUtils.getGridDataResult(queryList);
+	}
+	
+	@GetMapping("/search")
+	public ModelAndView search(ModelAndView modelAndView) {
+		modelAndView.setViewName("hr/hrIndex");
 		return modelAndView;
 	}
 	
-	/**
-	 * add info page show
-	 * @return
-	 */
-	@RequestMapping(value="/addInfoShow")
+	@PostMapping(value="/search")
+	public GridDTO<InterviewerListDTO> search(HttpServletRequest req,
+			InterviewerListQueryDTO listqueryDTO) {
+		System.out.println("sssssssssssss"+listqueryDTO.getInterviewerName());
+		PageInfo<InterviewerListDTO> queryInfo = hrmanageServiceImpl.getQueryList(listqueryDTO);
+		return PageInfoToGridDTOUtils.getGridDataResult(queryInfo);
+	}
+	
+	@GetMapping(value="/addInfoShow")
 	public ModelAndView addInfoShow(ModelAndView modelAndView) {
 		InterviewerDTO interviewer = new InterviewerDTO();
 		modelAndView.setViewName("hr/addInfo");
@@ -67,13 +87,7 @@ public class HrmanageController {
 		return modelAndView;
 	}
 	
-	/**
-	 * do add
-	 * @param modelAndView
-	 * @param interviewer
-	 * @return
-	 */
-	@RequestMapping(value="/addInfoCommit")
+	@PostMapping(value="/addInfoCommit")
 	public ModelAndView addInfoCommit(ModelAndView modelAndView,@Valid InterviewerDTO interviewerInfoForm) {
 		if(hrmanageServiceImpl.addInfoCommit(interviewerInfoForm)) {
 			modelAndView.setView(new RedirectView("hrIndex"));
@@ -83,24 +97,14 @@ public class HrmanageController {
 		return modelAndView;
 	}
 	
-	/**
-	 * select detail info page
-	 * @param modelAndView
-	 * @return
-	 */
-	@RequestMapping("/detailInfo")
+	@GetMapping("/detailInfo")
 	public ModelAndView detailInfo(ModelAndView modelAndView,int interviewerId) {
 		modelAndView.setViewName("hr/detailInfo");
 		modelAndView.addObject("detailInfo", hrmanageServiceImpl.getDetailInfoById(interviewerId));
 		return modelAndView;
 	}
 	
-	/**
-	 * update info page
-	 * @param modelAndView
-	 * @return
-	 */
-	@RequestMapping("/updateInfo")
+	@GetMapping("/updateInfo")
 	public ModelAndView updateInfo(ModelAndView modelAndView,int interviewerId) {
 		modelAndView.setViewName("hr/updateInfo");
 		modelAndView.addObject("detailInfo", hrmanageServiceImpl.getDetailInfoById(interviewerId));
@@ -108,12 +112,7 @@ public class HrmanageController {
 		return modelAndView;
 	}
 	
-	/**
-	 * update info page do
-	 * @param modelAndView
-	 * @return
-	 */
-	@RequestMapping("/updateInfoDo")
+	@PostMapping("/updateInfoDo")
 	public ModelAndView updateInfoDo(ModelAndView modelAndView,int interviewerId,Interviewer interviewer) {
 		modelAndView.addObject("detailInfo", hrmanageServiceImpl.getDetailInfoById(interviewerId));
 		if(hrmanageServiceImpl.updateInfoDo(interviewer)) {
@@ -125,23 +124,13 @@ public class HrmanageController {
 		}
 	}
 	
-	/**
-	 * addResume page show
-	 * @param modelAndView
-	 * @return
-	 */
-	@RequestMapping("/addResume")
+	@GetMapping("/addResume")
 	public ModelAndView addResume(ModelAndView modelAndView) {
 		modelAndView.setViewName("hr/addResume");
 		return modelAndView;
 	}
 	
-	/**
-	 * addResume page show
-	 * @param modelAndView
-	 * @return
-	 */
-	@RequestMapping("/addResumeDo")
+	@PostMapping("/addResumeDo")
 	public ModelAndView addResumeDo(ModelAndView modelAndView) {
 //		if(hrmanageServiceImpl.addResumeDo(interviewerId,resume)) {
 //			
@@ -150,73 +139,76 @@ public class HrmanageController {
 		return modelAndView;
 	}
 	
-	/**
-	 * visa login page
-	 * @param modelAndView
-	 * @return
-	 */
-	@RequestMapping("/visaLogin")
+	@GetMapping("/visaLogin")
 	public ModelAndView visaLogin(ModelAndView modelAndView) {
 		modelAndView.setViewName("hr/visaLogin");
 		return modelAndView;
 	}
 	
-	/**
-	 * visa login do
-	 * @param modelAndView
-	 * @return
-	 */
-	@RequestMapping("/visaLoginDo")
+	@PostMapping("/visaLogin")
+	public GridDTO<InterviewerVisaHandleListDTO> allVisaInfo(HttpServletRequest req,
+			InterviewerVisaHandleListQueryDTO QueryDTO){
+		PageInfo<InterviewerVisaHandleListDTO> queryInfo = visaHandleServiceImpl.getQueryList(QueryDTO);
+		return PageInfoToGridDTOUtils.getGridDataResult(queryInfo);
+	}
+	
+	@PostMapping("/visaLoginDo")
 	public ModelAndView visaLoginDo(ModelAndView modelAndView,String interviewerCode) {
 		Interviewer interviewer = hrmanageServiceImpl.getInterviewerByInterviewerCode(interviewerCode);
 		if (interviewer != null) {
-			modelAndView.setView(new RedirectView("visaInfoShow?interviewerId="+interviewer.getInterviewerId()));
+			modelAndView.setView(new RedirectView("visaInfo?interviewerId="+interviewer.getInterviewerId()));
 		}else {
 			modelAndView.setView(new RedirectView("visaLogin"));
 		}
 		return modelAndView;
 	}
 	
-	/**
-	 * visa login do
-	 * @param modelAndView
-	 * @return
-	 */
-	@RequestMapping("/visaInfoShow")
-	public ModelAndView visaInfoShow(ModelAndView modelAndView,int interviewerId) {
+	@GetMapping("/visaInfo")
+	public ModelAndView visaInfo(ModelAndView modelAndView,int interviewerId) {
 		InterviewerVisaHandle interviewerVisaHandle = hrmanageServiceImpl.getInterviewerVisaHandleByInterviewerId(interviewerId);
 		modelAndView.addObject("interviewerVisaHandle", interviewerVisaHandle);
-		System.out.println(interviewerVisaHandle.getInterviewerId());
 		modelAndView.setViewName("hr/visaInfo");
 		return modelAndView;
 	}
 	
-	/**
-	 * modify visa info
-	 * @param modelAndView
-	 * @return
-	 */
-	@RequestMapping("/modifyVisaInfoShow")
-	public ModelAndView modifyVisaInfoShow(ModelAndView modelAndView,int interviewerId) {
+	@GetMapping("/modifyVisaInfo")
+	public ModelAndView modifyVisaInfo(ModelAndView modelAndView,int interviewerId) {
 		InterviewerVisaHandle interviewerVisaHandle = hrmanageServiceImpl.getInterviewerVisaHandleByInterviewerId(interviewerId);
 		modelAndView.addObject("interviewerVisaHandle", interviewerVisaHandle);
 		modelAndView.setViewName("hr/modifyVisaInfo");
 		return modelAndView;
 	}
 	
-	/**
-	 * modify visa info
-	 * @param modelAndView
-	 * @return
-	 */
-	@RequestMapping("/modifyVisaInfoDo")
-	public ModelAndView modifyVisaInfoShowDo(ModelAndView modelAndView,InterviewerVisaHandle interviewerVisaHandle) {
-		System.out.println(interviewerVisaHandle);
-		
-		
-		
-		modelAndView.setViewName("hr/visaInfo");
+	@PostMapping("/modifyVisaInfoDo")
+	public ModelAndView modifyVisaInfoShowDo(ModelAndView modelAndView,InterviewerVisaHandleDTO interviewerVisaHandleDTO) {
+		System.out.println("aaaaaaa"+interviewerVisaHandleDTO.getInterviewerId());
+		if(hrmanageServiceImpl.modifyVisaInfo(interviewerVisaHandleDTO)) {
+			modelAndView.setView(new RedirectView("visaInfo?interviewerId="+interviewerVisaHandleDTO.getInterviewerId()));
+			return modelAndView;
+		}
+		modelAndView.setViewName("hr/modifyVisaInfo");
 		return modelAndView;
 	}
+	
+	@GetMapping("/itSuitableLogin")
+	public ModelAndView itSuitaleLogin(ModelAndView modelAndView) {
+		modelAndView.setViewName("hr/itSuitableLogin");
+		return modelAndView;
+	}
+	
+	@PostMapping("/itSuitableLogin")
+	public GridDTO<InterviewerTestListDTO> itSuitaleData(HttpServletRequest req,
+			InterviewerTestListQueryDTO queryDTO) {
+		PageInfo<InterviewerTestListDTO> queryInfo = interviewerTestServiceImpl.getQueryList(queryDTO);
+		return PageInfoToGridDTOUtils.getGridDataResult(queryInfo);
+	}
+	
+	@PostMapping("/itSuitableLoginDo")
+	public ModelAndView itSuitaleLoginDo(ModelAndView modelAndView,String interviewerCode) {
+		modelAndView.setViewName("itSuitable");
+		
+		return modelAndView;
+	}
+	
 	
 }

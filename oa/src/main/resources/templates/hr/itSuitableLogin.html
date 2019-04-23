@@ -3,13 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <title>it suitable login</title>
-	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
-	<link rel="stylesheet" th:href="@{/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/ui.jqgrid.css}">
+    <link rel="stylesheet" th:href="@{/css/jquery-ui-1.8.16.custom.css}">
+    <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.jqGrid.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/i18n/grid.locale-ja.js}"></script>
 </head>
 <body>
+<div>
 	<form action="#" th:action="@{itSuitableLoginDo}" method="post">
 		<input type="text" name="interviewerCode">
-		<input type="submit" value="登录">
+		<input type="submit" value="登入">
 	</form>
+</div>
+
+<div>
+	<table id="jqGrid"></table>
+	<div id="jqGridPager"></div>
+	
+	<script type="text/javascript" th:inline="javascript">
+		/*<![CDATA[*/
+		var  ctxPath = /*[[@{/}]]*/ '';
+		 /*]]>*/
+	</script>　
+	
+	<script type="text/javascript" th:src="@{/js/pages/hrmanage/itSuitable.js}"></script>
+
+</div>
 </body>
 </html>

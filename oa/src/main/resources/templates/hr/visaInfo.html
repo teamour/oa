@@ -7,6 +7,9 @@
 	<link rel="stylesheet" th:href="@{/css/layui.css}">
 </head>
 <body>
+<div>
+	<a th:href="@{hrIndex}">返回首页</a>
+</div>
 	<table border="1" style="border:1px solid black;text-align: center;">
 		<tr>
 			<th colspan="22">签证材料准备情况</th>
@@ -29,9 +32,6 @@
 			<td>其他担当</td>
 			<td>备考</td>
 			<td>是否完成关闭</td>
-			<td>创建时间</td>
-			<td>修改时间</td>
-			<td>删除时间</td>
 			<td>是否已删除</td>
 		</tr>
 		<tr th:each="iv:${interviewerVisaHandle}">
@@ -48,16 +48,16 @@
 				<span th:case="'2'" th:text="准备完毕"></span>
 			</td>
 			<td th:switch="${iv.applicationMaterial}">
-				<span th:case="'0'" th:text="否"></span>
-				<span th:case="'1'" th:text="是"></span>
+				<span th:case="false" th:text="否"></span>
+				<span th:case="true" th:text="是"></span>
 			</td>
 			<td th:switch="${iv.selfJapaneseResume}">
-				<span th:case="'0'" th:text="没有"></span>
-				<span th:case="'1'" th:text="有"></span>
+				<span th:case="false" th:text="没有"></span>
+				<span th:case="true" th:text="有"></span>
 			</td>
 			<td th:switch="${iv.checkResume}">
-				<span th:case="'0'" th:text="未检查"></span>
-				<span th:case="'1'" th:text="已检查"></span>
+				<span th:case="false" th:text="未检查"></span>
+				<span th:case="true" th:text="已检查"></span>
 			</td>
 			<td th:text="${iv.expectSubmitDate}"></td>
 			<td th:text="${iv.actualSubmitDate}"></td>
@@ -66,17 +66,14 @@
 			<td th:text="${iv.otherHandlerf}"></td>
 			<td th:text="${iv.description}"></td>
 			<td th:switch="${iv.isCompleted}">
-				<span th:case="'0'" th:text="否"></span>
-				<span th:case="'1'" th:text="是"></span>
+				<span th:case="false" th:text="否"></span>
+				<span th:case="true" th:text="是"></span>
 			</td>
-			<td th:text="${iv.createTime}"></td>
-			<td th:text="${iv.updateTime}"></td>
-			<td th:text="${iv.deleteTime}"></td>
 			<td th:switch="${iv.deleteFlag}">
-				<span th:case="'0'" th:text="未删除"></span>
-				<span th:case="'1'" th:text="已删除"></span>
+				<span th:case="false" th:text="未删除"></span>
+				<span th:case="true" th:text="已删除"></span>
 			</td>
-			<td colspan="2"><a th:href="@{modifyVisaInfoShow(interviewerId=${iv.interviewerId})}">编辑</a></td>
+			<td colspan="2"><a th:href="@{modifyVisaInfo(interviewerId=${iv.interviewerId})}">编辑</a></td>
 		</tr>
 		<tr>
 		</tr>

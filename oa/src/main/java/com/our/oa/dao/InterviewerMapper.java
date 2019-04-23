@@ -2,7 +2,7 @@ package com.our.oa.dao;
 
 import java.util.List;
 
-import com.our.oa.dto.form.InterviewerDTO;
+import com.our.oa.dto.list.InterviewerListQueryDTO;
 import com.our.oa.entity.Company;
 import com.our.oa.entity.Interviewer;
 import com.our.oa.entity.InterviewerResume;
@@ -11,7 +11,7 @@ import com.our.oa.entity.InterviewerResume;
 * Created by Mybatis Generator on 2019/03/31
 */
 public interface InterviewerMapper {
-	int addInfoCommit(InterviewerDTO interviewer);
+	int addInfoCommit(Interviewer interviewer);
 
 	int deleteByPrimaryKey(Integer interviewerId);
 
@@ -23,7 +23,7 @@ public interface InterviewerMapper {
 
 	List<Company> getCompanyIdAndName();
 
-	List<Interviewer> getInterviewerInfo();
+	List<Interviewer> getAllInterviewers();
 
 	Interviewer checkCode(String code);
 
@@ -34,5 +34,8 @@ public interface InterviewerMapper {
 	int addResumeDo(InterviewerResume interviewerResume);
 
 	Interviewer getInterviewerByInterviewerCode(String interviewerCode);
+
+	List<Interviewer> getInterviewerBySearch(InterviewerListQueryDTO listqueryDTO);
+
 
 }
