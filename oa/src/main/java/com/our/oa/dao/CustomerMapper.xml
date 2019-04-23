@@ -105,5 +105,10 @@
   </select>
   <select id="selectQueryList" resultMap="BaseResultMap">
     select * from t_customer
+    <where>
+	    <if test="title !=null and title !=''">
+	      title like #{title}
+	    </if>
+    </where>
   </select>
 </mapper>
