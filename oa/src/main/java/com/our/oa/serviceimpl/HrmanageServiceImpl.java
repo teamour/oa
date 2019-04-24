@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,6 @@ import com.our.oa.dto.list.InterviewerListQueryDTO;
 import com.our.oa.entity.Company;
 import com.our.oa.entity.Interviewer;
 import com.our.oa.entity.InterviewerResume;
-import com.our.oa.entity.InterviewerVisaHandle;
 import com.our.oa.service.HrmanageService;
 import com.our.oa.utils.ModelMapperUtils;
 
@@ -81,8 +81,8 @@ public class HrmanageServiceImpl implements HrmanageService{
 	}
 
 	@Override
-	public InterviewerVisaHandle getInterviewerVisaHandleByInterviewerId(int interviewerId) {
-		return InterviewerVisaHandleMapper.getInterviewerVisaHandleByInterviewerId(interviewerId);
+	public InterviewerVisaHandleDTO getInterviewerVisaHandleByInterviewerId(int interviewerId) {
+		return new ModelMapper().map(InterviewerVisaHandleMapper.getInterviewerVisaHandleByInterviewerId(interviewerId), InterviewerVisaHandleDTO.class);
 	}
 
 	@Override

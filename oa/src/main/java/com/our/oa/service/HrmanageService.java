@@ -8,7 +8,6 @@ import com.our.oa.dto.list.InterviewerListDTO;
 import com.our.oa.dto.list.InterviewerListQueryDTO;
 import com.our.oa.entity.Company;
 import com.our.oa.entity.Interviewer;
-import com.our.oa.entity.InterviewerVisaHandle;
 
 public interface HrmanageService extends ListQueryService<InterviewerListDTO, InterviewerListQueryDTO>{
 
@@ -26,7 +25,7 @@ public interface HrmanageService extends ListQueryService<InterviewerListDTO, In
 
 	Interviewer getInterviewerByInterviewerCode(String interviewerCode);
 
-	InterviewerVisaHandle getInterviewerVisaHandleByInterviewerId(int interviewerId);
+	InterviewerVisaHandleDTO getInterviewerVisaHandleByInterviewerId(int interviewerId);
 
 	boolean modifyVisaInfo(InterviewerVisaHandleDTO interviewerVisaHandleDTO);
 

@@ -1,8 +1,6 @@
 BF={
 	initGrid: function () {
-		
    		 $("#jqGrid").jqGrid({
-   			
 	             url:  ctxPath +'hr/itSuitableLogin',
 	             mtype: "POST",
 	             datatype: "json",

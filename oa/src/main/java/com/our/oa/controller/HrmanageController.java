@@ -16,6 +16,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.github.pagehelper.PageInfo;
 import com.our.oa.dto.GridDTO;
 import com.our.oa.dto.form.InterviewerDTO;
+import com.our.oa.dto.form.InterviewerTestDTO;
 import com.our.oa.dto.form.InterviewerVisaHandleDTO;
 import com.our.oa.dto.list.InterviewerListDTO;
 import com.our.oa.dto.list.InterviewerListQueryDTO;
@@ -25,7 +26,6 @@ import com.our.oa.dto.list.InterviewerVisaHandleListDTO;
 import com.our.oa.dto.list.InterviewerVisaHandleListQueryDTO;
 import com.our.oa.entity.Company;
 import com.our.oa.entity.Interviewer;
-import com.our.oa.entity.InterviewerVisaHandle;
 import com.our.oa.service.HrmanageService;
 import com.our.oa.service.InterviewerTestService;
 import com.our.oa.service.VisaHandleService;
@@ -165,16 +165,16 @@ public class HrmanageController {
 	
 	@GetMapping("/visaInfo")
 	public ModelAndView visaInfo(ModelAndView modelAndView,int interviewerId) {
-		InterviewerVisaHandle interviewerVisaHandle = hrmanageServiceImpl.getInterviewerVisaHandleByInterviewerId(interviewerId);
-		modelAndView.addObject("interviewerVisaHandle", interviewerVisaHandle);
+		InterviewerVisaHandleDTO interviewerVisaHandleDTO = hrmanageServiceImpl.getInterviewerVisaHandleByInterviewerId(interviewerId);
+		modelAndView.addObject("interviewerVisaHandle", interviewerVisaHandleDTO);
 		modelAndView.setViewName("hr/visaInfo");
 		return modelAndView;
 	}
 	
 	@GetMapping("/modifyVisaInfo")
 	public ModelAndView modifyVisaInfo(ModelAndView modelAndView,int interviewerId) {
-		InterviewerVisaHandle interviewerVisaHandle = hrmanageServiceImpl.getInterviewerVisaHandleByInterviewerId(interviewerId);
-		modelAndView.addObject("interviewerVisaHandle", interviewerVisaHandle);
+		InterviewerVisaHandleDTO interviewerVisaHandleDTO = hrmanageServiceImpl.getInterviewerVisaHandleByInterviewerId(interviewerId);
+		modelAndView.addObject("interviewerVisaHandle", interviewerVisaHandleDTO);
 		modelAndView.setViewName("hr/modifyVisaInfo");
 		return modelAndView;
 	}
@@ -205,10 +205,21 @@ public class HrmanageController {
 	
 	@PostMapping("/itSuitableLoginDo")
 	public ModelAndView itSuitaleLoginDo(ModelAndView modelAndView,String interviewerCode) {
-		modelAndView.setViewName("itSuitable");
-		
+		InterviewerTestDTO interviewerTestDTO = interviewerTestServiceImpl.selectInterviewerTestInfoByInterviewerCode(interviewerCode);
+		if(interviewerTestDTO != null) {
+			modelAndView.setView(new RedirectView("itSuitable?testId="+interviewerTestDTO.getTestId()));
+			return modelAndView;
+		}
+		modelAndView.setView(new RedirectView("itSuitableLogin"));
 		return modelAndView;
 	}
 	
+	@GetMapping("/itSuitable")
+	public ModelAndView itSuitable(ModelAndView modelAndView,int testId) {
+		InterviewerTestDTO dto = interviewerTestServiceImpl.selectInterviewerTestInfoByTestId(testId);
+		modelAndView.addObject("testInfo", dto);
+		modelAndView.setViewName("hr/itSuitable");
+		return modelAndView;
+	}
 	
 }

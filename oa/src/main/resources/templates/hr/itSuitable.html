@@ -3,10 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <title>it suitable</title>
-	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
-	<link rel="stylesheet" th:href="@{/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/ui.jqgrid.css}">
+    <link rel="stylesheet" th:href="@{/css/jquery-ui-1.8.16.custom.css}">
+    <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.jqGrid.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/i18n/grid.locale-ja.js}"></script>
 </head>
 <body>
-	
+<div>
+	<table>
+		<tr>
+			<th colspan="2">IT适性试验结果</th>
+		</tr>
+		<tr>
+			<td>面试人员编号:</td><td th:text="${testInfo.interviewer.interviewerCode}"></td>
+		</tr>
+		<tr>
+			<td>面试人员姓名:</td><td th:text="${testInfo.interviewer.interviewerName}"></td>
+		</tr>
+		<tr>
+			<td>担当1:</td><td th:text="${testInfo.handler1}"></td>
+		</tr>
+		<tr>
+			<td>担当2:</td><td th:text="${testInfo.handler2}"></td>
+		</tr>
+		<tr>
+			<td>考试分数:</td><td th:text="${testInfo.testScore}"></td>
+		</tr>
+		<tr>
+			<td>:</td><td></td>
+		</tr>
+		<tr>
+			<td>日语资格证:</td><td th:text="${testInfo.japaneseCertificate}"></td>
+		</tr>
+		<tr>
+			<td>英语资格证:</td><td th:text="${testInfo.englishCertificate}"></td>
+		</tr>
+		<tr>
+			<td>计算机资格证书:</td><td th:text="${testInfo.computerCertificate}"></td>
+		</tr>
+		<tr>
+			<td>日语听力:</td><td th:text="${testInfo.japaneseListen}"></td>
+		</tr>
+		<tr>
+			<td>日语口语:</td><td th:text="${testInfo.japaneseSpeak}"></td>
+		</tr>
+		<tr>
+			<td>日语文档阅读:</td><td th:text="${testInfo.japaneseRead}"></td>
+		</tr>
+		<tr>
+			<td>日语文档书写:</td><td th:text="${testInfo.japaneseWrite}"></td>
+		</tr>
+		<tr>
+			<td>英语听力:</td><td th:text="${testInfo.englishListen}"></td>
+		</tr>
+		<tr>
+			<td>英语口语:</td><td th:text="${testInfo.englishSpeak}"></td>
+		</tr>
+		<tr>
+			<td>英语文档阅读:</td><td th:text="${testInfo.englishRead}"></td>
+		</tr>
+		<tr>
+			<td>英语文档书写:</td><td th:text="${testInfo.englishWrite}"></td>
+		</tr>
+		<tr>
+			<td>技术能力:</td><td th:text="${testInfo.skillAbility}"></td>
+		</tr>
+		<tr>
+			<td>备考:</td><td th:text="${testInfo.description}"></td>
+		</tr>
+		<tr>
+			<td colspan="2"><a href="#">修改</a></td>
+		</tr>
+	</table>
+</div>
 </body>
 </html>

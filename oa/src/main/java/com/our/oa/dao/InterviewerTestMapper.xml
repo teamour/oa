@@ -34,12 +34,63 @@
   
   <select id="getAll" resultMap="BaseResultMap">
     select 
-    test_id, t_interviewer_test.interviewer_id, 
-    t_interviewer.interviewer_code, t_interviewer.interviewer_name, 
-    test_score
+	    test_id, t_interviewer_test.interviewer_id, 
+	    t_interviewer.interviewer_code, t_interviewer.interviewer_name, 
+	    test_score
     from t_interviewer_test left join t_interviewer on 
-    t_interviewer.interviewer_id=t_interviewer_test.interviewer_id
+    	t_interviewer.interviewer_id=t_interviewer_test.interviewer_id
   </select>
+  
+  <select id="selectInterviewerTestInfoByInterviewerCode" parameterType="STRING" resultMap="BaseResultMap">
+  	select 
+	    test_id, t_interviewer_test.interviewer_id, 
+	    t_interviewer.interviewer_code, t_interviewer.interviewer_name, 
+	    handler1, handler2, 
+	    test_score, is_pass, 
+	    japanese_certificate, english_certificate, 
+	    computer_certificate, japanese_listen, 
+	    japanese_speak, japanese_read, 
+	    japanese_write, english_listen, 
+	    english_speak, english_read, 
+	    english_write, t_interviewer_test.delete_flag, 
+	    skill_ability, description
+    from t_interviewer_test left join t_interviewer on 
+    	t_interviewer.interviewer_id=t_interviewer_test.interviewer_id 
+    where t_interviewer.interviewer_code=#{interviewerCode}
+  </select>
+  
+  <select id="selectInterviewerTestInfoByTestId" parameterType="INTEGER" resultMap="BaseResultMap">
+  	select 
+	    test_id, t_interviewer_test.interviewer_id, 
+	    t_interviewer.interviewer_code, t_interviewer.interviewer_name, 
+	    handler1, handler2, 
+	    test_score, is_pass, 
+	    japanese_certificate, english_certificate, 
+	    computer_certificate, japanese_listen, 
+	    japanese_speak, japanese_read, 
+	    japanese_write, english_listen, 
+	    english_speak, english_read, 
+	    english_write, t_interviewer_test.delete_flag, 
+	    skill_ability, description
+    from t_interviewer_test left join t_interviewer on 
+    	t_interviewer.interviewer_id=t_interviewer_test.interviewer_id 
+    where test_id=#{testId}
+  </select>
+  
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from oa..t_interviewer_test
