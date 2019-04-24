@@ -1,9 +1,9 @@
 package com.our.oa.dao;
 
+import com.github.pagehelper.Page;
+import com.our.oa.dto.list.CustomerListDTO;
 import com.our.oa.dto.list.CustomerListQueryDTO;
 import com.our.oa.entity.Customer;
-
-import java.util.List;
 
 /**
 * Created by Mybatis Generator on 2019/03/31
@@ -15,9 +15,7 @@ public interface CustomerMapper {
 
     Customer selectByPrimaryKey(Integer customerId);
 
-    List<Customer> selectAll();
-    
-    List<Customer> selectQueryList(CustomerListQueryDTO DTO);
+    Page<CustomerListDTO> selectQueryList(CustomerListQueryDTO DTO);
 
     int updateByPrimaryKey(Customer record);
 }

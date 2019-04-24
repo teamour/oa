@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.Page;
 import com.our.oa.dto.GridDTO;
 import com.our.oa.dto.form.CustomerDTO;
 import com.our.oa.dto.list.CustomerListDTO;
@@ -37,7 +37,7 @@ public class CustomerController {
 	public GridDTO<CustomerListDTO> listData(HttpServletRequest req,
 			CustomerListQueryDTO listQueryDTO) {
 		
-		PageInfo<CustomerListDTO> queryList = service.getQueryList(listQueryDTO);
+		Page<CustomerListDTO> queryList = service.getQueryList(listQueryDTO);
 		return PageInfoToGridDTOUtils.getGridDataResult(queryList);
 	}
 	

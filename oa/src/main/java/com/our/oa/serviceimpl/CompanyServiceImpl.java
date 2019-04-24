@@ -1,19 +1,16 @@
 package com.our.oa.serviceimpl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.Page;
 import com.our.oa.dao.CompanyMapper;
 import com.our.oa.dto.form.CompanyDTO;
 import com.our.oa.dto.list.CompanyListDTO;
 import com.our.oa.dto.list.CompanyListQueryDTO;
 import com.our.oa.entity.Company;
 import com.our.oa.service.CompanyService;
-import com.our.oa.utils.ModelMapperUtils;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
@@ -52,11 +49,11 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	@Override
-	public List<CompanyListDTO> getGridList(CompanyListQueryDTO g) {
-		 List<Company> queryResult = mapper.selectQueryList(g);
+	public Page<CompanyListDTO> getGridList(CompanyListQueryDTO g) {
+		 Page<CompanyListDTO> queryResult = mapper.selectQueryList(g);
 		 if(!queryResult.isEmpty()) {
-			return ModelMapperUtils.mapCollection(queryResult, CompanyListDTO.class);			 
-		 }
-		 return new ArrayList<CompanyListDTO>();
+			 return queryResult;
+		 }	 
+		 return new Page<>();
 	}
 }
