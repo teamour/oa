@@ -16,11 +16,11 @@ import com.our.oa.service.AnnouncementService;
 public class AnnouncementServiceImpl implements AnnouncementService {
 
 	@Autowired
-	private AnnouncementMapper announcementMapper;
+	private AnnouncementMapper mapper;
 	
 	@Override
 	public Announcement getByPrimaryKey(Integer announcementId) {
-		return announcementMapper.selectByPrimaryKey(announcementId);
+		return mapper.selectByPrimaryKey(announcementId);
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 	    ModelMapper modelMapper = new ModelMapper();
 	    Announcement record = modelMapper.map(dto, Announcement.class);
 	    
-		return announcementMapper.insert(record);
+		return mapper.insert(record);
 	}
 
 	@Override
@@ -36,17 +36,17 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 	    ModelMapper modelMapper = new ModelMapper();
 	    Announcement record = modelMapper.map(dto, Announcement.class);
 	    
-		return announcementMapper.updateByPrimaryKey(record);
+		return mapper.updateByPrimaryKey(record);
 	}
 
 	@Override
 	public int deleteByPrimaryKey(Integer announcementId) {
-		return announcementMapper.deleteByPrimaryKey(announcementId);
+		return mapper.deleteByPrimaryKey(announcementId);
 	}
 
 	@Override
 	public Page<AnnouncementListDTO> getGridList(AnnouncementListQueryDTO g) {
-		 Page<AnnouncementListDTO> queryResult = announcementMapper.selectQueryList(g);
+		 Page<AnnouncementListDTO> queryResult = mapper.selectQueryList(g);
 		 if(!queryResult.isEmpty()) {
 			 return queryResult;
 		 }	 
