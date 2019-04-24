@@ -20,14 +20,17 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@PostMapping("/login")
-	public String login(User user) {
-		System.out.println(user.getEmail());
-		System.out.println(user.getUserPwd());
+	@GetMapping("/login")
+	public String login(String email,String userPwd) {
+		System.out.println(email);
+		System.out.println(userPwd);
+		User user =new User();
+		user.setEmail(email);
+		user.setUserPwd(userPwd);
 		Integer rows = userService.selectByEmail(user);
 			System.out.println(rows);
 			if (rows==0) {
-				return "账号或密码不存在";
+				System.out.println("账号或密码错误");
 			}
 		// 成功之后进入home页面
 		return "home";

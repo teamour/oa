@@ -2,6 +2,7 @@ package com.our.oa.service;
 
 import java.util.List;
 
+import com.github.pagehelper.Page;
 import com.our.oa.dto.form.EmployeeDTO;
 import com.our.oa.dto.form.EmployeeSiteDTO;
 import com.our.oa.dto.list.EmployeeListDTO;
@@ -15,7 +16,7 @@ public interface EmployeeService extends ListQueryService<EmployeeListDTO,Employ
 
 	 List<Employee> findAll();
 
-	 List<EmployeeListDTO> getGridList(EmployeeListQueryDTO g) ;
+	 Page<EmployeeListDTO> getGridList(EmployeeListQueryDTO g) ;
 	
 	 Employee getByPrimaryKey(Integer employeeId) ;
 

@@ -7,10 +7,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.Page;
 import com.our.oa.dao.EmployeeMapper;
 import com.our.oa.dao.EmployeeSiteMapper;
 import com.our.oa.dto.form.EmployeeDTO;
 import com.our.oa.dto.form.EmployeeSiteDTO;
+import com.our.oa.dto.list.AnnouncementListDTO;
 import com.our.oa.dto.list.EmployeeListDTO;
 import com.our.oa.dto.list.EmployeeListQueryDTO;
 import com.our.oa.entity.Employee;
@@ -43,12 +45,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public List<EmployeeListDTO> getGridList(EmployeeListQueryDTO g) {
-		 List<Employee> queryResult = employeeMapper.selectQueryList(g);
+	public Page<EmployeeListDTO> getGridList(EmployeeListQueryDTO g) {
+		/*
+		 * List<Employee> queryResult = employeeMapper.selectQueryList(g);
+		 * if(!queryResult.isEmpty()) { return
+		 * ModelMapperUtils.mapCollection(queryResult, EmployeeListDTO.class); } return
+		 * new ArrayList<EmployeeListDTO>();
+		 */
+		 Page<EmployeeListDTO> queryResult = employeeMapper.selectQueryList(g);
 		 if(!queryResult.isEmpty()) {
-			return ModelMapperUtils.mapCollection(queryResult, EmployeeListDTO.class);			 
-		 }
-		 return new ArrayList<EmployeeListDTO>();
+			 return queryResult;
+		 }	 
+		 return new Page<>();
 	}
 	@Override
 	public Employee getByPrimaryKey(Integer employeeId) {
