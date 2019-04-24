@@ -77,8 +77,56 @@
     where test_id=#{testId}
   </select>
   
+  <update id="modifyTestInfo" parameterType="com.our.oa.dto.form.InterviewerTestDTO">
+  	update t_interviewer_test
+    set 
+      handler1 = #{handler1},
+      handler2 = #{handler2},
+      test_score = #{testScore},
+      is_pass = #{isPass},
+      japanese_certificate = #{japaneseCertificate},
+      english_certificate = #{englishCertificate},
+      computer_certificate = #{computerCertificate},
+      japanese_listen = #{japaneseListen},
+      japanese_speak = #{japaneseSpeak},
+      japanese_read = #{japaneseRead},
+      japanese_write = #{japaneseWrite},
+      english_listen = #{englishListen},
+      english_speak = #{englishSpeak},
+      english_read = #{englishRead},
+      english_write = #{englishWrite},
+      update_time = #{updateTime},
+      skill_ability = #{skillAbility},
+      description = #{description}
+    where test_id = #{testId}
+  </update>
 
-
+  <insert id="addTestInfo" parameterType="com.our.oa.dto.form.InterviewerTestDTO">
+	  insert into t_interviewer_test (
+		  interviewer_id, handler1, 
+	      handler2, test_score, 
+	      is_pass, japanese_certificate, 
+	      english_certificate, computer_certificate, 
+	      japanese_listen, japanese_speak, 
+	      japanese_read, japanese_write, 
+	      english_listen, english_speak, 
+	      english_read, english_write, 
+	      create_time, skill_ability, 
+	      description
+      	)
+    values 
+    	 (#{interviewerId}, #{handler1}, 
+	      #{handler2}, #{testScore}, 
+	      #{isPass}, #{japaneseCertificate}, 
+	      #{englishCertificate}, #{computerCertificate}, 
+	      #{japaneseListen}, #{japaneseSpeak}, 
+	      #{japaneseRead}, #{japaneseWrite}, 
+	      #{englishListen}, #{englishSpeak}, 
+	      #{englishRead}, #{englishWrite}, 
+	      #{createTime}, #{skillAbility}, 
+	      #{description}
+      )
+  </insert>
 
   
   

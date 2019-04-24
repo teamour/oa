@@ -105,5 +105,10 @@ public class HrmanageServiceImpl implements HrmanageService{
 		return InterviewerVisaHandleMapper.modifyVisaInfo(interviewerVisaHandleDTO) > 0;
 	}
 
+	@Override
+	public List<InterviewerDTO> getInterViewerIdAndCode() {
+		return interviewerMapper.getInterViewerIdAndCode();
+	}
+
 
 }

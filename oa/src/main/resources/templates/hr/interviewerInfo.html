@@ -7,7 +7,7 @@
 	<link rel="stylesheet" th:href="@{/css/layui.css}">
 </head>
 <body>
-<div><a th:href="@{hrIndex}">返回首页</a></div>
+<div><a class="layui-btn" th:href="@{hrIndex}">返回首页</a></div>
 <table border="1" style="border:1px solid black;">
 	<tr>
 		<th colspan="6" align="center">面试人员详细信息</th>
@@ -180,7 +180,7 @@
 		<td></td>
 	</tr>
 	<tr>
-		<td colspan="4" align="center"><a th:href="@{updateInfo(interviewerId=${detailInfo.interviewerId})}">编辑></a></td><td></td>
+		<td colspan="4" align="center"><a th:href="@{interviewerInfoModify(interviewerId=${detailInfo.interviewerId})}">编辑></a></td><td></td>
 	</tr>
 </table>
 </body>

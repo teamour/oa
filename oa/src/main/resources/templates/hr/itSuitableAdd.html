@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>it suitable update</title>
+	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+	<link rel="stylesheet" th:href="@{/css/layui.css}">
+</head>
+<body>
+<div>
+	<a class="layui-btn" th:href="@{hrIndex}">返回首页</a>
+</div>
+<div>
+	<form action="#" th:action="@{/hr/itSuitableAddDo}" method="post" th:object="${testDTO}">
+	<table>
+		<tr>
+			<th colspan="2">IT适性试验结果添加</th>
+		</tr>
+		<tr>
+			<td>面试人员编号:</td>
+			<td>
+				<select th:field="*{interviewerId}">
+					<option th:each="iac:${idAndCode}" th:value="${iac.interviewerId}" th:text="${iac.interviewerCode}"></option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>担当1:</td><td><input type="text" th:field="*{handler1}"></td>
+		</tr>
+		<tr>
+			<td>担当2:</td><td><input type="text" th:field="*{handler2}"></td>
+		</tr>
+		<tr>
+			<td>考试分数:</td><td><input type="text" th:field="*{testScore}"></td>
+		</tr>
+		<tr>
+			<td>isPass:</td>
+			<td>
+				<select th:field="*{isPass}">
+					<option value="0">否</option>
+					<option value="1">是</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>日语资格证:</td><td><input type="text" th:field="*{japaneseCertificate}"></td>
+		</tr>
+		<tr>
+			<td>英语资格证:</td><td><input type="text" th:field="*{englishCertificate}"></td>
+		</tr>
+		<tr>
+			<td>计算机资格证书:</td><td><input type="text" th:field="*{computerCertificate}"></td>
+		</tr>
+		<tr>
+			<td>日语听力:</td><td><input type="number" th:field="*{japaneseListen}"></td>
+		</tr>
+		<tr>
+			<td>日语口语:</td><td><input type="number" th:field="*{japaneseSpeak}"></td>
+		</tr>
+		<tr>
+			<td>日语文档阅读:</td><td><input type="number" th:field="*{japaneseRead}"></td>
+		</tr>
+		<tr>
+			<td>日语文档书写:</td><td><input type="number" th:field="*{japaneseWrite}"></td>
+		</tr>
+		<tr>
+			<td>英语听力:</td><td><input type="number" th:field="*{englishListen}"></td>
+		</tr>
+		<tr>
+			<td>英语口语:</td><td><input type="number" th:field="*{englishSpeak}"></td>
+		</tr>
+		<tr>
+			<td>英语文档阅读:</td><td><input type="number" th:field="*{englishRead}"></td>
+		</tr>
+		<tr>
+			<td>英语文档书写:</td><td><input type="number" th:field="*{englishWrite}"></td>
+		</tr>
+		<tr>
+			<td>技术能力:</td><td><input type="number" th:field="*{skillAbility}"></td>
+		</tr>
+		<tr>
+			<td>备考:</td><td><input type="text" th:field="*{description}"></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="submit" value="新增"></td>
+		</tr>
+	</table>
+	</form>
+</div>
+</body>
+</html>

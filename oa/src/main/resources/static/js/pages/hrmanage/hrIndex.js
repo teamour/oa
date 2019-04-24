@@ -44,14 +44,14 @@ BF={
 		}
 		// 要判断是否有选择，且只选中一行数据
 		
-		window.location.href = ctxPath+"hr/updateInfo?interviewerId="+rowId;
+		window.location.href = ctxPath+"hr/interviewerInfoModify?interviewerId="+rowId;
 	},
 	selectData:function(){
 		var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
 		if(rowId == null || rowId == ''){
 			return;
 		}
-		window.location.href = ctxPath+"hr/detailInfo?interviewerId="+rowId;
+		window.location.href = ctxPath+"hr/interviewerInfo?interviewerId="+rowId;
 	},
 	searchData:function(){
 		

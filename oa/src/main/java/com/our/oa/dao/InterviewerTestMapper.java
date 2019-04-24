@@ -1,6 +1,7 @@
 package com.our.oa.dao;
 
 import com.github.pagehelper.Page;
+import com.our.oa.dto.form.InterviewerTestDTO;
 import com.our.oa.dto.list.InterviewerTestListDTO;
 import com.our.oa.entity.InterviewerTest;
 
@@ -21,5 +22,9 @@ public interface InterviewerTestMapper {
 	InterviewerTest selectInterviewerTestInfoByInterviewerCode(String interviewerCode);
 
 	InterviewerTest selectInterviewerTestInfoByTestId(int testId);
+
+	int modifyTestInfo(InterviewerTestDTO testInfo);
+
+	int addTestInfo(InterviewerTestDTO testDTO);
 
 }

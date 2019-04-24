@@ -8,8 +8,8 @@
 	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
 	<link rel="stylesheet" th:href="@{/css/layui.css}">
 <body>
-<div><a th:href="@{hrIndex}">返回首页</a></div>
-<form class="layui" action="#" th:action="@{/hr/updateInfoDo}" method="post" th:object="${detailInfo}">
+<div><a class="layui-btn" th:href="@{hrIndex}">返回首页</a></div>
+<form class="layui-form" action="#" th:action="@{/hr/interviewerInfoModifyDo}" method="post" th:object="${detailInfo}">
 	<table>
 		<tr>
 			<td><input type="hidden" th:field="*{interviewerId}" th:value="${detailInfo.interviewerId}"></td>

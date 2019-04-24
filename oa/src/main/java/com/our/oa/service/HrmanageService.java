@@ -29,4 +29,6 @@ public interface HrmanageService extends ListQueryService<InterviewerListDTO, In
 
 	boolean modifyVisaInfo(InterviewerVisaHandleDTO interviewerVisaHandleDTO);
 
+	List<InterviewerDTO> getInterViewerIdAndCode();
+
 }

@@ -54,6 +54,8 @@ public class InterviewerTestDTO implements Serializable {
     private Integer englishWrite;
 
     private String createTime;
+    
+    private String updateTime;
 
     private Boolean deleteFlag;
 

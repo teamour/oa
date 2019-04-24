@@ -1,5 +1,8 @@
 package com.our.oa.serviceimpl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +37,18 @@ public class InterviewerTestServiceImpl implements InterviewerTestService{
 	@Override
 	public InterviewerTestDTO selectInterviewerTestInfoByTestId(int testId) {
 		return new ModelMapper().map(interviewerTestMapper.selectInterviewerTestInfoByTestId(testId), InterviewerTestDTO.class);
+	}
+
+	@Override
+	public boolean modifyTestInfo(InterviewerTestDTO testInfo) {
+		testInfo.setUpdateTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+		return interviewerTestMapper.modifyTestInfo(testInfo) > 0;
+	}
+
+	@Override
+	public boolean addTestInfo(InterviewerTestDTO testDTO) {
+		testDTO.setCreateTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+		return interviewerTestMapper.addTestInfo(testDTO) > 0;
 	}
 
 }

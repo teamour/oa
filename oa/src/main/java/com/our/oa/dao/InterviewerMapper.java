@@ -3,6 +3,7 @@ package com.our.oa.dao;
 import java.util.List;
 
 import com.github.pagehelper.Page;
+import com.our.oa.dto.form.InterviewerDTO;
 import com.our.oa.dto.list.InterviewerListDTO;
 import com.our.oa.dto.list.InterviewerListQueryDTO;
 import com.our.oa.entity.Company;
@@ -38,6 +39,8 @@ public interface InterviewerMapper {
 	Interviewer getInterviewerByInterviewerCode(String interviewerCode);
 
 	Page<InterviewerListDTO> getInterviewerBySearch(InterviewerListQueryDTO listqueryDTO);
+
+	List<InterviewerDTO> getInterViewerIdAndCode();
 
 
 }
