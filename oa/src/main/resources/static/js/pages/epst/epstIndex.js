@@ -24,18 +24,45 @@ BF={
 	             rownumber:true,
 	             viewrecords: true, 
 	             pager: '#jqGridPager',
+	             rowNum: 10,
 	             rowList: [5, 10, 50, 100, 500],
 	             multiselect: true,
 	             jsonReader:{ 
 	            	 repeatitems:false },
-	            	 sortname:'employeeStudyId',
-	            	 sortorder: "asc",
-	         		caption: "员工学习"
+
 	         });
    		 
-   	/*	jQuery("#jqGrid").jqGrid('navGrid','#jqGridPager',{del:false,add:false,edit:false,search:false});
-   		jQuery("#jqGrid").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});*/
+   		$("#jqGrid1").jqGrid({
+            url:  ctxPath +'epst/',
+            mtype: "GET",
+            datatype: "json",
+            colNames:["姓名", "总经验年数", "技术经验1", "技术经验2", "技术经验3", "日语レベル", "技术レベル"],
+            colModel: [
+                { label: 'employeeName',  name: 'employeeName',  width: 75 },
+                { label: 'workingYears',  name: 'workingYears',  width: 80 },
+                { label: 'skill1_years',  name: 'skill1_years',  width: 100 },
+                { label: 'skill2_years',  name: 'skill2_years',  width: 100,},
+                { label: 'skill3_years',  name: 'skill3_years',  width: 100 },
+                { label: 'japaneseLevel', name: 'japaneseLevel', width: 150 },
+                { label: 'skillLevel',    name: 'skillLevel',    width: 80 }
+            ],
+            width: "1000",
+            height: "380",
+            'loadError' : function (xhr, status, error){
+                alert(error);
+            },
+            rownumber:true,
+            viewrecords: true, 
+            pager: '#jqGridPager1',
+            rowNum: 10,
+            rowList: [5, 10, 50, 100, 500],
+            multiselect: true,
+            jsonReader:{ 
+           	 repeatitems:false },
 
+        });
+   		 
+   	
 
 	},
 	modifyData:function(){

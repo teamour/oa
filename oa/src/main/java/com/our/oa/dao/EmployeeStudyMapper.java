@@ -1,5 +1,8 @@
 package com.our.oa.dao;
 
+import com.github.pagehelper.Page;
+import com.our.oa.dto.form.EmployeeStudyDTO;
+import com.our.oa.dto.list.EmployeeStudyListDTO;
 import com.our.oa.dto.list.EmployeeStudyListQueryDTO;
 import com.our.oa.entity.EmployeeStudy;
 import java.util.List;
@@ -19,7 +22,7 @@ public interface EmployeeStudyMapper {
 
     List<EmployeeStudy> selectAll();
     
-    List<EmployeeStudy> selectQueryList(EmployeeStudyListQueryDTO queryDTO); 
+    Page<EmployeeStudyListDTO> selectQueryList(EmployeeStudyListQueryDTO queryDTO); 
 
     int updateByPrimaryKey(EmployeeStudy record);
     

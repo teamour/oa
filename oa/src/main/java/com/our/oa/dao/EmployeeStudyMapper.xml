@@ -91,9 +91,9 @@
     from t_employee_study
     <where>
     <if test="employeeId!=null and employeeId!=''">
-      employee_id like #{employeeId} and
+   		and employee_id like concat("%",#{employeeId},"%")
     </if>
-    delete_flag = 0 
+     and delete_flag = 0 
     </where>
   </select>
   

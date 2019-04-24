@@ -25,12 +25,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.our.oa.dto.GridDTO;
 import com.our.oa.dto.form.AnnouncementDTO;
 import com.our.oa.dto.form.EmployeeDTO;
 import com.our.oa.dto.form.EmployeeSiteDTO;
 import com.our.oa.dto.form.EmployeeStudyDTO;
+import com.our.oa.dto.list.EmployeeListDTO;
+import com.our.oa.dto.list.EmployeeListQueryDTO;
 import com.our.oa.dto.list.EmployeeStudyListDTO;
 import com.our.oa.dto.list.EmployeeStudyListQueryDTO;
 import com.our.oa.entity.Employee;
@@ -90,14 +93,22 @@ public class EmployeeStudyController {
 	public GridDTO<EmployeeStudyListDTO> listDate(HttpServletRequest req,
 			EmployeeStudyListQueryDTO listQueryDTO){
 		System.out.println("进来了！！！");
-		PageInfo<EmployeeStudyListDTO> queryList = employeeStudyService.getQueryList(listQueryDTO);
+		Page<EmployeeStudyListDTO> queryList = employeeStudyService.getQueryList(listQueryDTO);
 	    return PageInfoToGridDTOUtils.getGridDataResult(queryList);
 		
+	}
+	@GetMapping(value="/employeelist")
+	public GridDTO<EmployeeListDTO> listDate1(HttpServletRequest req,
+			EmployeeListQueryDTO listQueryDTO){
+		System.out.println("进来了2！！！");
+		Page<EmployeeListDTO> queryList = emplpyeeService.getQueryList(listQueryDTO);
+		return PageInfoToGridDTOUtils.getGridDataResult(queryList);
 	}
 	
 	@PostMapping(value="/addepst")
 	public ModelAndView save(@Valid EmployeeStudyDTO employeeStudyForm, 
 			BindingResult bindingResult,ModelAndView modelAndView) {
+		
 		
         if (bindingResult.hasErrors()) {
         	modelAndView.setViewName("epst/addepst");
@@ -120,11 +131,11 @@ public class EmployeeStudyController {
         
         System.out.println(employeeStudyForm.getBeginDate());
         // 保存成功后返回列表页
-        modelAndView.setViewName("epst/epstIndex");
+        modelAndView.setViewName("redirect:epstIndex");
         System.out.println("secuss!");
         return modelAndView;
 	}
-	@GetMapping(value = "editepst/{id}")
+	@GetMapping(value = "/editepst/{id}")
 	public ModelAndView view(@PathVariable(name="id",required=false)Integer id, ModelAndView modelAndView) {
 		EmployeeStudyDTO dto = new EmployeeStudyDTO();
 		if (id != null) {
@@ -161,7 +172,7 @@ public class EmployeeStudyController {
 			}
 			}
         // 保存成功后返回列表页
-        modelAndView.setViewName("epst/epstIndex");
+        modelAndView.setViewName("redirect:/epst/epstIndex");
         return modelAndView;
 	}
 
