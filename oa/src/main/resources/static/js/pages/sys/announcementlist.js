@@ -33,10 +33,18 @@ BF={
 		
 		window.location.href = ctxPath+"announcement/"+selData[0].announcementId;
 	},
+	viewData:function(){
+		var selData = $("#jqGrid").getRowData();
+		// 要判断是否有选择，且只选中一行数据		
+		window.location.href = ctxPath+"announcement/view/"+selData[0].announcementId;
+	},
 	searchData: function (){
 		$("#jqGrid").setGridParam({
             page: 1,
-            postData: { title :$("#title").val() }
+            postData: { 
+            	title :$("#title").val(),
+            	fuzzyQuery:$("#fuzzyQuery").attr("checked")?1:0
+            }
         }).trigger('reloadGrid');
    }
 	

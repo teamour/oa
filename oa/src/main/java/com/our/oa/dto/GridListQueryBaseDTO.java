@@ -48,7 +48,4 @@ public class GridListQueryBaseDTO implements Serializable{
 	 * asc/desc
 	 */
 	private String sord;
-	
-	@Builder.Default
-	private Integer startIndex = 0;
 }
