@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.Page;
 import com.our.oa.dto.GridDTO;
 import com.our.oa.dto.form.CompanyDTO;
 import com.our.oa.dto.list.CompanyListDTO;
@@ -23,7 +23,7 @@ import com.our.oa.utils.PageInfoToGridDTOUtils;
 @RequestMapping(value = "/company")
 public class CompanyController {
 	@Autowired
-	private CompanyService companyService;
+	private CompanyService service;
 
 	@GetMapping(value = "/list")
 	public ModelAndView list(ModelAndView modelAndView) {
@@ -36,7 +36,7 @@ public class CompanyController {
 	public GridDTO<CompanyListDTO> listData(
 			CompanyListQueryDTO listQueryDTO) {
 		
-		PageInfo<CompanyListDTO> queryList = companyService.getQueryList(listQueryDTO);
+		Page<CompanyListDTO> queryList = service.getQueryList(listQueryDTO);
 		return PageInfoToGridDTOUtils.getGridDataResult(queryList);
 	}
 
@@ -59,7 +59,7 @@ public class CompanyController {
 			return modelAndView;
 		}
 
-		companyService.insert(companyForm);
+		service.insert(companyForm);
 
 		modelAndView.setViewName("company/companyList");
 		modelAndView.addObject("companyForm", companyForm);
@@ -71,7 +71,7 @@ public class CompanyController {
 	public ModelAndView editor(@PathVariable(name = "id", required = false) Integer id, 
 			ModelAndView modelAndView) {
 
-		CompanyDTO dto = companyService.getByPrimaryKey(id);
+		CompanyDTO dto = service.getByPrimaryKey(id);
 		modelAndView.setViewName("company/companyEditor");
 		modelAndView.addObject("companyForm", dto);
 		return modelAndView;
@@ -86,7 +86,7 @@ public class CompanyController {
 			return modelAndView;
 		}
 
-		companyService.updateByPrimaryKey(companyForm);
+		service.updateByPrimaryKey(companyForm);
 
 		modelAndView.setViewName("company/companyList");
 		modelAndView.addObject("companyForm", companyForm);
@@ -98,7 +98,7 @@ public class CompanyController {
 	public ModelAndView detailed(@PathVariable(name = "id", required = false) Integer id, 
 			ModelAndView modelAndView) {
 
-		CompanyDTO dto = companyService.getByPrimaryKey(id);
+		CompanyDTO dto = service.getByPrimaryKey(id);
 		modelAndView.setViewName("company/companyDetailed");
 		modelAndView.addObject("companyForm", dto);
 		return modelAndView;
@@ -108,7 +108,7 @@ public class CompanyController {
 	public ModelAndView delete(@PathVariable(name = "id", required = false) Integer id, 
 			ModelAndView modelAndView) {
 
-		CompanyDTO dto = companyService.getByPrimaryKey(id);
+		CompanyDTO dto = service.getByPrimaryKey(id);
 		modelAndView.setViewName("company/companyDelete");
 		modelAndView.addObject("companyForm", dto);
 		return modelAndView;
@@ -122,7 +122,7 @@ public class CompanyController {
 			System.out.println(bindingResult.toString());
 		}
 
-		companyService.deleteByPrimaryKey(companyForm.getCompanyId());
+		service.deleteByPrimaryKey(companyForm.getCompanyId());
 
 		modelAndView.setViewName("company/companyList");
 		modelAndView.addObject("companyForm", companyForm);

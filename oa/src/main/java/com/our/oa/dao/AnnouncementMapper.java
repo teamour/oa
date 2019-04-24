@@ -1,8 +1,9 @@
 package com.our.oa.dao;
 
+import com.github.pagehelper.Page;
+import com.our.oa.dto.list.AnnouncementListDTO;
 import com.our.oa.dto.list.AnnouncementListQueryDTO;
 import com.our.oa.entity.Announcement;
-import java.util.List;
 
 /**
 * Created by Mybatis Generator on 2019/03/31
@@ -14,7 +15,7 @@ public interface AnnouncementMapper {
 
     Announcement selectByPrimaryKey(Integer announcementId);
 
-    List<Announcement> selectQueryList(AnnouncementListQueryDTO queryDTO);
+    Page<AnnouncementListDTO> selectQueryList(AnnouncementListQueryDTO queryDTO);
 
     int updateByPrimaryKey(Announcement record);
 }

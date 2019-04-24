@@ -1,14 +1,14 @@
 BF={
     saveData:function(data){
     	$.ajax({
-    			url:"http://localhost:8080/announcement/",
+    			url: ctxPath +"announcement/",
     			type:"post",
     			async: false,
     			data:JSON.stringify(data),
     			contentType: "application/json; charset=utf-8",  
     	        dataType: "json",
     	        success:function(data) {
-    		        layer.msg("aaaaa");
+    		        layer.msg("success");
     			},
     	        error:function(){
     	        	layer.msg("error!");

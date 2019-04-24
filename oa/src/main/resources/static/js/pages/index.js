@@ -1,15 +1,19 @@
-BF={
+/*BF={
 		userLogin:function(){
+			debugger
 			  var params={
 						 email:$("#usernameId").val(),
 						 userPwd:$("#passwordId").val()
-						 [Ids:$("#passwordId").val()]
 					  }
 					  var url="http://localhost:8080/user/login";
 					  console.log("params",params);
-					  $.post(url,params,function(){
-						location.href="http://localhost:8080/user/home";
-						  })
+					  $.post(url,params,function(result){
+						  if(result.state==1){
+							//跳转到indexUI对应的页面
+							  location.href="http://localhost:8080/user/home";
+						  }
+						  return false;//防止刷新时重复提交
+					  })
 						 
 		}
 }
@@ -24,4 +28,4 @@ layui.use(['form','layer','laypage','jquery'],function(){
 		    BF.userLogin();
 		 });
 		
-});
+});*/

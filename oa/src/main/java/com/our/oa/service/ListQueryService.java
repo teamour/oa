@@ -1,9 +1,9 @@
 package com.our.oa.service;
 
-import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.our.oa.dto.GridListDTO;
 import com.our.oa.dto.GridListQueryBaseDTO;
 
@@ -12,15 +12,17 @@ public interface ListQueryService<G extends GridListDTO,Q extends GridListQueryB
 	/*
 	 * 分页/条件 查询
 	 */
-	default PageInfo<G> getQueryList(Q q){
-		PageHelper.startPage(q.getPage(), q.getRows());
-		List<G> result = getGridList(q);
-		return new PageInfo<G>(result);
+	default Page<G> getQueryList(Q q){
+		String orderBy = "";
+		if(StringUtils.isNotBlank(q.getSord()) && StringUtils.isNotBlank(q.getSidx())) {
+			orderBy = q.getSidx() + " " + q.getSord();
+		}
+		PageHelper.startPage(q.getPage(), q.getRows(),orderBy);
+		return getGridList(q);		
 	}
 	
 	/*
 	 * 列表查询
 	 */
-	List<G> getGridList(Q g);
-
+	Page<G> getGridList(Q g);
 }

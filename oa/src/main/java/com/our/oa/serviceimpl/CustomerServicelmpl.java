@@ -1,21 +1,17 @@
 package com.our.oa.serviceimpl;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.Page;
 import com.our.oa.dao.CustomerMapper;
 import com.our.oa.dto.form.CustomerDTO;
-import com.our.oa.dto.list.CompanyListDTO;
 import com.our.oa.dto.list.CustomerListDTO;
 import com.our.oa.dto.list.CustomerListQueryDTO;
-import com.our.oa.entity.Company;
 import com.our.oa.entity.Customer;
 import com.our.oa.service.CustomerService;
-import com.our.oa.utils.ModelMapperUtils;
 
 @Service
 public class CustomerServicelmpl implements CustomerService {
@@ -32,12 +28,12 @@ public class CustomerServicelmpl implements CustomerService {
 	}
 
 	@Override
-	public List<CustomerListDTO> getGridList(CustomerListQueryDTO g) {
-		 List<Customer> queryResult = mapper.selectQueryList(g);
+	public Page<CustomerListDTO> getGridList(CustomerListQueryDTO g) {
+		Page<CustomerListDTO> queryResult = mapper.selectQueryList(g);
 		 if(!queryResult.isEmpty()) {
-			return ModelMapperUtils.mapCollection(queryResult, CustomerListDTO.class);			 
-		 }
-		 return new ArrayList<CustomerListDTO>();
+			 return queryResult;
+		 }	 
+		 return new Page<>();
 	}
 
 	@Override

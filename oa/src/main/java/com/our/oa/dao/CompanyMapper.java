@@ -1,8 +1,9 @@
 package com.our.oa.dao;
 
+import com.github.pagehelper.Page;
+import com.our.oa.dto.list.CompanyListDTO;
 import com.our.oa.dto.list.CompanyListQueryDTO;
 import com.our.oa.entity.Company;
-import java.util.List;
 
 /**
 * Created by Mybatis Generator on 2019/03/31
@@ -14,7 +15,7 @@ public interface CompanyMapper {
 
     Company selectByPrimaryKey(Integer companyId);
     
-    List<Company> selectQueryList(CompanyListQueryDTO queryDTO);
+    Page<CompanyListDTO> selectQueryList(CompanyListQueryDTO queryDTO);
 
     int updateByPrimaryKey(Company record);
 }
