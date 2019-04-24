@@ -33,7 +33,7 @@ BF={
 	         });
    		 
    		$("#jqGrid1").jqGrid({
-            url:  ctxPath +'epst/',
+            url:  ctxPath +'epst/employeelist',
             mtype: "GET",
             datatype: "json",
             colNames:["姓名", "总经验年数", "技术经验1", "技术经验2", "技术经验3", "日语レベル", "技术レベル"],
