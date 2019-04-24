@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.Page;
 import com.our.oa.dto.GridDTO;
 import com.our.oa.dto.form.InterviewerDTO;
 import com.our.oa.dto.form.InterviewerTestDTO;
@@ -57,7 +57,7 @@ public class HrmanageController {
 	@PostMapping("/hrIndex")
 	public GridDTO<InterviewerListDTO> hrIndexdata(HttpServletRequest req,
 			InterviewerListQueryDTO queryDTO){
-		PageInfo<InterviewerListDTO> queryList = hrmanageServiceImpl.getQueryList(queryDTO);
+		Page<InterviewerListDTO> queryList = hrmanageServiceImpl.getQueryList(queryDTO);
 		return PageInfoToGridDTOUtils.getGridDataResult(queryList);
 	}
 	
@@ -70,8 +70,7 @@ public class HrmanageController {
 	@PostMapping(value="/search")
 	public GridDTO<InterviewerListDTO> search(HttpServletRequest req,
 			InterviewerListQueryDTO listqueryDTO) {
-		System.out.println("sssssssssssss"+listqueryDTO.getInterviewerName());
-		PageInfo<InterviewerListDTO> queryInfo = hrmanageServiceImpl.getQueryList(listqueryDTO);
+		Page<InterviewerListDTO> queryInfo = hrmanageServiceImpl.getQueryList(listqueryDTO);
 		return PageInfoToGridDTOUtils.getGridDataResult(queryInfo);
 	}
 	
@@ -148,7 +147,7 @@ public class HrmanageController {
 	@PostMapping("/visaLogin")
 	public GridDTO<InterviewerVisaHandleListDTO> allVisaInfo(HttpServletRequest req,
 			InterviewerVisaHandleListQueryDTO QueryDTO){
-		PageInfo<InterviewerVisaHandleListDTO> queryInfo = visaHandleServiceImpl.getQueryList(QueryDTO);
+		Page<InterviewerVisaHandleListDTO> queryInfo = visaHandleServiceImpl.getQueryList(QueryDTO);
 		return PageInfoToGridDTOUtils.getGridDataResult(queryInfo);
 	}
 	
@@ -199,7 +198,7 @@ public class HrmanageController {
 	@PostMapping("/itSuitableLogin")
 	public GridDTO<InterviewerTestListDTO> itSuitaleData(HttpServletRequest req,
 			InterviewerTestListQueryDTO queryDTO) {
-		PageInfo<InterviewerTestListDTO> queryInfo = interviewerTestServiceImpl.getQueryList(queryDTO);
+		Page<InterviewerTestListDTO> queryInfo = interviewerTestServiceImpl.getQueryList(queryDTO);
 		return PageInfoToGridDTOUtils.getGridDataResult(queryInfo);
 	}
 	
