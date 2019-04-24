@@ -59,7 +59,7 @@
      and  delete_flag = 0
     </where>
   </select>
-  <update id="updateByEmployeeId" parameterType="com.our.oa.entity.EmployeeSite">
+  <update id="updateByEmployeeId" parameterType="com.our.oa.dto.form.EmployeeSiteDTO">
     update oasys.t_employee_site
     <set>
      <if test="projectId!=null and projectId!=''">
