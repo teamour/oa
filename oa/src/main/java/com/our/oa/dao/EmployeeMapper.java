@@ -1,6 +1,8 @@
 package com.our.oa.dao;
 
+import com.github.pagehelper.Page;
 import com.our.oa.dto.form.EmployeeDTO;
+import com.our.oa.dto.list.EmployeeListDTO;
 import com.our.oa.dto.list.EmployeeListQueryDTO;
 import com.our.oa.entity.Employee;
 import java.util.List;
@@ -22,7 +24,7 @@ public interface EmployeeMapper {
 	
 	int findNowId();
 	
-	List<Employee> selectQueryList(EmployeeListQueryDTO queryDTO);
+	Page<EmployeeListDTO> selectQueryList(EmployeeListQueryDTO queryDTO);
 	
 	int updateByEmployeeId(EmployeeDTO employee);
 	

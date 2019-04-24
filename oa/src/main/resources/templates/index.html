@@ -41,18 +41,33 @@
         </form>
     </div>
 <script type="text/javascript">
- function login(){
+/*  function login(){
 	  var params={
 		 email:$("#usernameId").val(),
 		 userPwd:$("#passwordId").val()
 	  }
 	  var url="http://localhost:8080/user/login";
 	  console.log("params",params);
-	  $.post(url,params,function(result){
-			  location.href="http://localhost:8080/user/home";
+ 	  $.post(url,params,function(){
+			 location.href="http://localhost:8080/user/home";
 		  return false;//防止刷新时重复提交
-	  })
- }
+	  })  
+	    $.ajax({
+			url:"http://localhost:8080/user/login/",
+			type:"GET",
+			async: true,
+			data: params,
+			contentType: "application/json; charset=utf-8",  
+	     	dataType: "json",
+	     	success:function(data) {
+	    	 location.href="http://localhost:8080/user/home";
+			},
+	     error:function(){
+	     	layer.msg("error!");
+	     }
+	});  
+ } */
+
 </script>   
 </body>
 </html>

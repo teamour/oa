@@ -1,7 +1,7 @@
 package com.our.oa.dao;
 
-import java.util.List;
-
+import com.github.pagehelper.Page;
+import com.our.oa.dto.list.InterviewerTestListDTO;
 import com.our.oa.entity.InterviewerTest;
 
 /**
@@ -16,7 +16,7 @@ public interface InterviewerTestMapper {
 
     int updateByPrimaryKey(InterviewerTest record);
 
-	List<InterviewerTest> getAll();
+	Page<InterviewerTestListDTO> getAll();
 
 	InterviewerTest selectInterviewerTestInfoByInterviewerCode(String interviewerCode);
 

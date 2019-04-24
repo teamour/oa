@@ -2,6 +2,8 @@ package com.our.oa.dao;
 
 import java.util.List;
 
+import com.github.pagehelper.Page;
+import com.our.oa.dto.list.InterviewerListDTO;
 import com.our.oa.dto.list.InterviewerListQueryDTO;
 import com.our.oa.entity.Company;
 import com.our.oa.entity.Interviewer;
@@ -23,7 +25,7 @@ public interface InterviewerMapper {
 
 	List<Company> getCompanyIdAndName();
 
-	List<Interviewer> getAllInterviewers();
+	Page<InterviewerListDTO> getAllInterviewers();
 
 	Interviewer checkCode(String code);
 
@@ -35,7 +37,7 @@ public interface InterviewerMapper {
 
 	Interviewer getInterviewerByInterviewerCode(String interviewerCode);
 
-	List<Interviewer> getInterviewerBySearch(InterviewerListQueryDTO listqueryDTO);
+	Page<InterviewerListDTO> getInterviewerBySearch(InterviewerListQueryDTO listqueryDTO);
 
 
 }

@@ -32,6 +32,7 @@
     <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
     <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
   </resultMap>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
    	delete from t_customer
     where customer_id = #{customerId,jdbcType=INTEGER}

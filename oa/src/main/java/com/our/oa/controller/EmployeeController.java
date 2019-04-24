@@ -1,4 +1,4 @@
-package com.our.oa.controller;
+package com.our.oa.controller; 
 
 
 
@@ -7,7 +7,6 @@ import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.Page;
 import com.our.oa.dto.GridDTO;
 import com.our.oa.dto.form.EmployeeDTO;
 import com.our.oa.dto.form.EmployeeSiteDTO;
@@ -42,8 +41,8 @@ public class EmployeeController {
 	@PostMapping(value="/list")
 	public GridDTO<EmployeeListDTO> listData(HttpServletRequest req,
 			EmployeeListQueryDTO listQueryDTO) {	
-	    PageInfo<EmployeeListDTO> queryList = employeeService.getQueryList(listQueryDTO);
-	    System.out.println(listQueryDTO.getEmployeeId());
+	    Page<EmployeeListDTO> queryList = employeeService.getQueryList(listQueryDTO);
+	    //System.out.println(listQueryDTO.getEmployeeId());
 	    return PageInfoToGridDTOUtils.getGridDataResult(queryList);
 	}
 	@GetMapping(value= {"","/"})

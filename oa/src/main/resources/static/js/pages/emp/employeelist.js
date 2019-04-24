@@ -28,7 +28,7 @@ BF={
 		             multiselect: true,
 		             jsonReader:{  repeatitems:false },
 	            	 loadonce:true,
-	            	 sortname:'employeeId',
+	            	 /*sortname:'employeeId',*/
 	            	 sortorder: "asc",
 	         		 caption: "员工记录"
 		             
@@ -51,7 +51,6 @@ BF={
 	        }).trigger('reloadGrid');
 	   },
 	   deleteByIds:function(){
-		   debugger
 		   var selData = $("#jqGrid").getRowData();//获取行数rows
 		   var ids_t = $("#jqGrid").jqGrid("getGridParam","selarrrow");//获得当前页其中的那几行
 		   var ids = new Array();
@@ -71,31 +70,9 @@ BF={
 		   }
 		   var params={"ids":ids.toString()};//ids=1,2,3,4
 		   //3.执行异步删除操作
-<<<<<<< HEAD
 		   $.post(url,params,function(result){
 			   location.href="http://localhost:8080/emp/list";
 		   });
-=======
-		   $.post(url,params,function(result){}).
-		   .done(function(data1,textStatus,jqXHR) {
-			   window.location.reload();
-			})
-			// 5. failは、通信に失敗した時に実行される
-			.fail(function(jqXHR, textStatus, errorThrown ) {
-				alert("请求失败");
-			})
-			// 6. alwaysは、成功/失敗に関わらず実行される
-			.always(function() {
-				$("#span4").text("完了しました");
-			});
-		   
->>>>>>> 78f993540b486f5c246003fdc0d5bb50709cb0e9
-		   
-		   
-		   $("#jqGrid").setGridParam({
-	            page: 1,
-	            postData: { title :$("#title").val() }
-	        }).trigger('reloadGrid');
 	   }
 }
     
