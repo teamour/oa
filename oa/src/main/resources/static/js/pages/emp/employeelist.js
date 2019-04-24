@@ -43,6 +43,8 @@ BF={
 			var id=selData[rowId-1].employeeId;
 			
 			window.location.href = ctxPath+"emp/"+id;
+			
+			
 		},
 		searchData: function (){
 			$("#jqGrid").setGridParam({

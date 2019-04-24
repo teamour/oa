@@ -121,7 +121,6 @@ public class AnnouncementController {
 	@RequestMapping(value = "/" ,method = RequestMethod.DELETE)
 	public String delete(HttpServletRequest req) {
 		// 获取 页面上选中的id（可以多个） 进行删除炒作
-		
 		// 删除成功后重新进入列表页
 		return "sys/announcementlist";
 	}
