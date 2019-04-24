@@ -106,10 +106,10 @@
   </select>
   <select id="selectQueryList" resultMap="BaseResultMap">
     select * from t_customer
-   	order by 
-   	<if test="">
-   	${sidx} 
-   	</if>
-   	${sord}
+    <where>
+	    <if test="customerName !=null and customerName !=''">
+	      customer_name like Concat('%',#{customerName},'%') 
+	    </if>
+    </where>
   </select>
 </mapper>
