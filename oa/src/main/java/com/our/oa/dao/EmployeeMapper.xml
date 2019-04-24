@@ -88,9 +88,12 @@
      employee_id = #{employeeId,jdbcType=INTEGER}
     </where>
   </delete>
-  <update id="updateByEmployeeId" parameterType="com.our.oa.entity.Employee">
+  <update id="updateByEmployeeId" parameterType="com.our.oa.dto.form.EmployeeDTO">
     update oasys.t_employee
     <set>
+     <if test="employeeName!=null and employeeName!=''">
+      employee_name = #{employeeName,jdbcType=TINYINT},
+     </if>
      <if test="gender!=null and gender!=''">
       gender = #{gender,jdbcType=TINYINT},
      </if>
@@ -205,10 +208,10 @@
      <if test="skillGrowth!=null and skillGrowth!=''">
       skill_growth = #{skillGrowth,jdbcType=LONGVARCHAR}
 	</if>
-	</set> 
-    <where> 
-    	employee_id = #{employeeId,jdbcType=INTEGER}
-    </where>
+	</set>
+	<where>  
+	employee_id = #{employeeId,jdbcType=INTEGER}
+	</where>
   </update>
   
   <select id="selectForStudy" resultMap="BaseResultMap">

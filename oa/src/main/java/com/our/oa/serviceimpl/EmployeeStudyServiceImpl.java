@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.Page;
 import com.our.oa.dao.EmployeeStudyMapper;
 import com.our.oa.dto.form.EmployeeStudyDTO;
 import com.our.oa.dto.list.EmployeeStudyListDTO;
@@ -26,12 +27,12 @@ public class EmployeeStudyServiceImpl implements EmployeeStudyService{
 	}
 
 	@Override
-	public List<EmployeeStudyListDTO> getGridList(EmployeeStudyListQueryDTO g) {
-		List<EmployeeStudy> queryResult = employeeStudyMapper.selectQueryList(g);
+	public Page<EmployeeStudyListDTO> getGridList(EmployeeStudyListQueryDTO g) {
+		Page<EmployeeStudyListDTO> queryResult = employeeStudyMapper.selectQueryList(g);
 		if(!queryResult.isEmpty()) {
-			return ModelMapperUtils.mapCollection(queryResult, EmployeeStudyListDTO.class);
+			return queryResult;
 		}
-		return new ArrayList<EmployeeStudyListDTO>();
+		return new Page<>();
 	}
 
 	@Override
