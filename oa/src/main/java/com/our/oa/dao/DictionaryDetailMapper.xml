@@ -12,41 +12,11 @@
     <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
     <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from oa..sys_dictionary_detail
-    where detail_id = #{detailId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.our.oa.entity.DictionaryDetail">
-    insert into oa..sys_dictionary_detail (detail_id, detail_name, detail_code, 
-      dict_id, sort_order, create_time, 
-      update_time, delete_time, delete_flag
-      )
-    values (#{detailId,jdbcType=INTEGER}, #{detailName,jdbcType=VARCHAR}, #{detailCode,jdbcType=VARCHAR}, 
-      #{dictId,jdbcType=INTEGER}, #{sortOrder,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=BIT}
-      )
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.DictionaryDetail">
-    update oa..sys_dictionary_detail
-    set detail_name = #{detailName,jdbcType=VARCHAR},
-      detail_code = #{detailCode,jdbcType=VARCHAR},
-      dict_id = #{dictId,jdbcType=INTEGER},
-      sort_order = #{sortOrder,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
-      delete_flag = #{deleteFlag,jdbcType=BIT}
-    where detail_id = #{detailId,jdbcType=INTEGER}
-  </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select detail_id, detail_name, detail_code, dict_id, sort_order, create_time, update_time, 
-    delete_time, delete_flag
-    from oa..sys_dictionary_detail
-    where detail_id = #{detailId,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select detail_id, detail_name, detail_code, dict_id, sort_order, create_time, update_time, 
-    delete_time, delete_flag
-    from oa..sys_dictionary_detail
+
+  <select id="getListByPrimaryKey" resultMap="BaseResultMap">
+    select * from sys_dictionary_detail
+    <where>
+    	dict_id = #{dictId,jdbcType=INTEGER}
+    </where>
   </select>
 </mapper>

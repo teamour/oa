@@ -18,6 +18,7 @@ import com.our.oa.dto.form.CustomerDTO;
 import com.our.oa.dto.list.CustomerListDTO;
 import com.our.oa.dto.list.CustomerListQueryDTO;
 import com.our.oa.service.CustomerService;
+import com.our.oa.service.DictionaryDetailService;
 import com.our.oa.utils.PageInfoToGridDTOUtils;
 
 @RestController
@@ -26,6 +27,9 @@ public class CustomerController {
 	
 	@Autowired
 	private CustomerService service;
+	
+	@Autowired
+	private DictionaryDetailService dictionaryService;
 
 	@GetMapping(value = "/list")
 	public ModelAndView list(ModelAndView modelAndView) {
@@ -92,6 +96,10 @@ public class CustomerController {
 			ModelAndView modelAndView) {
 
 		CustomerDTO dto = service.getByPrimaryKey(id);
+		dto.setCompanyTypeStr(dictionaryService.getListByPrimaryKey(1, dto.getCompanyType()));
+		dto.setCooperationIntentionStr(dictionaryService.getListByPrimaryKey(2, dto.getCooperationIntention()));
+		dto.setIsUpperStr(dictionaryService.getListByPrimaryKey(3, dto.getIsUpper()?1:0));
+		
 		modelAndView.setViewName("customer/customerDetailed");
 		modelAndView.addObject("form", dto);
 		return modelAndView;

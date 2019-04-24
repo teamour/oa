@@ -32,6 +32,8 @@ public class CustomerDTO implements Serializable {
 	private Date establishDate;
 
 	private Integer companyType;
+	
+	private String companyTypeStr;
 
 	private String address;
 
@@ -44,8 +46,12 @@ public class CustomerDTO implements Serializable {
 	private String cooperationDirection;
 
 	private Integer cooperationIntention;
+	
+	private String cooperationIntentionStr;
 
 	private Boolean isUpper;
+	
+	private String isUpperStr;
 
 	private String contactChannel;
 
