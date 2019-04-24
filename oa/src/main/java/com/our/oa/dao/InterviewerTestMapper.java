@@ -1,7 +1,9 @@
 package com.our.oa.dao;
 
-import com.our.oa.entity.InterviewerTest;
 import java.util.List;
+
+import com.our.oa.dto.form.InterviewerTestDTO;
+import com.our.oa.entity.InterviewerTest;
 
 /**
 * Created by Mybatis Generator on 2019/03/31
@@ -13,7 +15,7 @@ public interface InterviewerTestMapper {
 
     InterviewerTest selectByPrimaryKey(Integer testId);
 
-    List<InterviewerTest> selectAll();
-
     int updateByPrimaryKey(InterviewerTest record);
+
+	List<InterviewerTestDTO> getAll();
 }

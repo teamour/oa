@@ -8,13 +8,17 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+* Created by Mybatis Generator on 2019/03/31
+*/
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper=true)
 @EqualsAndHashCode(callSuper=true)
-public class InterviewerListQueryDTO extends GridListQueryBaseDTO {
-	private static final long serialVersionUID = 1L;
+public class InterviewerVisaHandleListQueryDTO extends GridListQueryBaseDTO {
+
+	private int interviewerId; 
 	
-    private String interviewerName;
+    private static final long serialVersionUID = 1L;
 }

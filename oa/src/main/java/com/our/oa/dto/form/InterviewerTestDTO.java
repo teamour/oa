@@ -1,7 +1,9 @@
-package com.our.oa.entity;
+package com.our.oa.dto.form;
 
 import java.io.Serializable;
-import java.util.Date;
+
+import com.our.oa.entity.Interviewer;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +18,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class InterviewerTest implements Serializable {
+public class InterviewerTestDTO implements Serializable {
     private Integer testId;
 
     private Integer interviewerId;
@@ -51,11 +53,7 @@ public class InterviewerTest implements Serializable {
 
     private Integer englishWrite;
 
-    private Date createTime;
-
-    private Date updateTime;
-
-    private Date deleteTime;
+    private String createTime;
 
     private Boolean deleteFlag;
 

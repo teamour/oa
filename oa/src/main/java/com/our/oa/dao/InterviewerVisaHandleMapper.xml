@@ -23,6 +23,7 @@
     <association property="interviewer" javaType="com.our.oa.entity.Interviewer">
     	<id column="interviewer_id" property="interviewerId"/>
     	<result column="interviewer_name" property="interviewerName"/>
+    	<result column="interviewer_code" property="interviewerCode"/>
     </association>
   </resultMap>
   
@@ -42,6 +43,26 @@
     t_interviewer.interviewer_id=t_interviewer_visa_handle.interviewer_id
     where t_interviewer_visa_handle.interviewer_id=#{interviewerId}
   </select>
+  
+  <update id="modifyVisaInfo" parameterType="com.our.oa.dto.form.InterviewerVisaHandleDTO">
+  	update t_interviewer_visa_handle
+    set 
+      material_prepare_situation = #{materialPrepareSituation},
+      mailing_situation = #{mailingSituation},
+      application_material = #{applicationMaterial},
+      self_japanese_resume = #{selfJapaneseResume},
+      check_resume = #{checkResume},
+      expect_submit_date = #{expectSubmitDate},
+      actual_submit_date = #{actualSubmitDate},
+      visa_handle_handler = #{visaHandleHandler},
+      notice_handler = #{noticeHandler},
+      other_handlerf = #{otherHandlerf},
+      is_completed = #{isCompleted},
+      update_time = #{updateTime},
+      description = #{description}
+    where interviewer_id = #{interviewerId}
+  </update>
+  
   
   
   
@@ -101,10 +122,13 @@
   </select>
   
   <select id="selectAll" resultMap="BaseResultMap">
-    select visa_handle_id, interviewer_id, material_prepare_situation, mailing_situation, 
-    application_material, self_japanese_resume, check_resume, expect_submit_date, actual_submit_date, 
-    visa_handle_handler, notice_handler, other_handlerf, is_completed, create_time, update_time, 
-    delete_time, delete_flag, description
-    from t_interviewer_visa_handle
+    select visa_handle_id, t_interviewer_visa_handle.interviewer_id, t_interviewer.interviewer_code ,
+    material_prepare_situation, mailing_situation, 
+    application_material, self_japanese_resume, 
+    check_resume, expect_submit_date, actual_submit_date, 
+    visa_handle_handler, notice_handler, other_handlerf, 
+    is_completed, t_interviewer_visa_handle.delete_flag, description
+    from t_interviewer_visa_handle left join t_interviewer on 
+    t_interviewer.interviewer_id=t_interviewer_visa_handle.interviewer_id
   </select>
 </mapper>

@@ -55,6 +55,11 @@
     <result column="interview3_desc" jdbcType="LONGVARCHAR" property="interview3Desc" />
   </resultMap>
   
+  <select id="getInterviewerBySearch" parameterType="com.our.oa.dto.list.InterviewerListQueryDTO" resultMap="BaseResultMap">
+  	select interviewer_id, interviewer_code, interviewer_name, interview_result from t_interviewer
+  		where interviewer_name=#{interviewerName}
+  </select>
+  
   <insert id="addInfoCommit" parameterType="com.our.oa.entity.Interviewer">
     insert into t_interviewer (interviewer_code, interviewer_name, 
       interview_result, <if test="interview1Time != ''">interview1_time,</if> 
@@ -117,7 +122,7 @@
   	<result column="company_name" property="companyName"/>
   </resultMap>
   
-  <select id="getInterviewerInfo" resultMap="BaseResultMap">
+  <select id="getAllInterviewers" resultMap="BaseResultMap">
   	select interviewer_id, interviewer_code, interviewer_name, interview_result from t_interviewer
   </select>
   

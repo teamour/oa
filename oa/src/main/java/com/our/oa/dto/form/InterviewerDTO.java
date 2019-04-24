@@ -97,10 +97,6 @@ public class InterviewerDTO implements Serializable {
 
     private String createTime;
 
-    private String updateTime;
-
-    private String deleteTime;
-
     private int deleteFlag;
 
     private String japaneseConversationAbility;
