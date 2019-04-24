@@ -1,7 +1,6 @@
 package com.our.oa.serviceimpl;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -10,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.Page;
 import com.our.oa.dao.InterviewerMapper;
 import com.our.oa.dao.InterviewerVisaHandleMapper;
 import com.our.oa.dto.form.InterviewerDTO;
@@ -86,17 +86,17 @@ public class HrmanageServiceImpl implements HrmanageService{
 	}
 
 	@Override
-	public List<InterviewerListDTO> getGridList(InterviewerListQueryDTO g) {
-		List<Interviewer> list = null;
+	public Page<InterviewerListDTO> getGridList(InterviewerListQueryDTO g) {
+		Page<InterviewerListDTO> queryResult = null;
 		if(g.getInterviewerName() == null || g.getInterviewerName() == "") {
-			 list = interviewerMapper.getAllInterviewers();
+			queryResult = interviewerMapper.getAllInterviewers();
 		}else{
-			list = interviewerMapper.getInterviewerBySearch(g);
+			queryResult = interviewerMapper.getInterviewerBySearch(g);
 		}
-		if(!list.isEmpty()) {
-			return ModelMapperUtils.mapCollection(list, InterviewerListDTO.class);
+		if(!queryResult.isEmpty()) {
+			return queryResult;
 		}
-		return new ArrayList<InterviewerListDTO>();
+		return new Page<>();
 	}
 
 	@Override

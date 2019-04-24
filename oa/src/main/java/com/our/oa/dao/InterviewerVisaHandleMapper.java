@@ -1,8 +1,9 @@
 package com.our.oa.dao;
 
+import com.github.pagehelper.Page;
 import com.our.oa.dto.form.InterviewerVisaHandleDTO;
+import com.our.oa.dto.list.InterviewerVisaHandleListDTO;
 import com.our.oa.entity.InterviewerVisaHandle;
-import java.util.List;
 
 /**
 * Created by Mybatis Generator on 2019/03/31
@@ -14,7 +15,7 @@ public interface InterviewerVisaHandleMapper {
 
     InterviewerVisaHandle selectByPrimaryKey(Integer visaHandleId);
 
-    List<InterviewerVisaHandleDTO> selectAll();
+    Page<InterviewerVisaHandleListDTO> selectAll();
 
     int updateByPrimaryKey(InterviewerVisaHandle record);
 
