@@ -11,8 +11,6 @@ import org.apache.ibatis.annotations.Param;
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userId);
 
-    int insert(User record);
-
     User selectByPrimaryKey(Integer userId);
 
     List<User> selectAll();
@@ -20,4 +18,8 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
     
     int findByEP(User user);
+    
+    int insert(User user);
+    
+    int findCheckUser(@Param("cloumn")String cloumn,@Param("param")String param);
 }

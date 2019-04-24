@@ -23,5 +23,15 @@
    	email = #{email} and user_pwd = #{userPwd}
    </where>
   </select>
-  
+  <insert id="insert" parameterType="com.our.oa.entity.User" >
+  insert into 
+  sys_user (user_name,user_pwd,email,create_time,delete_flag)
+  values 
+  	 (#{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+  	 now(),false);
+  </insert>
+  <!--检测用户信息是否存在  -->
+  <select id="findCheckUser"  resultType="int">
+		select count(*) from sys_user where ${cloumn} = #{param}
+  </select>
 </mapper>

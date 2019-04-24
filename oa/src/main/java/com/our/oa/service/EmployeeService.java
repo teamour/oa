@@ -22,7 +22,7 @@ public interface EmployeeService extends ListQueryService<EmployeeListDTO,Employ
 
 	 EmployeeSite getByEmployeeId(Integer employeeId);
 
-	 void update(EmployeeDTO employee , EmployeeSiteDTO emplyoeeSite ) ;
+	 void update(EmployeeDTO employee ) ;
 
 	 List<Employee> getEmployeeForSyudy();
 

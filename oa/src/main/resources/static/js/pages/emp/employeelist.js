@@ -36,15 +36,11 @@ BF={
 
 		},
 		modifyData:function(){
-			debugger
 			var selData = $("#jqGrid").getRowData();
 			// 要判断是否有选择，且只选中一行数据
 			var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
 			var id=selData[rowId-1].employeeId;
-			
 			window.location.href = ctxPath+"emp/"+id;
-			
-			
 		},
 		searchData: function (){
 			$("#jqGrid").setGridParam({
