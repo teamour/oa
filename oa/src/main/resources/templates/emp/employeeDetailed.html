@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>员工详细信息</title>
+
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+<link rel="stylesheet" th:href="@{/css/layui.css}">
+
+<script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
+
+</head>
+<body>
+	<h1>客户信息编辑:</h1>
+
+	<form >
+
+		<table>
+			<tr>
+				<td>名前:</td>
+		        <td><span th:text="*{employee.employeeName}"></span></td>
+			</tr>
+			<!-- <tr>
+				<td>所属（本社、BP）:</td><td><span  placeholder="所属" name="companyId"    ></td>
+			</tr> -->
+			<tr>
+				<td>職位:</td>
+				<td><span  th:text="${employee.position}" name="position" ></td>
+			</tr>
+			<tr>
+				<td>年齢:</td><td><span  th:text="${employee.age}" name="age" onspan="if(value>99)value=99;if(value.length>2)value=value.slice(0,2);if(value<0)value=0"></td>
+			</tr>
+			<tr>
+				<td>住所:</td><td><span  th:text="${employee.address}" name="address"  ></td>
+			</tr>
+			<tr>
+				<td>最寄り駅:</td><td><span  th:text="${employee.theNearestStation}" name="theNearestStation"    ></td>
+			</tr>
+			<tr>
+				<td>電話番号:</td><td><span  th:text="${employee.telephone}"  name="telephone" maxlength="13" onspan="if(event.keyCode==8){return;}if(value.length==3||value.length==8){value+=' '}"/></td>
+			</tr>
+			<tr>
+				<td>总经验年数:</td><td><span  th:text="${employee.workingYears}" name="workingYears" onspan="if(value>50)value=50;if(value.length>2)value=value.slice(0,2);if(value<0)value=0" ></td>
+			</tr>
+			<tr>
+				<td>技术经验1:</td><td>
+					<span  name="skill1"  list="skill" placeholder="查询经验年数">
+						<datalist id="skill1Years">
+                		 <option>从数据库查询</option>
+            			</datalist>
+				</td>
+			</tr>
+			<tr>
+				<td>技术经验2:</td><td>
+				<span  name="skill2"  list="skill" placeholder="查询经验年数">
+						<datalist id="skill2Years">
+                		 <option>从数据库查询</option>
+            			</datalist></td>
+			</tr>
+			<tr>
+				<td>技术经验3:</td><td>
+					<span  name="skill3"  list="skill" placeholder="查询经验年数">
+						<datalist id="skill3Years">
+                		 <option>从数据库查询</option>
+            			</datalist></td>
+			</tr>
+			<tr>
+				<td>技术评星:</td><td><span  th:text="${employee.skillScore}"  ></td>
+			</tr>
+			<tr>
+				<td>技术分析:</td><td><span  th:text="${employee.skillAnalysis}" name="skillAnalysis" ></td>
+			</tr>
+			<tr>
+				<td>技术发展:</td><td><span  th:text="${employee.skillGrowth}"  ></td>
+			</tr>
+			<tr>
+				<td>口座銀行:</td><td><span  name="bankName"  th:text="${employee.bankName}"></td>
+			</tr>
+			<tr>
+				<td>口座支店:</td><td><span  name="branchBank"  th:text="${employee.branchBank}"></td>
+			</tr>
+			<tr>
+				<td>口座番号:</td><td><span  name="bankNumber"  th:text="${employee.bankNumber}" ></td>
+			</tr>
+			<tr>
+				<td>口座備考:</td><td><span  name="bankDesc"  th:text="${employee.bankNumber}"></td>
+			</tr>
+			<tr>
+				<td>国内住所:</td><td><span  name="domesticAddress"  th:text="${employee.domesticAddress}"></td>
+			</tr>
+			<tr>
+				<td>扶養家族人数:</td><td><span  name="domesticAddress"  th:text="${employee.familySupport}"></td>
+			</tr>
+			<tr>
+				<td>契約形式:</td><td><span  name="contractFormat" th:text="${employee.contractFormat}" onspan="value=value.replace(/[^\d]/g,'')" ></td>
+			</tr>
+			<tr>
+				<td>雇用保険加入:</td><td>
+				<span type="radio" name="employmentInsurance"  value="1">
+				<span type="radio" name="employmentInsurance"  value="2">
+				</td>
+			</tr>
+			<tr>
+				<td>年金加入:</td><td>
+				<span type="radio" name="annuity" value="1">
+				<span type="radio" name="annuity" value="2"></td>
+			</tr>
+			<tr>
+				<td>健康保険加入:</td><td>
+				<span type="radio" name="healthInsurance" >
+				<span type="radio" name="healthInsurance" ></td>
+			</tr>
+	
+			<!-- <tr>
+				<td>入社日期:</td><td><span type="date" name="expectEnterDate"  ></td>
+			</tr> -->
+			<!-- <tr>
+				<td>入場日期:</td><td><span type="date" name="enterDate"  ></td>
+			</tr> -->
+			<!-- <tr>
+				<td>現場終了日期:</td><td><span type="date" name="endDate" ></td>
+			</tr>	 -->	
+			<!--  <tr>
+				<td>場所:</td><td><span  name="employeeSiteId"  th:text="${employeeSite.employeeSiteId}"></td>
+			</tr>-->
+			<!-- <tr>
+				<td>お客様:</td><td><span  name="projectId"  placeholder="哪位客户?"></td>
+			</tr> -->
+			<tr>
+				<td>営業担当:</td><td><span  name="salesStaff"  th:text="${employeeSite.salesStaff}"></td>
+			</tr>
+			<tr>
+				<td>営業連絡先:</td><td><span  name="salesContact" th:text="${employeeSite.salesContact}" maxlength="13" onspan="if(event.keyCode==8){return;}if(value.length==3||value.length==8){value+=' '}"></td>
+			</tr>
+			<tr>
+				<td>営業メール:</td><td><span  name="salesEmail" th:text="${employeeSite.salesEmail}" ></td>
+			</tr>
+			<tr>
+				<td>事務担当:</td><td><span  name="officeClerk" th:text="${employeeSite.officeClerk}" ></td>
+			</tr>
+			<tr>
+				<td>事務メール:</td><td><span  name="officeEmail" th:text="${employeeSite.officeEmail}" ></td>
+			</tr>
+			<tr>
+				<td>精算範囲:</td><td><span  name="settlementRange" th:text="${employeeSite.settlementRange}"  onspan="value=value.replace(/[^\d]/g,'')"></td>
+			</tr>
+		<!-- --------------------- -->	
+			<tr>
+				<td>単価:</td><td><span  name="unitPrice"  th:text="${employeeSite.unitPrice}" onspan="value=value.replace(/[^\d]/g,'')"></td>
+			</tr>
+			<tr>
+				<td>日本語レベル:</td><td><span  name="unitPrice"  th:text="${employee.JapaneseLevel}" onspan="value=value.replace(/[^\d]/g,'')"></td>
+			</tr>
+			<tr>
+				<td>技術レベル:</td><td><span  name="skillLevel"  th:text="${employee.skillLevel}" onspan="value=value.replace(/[^\d]/g,'')"></td>
+			</tr>
+			<tr>
+				<td>注文書（PDF/原本）:</td><td><span  th:text="${employeeSite.purchaseOrderFile}" name="purchaseOrderFile"  ></td>
+			</tr>
+			<tr>
+				<td>請求書（PDF/原本）:</td><td><span  th:text="${employeeSite.invoiceFile}" name="invoiceFile"  ></td>
+			</tr>
+			<tr>
+				<td>支払いサイト:</td><td><span  th:text="${employeeSite.paymentSite}" name="paymentSite"  placeholder="现场支付"></td>
+			</tr>
+			<tr>
+				<td>本社事務担当:</td><td><span  name="headOfficeClerk" th:text="${employeeSite.headOfficeClerk}"></td>
+			</tr>
+			<tr>
+				<td>備考:</td><td><span  name="description"  th:text="${employeeSite.description}"></td>
+			</tr>
+			<!-- <tr>
+				<td>现场入场日期:</td><td><span type="date" name="createTime"  ></td>
+			</tr> -->
+			<tr>
+				<td>现场入场相关记录:</td><td><span  name="enterRecord"  th:text="${employeeSite.enterRecord}"></td>
+			</tr>
+			<tr>
+				<td>带入场担当:</td><td><span  name=""  placeholder="担当什么职位吗?"></td>
+			</tr>
+			<tr>
+				<td>是否需要营业:</td><td><span  name="isNeedSalesStaff"  th:text="${employeeSite.isNeedSalesStaff}"></td>
+			</tr>
+		</table>
+		
+	 	<a id="btnBack" class="layui-btn layui-btn-normal" th:href="@{/emp/list}">返回</a>
+		
+	</form>
+	
+</body>
+</html>

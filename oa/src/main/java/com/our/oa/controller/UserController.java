@@ -30,8 +30,14 @@ public class UserController {
 	@PostMapping("/login")
 	public ModelAndView login(
 			ModelAndView modelAndView ,User user ) {
-		userService.selectByEmail(user);
-		modelAndView.setViewName("redirect:");
+		Integer rows = userService.selectByEmail(user);
+		System.out.println(rows);
+		if (rows!=null&&rows!=0) {
+			modelAndView.setViewName("redirect:");
+		}
+		else {
+			modelAndView.setViewName("redirect:login");
+		}
 		return modelAndView;
 	}
 	@GetMapping("/register")
