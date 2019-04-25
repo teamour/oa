@@ -18,5 +18,5 @@ public class EmployeeListQueryDTO extends GridListQueryBaseDTO {
 	
 	private Integer age;
 	
-	
+	private String employeeName;
 }

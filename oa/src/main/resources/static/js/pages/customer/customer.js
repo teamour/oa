@@ -14,8 +14,8 @@ BF={
 	                 { label: 'contactChannel', name: 'contactChannel', width: 80 },
 	                 { label: 'salesStaff', name: 'salesStaff', width: 50 },
 	             ],
-	             width: "800",
-	             height: "380",
+	             width: "100%",
+	             height: "100%",
 	             'loadError' : function (xhr, status, error){
 	                 alert(error);
 	             },

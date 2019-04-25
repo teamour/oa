@@ -16,21 +16,18 @@ BF={
 						{ label: 'skill2Years', name: 'skill2Years', width: 150 },
 						{ label: 'skill3Years', name: 'skill3Years', width: 150 }
 		             ],
-		             width: "1000",
-		             height: "380",
+		             width: "100%",
+		             height: "100%",
 		             'loadError' : function (xhr, status, error){
 		                 alert(error);
 		             },
+		             rowNum: 10,
 		             rownumber:true,
 		             viewrecords: true, 
 		             pager: '#jqGridPager',
 		             rowList: [5, 10, 50, 100, 500],
 		             multiselect: true,
 		             jsonReader:{  repeatitems:false },
-	            	 loadonce:true,
-	            	 /*sortname:'employeeId',*/
-	            	 sortorder: "asc",
-	         		 caption: "员工记录"
 		             
 		         });
 
@@ -45,7 +42,7 @@ BF={
 		searchData: function (){
 			$("#jqGrid").setGridParam({
 	            page: 1,
-	            postData: { employeeId :$("#employeeId").val() }
+	            postData: { employeeName :$("#title").val() }
 	        }).trigger('reloadGrid');
 	   },
 	   queryById: function (){
