@@ -199,6 +199,22 @@
   	select * from t_interviewer where interviewer_code=#{interviewerCode}
   </select>
   
+  <select id="getInterViewerIdAndCode" resultMap="BaseResultMap">
+  	select interviewer_id,interviewer_code from t_interviewer
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <!-- 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 

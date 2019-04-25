@@ -10,4 +10,9 @@ public interface InterviewerTestService extends ListQueryService<InterviewerTest
 
 	InterviewerTestDTO selectInterviewerTestInfoByTestId(int testId);
 
+	boolean modifyTestInfo(InterviewerTestDTO testInfo);
+
+	boolean addTestInfo(InterviewerTestDTO testDTO);
+
+
 }

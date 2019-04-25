@@ -15,9 +15,6 @@ BF={
     	        	layer.msg("error!");
     	        }
     	});
-    	 
-    	 
-		   
     }
 }
 layui.use(['form','layer','laypage','jquery'],function(){

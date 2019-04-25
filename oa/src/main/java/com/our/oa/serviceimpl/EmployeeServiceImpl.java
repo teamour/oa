@@ -69,10 +69,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public void update(EmployeeDTO employee , EmployeeSiteDTO emplyoeeSite ) {
-		
+	public void update(EmployeeDTO employee) {
 		 employeeMapper.updateByEmployeeId(employee);
-		 employeeSiteMapper.updateByEmployeeId(emplyoeeSite);
 	}
 
 	@Override

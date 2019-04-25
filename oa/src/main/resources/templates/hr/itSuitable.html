@@ -15,7 +15,7 @@
 <div>
 	<table>
 		<tr>
-			<th colspan="2">IT适性试验结果</th>
+			<th colspan="2" align="center">IT适性试验结果</th>
 		</tr>
 		<tr>
 			<td>面试人员编号:</td><td th:text="${testInfo.interviewer.interviewerCode}"></td>
@@ -33,7 +33,11 @@
 			<td>考试分数:</td><td th:text="${testInfo.testScore}"></td>
 		</tr>
 		<tr>
-			<td>:</td><td></td>
+			<td>isPass:</td>
+			<td th:switch="${testInfo.isPass}">
+				<span th:case="false">0</span>
+				<span th:case="true">1</span>
+			</td>
 		</tr>
 		<tr>
 			<td>日语资格证:</td><td th:text="${testInfo.japaneseCertificate}"></td>
@@ -75,7 +79,7 @@
 			<td>备考:</td><td th:text="${testInfo.description}"></td>
 		</tr>
 		<tr>
-			<td colspan="2"><a href="#">修改</a></td>
+			<td colspan="2"><a th:href="@{itSuitableModifyShow(testId=${testInfo.testId})}">修改</a></td>
 		</tr>
 	</table>
 </div>

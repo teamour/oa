@@ -7,10 +7,14 @@
 	<link rel="stylesheet" th:href="@{/css/layui.css}">
 </head>
 <body>
-	<form action="#" th:action="@{/hr/modifyVisaInfoDo}" method="post" th:object="${interviewerVisaHandle}">
+<div>
+	<a class="layui-btn" th:href="@{hrIndex}">返回首页</a>
+</div>
+<div>
+	<form action="#" th:action="@{/hr/visaInfoAddDo}" method="post" th:object="${interviewerVisaHandle}">
 		<table border="1" style="border:1px solid black;">
 		<tr>
-			<th colspan="11">签证办理编辑</th>
+			<th colspan="11">签证办理新增</th>
 		</tr>
 		<tr>
 			<td>No</td><td><input type="text" th:field="*{interviewerId}" th:value="${interviewerVisaHandle.interviewerId}" readonly="readonly"></td>
@@ -95,10 +99,11 @@
 				</select>
 		</tr>
 		<tr>
-			<td><input type="submit" value="保存"></td><td><a th:href="@{hrIndex}">返回首页</a></td>
+			<td><input type="submit" value="保存"></td><td></td>
 		</tr>
 	</table>
 	</form>
+</div>
 	
 	
 	

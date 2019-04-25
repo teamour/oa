@@ -74,10 +74,10 @@ public class HrmanageController {
 		return PageInfoToGridDTOUtils.getGridDataResult(queryInfo);
 	}
 	
-	@GetMapping(value="/addInfoShow")
+	@GetMapping(value="/interviewerInfoAdd")
 	public ModelAndView addInfoShow(ModelAndView modelAndView) {
 		InterviewerDTO interviewer = new InterviewerDTO();
-		modelAndView.setViewName("hr/addInfo");
+		modelAndView.setViewName("hr/interviewerInfoAdd");
 		interviewer.setInterviewerCode(hrmanageServiceImpl.getCode());
 //		modelAndView.addObject("interviewerCode",  hrmanageServiceImpl.getCode());
 		List<Company> company = hrmanageServiceImpl.getCompanyIdAndName();
@@ -86,7 +86,7 @@ public class HrmanageController {
 		return modelAndView;
 	}
 	
-	@PostMapping(value="/addInfoCommit")
+	@PostMapping(value="/interviewerInfoAddDo")
 	public ModelAndView addInfoCommit(ModelAndView modelAndView,@Valid InterviewerDTO interviewerInfoForm) {
 		if(hrmanageServiceImpl.addInfoCommit(interviewerInfoForm)) {
 			modelAndView.setView(new RedirectView("hrIndex"));
@@ -96,26 +96,26 @@ public class HrmanageController {
 		return modelAndView;
 	}
 	
-	@GetMapping("/detailInfo")
+	@GetMapping("/interviewerInfo")
 	public ModelAndView detailInfo(ModelAndView modelAndView,int interviewerId) {
-		modelAndView.setViewName("hr/detailInfo");
+		modelAndView.setViewName("hr/interviewerInfo");
 		modelAndView.addObject("detailInfo", hrmanageServiceImpl.getDetailInfoById(interviewerId));
 		return modelAndView;
 	}
 	
-	@GetMapping("/updateInfo")
+	@GetMapping("/interviewerInfoModify")
 	public ModelAndView updateInfo(ModelAndView modelAndView,int interviewerId) {
-		modelAndView.setViewName("hr/updateInfo");
+		modelAndView.setViewName("hr/interviewerInfoModify");
 		modelAndView.addObject("detailInfo", hrmanageServiceImpl.getDetailInfoById(interviewerId));
 		modelAndView.addObject("company", hrmanageServiceImpl.getCompanyIdAndName());
 		return modelAndView;
 	}
 	
-	@PostMapping("/updateInfoDo")
+	@PostMapping("/interviewerInfoModifyDo")
 	public ModelAndView updateInfoDo(ModelAndView modelAndView,int interviewerId,Interviewer interviewer) {
 		modelAndView.addObject("detailInfo", hrmanageServiceImpl.getDetailInfoById(interviewerId));
 		if(hrmanageServiceImpl.updateInfoDo(interviewer)) {
-			modelAndView.setView(new RedirectView("detailInfo?interviewerId="+interviewerId));
+			modelAndView.setView(new RedirectView("interviewerInfo?interviewerId="+interviewerId));
 			return modelAndView;
 		}else {
 			modelAndView.setViewName("hr/error");
@@ -170,22 +170,21 @@ public class HrmanageController {
 		return modelAndView;
 	}
 	
-	@GetMapping("/modifyVisaInfo")
-	public ModelAndView modifyVisaInfo(ModelAndView modelAndView,int interviewerId) {
+	@GetMapping("/visaInfoModify")
+	public ModelAndView visaInfoModify(ModelAndView modelAndView,int interviewerId) {
 		InterviewerVisaHandleDTO interviewerVisaHandleDTO = hrmanageServiceImpl.getInterviewerVisaHandleByInterviewerId(interviewerId);
 		modelAndView.addObject("interviewerVisaHandle", interviewerVisaHandleDTO);
-		modelAndView.setViewName("hr/modifyVisaInfo");
+		modelAndView.setViewName("hr/visaInfoModify");
 		return modelAndView;
 	}
 	
-	@PostMapping("/modifyVisaInfoDo")
-	public ModelAndView modifyVisaInfoShowDo(ModelAndView modelAndView,InterviewerVisaHandleDTO interviewerVisaHandleDTO) {
-		System.out.println("aaaaaaa"+interviewerVisaHandleDTO.getInterviewerId());
+	@PostMapping("/visaInfoModifyDo")
+	public ModelAndView visaInfoModifyDo(ModelAndView modelAndView,InterviewerVisaHandleDTO interviewerVisaHandleDTO) {
 		if(hrmanageServiceImpl.modifyVisaInfo(interviewerVisaHandleDTO)) {
 			modelAndView.setView(new RedirectView("visaInfo?interviewerId="+interviewerVisaHandleDTO.getInterviewerId()));
 			return modelAndView;
 		}
-		modelAndView.setViewName("hr/modifyVisaInfo");
+		modelAndView.setViewName("hr/visaInfoModify");
 		return modelAndView;
 	}
 	
@@ -204,9 +203,10 @@ public class HrmanageController {
 	
 	@PostMapping("/itSuitableLoginDo")
 	public ModelAndView itSuitaleLoginDo(ModelAndView modelAndView,String interviewerCode) {
-		InterviewerTestDTO interviewerTestDTO = interviewerTestServiceImpl.selectInterviewerTestInfoByInterviewerCode(interviewerCode);
-		if(interviewerTestDTO != null) {
-			modelAndView.setView(new RedirectView("itSuitable?testId="+interviewerTestDTO.getTestId()));
+		InterviewerTestDTO testDTO = interviewerTestServiceImpl.selectInterviewerTestInfoByInterviewerCode(interviewerCode);
+		System.out.println(testDTO);
+		if(testDTO != null) {
+			modelAndView.setView(new RedirectView("itSuitable?testId="+testDTO.getTestId()));
 			return modelAndView;
 		}
 		modelAndView.setView(new RedirectView("itSuitableLogin"));
@@ -221,4 +221,41 @@ public class HrmanageController {
 		return modelAndView;
 	}
 	
+	@GetMapping("/itSuitableModifyShow")
+	public ModelAndView itSuitableModifyShow(ModelAndView modelAndView,int testId) {
+		InterviewerTestDTO testDTO = interviewerTestServiceImpl.selectInterviewerTestInfoByTestId(testId);
+		System.out.println(testDTO);
+		modelAndView.addObject("testInfo", testDTO);
+		modelAndView.setViewName("hr/itSuitableModify");
+		return modelAndView;
+	}
+	
+	@PostMapping("/itSuitableModify")
+	public ModelAndView itSuitableModify(ModelAndView modelAndView,@Valid InterviewerTestDTO testInfo) {
+		if(interviewerTestServiceImpl.modifyTestInfo(testInfo)) {
+			modelAndView.setView(new RedirectView("itSuitable?testId="+testInfo.getTestId()));
+			return modelAndView;
+		}
+		modelAndView.setViewName("hr/error");
+		return modelAndView;
+	}
+	
+	@GetMapping("/itSuitableAdd")
+	public ModelAndView itSuitableAdd(ModelAndView modelAndView) {
+		List<InterviewerDTO> idAndCode = hrmanageServiceImpl.getInterViewerIdAndCode();
+		modelAndView.addObject("idAndCode", idAndCode);
+		modelAndView.addObject("testDTO", new InterviewerTestDTO());
+		modelAndView.setViewName("hr/itSuitableAdd");
+		return modelAndView;
+	}
+	
+	@PostMapping("/itSuitableAddDo")
+	public ModelAndView itSuitableAddDo(ModelAndView modelAndView,@Valid InterviewerTestDTO testDTO) {
+		if(interviewerTestServiceImpl.addTestInfo(testDTO)) {
+			modelAndView.setView(new RedirectView("itSuitableLogin"));
+			return modelAndView;
+		}
+		modelAndView.setViewName("hr/error");
+		return modelAndView;
+	}
 }
