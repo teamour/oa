@@ -19,6 +19,8 @@ public interface EmployeeStudyMapper {
     int insert(EmployeeStudy record);
 
     EmployeeStudy selectByPrimaryKey(Integer employeeStudyId);
+    
+    EmployeeStudy selectByEmployeeId(Integer employeeId);
 
     List<EmployeeStudy> selectAll();
     

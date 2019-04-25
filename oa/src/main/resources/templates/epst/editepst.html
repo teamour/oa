@@ -13,15 +13,12 @@
     <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
 </head>
 <body>
-<a id="btnBack" class="layui-btn" th:href="@{/epst/epstIndex}">《--返回</a>
+<a href="javascript:" class="layui-btn" onclick="self.location=document.referrer;">《--返回</a>
 	<h2>员工学习-修改</h2>
 	
 	<form class="form-empl" id="editepst" th:action="@{/epst/editepst/}+${id}" method="POST" >
 		<table>
-			<tr>
-				<td>员工ID</td>
-				<td width="400"><input type="text"  class="layui-input" name="employeeId" th:text="${employeeStudy.employeeId}"></td>
-			</tr>
+			
 			<tr>
 				<td>学习内容</td>
 				<td width="400"><input type="text"  class="layui-input" name="studyContent" th:text="${employeeStudy.studyContent}"></td>

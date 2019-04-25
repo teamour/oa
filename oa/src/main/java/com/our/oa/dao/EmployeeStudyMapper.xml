@@ -76,6 +76,16 @@
     employee_study_id = #{employeeStudyId,jdbcType=INTEGER} and delete_flag = 0
     </where>
   </select>
+  
+  <select id="selectByEmployeeId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select employee_study_id, employee_id, study_content, begin_date, study_time, handler, 
+    learn_cotent, evaluation, create_time, update_time, delete_time, delete_flag
+    from t_employee_study
+    <where>
+    employee_id = #{employeeId,jdbcType=INTEGER} and delete_flag = 0
+    </where>
+  </select>
+  
   <select id="selectAll" resultMap="BaseResultMap">
     select employee_study_id, employee_id, study_content, begin_date, study_time, handler, 
     learn_cotent, evaluation, create_time, update_time, delete_time, delete_flag
@@ -91,7 +101,7 @@
     from t_employee_study
     <where>
     <if test="employeeId!=null and employeeId!=''">
-   		and employee_id like concat("%",#{employeeId},"%")
+   		and employee_id =#{employeeId}
     </if>
      and delete_flag = 0 
     </where>

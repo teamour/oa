@@ -24,14 +24,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.thymeleaf.cache.ICacheEntryValidity;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.our.oa.dto.GridDTO;
 import com.our.oa.dto.form.AnnouncementDTO;
+import com.our.oa.dto.form.CustomerDTO;
 import com.our.oa.dto.form.EmployeeDTO;
 import com.our.oa.dto.form.EmployeeSiteDTO;
 import com.our.oa.dto.form.EmployeeStudyDTO;
+import com.our.oa.dto.list.CustomerListDTO;
+import com.our.oa.dto.list.CustomerListQueryDTO;
 import com.our.oa.dto.list.EmployeeListDTO;
 import com.our.oa.dto.list.EmployeeListQueryDTO;
 import com.our.oa.dto.list.EmployeeStudyListDTO;
@@ -53,15 +58,18 @@ import net.sf.json.JSONObject;
 @RestController
 @RequestMapping(value="/epst")
 public class EmployeeStudyController {
-	
+	private int myid;
 	@Autowired
 	private EmployeeService emplpyeeService;
 	
 	@Autowired
 	private EmployeeStudyService employeeStudyService;
 
-	@GetMapping(value = "/epstIndex")
-	public ModelAndView epstIndex(ModelAndView modelAndView) {
+	@GetMapping(value= {"/epstIndex/{id}"})
+	public ModelAndView epstIndex(ModelAndView modelAndView, 
+		@PathVariable(name = "id", required = false) Integer id) {
+		myid = id;
+		modelAndView.addObject("myid", myid);
 		modelAndView.setViewName("epst/epstIndex");
 		return modelAndView;
 	}
@@ -76,32 +84,14 @@ public class EmployeeStudyController {
 		return modelAndView;
 	}
 	
-	
-	@RequestMapping(value="/queryAllEmployee")
-	public String query(HttpServletResponse resp) {
-	
-			List<Employee> list = emplpyeeService.getEmployeeForSyudy();
-			JSONObject obj = new JSONObject();
-			obj.put("code", 0);
-	        obj.put("msg", "");
-	        obj.put("count",1000);
-	        obj.put("data",list);
-	        return obj.toString();
-			
-	}
-	@GetMapping(value="/")
-	public GridDTO<EmployeeStudyListDTO> listDate(HttpServletRequest req,
-			EmployeeStudyListQueryDTO listQueryDTO){
-		System.out.println("进来了！！！");
-		Page<EmployeeStudyListDTO> queryList = employeeStudyService.getQueryList(listQueryDTO);
-	    return PageInfoToGridDTOUtils.getGridDataResult(queryList);
+	@PostMapping(value="/epstIndex/{id}")
+	public GridDTO<EmployeeStudyListDTO> listData(HttpServletRequest req,
+			@PathVariable(name="id",required=false)Integer id,
+			EmployeeStudyListQueryDTO listQueryDTO) {
 		
-	}
-	@GetMapping(value="/employeelist")
-	public GridDTO<EmployeeListDTO> listDate1(HttpServletRequest req,
-			EmployeeListQueryDTO listQueryDTO){
-		System.out.println("进来了2！！！");
-		Page<EmployeeListDTO> queryList = emplpyeeService.getQueryList(listQueryDTO);
+		listQueryDTO.setEmployeeId(id + "");
+		Page<EmployeeStudyListDTO> queryList = employeeStudyService.getQueryList(listQueryDTO);
+		
 		return PageInfoToGridDTOUtils.getGridDataResult(queryList);
 	}
 	
@@ -126,12 +116,13 @@ public class EmployeeStudyController {
             }
             return modelAndView;
         }
-        
+        System.out.println("myid="+myid);
+        employeeStudyForm.setEmployeeId(myid);
         employeeStudyService.insert(employeeStudyForm);
         
         System.out.println(employeeStudyForm.getBeginDate());
         // 保存成功后返回列表页
-        modelAndView.setViewName("redirect:epstIndex");
+        modelAndView.setViewName("redirect:epstIndex/"+myid);
         System.out.println("secuss!");
         return modelAndView;
 	}
@@ -172,7 +163,7 @@ public class EmployeeStudyController {
 			}
 			}
         // 保存成功后返回列表页
-        modelAndView.setViewName("redirect:/epst/epstIndex");
+        modelAndView.setViewName("redirect:/epst/epstIndex/"+myid);
         return modelAndView;
 	}
 
