@@ -96,7 +96,7 @@ public class EmployeeController {
 	}
 	
 	@PostMapping(value="/update/{id}")
-	public String Update(@Valid EmployeeDTO emplyoee,@Valid EmployeeSiteDTO emplyoeeSite,
+	public ModelAndView Update(@Valid EmployeeDTO emplyoee,@Valid EmployeeSiteDTO emplyoeeSite,
 			BindingResult bindingResult,ModelAndView modelAndView,
 			@PathVariable(name="id",required=false)Integer id) {
 			if (id!=null||id!=0) {
@@ -107,8 +107,8 @@ public class EmployeeController {
 			}
 			System.out.println(emplyoeeSite.getEmployeeId());
         // 保存成功后返回列表页
-        
-        return "update ok";
+			modelAndView.setViewName("redirect:/emp/list");
+        return modelAndView;
 	}
 	
 	
