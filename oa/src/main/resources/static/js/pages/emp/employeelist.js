@@ -42,7 +42,7 @@ BF={
 		searchData: function (){
 			$("#jqGrid").setGridParam({
 	            page: 1,
-	            postData: { employeeId :$("#employeeId").val() }
+	            postData: { employeeName :$("#title").val() }
 	        }).trigger('reloadGrid');
 	   },
 	   queryById: function (){

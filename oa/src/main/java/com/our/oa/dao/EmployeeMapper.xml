@@ -73,9 +73,12 @@
   <select id="selectQueryList" parameterType="com.our.oa.dto.list.EmployeeListQueryDTO" resultMap="BaseResultMap">
     select <include refid="column"/>,employee_id
     from t_employee
-  <where>
-    delete_flag = 0
-  </where>
+	  <where>
+	    delete_flag = 0 
+	    <if test="employeeName !=null and employeeName !=''">
+	      and employee_name like Concat('%',#{employeeName},'%') 
+	    </if>
+	  </where>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select <include refid="column"/>
