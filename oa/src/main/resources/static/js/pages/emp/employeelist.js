@@ -48,6 +48,15 @@ BF={
 	            postData: { employeeId :$("#employeeId").val() }
 	        }).trigger('reloadGrid');
 	   },
+	   queryById: function (){
+		   debugger
+		   var selData = $("#jqGrid").getRowData();
+			// 要判断是否有选择，且只选中一行数据
+			var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
+			var id=selData[rowId-1].employeeId;
+			window.location.href = ctxPath+"epst/epstIndex/"+id;
+			
+	   },
 	   deleteByIds:function(){
 		   var selData = $("#jqGrid").getRowData();//获取行数rows
 		   var ids_t = $("#jqGrid").jqGrid("getGridParam","selarrrow");//获得当前页其中的那几行
