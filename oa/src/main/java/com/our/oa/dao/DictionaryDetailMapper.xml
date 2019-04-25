@@ -13,10 +13,16 @@
     <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
   </resultMap>
 
-  <select id="getListByPrimaryKey" resultMap="BaseResultMap">
+  <select id="getDicListByDictId" resultMap="BaseResultMap">
     select * from sys_dictionary_detail
     <where>
     	dict_id = #{dictId,jdbcType=INTEGER}
     </where>
   </select>
+  
+  <select id="getAll" resultMap="BaseResultMap">
+    select *
+    from sys_dictionary_detail
+  </select>
+  
 </mapper>

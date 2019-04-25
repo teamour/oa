@@ -8,5 +8,7 @@ import java.util.List;
 * Created by Mybatis Generator on 2019/03/31
 */
 public interface DictionaryDetailMapper {
-    List<DictionaryDetail> getListByPrimaryKey(Integer id);
+    List<DictionaryDetail> getDicListByDictId(Integer id);
+    
+    List<DictionaryDetail> getAll();
 }

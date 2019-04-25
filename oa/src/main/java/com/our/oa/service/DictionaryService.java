@@ -1,7 +1,10 @@
 package com.our.oa.service;
 
-import com.our.oa.dto.form.DictionaryDTO;
+import java.util.List;
+
+import com.our.oa.entity.DictionaryDetail;
 
 public interface DictionaryService {
-	DictionaryDTO getByPrimaryKey(Integer id);
+	String getDetailName(Integer dictId, Integer v);
+	List<DictionaryDetail> getDetailNames(Integer dictId);
 }

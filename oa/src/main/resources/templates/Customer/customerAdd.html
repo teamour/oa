@@ -52,9 +52,7 @@
 		    
 		    <tr>
 		        <td>公司性质: </td>
-		        <td><select th:field="*{companyType}">
-					<option value="1">日本企业</option>
-					<option value="0">中国企业</option>
+		        <td><select id="companyType" th:field="*{companyType}">
 				</select></td>
 		    </tr>
 		    
@@ -83,19 +81,15 @@
 		        <td><input th:field="*{cooperationDirection}" type="text" /></td>
 		    </tr>
 		    
-		    <tr>
+		     <tr>
 		        <td>合作意向: </td>
-		        <td><select th:field="*{cooperationIntention}">
-					<option value="1">有</option>
-					<option value="0">无</option>
+		        <td><select id="cooperationIntention" th:field="*{cooperationIntention}">
 				</select></td>
 		    </tr>
 		    
 		    <tr>
 		        <td>上场或者非上场: </td>
-		        <td><select th:field="*{isUpper}">
-					<option value="1">是</option>
-					<option value="0">否</option>
+		        <td><select id="isUpper" th:field="*{isUpper}">
 				</select></td>
 		    </tr>
 		    
@@ -159,6 +153,9 @@
 	 	<a id="btnBack" class="layui-btn layui-btn-normal" th:href="@{/customer/list}">返回</a>
 		
 	</form>
+	
+	<script type="text/javascript" th:inline="javascript"></script>　
+    <script type="text/javascript" th:src="@{/js/pages/customer/customerAdd.js}"></script>
 	
 </body>
 </html>
