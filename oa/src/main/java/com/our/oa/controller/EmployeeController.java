@@ -125,7 +125,10 @@ public class EmployeeController {
 				Employee employee = employeeService.getByPrimaryKey(id);
 				ModelMapper modelMapper = new ModelMapper();
 				dto = modelMapper.map(employee, EmployeeDTO.class);
+				dto.setSkillScoreStr(dicService.getDetailName(16, (int)employee.getSkillScore()-1));
 				modelAndView.addObject("employee", dto);
+				
+				
 				
 				EmployeeSiteDTO dto1 = new EmployeeSiteDTO();
 				EmployeeSite employeeSite = employeeService.getByEmployeeId(id);

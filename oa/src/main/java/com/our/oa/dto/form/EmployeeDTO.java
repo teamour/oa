@@ -56,6 +56,8 @@ public class EmployeeDTO implements Serializable{
     private Byte skill3Years;
 
     private Byte skillScore;
+    
+    private String skillScoreStr;
 
     private Integer skillLevel;
 

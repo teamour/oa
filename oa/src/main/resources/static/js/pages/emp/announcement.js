@@ -16,6 +16,7 @@ BF={
     	        }
     	});
     }
+	
 }
 layui.use(['form','layer','laypage','jquery'],function(){
 	debugger
