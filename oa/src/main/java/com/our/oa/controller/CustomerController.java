@@ -76,15 +76,6 @@ public class CustomerController {
 		
 		CustomerDTO dto = service.getByPrimaryKey(id);
 		
-//		if(dto.getCompanyType() != null) 
-//			dto.setCompanyTypeStr(dicService.getDetailName(1, dto.getCompanyType()));
-//		
-//		if(dto.getCooperationIntention() != null) 
-//			dto.setCooperationIntentionStr(dicService.getDetailName(2, dto.getCooperationIntention()));
-//		
-//		if(dto.getIsUpper() != null) 
-//			dto.setIsUpperStr(dicService.getDetailName(3, dto.getIsUpper()?1:0));
-		
 		modelAndView.setViewName("customer/customerEdit");
 		modelAndView.addObject("form", dto);
 		return modelAndView;

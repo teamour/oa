@@ -21,10 +21,10 @@
 
     <input id="title" type="text" >    
     <button id="btnSearch" class="layui-btn layui-btn-normal" onclick="BF.searchData();">查询</button>
-    <button id="btnDetailed" class="layui-btn layui-btn-normal" onclick="BF.detailedData();" style>详情</button>
-    <a id="btnAdd" class="layui-btn layui-btn-delete" th:href="@{/emp/}">添加</a>
+    <button id="btnDetailed" class="layui-btn layui-btn-normal" onclick="BF.detailedData();">详情</button>
+    <a id="btnAdd" class="layui-btn" th:href="@{/emp/}">添加</a>
     <button id="btnUpdate" class="layui-btn layui-btn-normal" onclick="BF.modifyData();" >修改</button>
-    <button id="btnDelete" class="layui-btn btn-warning" onclick="BF.deleteByIds();">删除</button>
+    <button id="btnDelete" class="layui-btn layui-btn-danger" onclick="BF.deleteByIds();">删除</button>
     <button id="btnQuery" class="layui-btn layui-btn-normal" onclick="BF.queryById();">查看员工学习进度</button>
     <hr>
     <table id="jqGrid"></table>
