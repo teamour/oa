@@ -22,5 +22,7 @@ public interface InterviewerVisaHandleMapper {
 	InterviewerVisaHandle getInterviewerVisaHandleByInterviewerId(int interviewerId);
 
 	int modifyVisaInfo(InterviewerVisaHandleDTO interviewerVisaHandleDTO);
+
+	int insertVisaInfo(InterviewerVisaHandleDTO visaHandleDTO);
 	
 }

@@ -148,7 +148,7 @@
       japanese_socre = #{japaneseSocre},
       graduated_school = #{graduatedSchool},
       profession = #{profession},
-      graduated_date = #{graduatedDate},
+      <if test="graduatedDate != ''">graduated_date = #{graduatedDate},</if>
       education = #{education},
       certificate = #{certificate},
       manner = #{manner},
@@ -203,7 +203,9 @@
   	select interviewer_id,interviewer_code from t_interviewer
   </select>
   
-  
+  <select id="getInterviewerIdByCode" parameterType="STRING" resultType="INTEGER">
+  	select interviewer_id from t_interviewer where interviewer_code=#{interviewerCode}
+  </select>
   
   
   

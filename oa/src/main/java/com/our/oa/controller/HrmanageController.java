@@ -75,7 +75,7 @@ public class HrmanageController {
 	}
 	
 	@GetMapping(value="/interviewerInfoAdd")
-	public ModelAndView addInfoShow(ModelAndView modelAndView) {
+	public ModelAndView interviewerInfoAdd(ModelAndView modelAndView) {
 		InterviewerDTO interviewer = new InterviewerDTO();
 		modelAndView.setViewName("hr/interviewerInfoAdd");
 		interviewer.setInterviewerCode(hrmanageServiceImpl.getCode());
@@ -87,7 +87,7 @@ public class HrmanageController {
 	}
 	
 	@PostMapping(value="/interviewerInfoAddDo")
-	public ModelAndView addInfoCommit(ModelAndView modelAndView,@Valid InterviewerDTO interviewerInfoForm) {
+	public ModelAndView interviewerInfoAddDo(ModelAndView modelAndView,@Valid InterviewerDTO interviewerInfoForm) {
 		if(hrmanageServiceImpl.addInfoCommit(interviewerInfoForm)) {
 			modelAndView.setView(new RedirectView("hrIndex"));
 		}else {
@@ -97,14 +97,14 @@ public class HrmanageController {
 	}
 	
 	@GetMapping("/interviewerInfo")
-	public ModelAndView detailInfo(ModelAndView modelAndView,int interviewerId) {
+	public ModelAndView interviewerInfo(ModelAndView modelAndView,int interviewerId) {
 		modelAndView.setViewName("hr/interviewerInfo");
 		modelAndView.addObject("detailInfo", hrmanageServiceImpl.getDetailInfoById(interviewerId));
 		return modelAndView;
 	}
 	
 	@GetMapping("/interviewerInfoModify")
-	public ModelAndView updateInfo(ModelAndView modelAndView,int interviewerId) {
+	public ModelAndView interviewerInfoModify(ModelAndView modelAndView,int interviewerId) {
 		modelAndView.setViewName("hr/interviewerInfoModify");
 		modelAndView.addObject("detailInfo", hrmanageServiceImpl.getDetailInfoById(interviewerId));
 		modelAndView.addObject("company", hrmanageServiceImpl.getCompanyIdAndName());
@@ -112,7 +112,7 @@ public class HrmanageController {
 	}
 	
 	@PostMapping("/interviewerInfoModifyDo")
-	public ModelAndView updateInfoDo(ModelAndView modelAndView,int interviewerId,Interviewer interviewer) {
+	public ModelAndView interviewerInfoModifyDo(ModelAndView modelAndView,int interviewerId,Interviewer interviewer) {
 		modelAndView.addObject("detailInfo", hrmanageServiceImpl.getDetailInfoById(interviewerId));
 		if(hrmanageServiceImpl.updateInfoDo(interviewer)) {
 			modelAndView.setView(new RedirectView("interviewerInfo?interviewerId="+interviewerId));
@@ -167,6 +167,26 @@ public class HrmanageController {
 		InterviewerVisaHandleDTO interviewerVisaHandleDTO = hrmanageServiceImpl.getInterviewerVisaHandleByInterviewerId(interviewerId);
 		modelAndView.addObject("interviewerVisaHandle", interviewerVisaHandleDTO);
 		modelAndView.setViewName("hr/visaInfo");
+		return modelAndView;
+	}
+	
+	@GetMapping("/visaInfoAdd")
+	public ModelAndView visaInfoAdd(ModelAndView modelAndView) {
+		modelAndView.setViewName("hr/visaInfoAdd");
+		modelAndView.addObject("visaHandleDTO", new InterviewerVisaHandleDTO());
+		return modelAndView;
+	}
+	
+	@PostMapping("/visaInfoAddDo")
+	public ModelAndView visaInfoAddDo(ModelAndView modelAndView,InterviewerVisaHandleDTO visaHandleDTO,String interviewerCode) {
+		int getInterviewerId = hrmanageServiceImpl.getInterviewerIdByCode(interviewerCode);
+		System.out.println("date:"+visaHandleDTO.getExpectSubmitDate());
+		
+		if(visaHandleServiceImpl.insertVisaInfo(visaHandleDTO,getInterviewerId)) {
+			modelAndView.setView(new RedirectView("visaLogin"));
+			return modelAndView;
+		}
+		modelAndView.setView(new RedirectView("visaInfoAdd"));
 		return modelAndView;
 	}
 	

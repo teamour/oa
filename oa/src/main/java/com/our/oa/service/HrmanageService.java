@@ -31,4 +31,6 @@ public interface HrmanageService extends ListQueryService<InterviewerListDTO, In
 
 	List<InterviewerDTO> getInterViewerIdAndCode();
 
+	int getInterviewerIdByCode(String interviewerCode);
+
 }
