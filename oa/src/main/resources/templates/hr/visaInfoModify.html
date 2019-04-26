@@ -10,7 +10,7 @@
 	<form action="#" th:action="@{/hr/visaInfoModifyDo}" method="post" th:object="${interviewerVisaHandle}">
 		<table border="1" style="border:1px solid black;">
 		<tr>
-			<th colspan="11">签证办理编辑</th>
+			<th colspan="11"><h2>签证办理修改</h2></th>
 		</tr>
 		<tr>
 			<td>No</td><td><input type="text" th:field="*{interviewerId}" th:value="${interviewerVisaHandle.interviewerId}" readonly="readonly"></td>
