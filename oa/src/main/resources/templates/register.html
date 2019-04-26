@@ -43,20 +43,20 @@
          <div>      
               <input id="usernameId" name="userName"   type="text" placeholder="账号" class="layui-input" >
         </div>
-        <!--<div>      
+        <div>      
               <input id="passwordId" name="userPwd"   type="password" placeholder="密码" class="layui-input" >
         </div>
          <div>      
-              <input id="passwordId" name="userPwd"   type="password" placeholder="确认密码" class="layui-input" >
+              <input id="passwordId"    type="password" placeholder="确认密码" class="layui-input" >
         </div>
         <div>      
               <input id="emailId" name="email"   type="email" placeholder="邮箱" class="layui-input" >
-        </div>  -->     
-              <button class="layui-btn"  onclick="valid()" style="width:100%;" ><p th:text="校验"></p></button>
+        </div>      
+              <button class="layui-btn"  onclick="submit" style="width:100%;" ><p th:text="注册"></p></button>
         </form>
     </div>
 <script type="text/javascript">
- function valid(){
+/*  function valid(){
   	debugger
   	$.ajax({
   			url:"http://localhost:8080/user/valid/1/123",
@@ -71,7 +71,7 @@
   	        	layer.msg("error!");
   	        }
   	});
-  }
+  } */
 </script>  
 </body>
 </html>

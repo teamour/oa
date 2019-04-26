@@ -77,7 +77,15 @@ BF={
 		   $.post(url,params,function(result){
 			   location.href="http://localhost:8080/emp/list";
 		   });
+	   },
+	   detailedData:function(){
+			var selData = $("#jqGrid").getRowData();
+			// 要判断是否有选择，且只选中一行数据
+			var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
+			var id=selData[rowId-1].employeeId;
+			window.location.href = ctxPath+"emp/detailed/"+id;
 	   }
+	   
 }
     
 $(function () { 

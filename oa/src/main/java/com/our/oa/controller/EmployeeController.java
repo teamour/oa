@@ -55,7 +55,6 @@ public class EmployeeController {
 		modelAndView.setViewName("emp/employee");
 		return modelAndView;
 	}
-	
 	@PostMapping(value="/")
 	public ModelAndView save(@Valid EmployeeDTO emplyoee,@Valid EmployeeSiteDTO emplyoeeSite,
 			BindingResult bindingResult,ModelAndView modelAndView) {
@@ -63,23 +62,6 @@ public class EmployeeController {
 		employeeService.insert(emplyoee,emplyoeeSite);
         return new ModelAndView("redirect:list");
 	}
-	
-	@PostMapping(value="/update/{id}")
-	public ModelAndView Update(@Valid EmployeeDTO emplyoee,@Valid EmployeeSiteDTO emplyoeeSite,
-			BindingResult bindingResult,ModelAndView modelAndView,
-			@PathVariable(name="id",required=false)Integer id) {
-			if (id!=null||id!=0) {
-				emplyoee.setEmployeeId(id);
-				employeeService.update(emplyoee);
-				emplyoeeSite.setEmployeeId(id);
-				employeeSiteService.update(emplyoeeSite);
-			}
-			System.out.println(emplyoeeSite.getEmployeeId());
-        // 保存成功后返回列表页
-			modelAndView.setViewName("redirect:/emp/list");
-        return modelAndView;
-	}
-	
 	//根据ID查询员工
 	@GetMapping(value= "/{id}")
 	public ModelAndView view(@PathVariable(name="id",required=false)Integer id, 
@@ -113,7 +95,38 @@ public class EmployeeController {
 		return "delete ok";
 	}
 	
-	
-	
+	@PostMapping(value="/update/{id}")
+	public ModelAndView Update(@Valid EmployeeDTO emplyoee,@Valid EmployeeSiteDTO emplyoeeSite,
+			BindingResult bindingResult,ModelAndView modelAndView,
+			@PathVariable(name="id",required=false)Integer id) {
+			if (id!=null||id!=0) {
+				emplyoee.setEmployeeId(id);
+				employeeService.update(emplyoee);
+				emplyoeeSite.setEmployeeId(id);
+				employeeSiteService.update(emplyoeeSite);
+			}
+			System.out.println(emplyoeeSite.getEmployeeId());
+        // 保存成功后返回列表页
+			modelAndView.setViewName("redirect:/emp/list");
+        return modelAndView;
+	}
+	//根据ID查询员工
+		@GetMapping(value= "/detailed/{id}")
+		public ModelAndView employeeDetailed(@PathVariable(name="id",required=false)Integer id, 
+				ModelAndView modelAndView) {
+				System.out.println(id);
+				EmployeeDTO dto = new EmployeeDTO();
+				Employee employee = employeeService.getByPrimaryKey(id);
+				ModelMapper modelMapper = new ModelMapper();
+				dto = modelMapper.map(employee, EmployeeDTO.class);
+				modelAndView.addObject("employee", dto);
+				
+				EmployeeSiteDTO dto1 = new EmployeeSiteDTO();
+				EmployeeSite employeeSite = employeeService.getByEmployeeId(id);
+				dto1 = modelMapper.map(employeeSite, EmployeeSiteDTO.class);
+				modelAndView.addObject("employeeSite", dto1);
+				modelAndView.setViewName("emp/employeeDetailed");
+				return modelAndView;
+		}
 	
 }
