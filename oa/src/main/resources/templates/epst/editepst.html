@@ -13,35 +13,36 @@
     <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
 </head>
 <body>
-<a href="javascript:" class="layui-btn" onclick="self.location=document.referrer;">《--返回</a>
-	<h2>员工学习-修改</h2>
+<h2>员工学习-修改</h2>
+<a href="javascript:" class="layui-btn layui-btn-normal" onclick="self.location=document.referrer;">返回</a>
 	
 	<form class="form-empl" id="editepst" th:action="@{/epst/editepst/}+${id}" method="POST" >
 		<table>
 			
 			<tr>
 				<td>学习内容</td>
-				<td width="400"><input type="text"  class="layui-input" name="studyContent" th:text="${employeeStudy.studyContent}"></td>
+				<td width="400"><input type="text"  class="layui-input" name="studyContent" th:placeholder="${employeeStudy.studyContent}"></td>
 			</tr>
 			<tr>
 				<td>开始日期</td>
-				<td width="400"><input type="date"  class="layui-input" name="beginDate" id="beginDate"></td>
+				<td width="400"><input type="text"  class="layui-input" name="beginDate" id="beginDate" 
+				th:placeholder="${employeeStudy.beginDate}" onfocus="(this.type='date')" onblur="(this.type='text')"></td>
 			</tr>
 			<tr>
 				<td>学习时间</td>
-				<td width="400"><input type="text"  class="layui-input" name="studyTime"></td>
+				<td width="400"><input type="text"  class="layui-input" name="studyTime" th:placeholder="${employeeStudy.studyTime}"></td>
 			</tr>
 			<tr>
 				<td>负责人</td>
-				<td width="400"><input type="text"  class="layui-input" name="handler"></td>
+				<td width="400"><input type="text"  class="layui-input" name="handler" th:placeholder="${employeeStudy.handler}"></td>
 			</tr>
 			<tr>
 				<td>学会内容</td>
-				<td width="400"><input type="text"  class="layui-input" name="learnCotent"></td>
+				<td width="400"><input type="text"  class="layui-input" name="learnCotent" th:placeholder="${employeeStudy.learnCotent}"></td>
 			</tr>
 			<tr>
 				<td>效果评价</td>
-				<td width="400"><input type="text"  class="layui-input" name="evaluation"></td>
+				<td width="400"><input type="text"  class="layui-input" name="evaluation" th:placeholder="${employeeStudy.evaluation}"></td>
 			</tr>
 		</table>
 		<input id="submit" type="submit" class="layui-btn">

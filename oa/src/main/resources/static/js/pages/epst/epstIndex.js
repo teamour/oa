@@ -8,16 +8,16 @@ BF={
 	             colNames:["id", "学习内容", "开始日期", "学习时间", "负责人", "学会内容", "效果评价"],
 	             colModel: [
 	                 { label: 'employeeStudyId', name: 'employeeStudyId',hidden:true, width: 75 },
-	                 { label: 'studyContent', name: 'studyContent', width: 100 },
+	                 { label: 'studyContent', name: 'studyContent', width: 300 },
 	                 { label: 'beginDate', name: 'beginDate', width: 100,
 					formatter : 'date', formatoptions: { srcformat : 'Y-m-d H:i:s', newformat :'ShortDate'}},
 	                 { label: 'studyTime', name: 'studyTime', width: 80 },
 	                 { label: 'handler', name: 'handler', width: 80 },
-	                 { label: 'learnCotent', name: 'learnCotent', width: 150 },
+	                 { label: 'learnCotent', name: 'learnCotent', width: 350 },
 	                 { label: 'evaluation', name: 'evaluation', width: 80 }
 	             ],
-	             width: "1000",
-	             height: "380",
+	             width: "100%",
+	             height: "100%",
 	             'loadError' : function (xhr, status, error){
 	                 alert(error);
 	             },
@@ -59,11 +59,15 @@ BF={
 		   }
 		   var params={"ids":ids.toString()};//ids=1,2,3,4
 		   //3.执行异步删除操作
-		   $.post(url,params,function(result){});
+		   $.post(url,params,function(result){})
+		   .always(function() {
+				window.location.reload();
+				console.log("chenggongshuaxin");
+			});
 		   //刷新
-		   console.log("刷新前");
-		   $("#jqGrid").jqGrid().trigger("reloadGrid");
-		   console.log("刷新后");
+//		   console.log("刷新前");
+//		   $("#jqGrid").jqGrid().trigger("reloadGrid");
+//		   console.log("刷新后");
 	},
 	searchData: function (){
 		$("#jqGrid").setGridParam({
