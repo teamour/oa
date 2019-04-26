@@ -26,6 +26,7 @@
                         <span class="ng-scope">用户</span>
                     </li>
                     
+                    <li><a th:href="@{/home}" target="iframe">主页</a></li>
                     <li><a th:href="@{/login}" target="iframe">账号与权限设置(未完成)</a></li>
                     <li><a th:href="@{/hr/hrIndex}" target="iframe">HR管理</a></li>
                     <li><a th:href="@{/emp/list}" target="iframe">人员管理</a></li>
@@ -43,7 +44,7 @@
         <!--右侧部分开始-->
         <div id="page-wrapper" class="gray-bg dashbard-1">
             <div class="row J_mainContent" id="content-main">
-                <iframe id="J_iframe" width="100%" height="100%" th:src="@{/emp/list}" name="iframe"></iframe>
+                <iframe id="J_iframe" width="100%" height="100%" th:src="@{/home}" name="iframe"></iframe>
             </div>
         </div>
         <!--右侧部分结束-->
