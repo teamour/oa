@@ -16,29 +16,28 @@
     <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/jquery.jqGrid.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/i18n/grid.locale-ja.js}"></script>
-    
+    <style> .ui-jqgrid tr.jqgrow td { white-space: normal !important; height:auto; }</style>
 </head>
 <body>
 
 	<h1>学习管理</h1>
 	
-	<hr>
-	<a id="btnBack" class="layui-btn" th:href="@{/emp/list}">《--返回</a>
+	<a id="btnBack" class="layui-btn layui-btn-normal" th:href="@{/emp/list}">返回</a>
 	<script>
 	
 	</script>
+	<br/>
 	<br/>	
-	<span type="text" th:text="'员工id:'+${myid}"></span>
+	<span type="text" th:text="'员工id:'+${myid}" style="font-size:16px"></span>
 	<br/>
 	<input id="title" type="text" placeholder="学习内容">    
     <button id="btnSearch" class="layui-btn layui-btn-normal" onclick="BF.searchData();">查询</button>
-	<a id="btnAdd" class="layui-btn layui-btn-normal" th:href="@{/epst/addepst}">添加</a>
+	<a id="btnAdd" class="layui-btn" th:href="@{/epst/addepst}">添加</a>
 	<button id="btnUpdate" class="layui-btn layui-btn-normal" onclick="BF.modifyData();" >编辑</button>
 	<button id="btnDelete" class="layui-btn layui-btn-danger" onclick="BF.deleteData();">删除</button>
 	<hr>
-	<table id="jqGrid"></table>
+	<table id="jqGrid" ></table>
 	<div id="jqGridPager"></div>
-	
 	<span th:text="*{employeeStudyId}" style="display:none;"></span>
 	
 	 <script type="text/javascript" th:inline="javascript">
