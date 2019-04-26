@@ -23,10 +23,10 @@
 	
     <input id="title" type="text" >
     <button id="btnSearch" class="layui-btn layui-btn-normal" onclick="BF.searchData();">查询</button>
-    <a id="btnAdd" class="layui-btn" th:href="@{/customer/add}">添加</a>
     <button id="btnDetailed" class="layui-btn layui-btn-normal" onclick="BF.detailedData();" >详情</button>
     <button id="btnUpdate" class="layui-btn layui-btn-normal" onclick="BF.modifyData();" >修改</button>
-    <button id="btnDelete" class="layui-btn layui-btn-warm" onclick="BF.deleteData();">删除</button>
+     <a id="btnAdd" class="layui-btn" th:href="@{/customer/add}">添加</a>
+    <button id="btnDelete" class="layui-btn layui-btn-danger" onclick="BF.deleteData();">删除</button>
     
     <hr>
 
