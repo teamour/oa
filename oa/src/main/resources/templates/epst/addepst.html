@@ -10,29 +10,48 @@
 
     <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
     <link rel="stylesheet" th:href="@{/css/layui.css}">
-    <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}">
+    
+    </script>
     
     
 </head>
 <body>
-	<a id="btnBack" class="layui-btn" th:href="@{/epst/epstIndex}">《--返回</a>
+	<a href="javascript:" class="layui-btn" onclick="self.location=document.referrer;">《--返回</a>
 	<h2>员工学习-添加</h2>
 	
-	
-	<form class="form-empl" id="addepst" th:action="@{/epst/addepst}" method="POST" >
+	<script type="text/javascript">
+	 function Check(){
+		 debugger
+		 var begin=document.getElementById("beginDate");
+			console.log(begin.value);
+			if(begin.value.length>0){
+				document.getElementById("BeginDateText").style.display="none";
+				console.log("输入合fa");
+				document.getElementById('submit').disabled=false;
+				document.getElementById('submit').className="layui-btn";
+				}
+			else{
+				document.getElementById("BeginDateText").style.display="inline";
+				document.getElementById('submit').disabled=true;
+				document.getElementById('submit').className="layui-btn layui-btn-disabled";
+				}
+			}
+	 
+	 
+	</script>
+	<form class="form-empl" id="addepst" th:action="@{/epst/addepst}" method="POST">
 		<table>
-			<tr>
-				<td>员工ID</td>
-				<td width="400"><input type="text"  class="layui-input" name="employeeId" placeholder="清对照员工表"></td>
-			</tr>
 			<tr>
 				<td>学习内容</td>
 				<td width="400"><input type="text"  class="layui-input" name="studyContent"></td>
 			</tr>
 			<tr>
 				<td>开始日期</td>
-				<td width="400"><input type="date"  class="layui-input" name="beginDate" id="beginDate"></td>
+				<td width="400"><input type="date"  class="layui-input" name="beginDate" id="beginDate" onblur="Check()"></td>
+				<td><div id="BeginDateText" style="color:#F00;display:none">开始时间不能为空</div></td>
 			</tr>
+			
 			<tr>
 				<td>学习时间</td>
 				<td width="400"><input type="text"  class="layui-input" name="studyTime"></td>
@@ -48,24 +67,14 @@
 			<tr>
 				<td>效果评价</td>
 				<td width="400"><input type="text"  class="layui-input" name="evaluation" 
-				placeholder="评分为1-5" lay-verify="required|number" oninput="value=value.replace(/[^\d]/g,'')"></td>
+				placeholder="评分为1-5" oninput="value=value.replace(/[^\d]/g,'')"></td>
 			</tr>
 		</table>
-		<input id="submit" type="submit" class="layui-btn">
-	</form>
+		<button id="submit" type="submit" class="layui-btn layui-btn-disabled" disabled="disabled" >提交</button>
+	</form> 
 	
 	<script type="text/javascript" th:src="@{/js/layui.js}"></script>
-    <!-- <script type="text/javascript" th:src="@{/js/pages/epst/announcement.js}"></script> -->
     <script src="/static/build/layui.js"></script>
-<script>
-layui.use('laydate', function(){
-  var laydate = layui.laydate;
-  
-  //执行一个laydate实例
-  laydate.render({
-    elem: '#beginDate' //指定元素
-  });
-});
-</script>
+
 </body>
 </html>

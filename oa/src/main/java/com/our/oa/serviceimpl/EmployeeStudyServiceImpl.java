@@ -28,6 +28,7 @@ public class EmployeeStudyServiceImpl implements EmployeeStudyService{
 
 	@Override
 	public Page<EmployeeStudyListDTO> getGridList(EmployeeStudyListQueryDTO g) {
+		//Page<EmployeeStudyListDTO> queryResult = employeeStudyMapper.selectQueryList(g);
 		Page<EmployeeStudyListDTO> queryResult = employeeStudyMapper.selectQueryList(g);
 		if(!queryResult.isEmpty()) {
 			return queryResult;
@@ -41,6 +42,12 @@ public class EmployeeStudyServiceImpl implements EmployeeStudyService{
 		return employeeStudyMapper.selectByPrimaryKey(employeeStudyId);
 	}
 
+	@Override
+	public EmployeeStudy getByEmployeeId(Integer employeeId) {
+		// TODO Auto-generated method stub
+		return employeeStudyMapper.selectByEmployeeId(employeeId);
+	}
+	
 	@Override
 	public int insert(EmployeeStudyDTO dto) {
 		// TODO Auto-generated method stub
@@ -79,6 +86,7 @@ public class EmployeeStudyServiceImpl implements EmployeeStudyService{
 		employeeStudyMapper.updateForDelete(employeeStudyId);
 		return 0;
 	}
+
 
 
 	

@@ -11,6 +11,8 @@ public interface EmployeeStudyService extends ListQueryService<EmployeeStudyList
 	
 	EmployeeStudy getByPrimaryKey(Integer employeeStudyId);
 	
+	EmployeeStudy getByEmployeeId(Integer employeeId);
+	
 	int insert(EmployeeStudyDTO dto);
 	
 	int update(EmployeeStudyDTO dto);
