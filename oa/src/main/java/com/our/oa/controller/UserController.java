@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.our.oa.entity.User;
+import com.our.oa.dto.form.UserDTO;
 import com.our.oa.service.UserService;
 
 /*
@@ -29,7 +29,7 @@ public class UserController {
 	}
 	@PostMapping("/login")
 	public ModelAndView login(
-			ModelAndView modelAndView ,User user ) {
+			ModelAndView modelAndView ,UserDTO user ) {
 		Integer rows = userService.selectByEmail(user);
 		System.out.println(rows);
 		if (rows!=null&&rows!=0) {
@@ -48,7 +48,7 @@ public class UserController {
 	}
 	@PostMapping("/register")
 	public ModelAndView register(
-	 	 ModelAndView modelAndView ,User user ) {
+	 	 ModelAndView modelAndView ,UserDTO user ) {
 		try {
 			//1.先对数据进行校验
 			//2.校验成功后对用户进行添加

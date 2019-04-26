@@ -1,13 +1,11 @@
 package com.our.oa.serviceimpl;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.our.oa.dao.UserMapper;
-import com.our.oa.entity.User;
+import com.our.oa.dto.form.UserDTO;
 import com.our.oa.service.UserService;
 
 @Service
@@ -17,14 +15,14 @@ public class UserServiceImpl implements UserService {
 	private UserMapper userMapper;
 	
 	@Override
-	public Integer selectByEmail(User user) {
+	public Integer selectByEmail(UserDTO user) {
 		//根据email和password去数据库查询
 		int rows = userMapper.findByEP(user);
 		return rows;
 	}
 
 	@Override
-	public Integer save(User user) {
+	public Integer save(UserDTO user) {
 		int rows = userMapper.insert(user);
 		return rows;
 	}

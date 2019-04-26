@@ -17,13 +17,13 @@
     <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
   </resultMap>
   <!-- 根据email和password简易查询 -->
-  <select id="findByEP" parameterType="com.our.oa.entity.User" resultType="int">
+  <select id="findByEP" parameterType="com.our.oa.dto.form.UserDTO" resultType="int">
    select count(user_id) from sys_user 
    <where> 
    	email = #{email} and user_pwd = #{userPwd}
    </where>
   </select>
-  <insert id="insert" parameterType="com.our.oa.entity.User" >
+  <insert id="insert" parameterType="com.our.oa.dto.form.UserDTO" >
   insert into 
   sys_user (user_name,user_pwd,email,create_time,delete_flag)
   values 

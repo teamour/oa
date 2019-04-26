@@ -1,13 +1,13 @@
 package com.our.oa.service;
 
 
-import com.our.oa.entity.User;
+import com.our.oa.dto.form.UserDTO;
 
 public interface UserService {
 	
-	Integer selectByEmail(User user);
+	Integer selectByEmail(UserDTO user);
 	
-	Integer save(User user);
+	Integer save(UserDTO user);
 	
 	boolean valid(String param,Integer type);
 }
