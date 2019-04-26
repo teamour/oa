@@ -36,7 +36,7 @@ BF={
 	         });
 
 	},
-	modifyData:function(){
+	modifyData: function (){
 		var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
 		
 		if(rowId == null || rowId == ''){
@@ -46,22 +46,34 @@ BF={
 		
 		window.location.href = ctxPath+"hr/interviewerInfoModify?interviewerId="+rowId;
 	},
-	selectData:function(){
+	selectData: function (){
 		var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
 		if(rowId == null || rowId == ''){
 			return;
 		}
 		window.location.href = ctxPath+"hr/interviewerInfo?interviewerId="+rowId;
 	},
-	searchData:function(){
-		
-//		$("#jqGrid").setGridParam({
-//            page: 1,
-//            postData: { search :$("#search").val() }
-//        }).trigger('reloadGrid');
+	searchData: function (){
+		if($("#searchMethod").val() == '0'){
+			$("#jqGrid").setGridParam({
+	            page: 1,
+	            postData: { interviewerName :$("#search").val() }
+	        }).trigger('reloadGrid');
+		}
+		if($("#searchMethod").val() == '1'){
+			$("#jqGrid").setGridParam({
+				page: 1,
+				postData: { interview1Time :$("#search").val() }
+			}).trigger('reloadGrid');
+		}
+		if($("#searchMethod").val() == '2'){
+			$("#jqGrid").setGridParam({
+				page: 1,
+				postData: { interview1Handler :$("#search").val() ,interview2Handler :$("#search").val(),
+					interview3Handler :$("#search").val() }
+			}).trigger('reloadGrid');
+		}
    }
-   
-	
 }
     
 $(function () { 

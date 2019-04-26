@@ -127,11 +127,67 @@
   </select>
   
   <select id="checkCode" parameterType="STRING" resultType="com.our.oa.entity.Interviewer">
-  	select * from t_interviewer where interviewer_code=#{code}
+  	select 
+		interviewer_id, interviewer_code, 
+	    interviewer_name, interview_result, 
+	    interview1_time, interview1_result, 
+	    interview1_handler, gender, 
+	    age, city, 
+	    japanese_socre, graduated_school, 
+	    profession, graduated_date, 
+	    education, certificate, 
+	    manner, family_situation, 
+	    service_situation, nationality, 
+	    birthplace, marital_status, 
+	    expect_salary, friendship_situation_in_japan, 
+	    interview2_time, interview2_result, 
+	    interview2_handler, internship_experience, 
+	    skill_score, interview3_time, 
+	    interview3_result, interview3_handler, 
+	    prev1_company_name, prev2_company_name, 
+	    prev3_company_name, prev4_company_name, 
+	    prev5_company_name, work_intent, 
+	    company_id, create_time, 
+	    update_time, delete_time, 
+	    delete_flag, japanese_conversation_ability, 
+	    personnel_dept_feedback, interview1_desc, 
+	    personal_situation, working_situation, 
+	    interview2_desc, technical_department_feedback, 
+	    interview3_desc 
+  	from 
+  		t_interviewer where interviewer_code=#{code}
   </select>
   
   <select id="getDetailInfoById" parameterType="INTEGER" resultMap="BaseResultMap">
-  	select * from t_interviewer where interviewer_id=#{interviewerId}
+  	select 
+		interviewer_id, interviewer_code, 
+	    interviewer_name, interview_result, 
+	    interview1_time, interview1_result, 
+	    interview1_handler, gender, 
+	    age, city, 
+	    japanese_socre, graduated_school, 
+	    profession, graduated_date, 
+	    education, certificate, 
+	    manner, family_situation, 
+	    service_situation, nationality, 
+	    birthplace, marital_status, 
+	    expect_salary, friendship_situation_in_japan, 
+	    interview2_time, interview2_result, 
+	    interview2_handler, internship_experience, 
+	    skill_score, interview3_time, 
+	    interview3_result, interview3_handler, 
+	    prev1_company_name, prev2_company_name, 
+	    prev3_company_name, prev4_company_name, 
+	    prev5_company_name, work_intent, 
+	    company_id, create_time, 
+	    update_time, delete_time, 
+	    delete_flag, japanese_conversation_ability, 
+	    personnel_dept_feedback, interview1_desc, 
+	    personal_situation, working_situation, 
+	    interview2_desc, technical_department_feedback, 
+	    interview3_desc
+	 from 
+	 	t_interviewer where interviewer_id=#{interviewerId}
   </select>
   
   <update id="updateInfoDo" parameterType="com.our.oa.entity.Interviewer">

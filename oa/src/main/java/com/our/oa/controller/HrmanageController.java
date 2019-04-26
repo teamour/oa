@@ -113,14 +113,13 @@ public class HrmanageController {
 	
 	@PostMapping("/interviewerInfoModifyDo")
 	public ModelAndView interviewerInfoModifyDo(ModelAndView modelAndView,int interviewerId,Interviewer interviewer) {
-		modelAndView.addObject("detailInfo", hrmanageServiceImpl.getDetailInfoById(interviewerId));
+//		modelAndView.addObject("detailInfo", hrmanageServiceImpl.getDetailInfoById(interviewerId));
 		if(hrmanageServiceImpl.updateInfoDo(interviewer)) {
 			modelAndView.setView(new RedirectView("interviewerInfo?interviewerId="+interviewerId));
 			return modelAndView;
-		}else {
-			modelAndView.setViewName("hr/error");
-			return modelAndView;
 		}
+		modelAndView.setViewName("hr/error");
+		return modelAndView;
 	}
 	
 	@GetMapping("/addResume")
@@ -179,10 +178,7 @@ public class HrmanageController {
 	
 	@PostMapping("/visaInfoAddDo")
 	public ModelAndView visaInfoAddDo(ModelAndView modelAndView,InterviewerVisaHandleDTO visaHandleDTO,String interviewerCode) {
-		int getInterviewerId = hrmanageServiceImpl.getInterviewerIdByCode(interviewerCode);
-		System.out.println("date:"+visaHandleDTO.getExpectSubmitDate());
-		
-		if(visaHandleServiceImpl.insertVisaInfo(visaHandleDTO,getInterviewerId)) {
+		if(visaHandleServiceImpl.insertVisaInfo(visaHandleDTO,hrmanageServiceImpl.getInterviewerIdByCode(interviewerCode))) {
 			modelAndView.setView(new RedirectView("visaLogin"));
 			return modelAndView;
 		}
