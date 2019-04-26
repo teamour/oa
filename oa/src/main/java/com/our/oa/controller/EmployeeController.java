@@ -110,6 +110,23 @@ public class EmployeeController {
 			modelAndView.setViewName("redirect:/emp/list");
         return modelAndView;
 	}
-	
+	//根据ID查询员工
+		@GetMapping(value= "/detailed/{id}")
+		public ModelAndView employeeDetailed(@PathVariable(name="id",required=false)Integer id, 
+				ModelAndView modelAndView) {
+				System.out.println(id);
+				EmployeeDTO dto = new EmployeeDTO();
+				Employee employee = employeeService.getByPrimaryKey(id);
+				ModelMapper modelMapper = new ModelMapper();
+				dto = modelMapper.map(employee, EmployeeDTO.class);
+				modelAndView.addObject("employee", dto);
+				
+				EmployeeSiteDTO dto1 = new EmployeeSiteDTO();
+				EmployeeSite employeeSite = employeeService.getByEmployeeId(id);
+				dto1 = modelMapper.map(employeeSite, EmployeeSiteDTO.class);
+				modelAndView.addObject("employeeSite", dto1);
+				modelAndView.setViewName("emp/employeeDetailed");
+				return modelAndView;
+		}
 	
 }
