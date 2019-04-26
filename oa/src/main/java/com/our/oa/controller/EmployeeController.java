@@ -2,6 +2,8 @@ package com.our.oa.controller;
 
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -21,8 +23,10 @@ import com.our.oa.dto.form.EmployeeDTO;
 import com.our.oa.dto.form.EmployeeSiteDTO;
 import com.our.oa.dto.list.EmployeeListDTO;
 import com.our.oa.dto.list.EmployeeListQueryDTO;
+import com.our.oa.entity.DictionaryDetail;
 import com.our.oa.entity.Employee;
 import com.our.oa.entity.EmployeeSite;
+import com.our.oa.service.DictionaryService;
 import com.our.oa.service.EmployeeService;
 import com.our.oa.service.EmployeeSiteService;
 import com.our.oa.utils.PageInfoToGridDTOUtils;
@@ -34,10 +38,12 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 	@Autowired
 	private EmployeeSiteService employeeSiteService;
+	@Autowired
+	private DictionaryService dicService;
 	@GetMapping("/list")
 	public ModelAndView listDataByEmployeeId(
 			ModelAndView modelAndView) {
-		modelAndView.setViewName("emp/employeelist");
+		modelAndView.setViewName("emp/employeeList");
 		return modelAndView;
 	}
 	
@@ -52,7 +58,7 @@ public class EmployeeController {
 	public ModelAndView add(ModelAndView modelAndView) {
 		//EmployeeDTO dto = new EmployeeDTO();
 		//modelAndView.addObject("employeeForm", dto);
-		modelAndView.setViewName("emp/employee");
+		modelAndView.setViewName("emp/employeeAdd");
 		return modelAndView;
 	}
 	@PostMapping(value="/")
@@ -77,7 +83,7 @@ public class EmployeeController {
 			EmployeeSite employeeSite = employeeService.getByEmployeeId(id);
 			dto1 = modelMapper.map(employeeSite, EmployeeSiteDTO.class);
 			modelAndView.addObject("employeeSite", dto1);
-			modelAndView.setViewName("emp/employeeedit");
+			modelAndView.setViewName("emp/employeeEdit");
 			return modelAndView;
 	}
 	// 删除
@@ -99,7 +105,7 @@ public class EmployeeController {
 	public ModelAndView Update(@Valid EmployeeDTO emplyoee,@Valid EmployeeSiteDTO emplyoeeSite,
 			BindingResult bindingResult,ModelAndView modelAndView,
 			@PathVariable(name="id",required=false)Integer id) {
-			if (id!=null||id!=0) {
+			if (id!=null|id!=0) {
 				emplyoee.setEmployeeId(id);
 				employeeService.update(emplyoee);
 				emplyoeeSite.setEmployeeId(id);
@@ -111,8 +117,8 @@ public class EmployeeController {
         return modelAndView;
 	}
 	//根据ID查询员工
-		@GetMapping(value= "/detailed/{id}")
-		public ModelAndView employeeDetailed(@PathVariable(name="id",required=false)Integer id, 
+	@GetMapping(value= "/detailed/{id}")
+	public ModelAndView employeeDetailed(@PathVariable(name="id",required=false)Integer id, 
 				ModelAndView modelAndView) {
 				System.out.println(id);
 				EmployeeDTO dto = new EmployeeDTO();
@@ -127,6 +133,9 @@ public class EmployeeController {
 				modelAndView.addObject("employeeSite", dto1);
 				modelAndView.setViewName("emp/employeeDetailed");
 				return modelAndView;
-		}
-	
+	}
+	@PostMapping(value = "/dicNames/{id}")
+	public List<DictionaryDetail> getDicNames(@PathVariable(name = "id", required = false) Integer id) {
+		return dicService.getDetailNames(id);
+	}
 }
