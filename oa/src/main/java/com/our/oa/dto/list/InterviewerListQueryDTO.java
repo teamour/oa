@@ -17,4 +17,12 @@ public class InterviewerListQueryDTO extends GridListQueryBaseDTO {
 	private static final long serialVersionUID = 1L;
 	
     private String interviewerName;
+    
+    private String interview1Time;
+    
+    private String interview1Handler;
+    
+    private String interview2Handler;
+    
+    private String interview3Handler;
 }

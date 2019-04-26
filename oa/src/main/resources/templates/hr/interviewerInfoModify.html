@@ -8,8 +8,7 @@
 	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
 	<link rel="stylesheet" th:href="@{/css/layui.css}">
 <body>
-<div><a class="layui-btn" th:href="@{hrIndex}">返回首页</a></div>
-<form class="layui-form" action="#" th:action="@{/hr/interviewerInfoModifyDo}" method="post" th:object="${detailInfo}">
+<form action="#" th:action="@{/hr/interviewerInfoModifyDo}" method="post" th:object="${detailInfo}">
 	<table>
 		<tr>
 			<td><input type="hidden" th:field="*{interviewerId}" th:value="${detailInfo.interviewerId}"></td>
@@ -36,7 +35,7 @@
 		<tr>
 			<td>1面结果:</td>
 			<td>
-				<select th:field="*{interview1Result}">
+				<select th:field="*{interview1Result}" th:value="${detailInfo.interview1Result}">
 					<option value="0"></option>
 					<option value="1">不合格</option>
 					<option value="2">合格</option>
@@ -49,7 +48,7 @@
 		<tr>
 			<td>性别:</td>
 			<td>
-				<select th:field="*{gender}">
+				<select th:field="*{gender}" th:value="${detailInfo.gender}">
 					<option value="0">女</option>
 					<option value="1">男</option>
 				</select>
@@ -79,7 +78,7 @@
 		<tr>
 			<td>学历:</td>
 			<td>
-				<select th:field="*{education}">
+				<select th:field="*{education}" th:value="${detailInfo.education}">
 					<option value="0"></option>
 					<option value="1">大专</option>
 					<option value="2">本科</option>
@@ -93,7 +92,7 @@
 		</tr>
 		<tr>
 			<td>マナー:</td><td>
-				<select th:field="*{manner}">
+				<select th:field="*{manner}" th:value="${detailInfo.manner}">
 					<option value="0"></option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -118,7 +117,7 @@
 		<tr>
 			<td>在职情况:</td>
 			<td>
-				<select th:field="*{serviceSituation}">
+				<select th:field="*{serviceSituation}" th:value="${detailInfo.serviceSituation}">
 					<option value="0"></option>
 					<option value="1">离职</option>
 					<option value="2">在职</option>
@@ -134,7 +133,7 @@
 		<tr>
 			<td>婚姻状况:</td>
 			<td>
-				<select th:field="*{maritalStatus}">
+				<select th:field="*{maritalStatus}" th:value="${detailInfo.maritalStatus}">
 					<option value="0"></option>
 					<option value="1">未婚</option>
 					<option value="2">已婚</option>
@@ -153,7 +152,7 @@
 		<tr>
 			<td>2面结果:</td>
 			<td>
-				<select th:field="*{interview2Result}">
+				<select th:field="*{interview2Result}" th:value="${detailInfo.interview2Result}">
 					<option value="0"></option>
 					<option value="1">不合格</option>
 					<option value="2">合格</option>
@@ -185,7 +184,7 @@
 		<tr>
 			<td>3面结果:</td>
 			<td>
-				<select th:field="*{interview3Result}">
+				<select th:field="*{interview3Result}" th:value="${detailInfo.interview3Result}">
 					<option value="0"></option>
 					<option value="1">不合格</option>
 					<option value="2">合格</option>
@@ -216,7 +215,7 @@
 		<tr>
 			<td>工作意向:</td>
 			<td>
-				<select th:field="*{workIntent}">
+				<select th:field="*{workIntent}" th:value="${detailInfo.workIntent}">
 					<option value="0"></option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -232,15 +231,6 @@
 					<option th:each="com : ${company}" th:value="${com.companyId}" th:text="${com.companyName}"></option>
 				</select>
 			<td></td>
-		</tr>
-		<tr>
-			<td>是否已删除:</td>
-			<td>
-				<select th:field="*{deleteFlag}">
-					<option value="0">未删除</option>
-					<option value="1">已删除</option>
-				</select>
-			</td><td></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center"><input type="submit" value="保存" style="width: 100px;"></td><td></td>

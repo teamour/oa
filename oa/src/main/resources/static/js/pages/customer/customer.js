@@ -59,7 +59,8 @@ BF={
 			return;
 		}
 		
-		confirm("确定要删除吗?");
+		if(!confirm("您确认删除吗"))
+			return;
 		
 		var url="http://localhost:8080/customer/delete";
 		var params={"rows":rows.toString()};
