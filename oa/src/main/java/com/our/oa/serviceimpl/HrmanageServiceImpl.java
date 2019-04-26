@@ -110,5 +110,10 @@ public class HrmanageServiceImpl implements HrmanageService{
 		return interviewerMapper.getInterViewerIdAndCode();
 	}
 
+	@Override
+	public int getInterviewerIdByCode(String interviewerCode) {
+		return interviewerMapper.getInterviewerIdByCode(interviewerCode);
+	}
+
 
 }

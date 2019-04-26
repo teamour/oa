@@ -11,20 +11,18 @@
 	<a class="layui-btn" th:href="@{hrIndex}">返回首页</a>
 </div>
 <div>
-	<form action="#" th:action="@{/hr/visaInfoAddDo}" method="post" th:object="${interviewerVisaHandle}">
+	<form action="#" th:action="@{/hr/visaInfoAddDo}" method="post" th:object="${visaHandleDTO}">
 		<table border="1" style="border:1px solid black;">
 		<tr>
-			<th colspan="11">签证办理新增</th>
+			<th colspan="11">签证办理新规</th>
 		</tr>
 		<tr>
-			<td>No</td><td><input type="text" th:field="*{interviewerId}" th:value="${interviewerVisaHandle.interviewerId}" readonly="readonly"></td>
+			<td>面试人员编号</td><td><input type="text" name="interviewerCode"></td>
 		</tr>
-		<tr>
-			<td>姓名</td><td><input type="text" th:field="*{interviewer.interviewerName}" th:value="${interviewerVisaHandle.interviewer.interviewerName}" readonly="readonly"></td>
 		<tr>
 			<td>邮寄情况</td>
 			<td>
-				<select th:field="*{mailingSituation}" th:value="${interviewerVisaHandle.mailingSituation}">
+				<select th:field="*{mailingSituation}">
 					<option value="0">未邮寄</option>
 					<option value="1">邮寄中</option>
 					<option value="2">已收到</option>
@@ -34,7 +32,7 @@
 		<tr>
 			<td>材料准备情况</td>
 			<td>
-				<select th:field="*{materialPrepareSituation}" th:value="${interviewerVisaHandle.materialPrepareSituation}">
+				<select th:field="*{materialPrepareSituation}">
 					<option value="0">未准备</option>
 					<option value="1">准备中</option>
 					<option value="2">准备结束</option>
@@ -43,7 +41,7 @@
 		<tr>
 			<td>申请材料是否已准备好</td>
 			<td>
-				<select th:field="*{applicationMaterial}" th:value="${interviewerVisaHandle.applicationMaterial}">
+				<select th:field="*{applicationMaterial}">
 					<option value="0">否</option>
 					<option value="1">是</option>
 				</select>
@@ -51,7 +49,7 @@
 		<tr>
 			<td>自译日文简历</td>
 			<td>
-				<select th:field="*{selfJapaneseResume}" th:value="${interviewerVisaHandle.selfJapaneseResume}">
+				<select th:field="*{selfJapaneseResume}">
 					<option value="0">没有</option>
 					<option value="1">有</option>
 				</select>
@@ -59,44 +57,28 @@
 		<tr>
 			<td>简历翻译检查</td>
 			<td>
-				<select th:field="*{checkResume}" th:value="${interviewerVisaHandle.checkResume}">
+				<select th:field="*{checkResume}">
 					<option value="0">未检查</option>
 					<option value="1">已检查</option>
 				</select>
 		</tr>
 		<tr>
-			<td>预计递交日</td><td><input type="date" th:field="*{expectSubmitDate}" th:value="${interviewerVisaHandle.expectSubmitDate}"></td>
+			<td>预计递交日</td><td><input type="date" th:field="*{expectSubmitDate}"></td>
 		</tr>
 		<tr>
-			<td>实际递交日</td><td><input type="date" th:field="*{actualSubmitDate}" th:value="${interviewerVisaHandle.actualSubmitDate}"></td>
+			<td>实际递交日</td><td><input type="date" th:field="*{actualSubmitDate}"></td>
 		</tr>
 		<tr>
-			<td>签证办理担当</td><td><input type="text" th:field="*{visaHandleHandler}" th:value="${interviewerVisaHandle.visaHandleHandler}"></td>
+			<td>签证办理担当</td><td><input type="text" th:field="*{visaHandleHandler}"></td>
 		</tr>
 		<tr>
-			<td>赴日通知担当</td><td><input type="text" th:field="*{noticeHandler}" th:value="${interviewerVisaHandle.noticeHandler}"></td>
+			<td>赴日通知担当</td><td><input type="text" th:field="*{noticeHandler}"></td>
 		</tr>
 		<tr>
-			<td>其他担当</td><td><input type="text" th:field="*{otherHandlerf}" th:value="${interviewerVisaHandle.otherHandlerf}"></td>
+			<td>其他担当</td><td><input type="text" th:field="*{otherHandlerf}"></td>
 		</tr>
 		<tr>
-			<td>备考</td><td><input type="text" th:field="*{description}" th:value="${interviewerVisaHandle.description}"></td>
-		</tr>
-		<tr>
-			<td>是否完成关闭</td>
-			<td>
-				<select th:field="*{isCompleted}" th:value="${interviewerVisaHandle.isCompleted}">
-					<option value="0">未删除</option>
-					<option value="1">已删除</option>
-				</select>
-		</tr>
-		<tr>
-			<td>是否已删除</td>
-			<td>
-				<select th:field="*{deleteFlag}" th:value="${interviewerVisaHandle.deleteFlag}">
-					<option value="0">未删除</option>
-					<option value="1">已删除</option>
-				</select>
+			<td>备考</td><td><input type="text" th:field="*{description}"></td>
 		</tr>
 		<tr>
 			<td><input type="submit" value="保存"></td><td></td>

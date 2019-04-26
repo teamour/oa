@@ -42,5 +42,7 @@ public interface InterviewerMapper {
 
 	List<InterviewerDTO> getInterViewerIdAndCode();
 
+	int getInterviewerIdByCode(String interviewerCode);
+
 
 }
