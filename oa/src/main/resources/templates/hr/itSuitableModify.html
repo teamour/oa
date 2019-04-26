@@ -11,7 +11,7 @@
 	<form action="#" th:action="@{/hr/itSuitableModify}" method="post" th:object="${testInfo}">
 	<table>
 		<tr>
-			<th colspan="2">IT适性试验结果修改</th>
+			<th colspan="2"><h2>IT适性试验结果修改</h2></th>
 		</tr>
 		<tr>
 			<td></td><td><input type="hidden" th:field="*{testId}" th:value="${testInfo.testId}" ></td>
@@ -81,7 +81,7 @@
 			<td>备考:</td><td><input type="text" th:field="*{description}" th:value="${testInfo.description}"></td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="submit" value="保存"></td>
+			<td colspan="2"><input class="layui-btn" type="submit" value="保存"></td>
 		</tr>
 	</table>
 	</form>

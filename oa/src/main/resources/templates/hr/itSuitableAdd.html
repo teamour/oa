@@ -11,7 +11,7 @@
 	<form action="#" th:action="@{/hr/itSuitableAddDo}" method="post" th:object="${testDTO}">
 	<table>
 		<tr>
-			<th colspan="2">IT适性试验结果添加</th>
+			<th colspan="2"><h2>IT适性试验结果添加</h2></th>
 		</tr>
 		<tr>
 			<td>面试人员编号:</td>
@@ -79,7 +79,7 @@
 			<td>备考:</td><td><input type="text" th:field="*{description}"></td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="submit" value="新增"></td>
+			<td colspan="2"><input class="layui-btn layui-btn-normal" type="submit" value="保存"></td>
 		</tr>
 	</table>
 	</form>

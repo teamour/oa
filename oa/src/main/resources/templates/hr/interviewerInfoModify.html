@@ -8,6 +8,9 @@
 	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
 	<link rel="stylesheet" th:href="@{/css/layui.css}">
 <body>
+<div>
+	<h1>面试人员信息修改</h1>
+</div>
 <form action="#" th:action="@{/hr/interviewerInfoModifyDo}" method="post" th:object="${detailInfo}">
 	<table>
 		<tr>
@@ -233,7 +236,7 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center"><input type="submit" value="保存" style="width: 100px;"></td><td></td>
+			<td colspan="2" align="center"><input class="layui-btn layui-btn-normal" type="submit" value="保存" style="width: 100px;"></td><td></td>
 		</tr>
 	</table>
 </form>

@@ -11,7 +11,7 @@
 	<form action="#" th:action="@{/hr/visaInfoAddDo}" method="post" th:object="${visaHandleDTO}">
 		<table border="1" style="border:1px solid black;">
 		<tr>
-			<th colspan="11">签证办理新规</th>
+			<th colspan="11"><h2>签证办理新规</h2></th>
 		</tr>
 		<tr>
 			<td>面试人员编号</td><td><input type="text" name="interviewerCode"></td>
@@ -78,7 +78,7 @@
 			<td>备考</td><td><input type="text" th:field="*{description}"></td>
 		</tr>
 		<tr>
-			<td><input type="submit" value="保存"></td><td></td>
+			<td><input type="submit" class="layui-btn" value="保存"></td><td></td>
 		</tr>
 	</table>
 	</form>

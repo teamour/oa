@@ -9,11 +9,13 @@
 <body>
 <table border="1" style="border:1px solid black;">
 	<tr>
-		<th colspan="6" align="center">面试人员详细信息</th>
+		<th colspan="6" align="center"><h2>面试人员详细信息</h2></th>
 	</tr>
 	<tr>
-		<td>面试人员编号:</td><td th:text="${detailInfo.interviewerCode}"></td><td style="width: 100px;"></td>
-		<td>姓名:</td><td th:text="${detailInfo.interviewerName}"></td><td></td>
+		<td>面试人员编号:</td><td style="width: 150px;" th:text="${detailInfo.interviewerCode}"></td>
+		<td style="width: 50px;"></td>
+		<td>姓名:</td><td style="width: 150px;" th:text="${detailInfo.interviewerName}"></td>
+		<td style="width: 50px;"></td>
 	</tr>
 	<tr>
 		<td>面情结果:</td>
@@ -177,9 +179,11 @@
 		</td>
 		<td></td>
 		<td></td>
+		<td></td>
+		<td></td>
 	</tr>
 	<tr>
-		<td colspan="4" align="center"><a th:href="@{interviewerInfoModify(interviewerId=${detailInfo.interviewerId})}">编辑></a></td><td></td>
+		<td colspan="6" align="center"><a class="layui-btn layui-btn-normal" th:href="@{interviewerInfoModify(interviewerId=${detailInfo.interviewerId})}">编辑></a></td><td></td>
 	</tr>
 </table>
 </body>

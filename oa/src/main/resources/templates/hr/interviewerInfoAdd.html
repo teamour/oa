@@ -11,7 +11,7 @@
 	<form action="#" th:action="@{/hr/interviewerInfoAddDo}" method="post" th:object="${interviewerInfoForm}">
 		<table>
 			<tr>
-				<th colspan="3" align="center">面试人员信息添加</th>
+				<th colspan="3" align="center"><h2>面试人员信息添加</h2></th>
 			</tr>
 			<tr>
 				<td>面试人员编号:</td><td><input type="text" th:field="*{interviewerCode}" readonly="readonly"></td><td></td>
@@ -242,7 +242,7 @@
 				</td><td></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center"><input type="submit" value="保存" style="width: 100px;"></td><td></td>
+				<td colspan="2" align="center"><input class="layui-btn layui-btn-normal" type="submit" value="保存" style="width: 100px;"></td><td></td>
 			</tr>
 		</table>
 	</form>

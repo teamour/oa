@@ -15,7 +15,7 @@
 <div>
 	<table>
 		<tr>
-			<th colspan="2" align="center">IT适性试验结果</th>
+			<th colspan="2" align="center"><h2>IT适性试验结果</h2></th>
 		</tr>
 		<tr>
 			<td>面试人员编号:</td><td th:text="${testInfo.interviewer.interviewerCode}"></td>
@@ -79,7 +79,7 @@
 			<td>备考:</td><td th:text="${testInfo.description}"></td>
 		</tr>
 		<tr>
-			<td colspan="2"><a th:href="@{itSuitableModifyShow(testId=${testInfo.testId})}">修改</a></td>
+			<td colspan="2"><a class="layui-btn layui-btn-normal" th:href="@{itSuitableModifyShow(testId=${testInfo.testId})}">修改</a></td>
 		</tr>
 	</table>
 </div>

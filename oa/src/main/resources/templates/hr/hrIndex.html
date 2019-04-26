@@ -30,15 +30,15 @@
 	</span>
 	<span> : </span>
 	<input id="search" type="text">
-	<button id="btnSearch" class="layui-btn" onclick="BF.searchData();">搜索</button>
+	<button id="btnSearch" class="layui-btn layui-btn-normal" onclick="BF.searchData();">搜索</button>
 </div>
 
 <div>
 	<a id="btnAdd" class="layui-btn" th:href="@{interviewerInfoAdd}">添加面试人员</a>
-	<a id="btnVisaLogin" class="layui-btn" th:href="@{visaLogin}">签证办理登入</a>
+	<a id="btnVisaLogin" class="layui-btn layui-btn-normal" th:href="@{visaLogin}">签证办理登入</a>
 	<a id="btnItSuitableLogin" class="layui-btn" th:href="@{itSuitableLogin}">it适性试验登入</a>
-	<button id="btnSelect" class="layui-btn" onclick="BF.selectData()">查询</button>
-	<button id="btnModify" class="layui-btn" onclick="BF.modifyData()">修改</button>
+	<button id="btnSelect" class="layui-btn layui-btn-normal" onclick="BF.selectData()">查询</button>
+	<button id="btnModify" class="layui-btn layui-btn-normal" onclick="BF.modifyData()">修改</button>
 </div>
 
 <table id="jqGrid"></table>
