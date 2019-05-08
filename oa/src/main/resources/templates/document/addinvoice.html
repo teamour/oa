@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>请求书新规登入</title>
+
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/layui.css}"  media="all">
+    <link rel="stylesheet" th:href="@{/css/ui.jqgrid.css}">
+    <link rel="stylesheet" th:href="@{/css/jquery-ui-1.8.16.custom.css}">
+    <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.jqGrid.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/i18n/grid.locale-ja.js}"></script>
+    
+</head>
+<body>
+<h1>请求书新规登入</h1>
+<a href="javascript:" class="layui-btn layui-btn-normal" onclick="self.location=document.referrer;">返回</a>
+
+<form class="form-empl" id="addepst" th:action="@{/epst/addepst}" method="POST">
+		<table>
+			<tr>
+				<td>客户公司名</td>
+				<td width="400"><input type="text"  class="layui-input" name="studyContent"></td>
+			</tr>
+			<tr>
+				<td>开始日期</td>
+				<td width="400"><input type="date"  class="layui-input" name="beginDate" id="beginDate" onblur="Check()"></td>
+				<td><div id="BeginDateText" style="color:#F00;display:none">开始时间不能为空</div></td>
+			</tr>
+			
+			<tr>
+				<td>学习时间</td>
+				<td width="400"><input type="text"  class="layui-input" name="studyTime"></td>
+			</tr>
+			<tr>
+				<td>负责人</td>
+				<td width="400"><input type="text"  class="layui-input" name="handler" placeholder="负责人id" oninput="value=value.replace(/[^\d]/g,'')"></td>
+			</tr>
+			<tr>
+				<td>学会内容</td>
+				<td width="400"><input type="text"  class="layui-input" name="learnCotent"></td>
+			</tr>
+			<tr>
+				<td>效果评价</td>
+				<td width="400"><input type="text"  class="layui-input" name="evaluation" 
+				placeholder="评分为1-5" oninput="value=value.replace(/[^\d]/g,'')"></td>
+			</tr>
+		</table>
+		<button id="submit" type="submit" class="layui-btn layui-btn-disabled" disabled="disabled" >提交</button>
+	</form> 
+</body>
+</html>

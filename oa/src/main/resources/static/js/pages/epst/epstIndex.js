@@ -62,7 +62,6 @@ BF={
 		   $.post(url,params,function(result){})
 		   .always(function() {
 				window.location.reload();
-				console.log("chenggongshuaxin");
 			});
 		   //刷新
 //		   console.log("刷新前");

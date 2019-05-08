@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>员工学习</title>
-	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<title>营业管理</title>
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -17,38 +16,24 @@
     <script type="text/javascript" th:src="@{/js/jquery.jqGrid.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/i18n/grid.locale-ja.js}"></script>
     <style> .ui-jqgrid tr.jqgrow td { white-space: normal !important; height:auto; }</style>
+
 </head>
 <body>
+<h1>营业管理</h1>
+<h2>apache POI 的测试！</h2>
 
-	<h1>学习管理</h1>
-	
-	<script>
-	
-	</script>
-	<br/>
-	<br/>	
-	<span type="text" th:text="'员工id:'+${myid}" style="font-size:16px"></span>
-	<br/>
-	<input id="title" type="text" placeholder="学习内容">    
-    <button id="btnSearch" class="layui-btn layui-btn-normal" onclick="BF.searchData();">查询</button>
-	<a id="btnAdd" class="layui-btn" th:href="@{/epst/addepst}">添加</a>
-	<button id="btnUpdate" class="layui-btn layui-btn-normal" onclick="BF.modifyData();" >编辑</button>
-	<button id="btnDelete" class="layui-btn layui-btn-danger" onclick="BF.deleteData();">删除</button>
-	<a id="btnBack" class="layui-btn layui-btn-normal" th:href="@{/emp/list}">返回</a>
-	<hr>
-	<table id="jqGrid" ></table>
-	<div id="jqGridPager"></div>
-	<span th:text="*{employeeStudyId}" style="display:none;"></span>
-	
-	 <script type="text/javascript" th:inline="javascript">
+<Button id="btn1" class="layui-btn layui-btn-normal" onclick="BF.createData();">测试创建</Button>
+<a id="btncreateinvoice" class="layui-btn layui-btn-normal" th:href="@{/document/addinvoice}">请求书新规登入</a>
+<a id="btncreatepurchase" class="layui-btn layui-btn-normal" th:href="@{/document/addpurchase}">发注书新规登入</a>
+ <script type="text/javascript" th:inline="javascript">
 	   /*<![CDATA[*/
 	  var  ctxPath = /*[[@{/}]]*/ '';
 	   /*]]>*/
 	</script>　
 	<script type="text/javascript"
-		th:src="@{/js/pages/epst/epstIndex.js}"></script>
+		th:src="@{/js/pages/document/documentIndex.js}"></script>
 
 	<script type="text/javascript" th:src="@{/js/layui.js}"></script>
-
+	
 </body>
 </html>
