@@ -1,5 +1,8 @@
 package com.our.oa.dao;
 
+import com.github.pagehelper.Page;
+import com.our.oa.dto.list.DocumentInvoiceListDTO;
+import com.our.oa.dto.list.DocumentInvoiceListQueryDTO;
 import com.our.oa.entity.DocumentInvoice;
 import java.util.List;
 
@@ -14,6 +17,8 @@ public interface DocumentInvoiceMapper {
     DocumentInvoice selectByPrimaryKey(Integer invoiceDocumentId);
 
     List<DocumentInvoice> selectAll();
+    
+    Page<DocumentInvoiceListDTO> selectQueryList(DocumentInvoiceListQueryDTO queryDTO);
 
     int updateByPrimaryKey(DocumentInvoice record);
 }

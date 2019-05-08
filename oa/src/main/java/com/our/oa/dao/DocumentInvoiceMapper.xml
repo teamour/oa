@@ -5,8 +5,10 @@
     <id column="invoice_document_id" jdbcType="INTEGER" property="invoiceDocumentId" />
     <result column="customer_id" jdbcType="INTEGER" property="customerId" />
     <result column="customer_address" jdbcType="VARCHAR" property="customerAddress" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
     <result column="customer_charge" jdbcType="VARCHAR" property="customerCharge" />
     <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="company_name" jdbcType="INTEGER" property="companyName" />
     <result column="pay_deadline" jdbcType="VARCHAR" property="payDeadline" />
     <result column="unit_price" jdbcType="INTEGER" property="unitPrice" />
     <result column="template_id" jdbcType="INTEGER" property="templateId" />
@@ -14,25 +16,29 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
     <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
+    
+    
+    
+    
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from oa..t_document_invoice
+    delete from t_document_invoice
     where invoice_document_id = #{invoiceDocumentId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.our.oa.entity.DocumentInvoice">
-    insert into oa..t_document_invoice (invoice_document_id, customer_id, customer_address, 
+    insert into t_document_invoice (invoice_document_id, customer_id, customer_address, 
       customer_charge, company_id, pay_deadline, 
       unit_price, template_id, create_time, 
       update_time, delete_time, delete_flag
       )
     values (#{invoiceDocumentId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, #{customerAddress,jdbcType=VARCHAR}, 
       #{customerCharge,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, #{payDeadline,jdbcType=VARCHAR}, 
-      #{unitPrice,jdbcType=INTEGER}, #{templateId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=BIT}
+      #{unitPrice,jdbcType=INTEGER}, #{templateId,jdbcType=INTEGER}, now(), 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP},0
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.DocumentInvoice">
-    update oa..t_document_invoice
+    update t_document_invoice
     set customer_id = #{customerId,jdbcType=INTEGER},
       customer_address = #{customerAddress,jdbcType=VARCHAR},
       customer_charge = #{customerCharge,jdbcType=VARCHAR},
@@ -49,12 +55,34 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select invoice_document_id, customer_id, customer_address, customer_charge, company_id, 
     pay_deadline, unit_price, template_id, create_time, update_time, delete_time, delete_flag
-    from oa..t_document_invoice
+    from t_document_invoice
     where invoice_document_id = #{invoiceDocumentId,jdbcType=INTEGER}
   </select>
+  
   <select id="selectAll" resultMap="BaseResultMap">
     select invoice_document_id, customer_id, customer_address, customer_charge, company_id, 
     pay_deadline, unit_price, template_id, create_time, update_time, delete_time, delete_flag
-    from oa..t_document_invoice
+    from t_document_invoice
   </select>
+  
+  <select id="selectQueryList" parameterType="com.our.oa.dto.list.DocumentInvoiceListQueryDTO" resultMap="BaseResultMap">
+    select invoice_document_id, 
+    t_document_invoice.customer_id, 
+    t_customer.address, 
+    t_customer.customer_name, 
+    sys_company.company_name,
+    t_document_invoice.company_id,
+    customer_charge, pay_deadline, unit_price, template_id, 
+    t_document_invoice.create_time, t_document_invoice.update_time, t_document_invoice.delete_time, t_document_invoice.delete_flag
+    from (t_document_invoice inner join t_customer on t_document_invoice.customer_id = t_customer.customer_id)
+    inner join sys_company on t_document_invoice.company_id = sys_company.company_id
+    <where>
+    <if test="invoiceDocumentId!=null and invoiceDocumentId!=''">
+   		and invoice_document_id =#{invoiceDocumentId}
+    </if>
+     and t_document_invoice.delete_flag = 0 
+    </where>
+    order by invoice_document_id asc
+  </select>
+  
 </mapper>

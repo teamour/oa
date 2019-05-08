@@ -22,37 +22,58 @@
 <h1>请求书新规登入</h1>
 <a href="javascript:" class="layui-btn layui-btn-normal" onclick="self.location=document.referrer;">返回</a>
 
-<form class="form-empl" id="addepst" th:action="@{/epst/addepst}" method="POST">
+<script type="text/javascript">
+function CheckCustomer(){
+	var customerId = $("#customerId").val();
+	console.log(customerId);
+	  //ajax开始
+	  $.ajax({
+		  type: "Post",//请求形式
+	      url: "http://localhost:8080/document/checkCustomer/",//处理文件路径
+	      data: {
+	    	  customerId : customerId //需要传递的参数
+	    	  },
+	      cache: false,
+	      async: false,//是否异步
+	      dataType: "text",//返回的数据类型 
+	      success: function (data) {
+	    	  var textId=$("#customer");
+	    	  textId.val(data);
+	    	  },
+	    	  error: function () {
+	    		  alert('数据繁忙，请稍后!');
+	    	  }
+	    	  })//end ajax
+	   }
+</script>
+
+<form class="form-empl" id="addepst" th:action="@{/document/addinvoice}" method="POST">
 		<table>
 			<tr>
-				<td>客户公司名</td>
-				<td width="400"><input type="text"  class="layui-input" name="studyContent"></td>
+				<td>客户公司ID</td>
+				<td width="400"><input type="text"  class="layui-input" name="customerId" id="customerId" onblur="CheckCustomer()"></td>
+				<td><input type="text" class="layui-input" name="customer" id="customer"  placeholder="客户信息"></td>
 			</tr>
+				
 			<tr>
-				<td>开始日期</td>
-				<td width="400"><input type="date"  class="layui-input" name="beginDate" id="beginDate" onblur="Check()"></td>
-				<td><div id="BeginDateText" style="color:#F00;display:none">开始时间不能为空</div></td>
+				<td>客户负责人</td>
+				<td width="400"><input type="text"  class="layui-input" name="customerCharge" id="customerCharge"></td>
 			</tr>
 			
 			<tr>
-				<td>学习时间</td>
-				<td width="400"><input type="text"  class="layui-input" name="studyTime"></td>
+				<td>自社ID</td>
+				<td width="400"><input type="text"  class="layui-input" name="companyId"></td>
 			</tr>
 			<tr>
-				<td>负责人</td>
-				<td width="400"><input type="text"  class="layui-input" name="handler" placeholder="负责人id" oninput="value=value.replace(/[^\d]/g,'')"></td>
+				<td>付款期限</td>
+				<td width="400"><input type="date"  class="layui-input" name="payDeadline"></td>
 			</tr>
 			<tr>
-				<td>学会内容</td>
-				<td width="400"><input type="text"  class="layui-input" name="learnCotent"></td>
-			</tr>
-			<tr>
-				<td>效果评价</td>
-				<td width="400"><input type="text"  class="layui-input" name="evaluation" 
-				placeholder="评分为1-5" oninput="value=value.replace(/[^\d]/g,'')"></td>
+				<td>单价</td>
+				<td width="400"><input type="text"  class="layui-input" name="unitPrice"></td>
 			</tr>
 		</table>
-		<button id="submit" type="submit" class="layui-btn layui-btn-disabled" disabled="disabled" >提交</button>
+		<button id="submit" type="submit" class="layui-btn">提交</button>
 	</form> 
 </body>
 </html>

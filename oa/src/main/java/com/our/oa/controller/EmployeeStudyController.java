@@ -119,8 +119,6 @@ public class EmployeeStudyController {
         System.out.println("myid="+myid);
         employeeStudyForm.setEmployeeId(myid);
         employeeStudyService.insert(employeeStudyForm);
-        
-        System.out.println(employeeStudyForm.getBeginDate());
         // 保存成功后返回列表页
         modelAndView.setViewName("redirect:epstIndex/"+myid);
         System.out.println("secuss!");
