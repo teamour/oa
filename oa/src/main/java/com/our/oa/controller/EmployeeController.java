@@ -126,6 +126,9 @@ public class EmployeeController {
 				ModelMapper modelMapper = new ModelMapper();
 				dto = modelMapper.map(employee, EmployeeDTO.class);
 				dto.setSkillScoreStr(dicService.getDetailName(16, (int)employee.getSkillScore()-1));
+				dto.setJapaneseLevel(dicService.getDetailName(17, (int)employee.getJapaneseLevel()-1));
+				dto.setSkillLevel(dicService.getDetailName(18, (int)employee.getSkillLevel()-1));
+				
 				modelAndView.addObject("employee", dto);
 				
 				

@@ -59,9 +59,9 @@ public class EmployeeDTO implements Serializable{
     
     private String skillScoreStr;
 
-    private Integer skillLevel;
+    private String skillLevel;
 
-    private Integer japaneseLevel;
+    private String japaneseLevel;
 
     private Integer salary;
 

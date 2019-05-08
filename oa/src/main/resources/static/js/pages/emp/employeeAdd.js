@@ -20,4 +20,6 @@ function initSelectType(id, type) {
 }
 $(function () { 
 	 initSelectType(16, "skillScoreId");
+	 initSelectType(17, "japaneseLevelId");
+	 initSelectType(18, "skillLevelId");
 });
