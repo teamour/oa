@@ -21,4 +21,6 @@ public interface DocumentInvoiceMapper {
     Page<DocumentInvoiceListDTO> selectQueryList(DocumentInvoiceListQueryDTO queryDTO);
 
     int updateByPrimaryKey(DocumentInvoice record);
+    
+    int deleteByUpdate(Integer invoiceDocumentId);
 }

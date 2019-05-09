@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.Page;
 import com.our.oa.dao.DocumentInvoiceMapper;
 import com.our.oa.dto.form.DocumentInvoiceDTO;
+import com.our.oa.dto.form.EmployeeStudyDTO;
 import com.our.oa.dto.list.DocumentInvoiceListDTO;
 import com.our.oa.dto.list.DocumentInvoiceListQueryDTO;
 import com.our.oa.entity.DocumentInvoice;
@@ -42,6 +43,28 @@ public class DocumentInvoiceServiceImpl implements DocumentInvoiceService{
 		ModelMapper modelMapper = new  ModelMapper();
 		DocumentInvoice record = modelMapper.map(dto, DocumentInvoice.class);
 		return documentInvoiceMapper.insert(record);
+	}
+
+	@Override
+	public int deleteByUpdate(Integer invoiceDocumentId) {
+		// TODO Auto-generated method stub
+		documentInvoiceMapper.deleteByUpdate(invoiceDocumentId);
+		return 0;
+	}
+
+	@Override
+	public int update(DocumentInvoiceDTO dto) {
+		// TODO Auto-generated method stub
+		ModelMapper modelMapper = new  ModelMapper();
+		DocumentInvoice record = modelMapper.map(dto, DocumentInvoice.class);
+		return documentInvoiceMapper.updateByPrimaryKey(record);
+	
+	}
+
+	@Override
+	public DocumentInvoice getByPrimaryKey(Integer invoiceDocumentId) {
+		// TODO Auto-generated method stub
+		return documentInvoiceMapper.selectByPrimaryKey(invoiceDocumentId);
 	}
 
 

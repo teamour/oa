@@ -29,6 +29,10 @@ public class DocumentInvoiceListDTO extends GridListDTO{
 	private String customerCharge;
 
 	private Integer companyId;
+	
+	private String companyName;
+	
+	private String companyAdress;
 
 	private String payDeadline;
 

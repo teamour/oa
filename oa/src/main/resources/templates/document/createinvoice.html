@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>创建请求书excel</title>
+</head>
+<body>
+<h2>信息确认:</h2>
+<form class="form-empl" id="createinvoice" th:action="@{/document/createinvoice/}+${id}" method="POST">
+		<table>
+			<tr>
+				<td>客户公司id：</td><td><span  th:text="${documentInvoice.customerId}" ></span></td>
+			</tr>
+			<tr>
+				<td>客户公司名：</td><td><span   th:text="${documentInvoice.customerName}" ></span></td>
+			</tr>
+			<tr>
+				<td>客户公司地址：</td><td><span  th:text="${documentInvoice.customerAddress}" ></span></td>
+			</tr>
+			<tr>
+				<td>自社id：</td><td><span  th:text="${documentInvoice.companyId}"></span></td>
+			</tr>
+			<tr>
+				<td>自社名称：</td><td><span   th:text="${documentInvoice.companyName}"></span></td>
+			</tr>
+			<tr>
+				<td>自社地址：</td><td><span   th:text="${documentInvoice.companyAddress}"></span></td>
+			</tr>
+			<tr>
+				<td>自社邮编：</td><td><span    th:text="${documentInvoice.companyZipCode}"></span></td>
+			</tr>
+			<tr>
+				<td>自社电话：</td><td><span   th:text="${documentInvoice.companyTelephone}"></span></td>
+			</tr>
+			<tr>
+				<td>付款期限：</td><td><span   th:text="${documentInvoice.payDeadline}"></span></td>
+			</tr>	
+		</table>
+		<button id="submit" type="submit" class="layui-btn">创建excel</button>
+	</form>
+</body>
+</html>

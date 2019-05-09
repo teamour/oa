@@ -4,11 +4,14 @@
   <resultMap id="BaseResultMap" type="com.our.oa.entity.DocumentInvoice">
     <id column="invoice_document_id" jdbcType="INTEGER" property="invoiceDocumentId" />
     <result column="customer_id" jdbcType="INTEGER" property="customerId" />
-    <result column="customer_address" jdbcType="VARCHAR" property="customerAddress" />
+    <result column="customeraddress" jdbcType="VARCHAR" property="customerAddress" />
     <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
     <result column="customer_charge" jdbcType="VARCHAR" property="customerCharge" />
     <result column="company_id" jdbcType="INTEGER" property="companyId" />
     <result column="company_name" jdbcType="INTEGER" property="companyName" />
+    <result column="companyaddress" jdbcType="INTEGER" property="companyAddress" />
+    <result column="zip_code" jdbcType="INTEGER" property="companyZipCode" />
+    <result column="telephone" jdbcType="INTEGER" property="companyTelephone" />
     <result column="pay_deadline" jdbcType="VARCHAR" property="payDeadline" />
     <result column="unit_price" jdbcType="INTEGER" property="unitPrice" />
     <result column="template_id" jdbcType="INTEGER" property="templateId" />
@@ -31,32 +34,61 @@
       unit_price, template_id, create_time, 
       update_time, delete_time, delete_flag
       )
-    values (#{invoiceDocumentId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, #{customerAddress,jdbcType=VARCHAR}, 
+    values (#{invoiceDocumentId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER},
+      (select customer_name from t_customer where customer_id=#{customerId,jdbcType=INTEGER}), 
       #{customerCharge,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, #{payDeadline,jdbcType=VARCHAR}, 
       #{unitPrice,jdbcType=INTEGER}, #{templateId,jdbcType=INTEGER}, now(), 
       #{updateTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP},0
       )
   </insert>
+  
   <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.DocumentInvoice">
     update t_document_invoice
-    set customer_id = #{customerId,jdbcType=INTEGER},
-      customer_address = #{customerAddress,jdbcType=VARCHAR},
-      customer_charge = #{customerCharge,jdbcType=VARCHAR},
-      company_id = #{companyId,jdbcType=INTEGER},
-      pay_deadline = #{payDeadline,jdbcType=VARCHAR},
-      unit_price = #{unitPrice,jdbcType=INTEGER},
-      template_id = #{templateId,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
-      delete_flag = #{deleteFlag,jdbcType=BIT}
+    <set>
+    <if test="customerId!=null and customerId!=''">
+    	customer_id = #{customerId,jdbcType=INTEGER},
+    </if>
+    <if test="customerCharge!=null and customerCharge!=''">
+        customer_charge = #{customerCharge,jdbcType=VARCHAR},
+    </if>
+    <if test="companyId!=null and companyId!=''">
+    	company_id = #{companyId,jdbcType=INTEGER},
+    </if>
+    <if test="payDeadline!=null and payDeadline!=''">
+    	pay_deadline = #{payDeadline,jdbcType=VARCHAR},
+    </if> 
+      update_time = now()
+    </set>
+    <where>
+    	invoice_document_id = #{invoiceDocumentId,jdbcType=INTEGER}
+    </where> 
+  </update>
+  
+  <update id="deleteByUpdate" parameterType="com.our.oa.entity.DocumentInvoice">
+  update t_document_invoice
+    set
+      delete_time = now(),
+      delete_flag = true
     where invoice_document_id = #{invoiceDocumentId,jdbcType=INTEGER}
   </update>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select invoice_document_id, customer_id, customer_address, customer_charge, company_id, 
-    pay_deadline, unit_price, template_id, create_time, update_time, delete_time, delete_flag
-    from t_document_invoice
-    where invoice_document_id = #{invoiceDocumentId,jdbcType=INTEGER}
+    select invoice_document_id, 
+    t_document_invoice.customer_id, 
+    trim(t_customer.address) customeraddress,
+    t_customer.customer_name, 
+    sys_company.company_name,
+    trim(sys_company.address) companyaddress,
+    sys_company.zip_code,
+    sys_company.telephone,
+    t_document_invoice.company_id,
+    customer_charge, pay_deadline, unit_price, template_id, 
+    t_document_invoice.create_time, t_document_invoice.update_time, t_document_invoice.delete_time, t_document_invoice.delete_flag
+    from (t_document_invoice inner join t_customer on t_document_invoice.customer_id = t_customer.customer_id)
+    inner join sys_company on t_document_invoice.company_id = sys_company.company_id
+    <where>
+     invoice_document_id = #{invoiceDocumentId,jdbcType=INTEGER} and t_document_invoice.delete_flag = 0 
+    </where>
   </select>
   
   <select id="selectAll" resultMap="BaseResultMap">
