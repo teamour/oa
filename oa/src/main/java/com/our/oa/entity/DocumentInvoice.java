@@ -31,6 +31,12 @@ public class DocumentInvoice implements Serializable {
 
     private String companyName;
     
+    private String companyAddress;
+
+    private String companyZipCode;
+    
+    private String companyTelephone;
+    
     private String payDeadline;
 
     private Integer unitPrice;

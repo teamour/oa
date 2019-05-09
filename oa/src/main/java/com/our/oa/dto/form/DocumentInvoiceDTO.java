@@ -31,8 +31,14 @@ public class DocumentInvoiceDTO extends FormDTO{
     private String customerCharge;
 
     private Integer companyId;
+    
+    private String companyAddress;
 
     private String companyName;
+    
+    private String companyZipCode;
+    
+    private String companyTelephone;
     
     private String payDeadline;
 

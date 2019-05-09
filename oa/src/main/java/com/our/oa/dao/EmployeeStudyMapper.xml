@@ -29,6 +29,7 @@
       #{learnCotent,jdbcType=VARCHAR}, #{evaluation,jdbcType=VARCHAR},now()
       )
   </insert>
+  
   <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.EmployeeStudy">
     update t_employee_study
     <set>

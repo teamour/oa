@@ -3,8 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>请求书新规登入</title>
-
+<title>请求书修改</title>
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
@@ -17,12 +16,9 @@
     <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/jquery.jqGrid.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/i18n/grid.locale-ja.js}"></script>
-    
+    <style> .ui-jqgrid tr.jqgrow td { white-space: normal !important; height:auto; }</style>
 </head>
 <body>
-<h1>请求书新规登入</h1>
-<a href="javascript:" class="layui-btn layui-btn-normal" onclick="self.location=document.referrer;">返回</a>
-
 <script type="text/javascript">
 function CheckCustomer(){
 	var customerId = $("#customerId").val();
@@ -42,36 +38,43 @@ function CheckCustomer(){
 	    	  textId.val(data);
 	    	  },
 	    	  error: function () {
-	    		  alert('数据繁忙，请稍后!');
 	    	  }
 	    	  })//end ajax
 	   }
 </script>
 
-<form class="form-empl" id="addinvoice" th:action="@{/document/addinvoice}" method="POST">
+<h2>请求书修改</h2>
+<a href="javascript:" class="layui-btn layui-btn-normal" onclick="self.location=document.referrer;">返回</a>
+
+<form class="form-empl" id="addepst" th:action="@{/document/editinvoice/}+${id}" method="POST">
 		<table>
 			<tr>
 				<td>客户公司ID</td>
-				<td width="400"><input type="text"  class="layui-input" name="customerId" id="customerId" onblur="CheckCustomer()"></td>
+				<td width="400"><input type="text"  class="layui-input" name="customerId" id="customerId" 
+				onblur="CheckCustomer()" th:placeholder="${documentInvoice.customerId}"></td>
 				<td><input type="text" class="layui-input" name="customer" id="customer"  placeholder="客户信息"></td>
 			</tr>
 				
 			<tr>
 				<td>客户负责人</td>
-				<td width="400"><input type="text"  class="layui-input" name="customerCharge" id="customerCharge"></td>
+				<td width="400"><input type="text"  class="layui-input" name="customerCharge" id="customerCharge"
+				th:placeholder="${documentInvoice.customerCharge}"></td>
 			</tr>
 			
 			<tr>
 				<td>自社ID</td>
-				<td width="400"><input type="text"  class="layui-input" name="companyId"></td>
+				<td width="400"><input type="text"  class="layui-input" name="companyId"
+				th:placeholder="${documentInvoice.companyId}"></td>
 			</tr>
 			<tr>
 				<td>付款期限</td>
-				<td width="400"><input type="date"  class="layui-input" name="payDeadline"></td>
+				<td width="400"><input type="date"  class="layui-input" name="payDeadline"
+				th:placeholder="${documentInvoice.payDeadline}"></td>
 			</tr>
 			
 		</table>
 		<button id="submit" type="submit" class="layui-btn">提交</button>
 	</form> 
+	
 </body>
 </html>
