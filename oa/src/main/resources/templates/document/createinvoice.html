@@ -6,8 +6,10 @@
 <title>创建请求书excel</title>
 </head>
 <body>
+
+
 <h2>信息确认:</h2>
-<form class="form-empl" id="createinvoice" th:action="@{/document/createinvoice/}+${id}" method="POST">
+<form class="form-empl" id="createinvoice" name="createinvoice" th:action="@{/document/createinvoice/}+${id}" method="POST" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>客户公司id：</td><td><span  th:text="${documentInvoice.customerId}" ></span></td>
@@ -36,6 +38,9 @@
 			<tr>
 				<td>付款期限：</td><td><span   th:text="${documentInvoice.payDeadline}"></span></td>
 			</tr>	
+			<tr>
+				<td>选择模板：</td><td><input type="file" name="file" accept=".csv,application/vnd.ms-excel"></td>
+			</tr>
 		</table>
 		<button id="submit" type="submit" class="layui-btn">创建excel</button>
 	</form>

@@ -1,15 +1,20 @@
 package com.our.oa.controller;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URLEncoder;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.swing.filechooser.FileSystemView;
 import javax.validation.Valid;
 
@@ -35,6 +40,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.Page;
@@ -162,36 +168,76 @@ public class DocumentController {
 		modelAndView.setViewName("document/createinvoice");
 		return modelAndView;
 	}
+	
 	@PostMapping(value = "/createinvoice/{id}")
 	public ModelAndView createup(@Valid DocumentInvoice documentInvoice,
-			BindingResult bindingResult,ModelAndView modelAndView,
+			BindingResult bindingResult,ModelAndView modelAndView,MultipartFile file,HttpServletResponse response,
 			@PathVariable(name="id",required=false)Integer id) {
+		
 		documentInvoice = documentInvoiceService.getByPrimaryKey(id);
-		System.out.println("documentInvoice="+documentInvoice);//数据获取成功
 		//documentInvoiceService.update(documentInvoice);
 		String customerName = documentInvoice.getCustomerName();
+		String companyName = documentInvoice.getCompanyName();
+		String companyZipCode = documentInvoice.getCompanyZipCode();
+		String companyAddress = documentInvoice.getCompanyAddress();
+		String[] compAddress = companyAddress.split("\\s+");//这样写就可以了
+		String companyTelephone = documentInvoice.getCompanyTelephone();
+		String payDeadline = documentInvoice.getPayDeadline();
 		//EXCEL操作
 	    try {
-	    	// 获取桌面路径
+	    	 //获取桌面路径
 		    FileSystemView fsv = FileSystemView.getFileSystemView();
 		    String desktop = fsv.getHomeDirectory().getPath();
-		    String filePath = desktop + "/請求書サンプル.xls";
-		    POIFSFileSystem fs  =new POIFSFileSystem(new FileInputStream(filePath));
+		    
+		    POIFSFileSystem fs  =new POIFSFileSystem(file.getInputStream());
 		    HSSFWorkbook wb = new HSSFWorkbook(fs);//excel
 		    HSSFSheet sheet = wb.getSheetAt(0);//sheet,下标从0开始
+		    
 		    Cell cell = sheet.getRow(9).getCell(0);
 		    cell.setCellValue(customerName);
-		    FileOutputStream fileOut = new FileOutputStream(filePath + "test"+".xls");//另存文件  
+		    
+		    cell = sheet.getRow(12).getCell(6);
+		    cell.setCellValue(companyName+" 御中");
+		    cell = sheet.getRow(47).getCell(1);
+		    cell.setCellValue(companyName);
+		    
+		    cell = sheet.getRow(13).getCell(6);
+		    cell.setCellValue("〒"+companyZipCode);
+		    
+		    cell = sheet.getRow(14).getCell(6);
+		    cell.setCellValue(compAddress[0]);
+		    
+		    cell = sheet.getRow(15).getCell(6);
+		    cell.setCellValue(compAddress[1]);
+		    
+		    cell = sheet.getRow(16).getCell(6);
+		    cell.setCellValue("TEL "+companyTelephone);
+		    
+		    cell = sheet.getRow(49).getCell(1);
+		    cell.setCellValue(payDeadline);
+		    
+		    Calendar cal=Calendar.getInstance();    
+		    int y=cal.get(Calendar.YEAR);    
+		    int m=cal.get(Calendar.MONTH);    
+		    int d=cal.get(Calendar.DATE); 
+		    cell = sheet.getRow(6).getCell(7);
+		    cell.setCellValue(y+"/"+m+"/"+d);
+		    
+		    String fileName = "請求書_"+customerName+"_"+y+m+d+".xls"; 
+		    FileOutputStream fileOut = new FileOutputStream(desktop +"/"+ fileName);//另存文件  
             wb.write(fileOut);  
             fileOut.close();  
 	    }catch (Exception e) {
 			// TODO: handle exception
+	    	System.out.println(e);
 		}
 
         // 保存成功后返回列表页
         modelAndView.setViewName("redirect:/document/documentIndex");
         return modelAndView;
 	}
+	
+	
 	//delete
 	@RequestMapping(value = "/deleteInvoiceByIds" )
 	public String deleteInvoice( Integer... ids) {

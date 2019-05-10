@@ -100,7 +100,7 @@
   <select id="selectQueryList" parameterType="com.our.oa.dto.list.DocumentInvoiceListQueryDTO" resultMap="BaseResultMap">
     select invoice_document_id, 
     t_document_invoice.customer_id, 
-    t_customer.address, 
+    trim(t_customer.address) customeraddress,
     t_customer.customer_name, 
     sys_company.company_name,
     t_document_invoice.company_id,
