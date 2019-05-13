@@ -1,12 +1,17 @@
 package com.our.oa.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Date;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.swing.filechooser.FileSystemView;
+import javax.validation.Valid;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -18,15 +23,41 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.Cell;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.github.pagehelper.Page;
+import com.our.oa.dto.GridDTO;
+import com.our.oa.dto.form.CustomerDTO;
+import com.our.oa.dto.form.DocumentInvoiceDTO;
+import com.our.oa.dto.form.EmployeeStudyDTO;
+import com.our.oa.dto.list.DocumentInvoiceListDTO;
+import com.our.oa.dto.list.DocumentInvoiceListQueryDTO;
+import com.our.oa.entity.DocumentInvoice;
+import com.our.oa.service.CustomerService;
+import com.our.oa.service.DocumentInvoiceService;
+import com.our.oa.utils.PageInfoToGridDTOUtils;
 
 @RestController
 @RequestMapping(value="/document")
 public class DocumentController {
+	
+	@Autowired
+	private DocumentInvoiceService documentInvoiceService;
+	
+	@Autowired
+	private CustomerService customerService;
 	
 	@GetMapping(value= {"/documentIndex"})
 	public ModelAndView documentIndex(ModelAndView modelAndView) {
@@ -37,6 +68,139 @@ public class DocumentController {
 	public ModelAndView addinvoice(ModelAndView modelAndView) {
 		modelAndView.setViewName("document/addinvoice");
 		return modelAndView;
+	}
+	@GetMapping(value= {"/editinvoice"})
+	public ModelAndView editinvoice(ModelAndView modelAndView) {
+		modelAndView.setViewName("document/editinvoice");
+		return modelAndView;
+	}
+	
+	@PostMapping(value="/documentIndex")
+	public GridDTO<DocumentInvoiceListDTO> listData(HttpServletRequest req,
+			DocumentInvoiceListQueryDTO listQueryDTO) {
+		
+		Page<DocumentInvoiceListDTO> queryList = documentInvoiceService.getQueryList(listQueryDTO);
+		return PageInfoToGridDTOUtils.getGridDataResult(queryList);
+	}
+	//add
+	@PostMapping(value="/addinvoice")
+	public ModelAndView save(@Valid DocumentInvoiceDTO documentInvoiceForm, 
+			BindingResult bindingResult,ModelAndView modelAndView) {
+		documentInvoiceService.insert(documentInvoiceForm);
+		modelAndView.setViewName("redirect:documentIndex");
+        return modelAndView;
+	}
+	
+	@PostMapping(value ="/checkCustomer")
+	public String checkCustomer(@RequestParam("customerId") int customerId) {
+		try {
+			CustomerDTO dto = customerService.getByPrimaryKey(customerId);
+			String customerString = "客户公司名："+dto.getCustomerName()+";客户地址："+dto.getAddress();
+			System.out.println(customerString);
+			return customerString;
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("无法找到对应的客户公司");
+			return "无法找到对应的客户公司";
+		}
+		
+	}
+	
+	//edit
+	@GetMapping(value = "/editinvoice/{id}")
+	public ModelAndView view(@PathVariable(name="id",required=false)Integer id, ModelAndView modelAndView) {
+		DocumentInvoiceDTO dto = new DocumentInvoiceDTO();
+		if (id != null) {
+			
+			DocumentInvoice documentInvoice = documentInvoiceService.getByPrimaryKey(id);
+			ModelMapper mapper = new ModelMapper();
+			dto = mapper.map(documentInvoice, DocumentInvoiceDTO.class);
+			System.out.println(dto);
+			
+		}
+		modelAndView.addObject("documentInvoice",dto);
+		modelAndView.setViewName("document/editinvoice");
+		return modelAndView;
+	}
+	@PostMapping(value = "/editinvoice/{id}")
+	public ModelAndView Update(@Valid DocumentInvoiceDTO documentInvoice,
+			BindingResult bindingResult,ModelAndView modelAndView,
+			@PathVariable(name="id",required=false)Integer id) {
+		documentInvoice.setInvoiceDocumentId(id);
+		documentInvoiceService.update(documentInvoice);
+			if (bindingResult.hasErrors()) {
+				System.out.println("error!");
+	        	
+	        	List<FieldError>  err=bindingResult.getFieldErrors();
+	            FieldError fe;
+	            String field;
+	            String errorMessage;
+	            for (int i = 0; i < err.size(); i++) {
+	                fe=err.get(i);
+	                field=fe.getField();//得到那个字段验证出错
+	                errorMessage=fe.getDefaultMessage();//得到错误消息
+	                System.out.println("错误字段消息："+field +" : "+errorMessage);
+			}
+			}
+        // 保存成功后返回列表页
+        modelAndView.setViewName("redirect:/document/documentIndex");
+        return modelAndView;
+	}
+	
+	//create excel
+	@GetMapping(value = "/createinvoice/{id}")
+	public ModelAndView createview(@PathVariable(name="id",required=false)Integer id, ModelAndView modelAndView) {
+		DocumentInvoiceDTO dto = new DocumentInvoiceDTO();
+		if (id != null) {
+			
+			DocumentInvoice documentInvoice = documentInvoiceService.getByPrimaryKey(id);
+			ModelMapper mapper = new ModelMapper();
+			dto = mapper.map(documentInvoice, DocumentInvoiceDTO.class);
+			
+		}
+		modelAndView.addObject("documentInvoice",dto);
+		modelAndView.setViewName("document/createinvoice");
+		return modelAndView;
+	}
+	@PostMapping(value = "/createinvoice/{id}")
+	public ModelAndView createup(@Valid DocumentInvoice documentInvoice,
+			BindingResult bindingResult,ModelAndView modelAndView,
+			@PathVariable(name="id",required=false)Integer id) {
+		documentInvoice = documentInvoiceService.getByPrimaryKey(id);
+		System.out.println("documentInvoice="+documentInvoice);//数据获取成功
+		//documentInvoiceService.update(documentInvoice);
+		String customerName = documentInvoice.getCustomerName();
+		//EXCEL操作
+	    try {
+	    	// 获取桌面路径
+		    FileSystemView fsv = FileSystemView.getFileSystemView();
+		    String desktop = fsv.getHomeDirectory().getPath();
+		    String filePath = desktop + "/請求書サンプル.xls";
+		    POIFSFileSystem fs  =new POIFSFileSystem(new FileInputStream(filePath));
+		    HSSFWorkbook wb = new HSSFWorkbook(fs);//excel
+		    HSSFSheet sheet = wb.getSheetAt(0);//sheet,下标从0开始
+		    Cell cell = sheet.getRow(9).getCell(0);
+		    cell.setCellValue(customerName);
+		    FileOutputStream fileOut = new FileOutputStream(filePath + "test"+".xls");//另存文件  
+            wb.write(fileOut);  
+            fileOut.close();  
+	    }catch (Exception e) {
+			// TODO: handle exception
+		}
+
+        // 保存成功后返回列表页
+        modelAndView.setViewName("redirect:/document/documentIndex");
+        return modelAndView;
+	}
+	//delete
+	@RequestMapping(value = "/deleteInvoiceByIds" )
+	public String deleteInvoice( Integer... ids) {
+		for (Integer id : ids) {
+			documentInvoiceService.deleteByUpdate(id);
+			System.out.println(id);
+		}
+		System.out.println(ids);
+		return "delete ok";
 	}
 	
 	

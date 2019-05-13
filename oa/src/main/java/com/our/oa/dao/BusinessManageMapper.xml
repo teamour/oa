@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.our.oa.dao.BusinessManageMapper">
+  <resultMap id="BaseResultMap" type="com.our.oa.entity.BusinessManage">
+    <id column="employee_id" jdbcType="INTEGER" property="employeeId" />
+    <result column="employee_name" jdbcType="VARCHAR" property="employeeName" />
+    <result column="working_years" jdbcType="TINYINT" property="workingYears" />
+    <result column="japanese_level" jdbcType="INTEGER" property="japaneseLevel" />
+    <result column="skill_level" jdbcType="INTEGER" property="skillLevel" />
+    <result column="skill1" jdbcType="VARCHAR" property="skill1" />
+    <result column="skill2" jdbcType="VARCHAR" property="skill2" />
+    <result column="skill3" jdbcType="VARCHAR" property="skill3" />
+    <result column="the_nearest_station" jdbcType="VARCHAR" property="theNearestStation" />
+    <result column="skill_score" jdbcType="TINYINT" property="skillScore" />
+    <result column="skill_analysis" jdbcType="LONGVARCHAR" property="skillAnalysis" />
+    <result column="skill_growth" jdbcType="LONGVARCHAR" property="skillGrowth" />
+    <result column="project_id" jdbcType="INTEGER" property="projectId" />
+    <result column="site_address" jdbcType="VARCHAR" property="siteAddress" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="project_desc" jdbcType="LONGVARCHAR" property="projectDesc" />
+    <result column="expect_entery_date1" jdbcType="VARCHAR" property="expectEnteryDate1" />
+    <result column="expect_entery_date2" jdbcType="VARCHAR" property="expectEnteryDate2" />
+    <result column="first_project" jdbcType="VARCHAR" property="firstProject" />
+    <result column="second_project" jdbcType="VARCHAR" property="secondProject" />
+    <result column="third_project" jdbcType="VARCHAR" property="thirdProject" />
+    <result column="sales_handler" jdbcType="VARCHAR" property="salesHandler" />
+    <result column="interview_date" jdbcType="DATE" property="interviewDate" />
+    <result column="interview_time" jdbcType="TIME" property="interviewTime" />
+    <result column="priority" jdbcType="TINYINT" property="priority" />
+    <result column="interview_frequency" jdbcType="INTEGER" property="priointerviewFrequencyrity" />
+    <result column="interview_address" jdbcType="VARCHAR" property="interviewAddress" />
+    <result column="enter_date" jdbcType="DATE" property="enterDate" />
+    <result column="notice1" jdbcType="VARCHAR" property="notice1" />
+    <result column="notice2" jdbcType="VARCHAR" property="notice2" />
+    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="sales_taff" jdbcType="VARCHAR" property="salesStaff" />
+    <result column="sales_telephone" jdbcType="VARCHAR" property="salesTelephone" />
+    <result column="sales_email" jdbcType="VARCHAR" property="salesEmail" />    
+  </resultMap>
+  <!-- 所有用到的参数 -->
+
+    <sql id="column">
+        emp.employee_id,emp.employee_name,emp.working_years,
+        emp.japanese_level,emp.skill_level,emp.skill1,emp.skill2,emp.skill3,
+        emp.the_nearest_station,emp.skill_score,emp.skill_analysis,emp.skill_growth,
+        proj.project_id,proj.site_address,proj.project_name,proj.project_desc,
+        sales.expect_entery_date1,sales.expect_entery_date2,sales.first_project,
+        sales.second_project,sales.third_project,
+        salesrecord.sales_handler,salesrecord.interview_date,
+        salesrecord.interview_time,salesrecord.priority,
+        salesrecord.interview_frequency,salesrecord.interview_address,
+        salesrecord.enter_date,salesrecord.notice1,salesrecord.notice2,
+        custom.customer_id,custom.customer_name,custom.sales_taff,
+        custom.sales_telephone,custom.sales_email
+    </sql>
+
+  <sql id="employeeColumn">
+        emp.employee_id,emp.employee_name,emp.working_years,
+        emp.japanese_level,emp.skill_level,emp.skill1,emp.skill2,emp.skill3,
+        emp.the_nearest_station,emp.skill_score,emp.skill_analysis,emp.skill_growth
+  </sql>
+
+  <sql id="projectColumn">
+        proj.project_id,proj.site_address,proj.project_name,proj.project_desc
+  </sql>
+
+  <sql id="salesColumn">
+        sales.expect_entery_date1,sales.expect_entery_date2,sales.first_project,
+        sales.second_project,sales.third_project
+  </sql>
+
+  <sql id="salesRecordColumn">
+        salesrecord.sales_handler,salesrecord.interview_date,
+        salesrecord.interview_time,salesrecord.priority,
+        salesrecord.interview_frequency,salesrecord.interview_address,
+        salesrecord.enter_date,salesrecord.notice1,salesrecord.notice2
+  </sql>
+
+  <sql id="customersColumn">
+        custom.customer_id,custom.customer_name,custom.sales_taff,custom.sales_telephone,custom.sales_email
+  </sql>
+
+
+  <select id="selectQueryList" parameterType="com.our.oa.dto.list.BusinessManageListQueryDTO" resultMap="BaseResultMap">
+    select <include refid="employeeColumn"/>
+    from t_employee_site empsite
+    left join  t_employee emp on emp.employee_id = empsite.employee_id
+    left join t_sales_record salesrecord on salesrecord.project_id = empsite.project_id
+	  <where>
+	    emp.delete_flag = 0 
+        and empsite.delete_flag = 0
+        and empsite.is_need_sales_staff = 1
+	    <if test="searchFeild !=null and searchFeild !='' and searchFeild =='employeeName' and searchValue !=null and searchValue !=''">
+	      and emp.employee_name like Concat('%',#{searchValue},'%') 
+	    </if>
+        <if test="searchFeild !=null and searchFeild !='' and searchFeild =='interviewDate' and searchValue !=null and searchValue !=''">
+	      and salesrecord.interview_date = #{searchValue}
+	    </if>
+        <if test="searchFeild !=null and searchFeild !='' and searchFeild =='salesHandler' and searchValue !=null and searchValue !=''">
+	      and emp.sales_handler like Concat('%',#{searchValue},'%') 
+	    </if>
+	  </where>
+  </select>
+
+
+</mapper>

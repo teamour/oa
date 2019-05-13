@@ -1,23 +1,26 @@
-package com.our.oa.entity;
+package com.our.oa.dto.form;
 
-import java.io.Serializable;
 import java.util.Date;
+
+import com.our.oa.dto.FormDTO;
+import com.our.oa.dto.form.EmployeeStudyDTO.EmployeeStudyDTOBuilder;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-/**
-* Created by Mybatis Generator on 2019/03/31
-*/
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class DocumentInvoice implements Serializable {
-    private Integer invoiceDocumentId;
+@ToString(callSuper=true)
+@EqualsAndHashCode(callSuper=true)
+public class DocumentInvoiceDTO extends FormDTO{
+	private static final long serialVersionUID = 1L;
+	private Integer invoiceDocumentId;
 
     private Integer customerId;
 
@@ -28,11 +31,11 @@ public class DocumentInvoice implements Serializable {
     private String customerCharge;
 
     private Integer companyId;
-
-    private String companyName;
     
     private String companyAddress;
 
+    private String companyName;
+    
     private String companyZipCode;
     
     private String companyTelephone;
@@ -50,6 +53,4 @@ public class DocumentInvoice implements Serializable {
     private Date deleteTime;
 
     private Boolean deleteFlag;
-
-    private static final long serialVersionUID = 1L;
 }

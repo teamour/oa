@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+	<title>雇员详情</title>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/layui.css}">
+    <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
+       
+</head>
+<body>
+    <form action="#" th:action="@{/emp/}" th:object="${form}" method="post">
+		<table>
+			<tr>
+				<td>名前:</td><td><input type="text" placeholder="姓名" name="employeeName"   ></td>
+			</tr>
+			<!-- <tr>
+				<td>所属（本社、BP）:</td><td><input type="text" placeholder="所属" name="companyId"    ></td>
+			</tr> -->
+			<tr>
+				<td>職位:</td><td><input type="text" placeholder="职称" name="position" ></td>
+			</tr>
+			<tr>
+				<td>年齢:</td><td><input type="text" placeholder="年龄(最多两位数)" name="age" oninput="if(value>99)value=99;if(value.length>2)value=value.slice(0,2);if(value<0)value=0"></td>
+			</tr>
+			<tr>
+				<td>住所:</td><td><input type="text" placeholder="地址" name="address"  ></td>
+			</tr>
+			<tr>
+				<td>最寄り駅:</td><td><input type="text" placeholder="站名" name="theNearestStation"    ></td>
+			</tr>
+			<tr>
+				<td>電話番号:</td><td><input type="text" placeholder="手机号码"  name="telephone" maxlength="13" oninput="if(event.keyCode==8){return;}if(value.length==3||value.length==8){value+=' '}"/></td>
+			</tr>
+			<tr>
+				<td>总经验年数:</td><td><input type="text" placeholder="年龄(最多两位数且不大于50)" name="workingYears" oninput="if(value>50)value=50;if(value.length>2)value=value.slice(0,2);if(value<0)value=0" ></td>
+			</tr>
+			<tr>
+				<td>技术经验1:</td><td>
+					<input type="text" name="skill1"  list="skill" placeholder="查询经验年数">
+						<datalist id="skill1Years">
+                		 <option>从数据库查询</option>
+            			</datalist>
+				</td>
+			</tr>
+			<tr>
+				<td>技术经验2:</td><td>
+				<input type="text" name="skill2"  list="skill" placeholder="查询经验年数">
+						<datalist id="skill2Years">
+                		 <option>从数据库查询</option>
+            			</datalist></td>
+			</tr>
+			<tr>
+				<td>技术经验3:</td><td>
+					<input type="text" name="skill3"  list="skill" placeholder="查询经验年数">
+						<datalist id="skill3Years">
+                		 <option>从数据库查询</option>
+            			</datalist></td>
+			</tr>
+			<tr>
+				<td>技术评星:</td><td>
+					<select id="skillScoreId">
+					</select>
+				<td>（1-5分）</td>
+			</tr>
+			<tr>
+				<td>技术分析:</td><td><input type="text" name="skillAnalysis" placeholder="" ></td>
+			</tr>
+			<tr>
+				<td>技术发展:</td><td>
+				<select name="skillGrowth" >
+						<option value="1">PM(Product Manager)产品经理</option>
+						<option value="2">PL(Project Leader)项目组长 </option>
+						<option value="3">SE(System Engineer) 系统工程师</option>
+						<option value="4">PG(开发人员)</option>
+						<option value="5">PT(Project Test)</option>
+					</select></td>
+			</tr>
+			<tr>
+				<td>口座銀行:</td><td><input type="text" name="bankName"  placeholder="开户银行"></td>
+			</tr>
+			<tr>
+				<td>口座支店:</td><td><input type="text" name="branchBank"  placeholder="开户银行支行"></td>
+			</tr>
+			<tr>
+				<td>口座番号:</td><td><input type="text" name="bankNumber"  placeholder="银行卡号" ></td>
+			</tr>
+			<tr>
+				<td>口座備考:</td><td><input type="text" name="bankDesc"  placeholder="备注"></td>
+			</tr>
+			<tr>
+				<td>国内住所:</td><td><input type="text" name="domesticAddress"  placeholder="省/市/区(县)/街道"></td>
+			</tr>
+			<tr>
+				<td>扶養家族人数:</td><td>
+				<select name="familySupport" >
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select></td>
+			</tr>
+			<tr>
+				<td>契約形式:</td><td><input type="text" name="contractFormat" oninput="value=value.replace(/[^\d]/g,'')" ></td>
+			</tr>
+			<tr>
+				<td>雇用保険加入:</td><td>
+				<input type="radio" name="employmentInsurance"  value="0">
+				<input type="radio" name="employmentInsurance"  value="1">
+				</td>
+			</tr>
+			<tr>
+				<td>年金加入:</td><td>
+				<input type="radio" name="annuity" value="0">
+				<input type="radio" name="annuity" value="1"></td>
+			</tr>
+			<tr>
+				<td>健康保険加入:</td><td>
+				<input type="radio" name="healthInsurance" value="0">
+				<input type="radio" name="healthInsurance" value="1"></td>
+			</tr>
+			<!-- <tr>
+				<td>入社日期:</td><td><input type="date" name="expectEnterDate"  ></td>
+			</tr> -->
+			<!-- <tr>
+				<td>入場日期:</td><td><input type="date" name="enterDate"  ></td>
+			</tr> -->
+		<!-- 	<tr>
+				<td>現場終了日期:</td><td><input type="date" name="endDate" ></td>
+			</tr> -->	
+			<tr>
+				<td>場所:</td><td><input type="text" name="employeeSiteId"  placeholder="现场对应的ID?"></td>
+			</tr>
+			<!-- <tr>
+				<td>お客様:</td><td><input type="text" name="projectId"  placeholder="哪位客户?"></td>
+			</tr> -->
+			<tr>
+				<td>営業担当:</td><td><input type="text" name="salesStaff"  placeholder="营业担当姓名"></td>
+			</tr>
+			<tr>
+				<td>営業連絡先:</td><td><input type="text" name="salesContact" maxlength="13" oninput="if(event.keyCode==8){return;}if(value.length==3||value.length==8){value+=' '}"></td>
+			</tr>
+			<tr>
+				<td>営業メール:</td><td><input type="text" name="salesEmail"  placeholder="例:aaa@163.com"></td>
+			</tr>
+			<tr>
+				<td>事務担当:</td><td><input type="text" name="officeClerk"  placeholder="担当者姓名"></td>
+			</tr>
+			<tr>
+				<td>事務メール:</td><td><input type="text" name="officeEmail"  placeholder="例:aaa@163.com"></td>
+			</tr>
+			<tr>
+				<td>精算範囲:</td><td><input type="text" name="settlementRange"  placeholder="只能输入数字" oninput="value=value.replace(/[^\d]/g,'')"></td>
+			</tr>
+		<!-- --------------------- -->	
+			<tr>
+				<td>単価:</td><td><input type="text" name="unitPrice"  placeholder="只能输入数字" oninput="value=value.replace(/[^\d]/g,'')"></td>
+			</tr>
+			<tr>
+				<td>日语レベル:</td><td>
+					<select id="japaneseLevelId">
+					</select>
+				<td>(N1-N5)</td>
+			</tr>
+			<tr>
+				<td>技術レベル:</td><td>
+					<select id="skillLevelId">
+					</select>
+				<td>(技能等级:PT,PG,BSE,SE,TL,PM)</td>
+			</tr>
+			<tr>
+				<td>注文書（PDF/原本）:</td><td><input type="text" name="purchaseOrderFile"  ></td>
+			</tr>
+			<tr>
+				<td>請求書（PDF/原本）:</td><td><input type="text" name="invoiceFile"  ></td>
+			</tr>
+			<tr>
+				<td>支払いサイト:</td><td><input type="text" name="paymentSite"  placeholder="现场支付"></td>
+			</tr>
+			<tr>
+				<td>本社事務担当:</td><td><input type="text" name="headOfficeClerk" placeholder="???"></td>
+			</tr>
+			<tr>
+				<td>備考:</td><td><input type="text" name="description"  placeholder="备注"></td>
+			</tr>
+			<!-- <tr>
+				<td>现场入场日期:</td><td><input type="date" name="createTime"  ></td>
+			</tr> -->
+			<tr>
+				<td>现场入场相关记录:</td><td><input type="text" name="enterRecord"  placeholder="工作实录"></td>
+			</tr>
+			<tr>
+				<td>带入场担当:</td><td><input type="text" name=""  placeholder="担当什么职位吗?"></td>
+			</tr>
+			<tr>
+				<td>是否需要营业（是/否）:</td><td>
+				<input type="radio" name="isNeedSalesStaff"  value="1">
+				<input type="radio" name="isNeedSalesStaff"  value="0">
+				</td>
+			</tr>
+		</table>
+		<input type="submit" class="layui-btn" value="添加" />
+		<a id="btnBack" class="layui-btn layui-btn-normal" th:href="@{/emp/list}">返回</a>
+	</form>
+	
+	
+	
+    <script type="text/javascript" th:src="@{/js/layui.js}"></script>
+    <script type="text/javascript" th:src="@{/js/pages/emp/employeeAdd.js}"></script>
+    
+</body>
+</html>
