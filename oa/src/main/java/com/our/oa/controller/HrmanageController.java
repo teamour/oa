@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +26,9 @@ import com.our.oa.dto.list.InterviewerTestListQueryDTO;
 import com.our.oa.dto.list.InterviewerVisaHandleListDTO;
 import com.our.oa.dto.list.InterviewerVisaHandleListQueryDTO;
 import com.our.oa.entity.Company;
+import com.our.oa.entity.DictionaryDetail;
 import com.our.oa.entity.Interviewer;
+import com.our.oa.service.DictionaryService;
 import com.our.oa.service.HrmanageService;
 import com.our.oa.service.InterviewerTestService;
 import com.our.oa.service.VisaHandleService;
@@ -47,6 +50,9 @@ public class HrmanageController {
 	
 	@Autowired
 	private InterviewerTestService interviewerTestServiceImpl;
+	
+	@Autowired
+	private DictionaryService dicService;
 	
 	@GetMapping("/hrIndex")
 	public ModelAndView hrIndex(ModelAndView modelAndView) {
@@ -273,5 +279,9 @@ public class HrmanageController {
 		}
 		modelAndView.setViewName("hr/error");
 		return modelAndView;
+	}
+	@PostMapping(value = "/dicNames/{id}")
+	public List<DictionaryDetail> getDicNames(@PathVariable(name = "id", required = false) Integer id) {
+		return dicService.getDetailNames(id);
 	}
 }
