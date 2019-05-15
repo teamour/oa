@@ -37,7 +37,7 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select template_id, template_name, template_file, template_type, create_time, update_time, 
     delete_time, delete_flag
-    from oa..t_document_template
+    from t_document_template
     where template_id = #{templateId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
