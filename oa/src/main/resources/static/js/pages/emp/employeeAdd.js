@@ -22,4 +22,5 @@ $(function () {
 	 initSelectType(16, "skillScoreId");
 	 initSelectType(17, "japaneseLevelId");
 	 initSelectType(18, "skillLevelId");
+	 initSelectType(18, "positionId");
 });
