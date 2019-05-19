@@ -28,7 +28,8 @@
 </head>
 <body>
     <div class="register" >
-        <form  action="#" 	method="post">
+        <form  action="#" th:action="@{/user/register}" th:object="${form}"
+		method="post">
 <!-- 		<div>
               <input id="regName" name="userName"   type="text" placeholder="账号" class="layui-input" 
               onpaste="return false;"

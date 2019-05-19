@@ -34,4 +34,14 @@
   <select id="findCheckUser"  resultType="int">
 		select count(*) from sys_user where ${cloumn} = #{param}
   </select>
+    <select id="queryByUserName" resultType="com.our.oa.entity.User">
+  	select 
+  	  user_id, user_name, user_pwd, 
+      email, login_time, error_number, 
+      email_verification_code, verification_code_send_time, 
+      employee_id, create_time, update_time, 
+      delete_time, delete_flag
+  from oasys.sys_user
+  where user_name = #{username}
+  </select>
 </mapper>

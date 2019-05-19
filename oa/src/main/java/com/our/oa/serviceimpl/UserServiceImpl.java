@@ -2,48 +2,51 @@ package com.our.oa.serviceimpl;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.our.oa.dao.UserMapper;
 import com.our.oa.dto.form.UserDTO;
+import com.our.oa.entity.User;
 import com.our.oa.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
-	
-	@Autowired
-	private UserMapper userMapper;
-	
-	@Override
-	public Integer selectByEmail(UserDTO user) {
-		//根据email和password去数据库查询
-		int rows = userMapper.findByEP(user);
-		return rows;
-	}
+	 	private String salt;
+		//private PasswordEncoder passwordEncoder;
+		@Autowired
+		private UserMapper userMapper;
+		
+		@Override
+		public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+			    //List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
+			   
+			User user = userMapper.queryByUserName(userName);
+			if (user == null) {
+			      throw new UsernameNotFoundException("User not found");
+			}
+			//authorities.add(new SimpleGrantedAuthority(user.getUserId().toString()));
+			System.out.println(user.getUserPwd()); 
+			return new org.springframework.security.core.userdetails.User(userName, user.getUserPwd(), AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+		}
+		@Override
+		public void saveUser(UserDTO user) {
+			int i = 0;
+			String password = user.getUserPwd() ;
+			String hashedPassword =null;
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			while(i <5){
+				hashedPassword= passwordEncoder.encode(password);
+				i++;
+			}
+			System.out.println(hashedPassword);
+			user.setUserPwd(hashedPassword);
+			userMapper.insert(user);
+		}
 
-	@Override
-	public Integer save(UserDTO user) {
-		int rows = userMapper.insert(user);
-		return rows;
-	}
-
-	@Override
-	public boolean valid( String param, Integer type) {
-		//将类型转化为具体的字段名称
-				String cloumn = null;
-				switch (type) {
-					case 1:
-						cloumn = "user_name"; break;
-					case 2:
-						cloumn = "user_pwd";  break;
-					case 3:
-						cloumn = "email";  break;
-				}
-				//如果结果为0 返回false  如果不为0 返回true
-				int count = userMapper.findCheckUser(cloumn,param);
-				
-				return count == 0 ? false : true;
-	}
 	
 
 }

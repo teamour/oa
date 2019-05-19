@@ -20,12 +20,8 @@
 				<td>姓名:</td><td><input type="text" th:field="*{interviewerName}"></td><td></td>
 			</tr>
 			<tr>
-				<td>面情结果:</td>
-				<td>
-					<select th:field="*{interviewResult}">
-						<option value="0"></option>
-						<option value="1">不合格</option>
-						<option value="2">合格</option>
+				<td>面情结果:</td><td>
+					<select id="interviewResultId">
 					</select>
 				<td>（1面，2面，3面任何一个为NG的时候，可以设置为不合格）</td>
 			</tr>
@@ -246,6 +242,7 @@
 			</tr>
 		</table>
 	</form>
+	 <script type="text/javascript" th:src="@{/js/pages/hr/hrAdd.js}"></script>
 </div>
 </body>
 </html>

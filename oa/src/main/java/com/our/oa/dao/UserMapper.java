@@ -24,4 +24,6 @@ public interface UserMapper {
     int insert(UserDTO user);
     
     int findCheckUser(@Param("cloumn")String cloumn,@Param("param")String param);
+    
+    User queryByUserName(String username);
 }

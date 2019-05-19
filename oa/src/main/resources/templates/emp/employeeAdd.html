@@ -24,7 +24,9 @@
 				<td>所属（本社、BP）:</td><td><input type="text" placeholder="所属" name="companyId"    ></td>
 			</tr> -->
 			<tr>
-				<td>職位:</td><td><input type="text" placeholder="职称" name="position" ></td>
+				<td>職位:</td><td>
+					<select id="positionId">
+					</select>
 			</tr>
 			<tr>
 				<td>年齢:</td><td><input type="text" placeholder="年龄(最多两位数)" name="age" oninput="if(value>99)value=99;if(value.length>2)value=value.slice(0,2);if(value<0)value=0"></td>
@@ -132,7 +134,7 @@
 			<!-- <tr>
 				<td>入場日期:</td><td><input type="date" name="enterDate"  ></td>
 			</tr> -->
-		<!-- 	<tr>
+			<!-- <tr>
 				<td>現場終了日期:</td><td><input type="date" name="endDate" ></td>
 			</tr> -->	
 			<tr>

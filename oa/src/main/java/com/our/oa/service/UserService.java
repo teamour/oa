@@ -1,13 +1,9 @@
 package com.our.oa.service;
 
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.our.oa.dto.form.UserDTO;
 
-public interface UserService {
-	
-	Integer selectByEmail(UserDTO user);
-	
-	Integer save(UserDTO user);
-	
-	boolean valid(String param,Integer type);
+public interface UserService extends UserDetailsService{
+	void saveUser(UserDTO user);
 }
