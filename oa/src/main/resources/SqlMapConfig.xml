@@ -4,6 +4,11 @@
 		"http://mybatis.org/dtd/mybatis-3-config.dtd">	
 <configuration>
 
+   <settings>
+     <!-- 下划线字段转驼峰  -->
+     <setting name="mapUnderscoreToCamelCase" value="true"/>
+   </settings>
+   
 <plugins>
     <plugin interceptor="com.github.pagehelper.PageInterceptor">
         <property name="helperDialect" value="mysql"/>

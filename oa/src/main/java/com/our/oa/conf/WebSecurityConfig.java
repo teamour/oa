@@ -17,7 +17,7 @@ import com.our.oa.serviceimpl.LoginAuthenticationProvider;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true) //开启security注解
+//@EnableGlobalMethodSecurity(prePostEnabled = true) //开启security注解
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private static final String KEY = "kozen.com";
 
@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) {
 		//解决静态资源被拦截的问题
-		web.ignoring().antMatchers("/css/**","/js/**");
+		web.ignoring().antMatchers("/css/**","/js/**","/i18n/**");
 	}
 
     @Override

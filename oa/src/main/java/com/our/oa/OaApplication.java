@@ -13,7 +13,7 @@ public class OaApplication {
 
 	@RequestMapping(value= "/")
 	public String login() {
-		return "index";
+		return "login";
 	}
 	
 	public static void main(String[] args) {
