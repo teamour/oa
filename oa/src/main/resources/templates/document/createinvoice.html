@@ -2,12 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
 <title>创建请求书excel</title>
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/layui.css}"  media="all">
+    <link rel="stylesheet" th:href="@{/css/ui.jqgrid.css}">
+    <link rel="stylesheet" th:href="@{/css/jquery-ui-1.8.16.custom.css}">
+    <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.jqGrid.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/i18n/grid.locale-ja.js}"></script>
+    <style> .ui-jqgrid tr.jqgrow td { white-space: normal !important; height:auto; }</style>
 </head>
 <body>
+
+
 <h2>信息确认:</h2>
-<form class="form-empl" id="createinvoice" th:action="@{/document/createinvoice/}+${id}" method="POST">
+<form class="form-empl" id="createinvoice" name="createinvoice" th:action="@{/document/createinvoice/}+${id}" method="POST" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>客户公司id：</td><td><span  th:text="${documentInvoice.customerId}" ></span></td>
@@ -36,8 +50,15 @@
 			<tr>
 				<td>付款期限：</td><td><span   th:text="${documentInvoice.payDeadline}"></span></td>
 			</tr>	
+			<tr>
+				<td>选择模板：</td><td><select name="template" id="template"></select></td>
+			</tr>
 		</table>
 		<button id="submit" type="submit" class="layui-btn">创建excel</button>
 	</form>
+	
+	<script type="text/javascript" th:src="@{/js/layui.js}"></script>
+	<script type="text/javascript" th:src="@{/js/pages/document/createinvoice.js}"></script>
+	
 </body>
 </html>
