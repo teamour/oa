@@ -11,7 +11,7 @@
     <link rel="stylesheet" th:href="@{/css/layui.css}">
     <link rel="stylesheet" th:href="@{/css/ui.jqgrid.css}">
     <link rel="stylesheet" th:href="@{/css/jquery-ui-1.8.16.custom.css}">
-    <link rel="stylesheet" th:href="@{/js/pages/businessManage/businessManageList.css}">
+    <link rel="stylesheet" th:href="@{/js/pages/business/businessList.css}">
     <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/jquery.jqGrid.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/i18n/grid.locale-ja.js}"></script>
@@ -35,7 +35,7 @@
     
     <button id="btnSearch" class="layui-btn layui-btn-normal" onclick="BF.searchData();">查询</button>
     
-    <a id="btnAdd" class="layui-btn" th:href="@{/businessManage/}">添加</a>
+    <a id="btnAdd" class="layui-btn" th:href="@{/business/}">添加</a>
     <button id="btnUpdate" class="layui-btn layui-btn-normal" onclick="BF.modifyData();" >修改</button>
     <button id="btnDelete" class="layui-btn layui-btn-danger" onclick="BF.deleteByIds();">删除</button>
     <button id="btnQuery" class="layui-btn layui-btn-normal" onclick="BF.queryById();">查看员工学习进度</button>
@@ -47,7 +47,7 @@
 	  var  ctxPath = /*[[@{/}]]*/ '';
 	   /*]]>*/
 	</script>
-   <script type="text/javascript" th:src="@{/js/pages/businessManage/businessManageList.js}"></script>
+   <script type="text/javascript" th:src="@{/js/pages/business/businessList.js}"></script>
 
 </body>
 </html>

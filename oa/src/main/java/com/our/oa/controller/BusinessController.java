@@ -6,7 +6,7 @@ import com.github.pagehelper.Page;
 import com.our.oa.dto.GridDTO;
 import com.our.oa.dto.list.BusinessManageListDTO;
 import com.our.oa.dto.list.BusinessManageListQueryDTO;
-import com.our.oa.service.BusinessManageService;
+import com.our.oa.service.BusinessService;
 import com.our.oa.utils.PageInfoToGridDTOUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/businessManage")
-public class BusinessManageController {
+public class BusinessController {
 
     @Autowired
-    private BusinessManageService businessManageService;
+    private BusinessService businessService;
 
     @GetMapping(value = "/list")
     public ModelAndView toListPage(ModelAndView modelAndView) {
@@ -31,8 +31,8 @@ public class BusinessManageController {
 
     @PostMapping(value = "/list")
     public GridDTO<BusinessManageListDTO> listData(HttpServletRequest request, 
-                                                    BusinessManageListQueryDTO bussManageQueryDTO) {
-        Page<BusinessManageListDTO> queryList = businessManageService.getQueryList(bussManageQueryDTO);
+        BusinessManageListQueryDTO bussManageQueryDTO) {
+        Page<BusinessManageListDTO> queryList = businessService.getQueryList(bussManageQueryDTO);
         return PageInfoToGridDTOUtils.getGridDataResult(queryList);
     }
 
