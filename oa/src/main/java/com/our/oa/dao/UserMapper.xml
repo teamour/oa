@@ -41,7 +41,7 @@
       email_verification_code, verification_code_send_time, 
       employee_id, create_time, update_time, 
       delete_time, delete_flag
-  from sys_user
+  from oasys.sys_user
   where user_name = #{username}
   </select>
 </mapper>
