@@ -14,12 +14,8 @@
     <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
     <result column="project_desc" jdbcType="LONGVARCHAR" property="projectDesc" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from oa..t_project
-    where project_id = #{projectId,jdbcType=INTEGER}
-  </delete>
   <insert id="insert" parameterType="com.our.oa.entity.Project">
-    insert into oa..t_project (project_id, project_name, customer_id, 
+    insert into oasys.t_project (project_id, project_name, customer_id, 
       settlement_range, site_address, pay_deadline, 
       create_time, update_time, delete_time, 
       delete_flag, project_desc)
@@ -28,29 +24,4 @@
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP}, 
       #{deleteFlag,jdbcType=BIT}, #{projectDesc,jdbcType=LONGVARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.Project">
-    update oa..t_project
-    set project_name = #{projectName,jdbcType=VARCHAR},
-      customer_id = #{customerId,jdbcType=INTEGER},
-      settlement_range = #{settlementRange,jdbcType=VARCHAR},
-      site_address = #{siteAddress,jdbcType=VARCHAR},
-      pay_deadline = #{payDeadline,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
-      delete_flag = #{deleteFlag,jdbcType=BIT},
-      project_desc = #{projectDesc,jdbcType=LONGVARCHAR}
-    where project_id = #{projectId,jdbcType=INTEGER}
-  </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select project_id, project_name, customer_id, settlement_range, site_address, pay_deadline, 
-    create_time, update_time, delete_time, delete_flag, project_desc
-    from oa..t_project
-    where project_id = #{projectId,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select project_id, project_name, customer_id, settlement_range, site_address, pay_deadline, 
-    create_time, update_time, delete_time, delete_flag, project_desc
-    from oa..t_project
-  </select>
 </mapper>

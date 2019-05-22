@@ -1,31 +1,35 @@
-package com.our.oa.entity;
+package com.our.oa.dto.form;
 
-import java.io.Serializable;
 import java.util.Date;
+
+import com.our.oa.dto.GridListDTO;
+import com.our.oa.entity.Customer;
+import com.our.oa.entity.EmployeeSite;
+import com.our.oa.entity.Project;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-/**
-* Created by Mybatis Generator on 2019/03/31
-*/
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class SalesRecord implements Serializable {
+@ToString(callSuper=true)
+@EqualsAndHashCode(callSuper=true)
+public class SalesRecordDTO extends GridListDTO{
     private Integer salesRecordId;
 
     private Integer salesId;
 
     private Integer salesHandler;
 
-    private Date interviewDate;
+    private String interviewDate;
 
-    private Date interviewTime;
+    private String interviewTime;
 
     private Byte priority;
 
@@ -54,6 +58,8 @@ public class SalesRecord implements Serializable {
     private Customer customer;
     
     private Project project;
+    
+    private EmployeeSite employeeSite;
 
     private static final long serialVersionUID = 1L;
 }

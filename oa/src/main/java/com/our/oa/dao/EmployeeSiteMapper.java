@@ -22,4 +22,6 @@ public interface EmployeeSiteMapper {
     int updateByEmployeeId(EmployeeSiteDTO emplyoeeSite);
     
     int deleteById(Integer id);
+    
+    List<Integer> NoNeedSalesStaffIds();
 }

@@ -26,7 +26,7 @@ public class EmployeeSite implements Serializable {
 
     private Date expectEnterDate;
 
-    private Date enterDate;
+    private String enterDate;
 
     private Date endDate;
 

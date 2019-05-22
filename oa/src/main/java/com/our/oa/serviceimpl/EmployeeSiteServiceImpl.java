@@ -1,5 +1,7 @@
 package com.our.oa.serviceimpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,11 @@ public class EmployeeSiteServiceImpl implements EmployeeSiteService {
 	public void update(EmployeeSiteDTO emplyoeeSite) {
 		 employeeMapper.updateByEmployeeId(emplyoeeSite);
 
+	}
+	@Override
+	public List<Integer> getIds() {
+		List<Integer> list=employeeMapper.NoNeedSalesStaffIds();
+		return list;
 	}
 
 }

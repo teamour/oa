@@ -99,4 +99,9 @@
    	  employee_id = #{id,jdbcType=INTEGER}
    </where>
   </update>
+  <select id="NoNeedSalesStaffIds" resultType="java.lang.Integer">
+ 	select distinct employee_id 
+ 	from t_employee_site 
+ 	where is_need_sales_staff=1
+  </select>
 </mapper>

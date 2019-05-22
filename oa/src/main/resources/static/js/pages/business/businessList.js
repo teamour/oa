@@ -1,7 +1,7 @@
 BF={
     initGrid: function () {
             $("#jqGrid").jqGrid({
-                    url:  ctxPath +'businessManage/list',
+                    url:  ctxPath +'business/list',
                     mtype: "POST",
                     datatype: "json",
                     colNames:["Id", "姓名", "工作年数", "日语等级","技术等级","工作1","工作2","工作3"],
