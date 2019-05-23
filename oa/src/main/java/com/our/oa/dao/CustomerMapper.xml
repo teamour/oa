@@ -96,6 +96,18 @@
     from t_customer 
     where customer_id = #{customerId,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectByCustomerType" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * 
+    from t_customer 
+    <where>
+    cooperation_intention!=0 
+    <if test="_parameter==0 or _parameter==1">
+    and company_type =  #{companyType,jdbcType=INTEGER}
+   </if>
+    </where>
+  </select>
+  
   <select id="selectAll" resultMap="BaseResultMap">
     select customer_id, customer_name, website, registered_capital, employee_number, 
     establish_date, company_type, address, zip_code, ceo, main_business, cooperation_direction, 

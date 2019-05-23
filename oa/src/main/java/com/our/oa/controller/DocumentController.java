@@ -1,35 +1,22 @@
 package com.our.oa.controller;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URLEncoder;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.filechooser.FileSystemView;
 import javax.validation.Valid;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFCreationHelper;
-import org.apache.poi.hssf.usermodel.HSSFDataFormat;
-import org.apache.poi.hssf.usermodel.HSSFFont;
-import org.apache.poi.hssf.usermodel.HSSFFormulaEvaluator;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.modelmapper.ModelMapper;
@@ -49,7 +36,6 @@ import com.github.pagehelper.Page;
 import com.our.oa.dto.GridDTO;
 import com.our.oa.dto.form.CustomerDTO;
 import com.our.oa.dto.form.DocumentInvoiceDTO;
-import com.our.oa.dto.form.EmployeeStudyDTO;
 import com.our.oa.dto.list.DocumentInvoiceListDTO;
 import com.our.oa.dto.list.DocumentInvoiceListQueryDTO;
 import com.our.oa.entity.DocumentInvoice;
@@ -74,6 +60,8 @@ public class DocumentController {
 	
 	@GetMapping(value= {"/documentIndex"})
 	public ModelAndView documentIndex(ModelAndView modelAndView) {
+		UUID uuid = UUID.randomUUID(); 
+		  System.out.println (uuid);
 		modelAndView.setViewName("document/documentIndex");
 		return modelAndView;
 	}
@@ -186,7 +174,7 @@ public class DocumentController {
 		documentTemplate = documentTemplateService.getByPrimaryKey(templateId);
 		String url = documentTemplate.getTemplateFile();
 		System.out.println("url="+url);
-		
+		System.out.println(System.getProperty("user.dir"));
 		documentInvoice = documentInvoiceService.getByPrimaryKey(id);
 		//documentInvoiceService.update(documentInvoice);
 		String customerName = documentInvoice.getCustomerName();

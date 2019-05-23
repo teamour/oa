@@ -1,0 +1,40 @@
+       <!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>发送邮件</title>
+</head>
+<body style="margin: 0;padding: 0;">
+<form class="form-empl" id="emailsend" th:action="@{/email/sendemail}" method="POST"  enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td>主题</td>
+				<td width="400"><input type="text"  class="layui-input" name="emailtitle" id="emailtitle"></td>
+			</tr>
+				<br>
+			<tr>
+				<td>内容</td>
+				<td width="400"><input type="text"  class="layui-input" name="emailcontext" id="emailcontext"></td>
+			</tr>
+			
+			<tr>
+				<input type="file" name="emailfile" id="emailfile" multiple="multiple" />
+			</tr>
+			<tr>
+				<td>发送对象</td>
+				<td><select name="customer" id="customer">
+  					<option value ="JPCustomer">日企</option>
+  					<option value ="CHCustomer">中企</option>
+  					<option value="ALLCustomer">全部</option>
+  				</select></td>
+			</tr>
+			
+		</table>
+		<button id="submit" type="submit" class="layui-btn">提交</button>
+	</form> 
+
+</body>
+</html>
