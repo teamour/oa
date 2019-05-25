@@ -1,6 +1,8 @@
 package com.our.oa.serviceimpl;
 
 
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,5 +57,13 @@ public class CustomerServicelmpl implements CustomerService {
 		Customer record = modelMapper.map(DTO, Customer.class);
 		mapper.updateByPrimaryKey(record);
 		return 0;
+	}
+
+	@Override
+	public List<Customer> getByCustomerType(Integer type) {
+		ModelMapper modelMapper = new ModelMapper();
+		List<Customer> customer = mapper.selectByCustomerType(type);
+		//CustomerDTO record = modelMapper.map(customer, CustomerDTO.class);
+		return customer;
 	}
 }
