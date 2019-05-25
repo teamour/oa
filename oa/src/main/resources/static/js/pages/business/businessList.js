@@ -41,74 +41,26 @@ BF={
         if(searchFeild == "interviewDate"){
             searchValue = searchValue.replace(/-/g,'/');
         }
+        
 
         $("#jqGrid").setGridParam({
             page: 1,
-            postData: { searchValue :searchValue, searchFeild:searchFeild}
+            postData: {searchFeild:searchValue}
         }).trigger('reloadGrid');
     },
     modifyData:function(){
-        var selData = $("#jqGrid").getRowData();
-        // 要判断是否有选择，且只选中一行数据
-        var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
-        var id=selData[rowId-1].employeeId;
-        window.location.href = ctxPath+"emp/"+id;
-    },
-    queryById: function (){
-        debugger
-        var selData = $("#jqGrid").getRowData();
-        // 要判断是否有选择，且只选中一行数据
-        var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
-        var id=selData[rowId-1].employeeId;
-        window.location.href = ctxPath+"epst/epstIndex/"+id;
-        
-    },
-    deleteByIds:function(){
-        var selData = $("#jqGrid").getRowData();//获取行数rows
-        var ids_t = $("#jqGrid").jqGrid("getGridParam","selarrrow");//获得当前页其中的那几行
-        var ids = new Array();
-        var len = ids_t.length;
-        var a;
-        for(var i=0;i<len;i++){
-            a = ids_t[i]
-            ids[i] = selData[a-1].employeeId;
-        }
-        if(!confirm("您确认删除吗"))return;
-        //1.定义请求的url
-        var url="http://localhost:8080/emp/deleteByIds";
-        //2.定义请求的参数
-        if(ids.length==0){
-            alert("请选择");
-            return;
-        }
-        var params={"ids":ids.toString()};//ids=1,2,3,4
-        //3.执行异步删除操作
-        $.post(url,params,function(result){
-            location.href="http://localhost:8080/emp/list";
-        });
-    },
-    detailedData:function(){
-        var selData = $("#jqGrid").getRowData();
-        // 要判断是否有选择，且只选中一行数据
-        var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
-        var id=selData[rowId-1].employeeId;
-        window.location.href = ctxPath+"emp/detailed/"+id;
-    },
-    editLinkForEmployeeName:function(cellValue, options, rowdata, action){
-        return "<a href='"+ ctxPath +"emp/detailed/ "+ rowdata.employeeId +"' style = \"color:#6795b5;\">"+ rowdata.employeeName +"</a>";
-    }
+    	debugger
+		var selData = $("#jqGrid").getRowData();
+		// 要判断是否有选择，且只选中一行数据
+		var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
+		var id=selData[rowId-1].employeeId;
+		window.location.href = ctxPath+"business/edit/"+id;
+		
+		
+	}
 	   
 }
     
 $(function () { 
     BF.initGrid();
 });
-//change Input Feild Type
-function changeInputFeildType(selectedValue){
-    if(selectedValue == "interviewDate"){
-        $("#searchValue").prop("type","date");
-    }else{
-        $("#searchValue").prop("type","text");
-    }
-    $("#searchValue").val('');
-}

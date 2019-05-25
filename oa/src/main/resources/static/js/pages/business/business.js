@@ -1,6 +1,5 @@
 BF={
     saveData:function(data){
-    	debugger
     	$.ajax({
     			url:"http://localhost:8080/business",
     			type:"post",

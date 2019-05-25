@@ -1,6 +1,9 @@
 package com.our.oa.dto.form;
 
 import java.util.Date;
+import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.our.oa.dto.GridListDTO;
 import com.our.oa.entity.Customer;
@@ -25,15 +28,15 @@ public class SalesRecordDTO extends GridListDTO{
 
     private Integer salesId;
 
-    private Integer salesHandler;
+    private String[] salesHandler;
+    //@DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String[] interviewDate;
 
-    private String interviewDate;
-
-    private String interviewTime;
+    private String[] interviewTime;
 
     private Byte priority;
 
-    private String interviewAddress;
+    private String[] interviewAddress;
 
     private Integer interviewFrequency;
 
@@ -41,9 +44,9 @@ public class SalesRecordDTO extends GridListDTO{
 
     private Date enterDate;
 
-    private String notice1;
+    private String[] notice1;
 
-    private String notice2;
+    private String[] notice2;
 
     private Boolean isDone;
 
@@ -55,11 +58,19 @@ public class SalesRecordDTO extends GridListDTO{
 
     private Boolean deleteFlag;
     
-    private Customer customer;
+    //private CustomerDTO customer;
     
-    private Project project;
+    private String[] customerName;
     
-    private EmployeeSite employeeSite;
+    private String[] salesStaff;
+    
+    private String[] salesEmail;
+    
+    private String[] salesTelephone;
+    
+    private ProjectDTO project;
+    
+    private EmployeeSiteDTO employeeSite;
 
     private static final long serialVersionUID = 1L;
 }

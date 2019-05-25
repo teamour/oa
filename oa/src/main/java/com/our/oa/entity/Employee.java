@@ -98,5 +98,9 @@ public class Employee implements Serializable {
 
     private String skillGrowth;
     
+    private SalesRecord salesRecord;
+    
+    private Sales sales;
+    
     private static final long serialVersionUID = 1L;
 }

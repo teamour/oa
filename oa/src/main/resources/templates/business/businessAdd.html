@@ -15,67 +15,220 @@
 </head>
 <body>
 		<form class="a" action="#" th:action="@{/business/}" method="post">
+		<div>
+		<h1>表1:</h1>
 		<table border="1" style="border:1px solid black;">
 			<tr>
-				<td>营业担当:</td><td><input type="text" name="salesHandler"   ></td>
+				<td>营业担当:</td><td>
+				<input type="text" name="salesHandler"   ></td>
 			</tr>
-			  <tr>
-				<td>面试日期:</td><td><input type="date"  name="interviewDate"    ></td>
+			 <tr>
+				<td>面试日期:</td><td>
+				<input type="date"  name="interviewDate"    ></td>
 			</tr>
 			<tr>
-				<td>面试时间:</td><td><input type="time"  name="interviewTime"    ></td>
-			</tr>
-			<tr>
-				<td>优先度:</td><td><input type="text"  name="priority"    ></td>
+				<td>面试时间:</td><td>
+				<input type="time"  name="interviewTime"    ></td>
 			</tr>
 			<!-- <tr>
-				<td>面试次数（对应字典表）:</td><td>
-					<select id="interviewFrequencyId">
-					</select>
+				<td>优先度:</td><td>
+				<input type="text"  name="priority"    ></td>
 			</tr> -->
 			<tr>
-				<td>面试地点:</td><td><input type="text"  name="interviewAddress"    ></td>
+				<td>面试地点:</td><td>
+				<input type="text"  name="interviewAddress"    ></td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td>面谈结果:</td><td>
 					<select id="">
 					</select>
+			</tr> -->
+			<tr>
+				<td>项目名:</td><td>
+				<input type="text"  name="project.projectName"    ></td>
 			</tr>
 			<tr>
-				<td>项目名:</td><td><input type="text"  name="project.projectName"    ></td>
+				<td>项目详细:</td><td>
+				<input type="text"  name="project.projectDesc"    ></td>
 			</tr>
 			<tr>
-				<td>项目详细:</td><td><input type="text"  name="project.projectDesc"    ></td>
+				<td>入场日:</td><td>
+				<input type="date"  name="employeeSite.enterDate"    ></td>
 			</tr>
 			<tr>
-				<td>入场日:</td><td><input type="date"  name="employeeSite.enterDate"    ></td>
+				<td>客户公司名:</td><td>
+				<input type="text"  name="customerName"    ></td>
 			</tr>
 			<tr>
-				<td>客户公司名:</td><td><input type="text"  name="customer.customerName"    ></td>
+				<td>客户营业担当:</td><td>
+				<input type="text"  name="salesStaff"    ></td>
 			</tr>
 			<tr>
-				<td>客户营业担当:</td><td><input type="text"  name="customer.salesStaff"    ></td>
+				<td>客户邮箱:</td><td>
+				<input type="text"  name="salesEmail"    ></td>
 			</tr>
 			<tr>
-				<td>客户邮箱:</td><td><input type="text"  name="customer.salesEmail"    ></td>
+				<td>客户电话:</td><td>
+				<input type="text"  name="salesTelephone"    ></td>
+			</tr>
+			
+			
+			<tr>
+				<td>注意事项1:</td><td>
+				<input type="text"  name="notice1"    ></td>
 			</tr>
 			<tr>
-				<td>客户电话:</td><td><input type="text"  name="customer.salesTelephone"    ></td>
+				<td>注意事项2:</td><td>
+				<input type="text"  name="notice2"    ></td>
 			</tr>
-			<tr>
-				<td>注意事项1:</td><td><input type="text"  name="notice1"    ></td>
-			</tr>
-			<tr>
-				<td>注意事项2:</td><td><input type="text"  name="notice2"    ></td>
-			</tr> 
+			
 		</table>
+		</div>
+		<hr>
+		<div>
+		<h1>表2:</h1>
+		<table border="1" style="border:1px solid black;">
+			<tr>
+				<td>营业担当:</td><td>
+				<input type="text" name="salesHandler"   ></td>
+			</tr>
+			 <tr>
+				<td>面试日期:</td><td>
+				<input type="date"  name="interviewDate"    ></td>
+			</tr>
+			<tr>
+				<td>面试时间:</td><td>
+				<input type="time"  name="interviewTime"    ></td>
+			</tr>
+			<!-- <tr>
+				<td>优先度:</td><td>
+				<input type="text"  name="priority"    ></td>
+			</tr> -->
+			<tr>
+				<td>面试地点:</td><td>
+				<input type="text"  name="interviewAddress"    ></td>
+			</tr>
+			<!-- <tr>
+				<td>面谈结果:</td><td>
+					<select id="">
+					</select>
+			</tr> -->
+			<tr>
+				<td>项目名:</td><td>
+				<input type="text"  name="project.projectName"    ></td>
+			</tr>
+			<tr>
+				<td>项目详细:</td><td>
+				<input type="text"  name="project.projectDesc"    ></td>
+			</tr>
+			
+			<tr>
+				<td>入场日:</td><td>
+				<input type="date"  name="employeeSite.enterDate"    ></td>
+			</tr>
+			<tr>
+				<td>客户公司名:</td><td>
+				<input type="text"  name="customerName"    ></td>
+			</tr>
+			<tr>
+				<td>客户营业担当:</td><td>
+				<input type="text"  name="salesStaff"    ></td>
+			</tr>
+			<tr>
+				<td>客户邮箱:</td><td>
+				<input type="text"  name="salesEmail"    ></td>
+			</tr>
+			<tr>
+				<td>客户电话:</td><td>
+				<input type="text"  name="salesTelephone"    ></td>
+			</tr>
+			
+			<tr>
+				<td>注意事项1:</td><td>
+				<input type="text"  name="notice1"    ></td>
+			</tr>
+			<tr>
+				<td>注意事项2:</td><td>
+				<input type="text"  name="notice2"    ></td>
+			</tr>
+			
+		</table>
+		</div>
+		<hr>
+		<div>
+		<h1>表3:</h1>
+		<table border="1" style="border:1px solid black;">
+			<tr>
+				<td>营业担当:</td><td>
+				<input type="text" name="salesHandler"   ></td>
+			</tr>
+			 <tr>
+				<td>面试日期:</td><td>
+				<input type="date"  name="interviewDate"    ></td>
+			</tr>
+			<tr>
+				<td>面试时间:</td><td>
+				<input type="time"  name="interviewTime"    ></td>
+			</tr>
+			<!-- <tr>
+				<td>优先度:</td><td>
+				<input type="text"  name="priority"    ></td>
+			</tr> -->
+			<tr>
+				<td>面试地点:</td><td>
+				<input type="text"  name="interviewAddress"    ></td>
+			</tr>
+			<!-- <tr>
+				<td>面谈结果:</td><td>
+					<select id="">
+					</select>
+			</tr> -->
+			<tr>
+				<td>项目名:</td><td>
+				<input type="text"  name="project.projectName"    ></td>
+			</tr>
+			<tr>
+				<td>项目详细:</td><td>
+				<input type="text"  name="project.projectDesc"    ></td>
+			</tr>
+			
+			<tr>
+				<td>入场日:</td><td>
+				<input type="date"  name="employeeSite.enterDate"    ></td>
+			</tr>
+			<tr>
+				<td>客户公司名:</td><td>
+				<input type="text"  name="customerName"    ></td>
+			</tr>
+			<tr>
+				<td>客户营业担当:</td><td>
+				<input type="text"  name="salesStaff"    ></td>
+			</tr>
+			<tr>
+				<td>客户邮箱:</td><td>
+				<input type="text"  name="salesEmail"    ></td>
+			</tr>
+			<tr>
+				<td>客户电话:</td><td>
+				<input type="text"  name="salesTelephone"    ></td>
+			</tr>
+			
+			<tr>
+				<td>注意事项1:</td><td>
+				<input type="text"  name="notice1"    ></td>
+			</tr>
+			<tr>
+				<td>注意事项2:</td><td>
+				<input type="text"  name="notice2"    ></td>
+			</tr>
+			
+		</table>
+		</div>
+		
 		<input type="submit" class="layui-btn" value="添加" />
 		<input type="" class="layui-btn" value="增加新一组表格" />
 		<a id="btnBack" class="layui-btn layui-btn-normal" th:href="@{/business/list}">返回</a>
 	</form>
-	
-	
-	
     <script type="text/javascript" th:src="@{/js/layui.js}"></script>
     
 </body>

@@ -59,7 +59,7 @@ public class CustomerControllerTest {
     @Test
     public void testCustomerAddPost() throws Exception {
     	CustomerDTO dto = new CustomerDTO();
-    	dto.setCustomerName("testAdd");
+    	//dto.setCustomerName("testAdd");
     	
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/customer/add", dto))
         		.andDo(print()).andReturn();

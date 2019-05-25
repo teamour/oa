@@ -20,19 +20,43 @@
     <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
     <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
   </resultMap>
-  <insert id="insert" parameterType="com.our.oa.dto.form.SalesRecordDTO">
-    insert into oasys.t_sales_record (sales_record_id, sales_id, sales_handler, 
+ <!--  <insert id="insert" parameterType="com.our.oa.dto.form.SalesRecordDTO">
+    insert into oasys.t_sales_record (sales_record_id, sales_id, 
+    sales_handler,
       interview_date, interview_time, priority, 
       interview_address, interview_frequency, project_id, 
       enter_date, notice1, notice2, 
       is_done, create_time, update_time, 
       delete_time, delete_flag)
-    values (#{salesRecordId,jdbcType=INTEGER}, #{salesId,jdbcType=INTEGER}, #{salesHandler,jdbcType=INTEGER}, 
+    values (#{salesRecordId,jdbcType=INTEGER},
+     #{salesId,jdbcType=INTEGER},
+      <if test="salesHandlers !=null ">
+	      and employee_id in
+	    <foreach collection="employeeIds" 
+	    item="salesHandler" open="(" close=")" separator=",">
+	    ${salesHandler}
+	    </foreach>
+	   </if>
+      #{salesHandler,jdbcType=INTEGER}, 
       #{interviewDate,jdbcType=DATE}, #{interviewTime,jdbcType=TIME}, #{priority,jdbcType=TINYINT}, 
       #{interviewAddress,jdbcType=VARCHAR}, #{interviewFrequency,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER}, 
       #{enterDate,jdbcType=DATE}, #{notice1,jdbcType=VARCHAR}, #{notice2,jdbcType=VARCHAR}, 
       #{isDone,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=BIT})
+  </insert> -->
+  <insert id="insert" parameterType="com.our.oa.entity.SalesRecord">
+    insert into oasys.t_sales_record (
+    sales_handler,interview_date,interview_time,interview_address, 
+    notice1, notice2
+    
+    , create_time
+     )
+    values (
+	    #{salesHandler},#{interviewDate},#{interviewTime},#{interviewAddress,jdbcType=VARCHAR}, 
+	    #{notice1,jdbcType=VARCHAR}, #{notice2,jdbcType=VARCHAR}
+	    
+	    ,now()
+     )
   </insert>
 
 </mapper>

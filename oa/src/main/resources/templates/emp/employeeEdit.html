@@ -172,14 +172,13 @@
 			<tr>
 				<td>是否需要营业:</td><td><input type="text" name="isNeedSalesStaff"  th:field="${employeeSite.isNeedSalesStaff}"></td>
 			</tr>
-			<tr>
-				<td colspan="2" align="center"><input type="submit" value="保存" style="width: 100px;"></td><td></td>
-				<td colspan="2" align="center"><input type="reset" value="重置" style="width: 100px;"></td><td></td>
-				<a id="btnBack" class="layui-btn layui-btn-normal" th:href="@{/emp/list}">返回</a>
-			</tr>
 			
 		</table>
+				<input type="submit" value="保存" style="width: 100px;">
+				<input type="reset" value="重置" style="width: 100px;">
+				<a id="btnBack" class="layui-btn layui-btn-normal" th:href="@{/emp/list}">返回</a>
 	</form>
+	<script type="text/javascript" th:inline="javascript"></script>　
 </div>
 </body>
  

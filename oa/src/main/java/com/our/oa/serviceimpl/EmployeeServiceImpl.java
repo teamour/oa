@@ -1,7 +1,6 @@
 package com.our.oa.serviceimpl;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,15 +9,15 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.Page;
 import com.our.oa.dao.EmployeeMapper;
 import com.our.oa.dao.EmployeeSiteMapper;
+import com.our.oa.dao.SalesMapper;
 import com.our.oa.dto.form.EmployeeDTO;
 import com.our.oa.dto.form.EmployeeSiteDTO;
-import com.our.oa.dto.list.AnnouncementListDTO;
 import com.our.oa.dto.list.EmployeeListDTO;
 import com.our.oa.dto.list.EmployeeListQueryDTO;
 import com.our.oa.entity.Employee;
 import com.our.oa.entity.EmployeeSite;
+import com.our.oa.entity.Sales;
 import com.our.oa.service.EmployeeService;
-import com.our.oa.utils.ModelMapperUtils;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -28,6 +27,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private EmployeeMapper employeeMapper;
 	@Autowired
 	private EmployeeSiteMapper employeeSiteMapper;
+	@Autowired
+	private SalesMapper salesMapper;
 	
 	@Override
 	public int insert(EmployeeDTO employee,EmployeeSiteDTO employeeSite) {
@@ -35,6 +36,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		  	 int lastId = employeeMapper.findNowId();//employee表添加的最新id
 		  	 employeeSite.setEmployeeId(lastId);
 		  	 employeeSiteMapper.insert(employeeSite);
+		  	 Sales sales=new Sales();
+		  	 sales.setEmployeeSiteId(lastId);//此功能暂时添加employeeID!!!!
+		  	 salesMapper.insert(sales);
 			 return rows;
 	}
 

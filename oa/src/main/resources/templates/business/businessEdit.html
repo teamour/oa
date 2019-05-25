@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>营业信息编辑</title>
+
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+<link rel="stylesheet" th:href="@{/css/layui.css}">
+
+<script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
+
+</head>
+<body>
+	<h1>营业信息编辑:</h1>
+
+	<form action="#" th:action="@{/business/edit/}+*{sales.employeeSiteId}" th:object="${form}"
+		method="post">
+
+		<table>
+			<tr>
+		        <td>员工姓名: </td>
+		        <td><span th:text="*{employeeName}"></span></td>
+		    </tr>
+			<tr>
+		        <td>车站: </td>
+		        <td><span th:text="*{theNearestStation}"></span></td>
+		    </tr>
+			<tr>
+		        <td>经验年数: </td>
+		        <td><span th:text="*{workingYears}"></span></td>
+		    </tr>
+			<tr>
+		        <td>技术1: </td>
+		        <td><span th:text="*{skill1}"></span></td>
+		    </tr>
+			<tr>
+		        <td>技术2: </td>
+		        <td><span th:text="*{skill2}"></span></td>
+		    </tr>
+			<tr>
+		        <td>技术3: </td>
+		        <td><span th:text="*{skill3}"></span></td>
+		    </tr>
+			<tr>
+		        <td>技术评星: </td>
+		        <td><span th:text="*{skillScore}"></span></td>
+		    </tr>
+			<tr>
+		        <td>技术分析: </td>
+		        <td><span th:text="*{skillAnalysis}"></span></td>
+		    </tr>
+			<tr>
+		        <td>现场位置: </td>
+		        <td><span th:text="*{position}"></span></td>
+		    </tr>
+			<tr>
+		        <td>技术发展: </td>
+		        <td><span th:text="*{skillGrowth}"></span></td>
+		    </tr>
+			<tr>
+		        <td>希望入场日1: </td>
+		        <td><input th:field="*{sales.expectEnteryDate1}" type="text" /></td>
+		    </tr>
+			<tr>
+		        <td>希望入场日2: </td>
+		        <td><input th:field="*{sales.expectEnteryDate2}" type="text" /></td>
+		    </tr>
+			<!-- <tr>
+		        <td>优先项目1: </td>
+		        <td><input th:field="*{sales.firstProject}" type="text" /></td>
+		    </tr> -->
+			<tr>
+		        <td>优先项目2: </td>
+		        <td><input th:field="*{sales.secondProject}" type="text" /></td>
+		    </tr>
+			<tr>
+		        <td>优先项目3: </td>
+		        <td><input th:field="*{sales.thirdProject}" type="text" /></td>
+		    </tr>
+		   
+		</table>
+		
+	 	<input type="submit" class="layui-btn layui-btn-normal" value="编辑" />
+	 	<a id="btnBack" class="layui-btn layui-btn-normal" th:href="@{/business/list}">返回</a>
+		
+	</form>
+	
+	<script type="text/javascript" th:inline="javascript"></script>　
+    <script type="text/javascript" th:src="@{/js/pages/customer/customerEdit.js}"></script>
+	
+</body>
+</html>

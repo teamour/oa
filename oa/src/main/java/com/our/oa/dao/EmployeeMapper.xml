@@ -78,7 +78,7 @@
 	    <if test="employeeName !=null and employeeName !=''">
 	      and employee_name like Concat('%',#{employeeName},'%') 
 	    </if>
-	    <if test="employeeIds !=null and employeeName !=''">
+	    <if test="employeeIds !=null ">
 	      and employee_id in
 	    <foreach collection="employeeIds" 
 	    item="employeeId" open="(" close=")" separator=",">

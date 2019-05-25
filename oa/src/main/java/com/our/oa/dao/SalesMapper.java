@@ -1,5 +1,6 @@
 package com.our.oa.dao;
 
+import com.our.oa.dto.form.SalesDTO;
 import com.our.oa.entity.Sales;
 import java.util.List;
 
@@ -11,9 +12,9 @@ public interface SalesMapper {
 
     int insert(Sales record);
 
-    Sales selectByPrimaryKey(Integer salesId);
-
     List<Sales> selectAll();
 
     int updateByPrimaryKey(Sales record);
+    
+    Sales findByEmployeeSiteId(Integer id);
 }

@@ -23,9 +23,9 @@ public class SalesRecord implements Serializable {
 
     private Integer salesHandler;
 
-    private Date interviewDate;
+    private String interviewDate;
 
-    private Date interviewTime;
+    private String interviewTime;
 
     private Byte priority;
 

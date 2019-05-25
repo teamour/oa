@@ -15,13 +15,7 @@
     <result column="project_desc" jdbcType="LONGVARCHAR" property="projectDesc" />
   </resultMap>
   <insert id="insert" parameterType="com.our.oa.entity.Project">
-    insert into oasys.t_project (project_id, project_name, customer_id, 
-      settlement_range, site_address, pay_deadline, 
-      create_time, update_time, delete_time, 
-      delete_flag, project_desc)
-    values (#{projectId,jdbcType=INTEGER}, #{projectName,jdbcType=VARCHAR}, #{customerId,jdbcType=INTEGER}, 
-      #{settlementRange,jdbcType=VARCHAR}, #{siteAddress,jdbcType=VARCHAR}, #{payDeadline,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP}, 
-      #{deleteFlag,jdbcType=BIT}, #{projectDesc,jdbcType=LONGVARCHAR})
+    insert into oasys.t_project ( project_name, project_desc)
+    values ( #{projectName,jdbcType=VARCHAR}, #{projectDesc,jdbcType=LONGVARCHAR})
   </insert>
 </mapper>

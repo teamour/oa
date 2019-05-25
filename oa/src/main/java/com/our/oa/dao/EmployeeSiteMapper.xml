@@ -36,13 +36,13 @@
       description,enter_record,is_need_sales_staff,purchase_order_file,employee_id 
   </sql>
   <insert id="insert" parameterType="com.our.oa.entity.EmployeeSite">
-  insert into oasys.t_employee_site (<include refid="column"/>,delete_flag)
+  insert into oasys.t_employee_site (<include refid="column"/>,enter_date, delete_flag)
   values(#{projectId,jdbcType=INTEGER}, #{salesStaff,jdbcType=VARCHAR},
   		#{salesContact,jdbcType=VARCHAR}, #{salesEmail,jdbcType=VARCHAR},#{officeClerk,jdbcType=VARCHAR},
   		 #{officeEmail,jdbcType=VARCHAR}, #{unitPrice,jdbcType=INTEGER},#{settlementRange,jdbcType=VARCHAR},
   		 #{invoiceFile,jdbcType=VARCHAR},#{paymentSite,jdbcType=VARCHAR},#{headOfficeClerk,jdbcType=VARCHAR},
   		#{description,jdbcType=LONGVARCHAR}, #{enterRecord,jdbcType=LONGVARCHAR},#{isNeedSalesStaff,jdbcType=BIT},
-  		#{purchaseOrderFile,jdbcType=VARCHAR},#{employeeId,jdbcType=INTEGER},0)
+  		#{purchaseOrderFile,jdbcType=VARCHAR},#{employeeId,jdbcType=INTEGER},#{enterDate},0)
   </insert>
   <sql id="queryWhereName">
      <where><!-- mybatis 中的动态sql -->

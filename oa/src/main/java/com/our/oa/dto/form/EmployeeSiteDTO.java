@@ -25,7 +25,7 @@ public class EmployeeSiteDTO implements Serializable{
 
     private Date expectEnterDate;
 
-    private Date enterDate;
+    private String[] enterDate;
 
     private Date endDate;
 
