@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,8 +18,11 @@ import java.util.UUID;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -55,7 +59,7 @@ public class EmailController {
 
 	@PostMapping(value = "/sendemail")
 	public ModelAndView save(@Valid EmailDTO emailForm, @RequestParam("emailfile") MultipartFile[] files,
-			BindingResult bindingResult, HttpServletRequest request, ModelAndView modelAndView) {
+			BindingResult bindingResult, HttpServletRequest request, ModelAndView modelAndView) throws IOException {
 
 		Map<String, Object> valueMap = new HashMap<>();
 		String customerId = request.getParameter("customer");
@@ -75,7 +79,7 @@ public class EmailController {
 			break;
 		}
 		
-		if (files.length > 0 && files != null) {
+		if (StringUtils.isNotBlank(files[0].getOriginalFilename())) {
 			String[] filePath = new String[files.length];
 			for (int i = 0; i < files.length; i++) {
 				MultipartFile file = files[i];
