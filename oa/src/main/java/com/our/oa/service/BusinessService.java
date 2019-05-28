@@ -1,6 +1,5 @@
 package com.our.oa.service;
 
-import com.our.oa.dto.form.SalesDTO;
 import com.our.oa.dto.form.SalesRecordDTO;
 import com.our.oa.dto.list.BusinessManageListDTO;
 import com.our.oa.dto.list.BusinessManageListQueryDTO;

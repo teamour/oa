@@ -1,6 +1,5 @@
 package com.our.oa.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,6 +45,10 @@ public class BusinessController {
 	public GridDTO<EmployeeListDTO> listData(HttpServletRequest req,
 		EmployeeListQueryDTO listQueryDTO) {
 		
+		
+		
+		System.out.println(listQueryDTO.getSearchFeild());
+		System.out.println(listQueryDTO.getSearchValue());
 		
 		List<Integer> ids = employeeSiteService.getIds();
 		Page<EmployeeListDTO> queryList =null;

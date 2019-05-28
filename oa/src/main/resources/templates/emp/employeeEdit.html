@@ -56,6 +56,11 @@
             			</datalist></td>
 			</tr>
 			<tr>
+		        <td>技术评星: </td>
+		        <td><select id="skillScoreId" th:field="*{employee.skillScore}">
+				</select></td>
+		    </tr>
+			<tr>
 				<td>技术评星:</td><td><input type="text" th:field="${employee.skillScore}"  ></td>
 			</tr>
 			<tr>
@@ -139,12 +144,12 @@
 			<tr>
 				<td>単価:</td><td><input type="text" name="unitPrice"  th:field="${employeeSite.unitPrice}" oninput="value=value.replace(/[^\d]/g,'')"></td>
 			</tr>
-			<tr>
-				<td>日本語レベル:</td><td><input type="text" name="unitPrice"  th:field="${employee.JapaneseLevel}" oninput="value=value.replace(/[^\d]/g,'')"></td>
+			<!-- <tr>
+				<td>日本語レベル:</td><td><input type="text" name="japaneseLevel"  th:field="${employee.japaneseLevel}" ></td>
 			</tr>
 			<tr>
-				<td>技術レベル:</td><td><input type="text" name="skillLevel"  th:field="${employee.skillLevel}" oninput="value=value.replace(/[^\d]/g,'')"></td>
-			</tr>
+				<td>技術レベル:</td><td><input type="text" name="skillLevel"  th:field="${employee.skillLevel}" ></td>
+			</tr> -->
 			<tr>
 				<td>注文書（PDF/原本）:</td><td><input type="text" th:field="${employeeSite.purchaseOrderFile}" name="purchaseOrderFile"  ></td>
 			</tr>

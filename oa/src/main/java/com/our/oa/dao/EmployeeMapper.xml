@@ -85,6 +85,17 @@
 	    ${employeeId}
 	    </foreach>
 	   </if>
+	   <!--营业管理查询筛选条件-->
+	    <if test="searchFeild !=null and searchFeild !='' and searchFeild =='employeeName' and searchValue !=null and searchValue !=''">
+	      and employee_name like Concat('%',#{searchValue},'%') 
+	    </if>
+       <!--  <if test="searchFeild !=null and searchFeild !='' and searchFeild =='interviewDate' and searchValue !=null and searchValue !=''">
+	      and interview_date = #{searchValue}
+	    </if>
+        <if test="searchFeild !=null and searchFeild !='' and searchFeild =='salesHandler' and searchValue !=null and searchValue !=''">
+	      and sales_handler like Concat('%',#{searchValue},'%') 
+	    </if> -->
+	    
 	  </where>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

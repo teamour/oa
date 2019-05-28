@@ -32,30 +32,30 @@ BF={
 
     },
     searchData: function (){
-        var searchValue = $("#searchValue").val();
+    	debugger
         var searchFeild = $("#searchFeild").val().toString();
-        if(!searchValue || !searchValue.trim() || !searchFeild || !searchFeild.trim()){
+    	var searchValue = $("#searchValue").val();
+        if( !searchFeild || !searchFeild.trim()){
             return;
         }
-        ///对日期的输入值进行特殊处理，因为需要拼接导sql里进行查询，不能是有中划线类型的日期
-        if(searchFeild == "interviewDate"){
-            searchValue = searchValue.replace(/-/g,'/');
-        }
-        
-
         $("#jqGrid").setGridParam({
             page: 1,
-            postData: {searchFeild:searchValue}
+            postData: {searchValue :searchValue, searchFeild:searchFeild}
         }).trigger('reloadGrid');
     },
     modifyData:function(){
-    	debugger
 		var selData = $("#jqGrid").getRowData();
 		// 要判断是否有选择，且只选中一行数据
-		var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
-		var id=selData[rowId-1].employeeId;
-		window.location.href = ctxPath+"business/edit/"+id;
-		
+		//var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
+    	var rowId=$('#jqGrid').jqGrid('getGridParam','selarrrow');
+    	if (rowId.length==1) {
+    		var id=selData[rowId-1].employeeId;
+    		window.location.href = ctxPath+"business/edit/"+id;
+		}
+    	else{
+    		alert("只能选择一行,请重新选择!!");
+    		return;
+    	}
 		
 	}
 	   
@@ -64,3 +64,12 @@ BF={
 $(function () { 
     BF.initGrid();
 });
+function changeInputFeildType(selectedValue){
+	debugger
+    if(selectedValue == "interviewDate"){
+        $("#searchValue").prop("type","date");
+    }else{
+        $("#searchValue").prop("type","text");
+    }
+    $("#searchValue").val('');
+}

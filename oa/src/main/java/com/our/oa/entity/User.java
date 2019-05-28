@@ -1,7 +1,12 @@
 package com.our.oa.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +21,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class User implements Serializable {
+public class User implements Serializable{
     private Integer userId;
 
     private String userName;
@@ -44,4 +49,5 @@ public class User implements Serializable {
     private Boolean deleteFlag;
 
     private static final long serialVersionUID = 1L;
+
 }

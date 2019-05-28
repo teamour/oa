@@ -3,6 +3,8 @@ package com.our.oa.dto.form;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,7 +32,7 @@ public class EmployeeDTO implements Serializable{
     private Integer companyId;//所属公司
 
     private Integer deptId;//部门ID
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date enterDate;
 
     private Integer position;//职称

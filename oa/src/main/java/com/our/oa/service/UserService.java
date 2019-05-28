@@ -1,9 +1,10 @@
+
 package com.our.oa.service;
+
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.our.oa.dto.form.UserDTO;
 
-public interface UserService extends UserDetailsService{
-	void saveUser(UserDTO user);
+public interface UserService  extends UserDetailsService{
 }

@@ -33,26 +33,43 @@ BF={
 
 		},
 		modifyData:function(){
-			var selData = $("#jqGrid").getRowData();
+			/*var selData = $("#jqGrid").getRowData();
 			// 要判断是否有选择，且只选中一行数据
 			var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
 			var id=selData[rowId-1].employeeId;
-			window.location.href = ctxPath+"emp/"+id;
+			window.location.href = ctxPath+"emp/"+id;*/
+			var selData = $("#jqGrid").getRowData();
+			//var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
+	    	var rowId=$('#jqGrid').jqGrid('getGridParam','selarrrow');
+	    	if (rowId.length==1) {
+	    		var id=selData[rowId-1].employeeId;
+	    		window.location.href = ctxPath+"emp/"+id;
+			}
+	    	else{
+	    		alert("只能选择一行,请重新选择!!");
+	    		return;
+	    	}
 		},
 		searchData: function (){
+			debugger
 			$("#jqGrid").setGridParam({
 	            page: 1,
 	            postData: { employeeName :$("#title").val() }
 	        }).trigger('reloadGrid');
 	   },
 	   queryById: function (){
-		   debugger
 		   var selData = $("#jqGrid").getRowData();
-			// 要判断是否有选择，且只选中一行数据
-			var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
-			var id=selData[rowId-1].employeeId;
-			window.location.href = ctxPath+"epst/epstIndex/"+id;
-			
+			//var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
+	    	var rowId=$('#jqGrid').jqGrid('getGridParam','selarrrow');
+	    	if (rowId.length==1) {
+	    		// 要判断是否有选择，且只选中一行数据
+				var id=selData[rowId-1].employeeId;
+				window.location.href = ctxPath+"epst/epstIndex/"+id;
+	    	}
+	    	else{
+	    		alert("只能选择一行,请重新选择!!");
+	    		return;
+	    	}
 	   },
 	   deleteByIds:function(){
 		   var selData = $("#jqGrid").getRowData();//获取行数rows

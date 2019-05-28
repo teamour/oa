@@ -3,7 +3,6 @@ package com.our.oa.dto.list;
 import java.util.List;
 
 import com.our.oa.dto.GridListQueryBaseDTO;
-import com.our.oa.entity.EmployeeSite;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,4 +24,7 @@ public class EmployeeListQueryDTO extends GridListQueryBaseDTO {
 	
 	private List<Integer> employeeIds;
 	
+	private String searchFeild;//查询的字段，面试人员姓名，1面时间，面试担当
+
+	private String searchValue;//输入的查询值    
 }

@@ -64,7 +64,6 @@
     <set>
       project_id = #{projectId,jdbcType=INTEGER},
       expect_enter_date = #{expectEnterDate,jdbcType=DATE},
-      enter_date = #{enterDate,jdbcType=DATE},
       end_date = #{endDate,jdbcType=DATE},
       sales_staff = #{salesStaff,jdbcType=VARCHAR},
       sales_contact = #{salesContact,jdbcType=VARCHAR},
