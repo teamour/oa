@@ -1,11 +1,8 @@
 package com.our.oa.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
