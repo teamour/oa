@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>用户新規</title>
+
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+<link rel="stylesheet" th:href="@{/css/layui.css}">
+
+<script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
+
+</head>
+<body>
+	<h1>新規の表:</h1>
+
+	<form action="#" th:action="@{/user/add}" th:object="${form}"
+		method="post">
+
+		<table>
+			<tr>
+		        <td>用户名: </td>
+		        <td><input th:field="*{userName}" type="text" /></td>
+		    </tr>
+			<tr>
+		        <td>用户邮箱: </td>
+		        <td><input th:field="*{email}" type="text" /></td>
+		    </tr>
+			<tr>
+		        <td>密码: </td>
+		        <td><input th:field="*{userPwd}" type="text" /></td>
+		    </tr>
+			<tr>
+				<td>職位:</td><td>
+					<select id="positionId">
+					</select>
+			</tr>
+			<tr>
+		        <td>赋予权限: </td>
+		        <td><input type="text" /></td>
+		    </tr>
+		    
+		</table>
+		
+	 	<input type="submit" class="layui-btn layui-btn-normal" value="添加" />
+	 	<a id="btnBack" class="layui-btn layui-btn-normal" th:href="@{/user/list}">返回</a>
+		
+	</form>
+	
+	<script type="text/javascript" th:inline="javascript"></script>　
+    <script type="text/javascript" th:src="@{/js/pages/user/userAdd.js}"></script>
+	
+</body>
+</html>

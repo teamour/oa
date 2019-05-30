@@ -16,14 +16,37 @@
     <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
     <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
   </resultMap>
-  <select id="queryByUserName" resultType="com.our.oa.entity.User">
-  	select 
+  <sql id="column">
   	  user_id, user_name, user_pwd, 
       email, login_time, error_number, 
       email_verification_code, verification_code_send_time, 
       employee_id, create_time, update_time, 
       delete_time, delete_flag
+  </sql>
+  <select id="queryByUserName" resultType="com.our.oa.entity.User">
+  	select 
+  	  <include refid="column"/>
   from oasys.sys_user
-  where user_name = #{username}
+  where user_name like Concat('%',#{searchValue},'%') 
+  </select>
+  <select id="selectQueryList" parameterType="com.our.oa.dto.list.UserListQueryDTO" resultMap="BaseResultMap">
+    select <include refid="column"/>
+    from oasys.sys_user
+	  <where>
+	    delete_flag = 0 
+	    <if test="createTime !=null and createTime !=''">
+	      and create_time like Concat('%',#{createTime},'%') 
+	    </if>
+	  </where>
+  </select>
+  <insert id="insert" parameterType="com.our.oa.dto.form.UserDTO" >
+  insert into 
+  sys_user (user_name,user_pwd,email,create_time,delete_flag)
+  values 
+  	 (#{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+  	 now(),false);
+  </insert>
+  <select id="checkByUserName" resultType="int">
+   select count(user_name) from oasys.sys_user where user_name = #{userName,jdbcType=VARCHAR} 
   </select>
 </mapper>

@@ -1,39 +1,33 @@
-package com.our.oa.entity;
+package com.our.oa.dto.list;
 
-import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotBlank;
+
+import com.our.oa.dto.GridListDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-/**
-* Created by Mybatis Generator on 2019/03/31
-*/
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class User implements Serializable{
-    private Integer userId;
-
-    private String userName;
+@ToString(callSuper=true)
+@EqualsAndHashCode(callSuper=true)
+public class UserListDTO extends GridListDTO{
+ 	
+ 	//@ApiModelProperty
+ 	@NotBlank(message="用户名不能为空")
+ 	private String userName;
 
     private String userPwd;
 
     private String email;
-
-    private Date loginTime;
-
-    private Integer errorNumber;
-
-    private String emailVerificationCode;
-
-    private Date verificationCodeSendTime;
 
     private Integer employeeId;
 
@@ -46,5 +40,4 @@ public class User implements Serializable{
     private Boolean deleteFlag;
 
     private static final long serialVersionUID = 1L;
-
 }

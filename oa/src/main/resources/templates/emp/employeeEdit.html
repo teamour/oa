@@ -19,6 +19,11 @@
 				<td>職位:</td><td><input type="text" th:field="${employee.position}" name="position" ></td>
 			</tr>
 			<tr>
+				<td>職位:</td><td>
+					<select id="positionId" th:field="${employee.position}">
+					</select></td>
+			</tr>
+			<tr>
 				<td>年齢:</td><td><input type="text" th:field="${employee.age}" name="age" oninput="if(value>99)value=99;if(value.length>2)value=value.slice(0,2);if(value<0)value=0"></td>
 			</tr>
 			<tr>

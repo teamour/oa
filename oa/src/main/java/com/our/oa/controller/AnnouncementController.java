@@ -124,5 +124,13 @@ public class AnnouncementController {
 		// 删除成功后重新进入列表页
 		return "sys/announcementlist";
 	}
-	
+	//公告
+	@GetMapping(value = "/announcement")
+	public ModelAndView announcement(ModelAndView modelAndView) {
+		AnnouncementDTO dto = new AnnouncementDTO();
+		announcementService.getByPrimaryKey(1);
+		modelAndView.addObject("announcementForm", dto);
+		modelAndView.setViewName("sys/anno");
+		return modelAndView;
+	}
 }

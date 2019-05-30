@@ -25,7 +25,7 @@
       delete_time, delete_flag)
     values (#{salesId,jdbcType=INTEGER}, #{employeeSiteId,jdbcType=INTEGER}, #{expectEnteryDate1,jdbcType=VARCHAR}, 
       #{expectEnteryDate2,jdbcType=VARCHAR},#{secondProject,jdbcType=VARCHAR}, 
-      #{thirdProject,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{thirdProject,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, now(), 
       #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=BIT})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.Sales">

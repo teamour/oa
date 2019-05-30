@@ -37,7 +37,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		  	 employeeSite.setEmployeeId(lastId);
 		  	 employeeSiteMapper.insert(employeeSite);
 		  	 Sales sales=new Sales();
-		  	 sales.setEmployeeSiteId(lastId);//此功能暂时添加employeeID!!!!
 		  	 salesMapper.insert(sales);
 			 return rows;
 	}

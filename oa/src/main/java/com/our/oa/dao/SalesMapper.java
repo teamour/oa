@@ -1,6 +1,5 @@
 package com.our.oa.dao;
 
-import com.our.oa.dto.form.SalesDTO;
 import com.our.oa.entity.Sales;
 import java.util.List;
 
