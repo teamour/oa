@@ -55,8 +55,8 @@
 		    
 		    <tr>
 		        <td>公司性质: </td>
-		        <td><select id="companyType" th:field="*{companyType}">
-				</select></td>
+		        <td><select id="companyType" th:field="*{companyType}"></select></td>
+		        <td><input type="text" style="display:none;" th:field="*{companyType}" id ="CompanyTypeValue"></td>
 		    </tr>
 		    
 		    <tr>
@@ -86,14 +86,14 @@
 		    
 		    <tr>
 		        <td>合作意向: </td>
-		        <td><select id="cooperationIntention" th:field="*{cooperationIntention}">
-				</select></td>
+		        <td><select id="cooperationIntention" th:field="*{cooperationIntention}"></select></td>
+		        <td><input type="text" style="display:none;" th:field="*{cooperationIntention}" id ="cooperationIntentionValue"></td>
 		    </tr>
 		    
 		    <tr>
 		        <td>上场或者非上场: </td>
-		        <td><select id="isUpper" th:field="*{isUpper}">
-				</select></td>
+		        <td><select id="isUpper" th:field="*{isUpper}"></select></td>
+		        <td><input type="text" style="display:none;" th:field="*{isUpper}" id ="isUpperValue"></td>
 		    </tr>
 		    
 		    <tr>

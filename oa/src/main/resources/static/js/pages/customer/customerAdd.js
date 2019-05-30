@@ -8,6 +8,7 @@ BF={
 
 $(function () { 
     BF.init();
+    
 });
 
 function initSelectType(id, type) {

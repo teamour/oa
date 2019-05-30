@@ -265,37 +265,7 @@ public class DocumentController {
 		      }
 		    }
 		    
-//		    Cell cell = sheet.getRow(9).getCell(0);
-//		    cell.setCellValue(customerName);
-//		    
-//		    cell = sheet.getRow(12).getCell(6);
-//		    cell.setCellValue(companyName+" 御中");
-//		    cell = sheet.getRow(47).getCell(1);
-//		    cell.setCellValue(companyName);
-//		    
-//		    cell = sheet.getRow(13).getCell(6);
-//		    cell.setCellValue("〒"+companyZipCode);
-//		    
-//		    cell = sheet.getRow(14).getCell(6);
-//		    cell.setCellValue(compAddress[0]);
-//		    
-//		    cell = sheet.getRow(15).getCell(6);
-//		    cell.setCellValue(compAddress[1]);
-//		    
-//		    cell = sheet.getRow(16).getCell(6);
-//		    cell.setCellValue("TEL "+companyTelephone);
-//		    
-//		    cell = sheet.getRow(49).getCell(1);
-//		    cell.setCellValue(payDeadline);
-//		    
-//		    Calendar cal=Calendar.getInstance();    
-//		    int y=cal.get(Calendar.YEAR);    
-//		    int m=cal.get(Calendar.MONTH);    
-//		    int d=cal.get(Calendar.DATE); 
-//		    cell = sheet.getRow(6).getCell(7);
-//		    cell.setCellValue(y+"/"+m+"/"+d);
-		    
-		    String fileName = "請求書_"+customerName+".xls"; 
+		    String fileName = "請求書_"+customerName+"_"+y+m+d+".xls"; 
 		    FileOutputStream fileOut = new FileOutputStream(desktop +"/"+ fileName);//另存文件  
             wb.write(fileOut);  
             fileOut.close();  
