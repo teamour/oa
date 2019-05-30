@@ -36,7 +36,17 @@ BF={
 		var selData = $("#jqGrid").getRowData();
 		// 要判断是否有选择，且只选中一行数据
 		var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
-		window.location.href = ctxPath+"epst/editepst/"+selData[rowId-1].employeeStudyId;
+		var ids_t = $("#jqGrid").jqGrid("getGridParam","selarrrow");
+		console.log(ids_t.length);
+		if(ids_t.length == 1){
+			window.location.href = ctxPath+"epst/editepst/"+selData[rowId-1].employeeStudyId;
+		}
+		else{
+			layui.use('layer', function(){
+	 			  var layer = layui.layer;
+	 			 layer.msg('仅且只能选中一行数据进行修改');
+	 			});  
+		}
 		
 	},
 	deleteData:function(){

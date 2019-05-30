@@ -35,7 +35,7 @@
       update_time, delete_time, delete_flag
       )
     values (#{invoiceDocumentId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER},
-      (select customer_name from t_customer where customer_id=#{customerId,jdbcType=INTEGER}), 
+      (select address from t_customer where customer_id=#{customerId,jdbcType=INTEGER}), 
       #{customerCharge,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, #{payDeadline,jdbcType=VARCHAR}, 
       #{unitPrice,jdbcType=INTEGER}, #{templateId,jdbcType=INTEGER}, now(), 
       #{updateTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP},0

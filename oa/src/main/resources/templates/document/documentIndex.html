@@ -23,14 +23,20 @@
 <h1>文档管理</h1>
 <h2>apache POI 的测试！</h2>
 
-<Button id="btn1" class="layui-btn layui-btn-normal" onclick="BF.createData();">测试创建</Button>
 <a id="btncreateinvoice" class="layui-btn layui-btn-normal" th:href="@{/document/addinvoice}">请求书新规登入</a>
 <button id="btnCreate" class="layui-btn layui-btn-normal" onclick="BF.createIvoice();" >创建excel</button>
-<button id="btnUpdate" class="layui-btn layui-btn-normal" onclick="BF.modifyIvoice();" >编辑</button>
-<button id="btnDelete" class="layui-btn layui-btn-danger" onclick="BF.deleteIvoice();">删除</button>
+<button id="btnUpdate" class="layui-btn layui-btn-normal" onclick="BF.modifyIvoice();" >编辑请求书</button>
+<button id="btnDelete" class="layui-btn layui-btn-danger" onclick="BF.deleteIvoice();">删除请求书</button>
 <table id="jqGrid" ></table>
 <div id="jqGridPager"></div>
 
+<br></br>
+<a id="btncreatepurchase" class="layui-btn layui-btn-normal" th:href="@{/document/addpurchase}">发注书新规登入</a>
+<button id="btnCreate1" class="layui-btn layui-btn-normal" onclick="BF.createPurchase();" >创建excel</button>
+<button id="btnUpdate1" class="layui-btn layui-btn-normal" onclick="BF.modifyPurchase();" >编辑发注书</button>
+<button id="btnDelete1" class="layui-btn layui-btn-danger" onclick="BF.deletePurchase();">删除发注书</button>
+<table id="jqGrid1" ></table>
+<div id="jqGridPager1"></div>
  <script type="text/javascript" th:inline="javascript">
 	   /*<![CDATA[*/
 	  var  ctxPath = /*[[@{/}]]*/ '';

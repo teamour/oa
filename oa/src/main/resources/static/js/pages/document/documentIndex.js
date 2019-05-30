@@ -31,16 +31,25 @@ BF={
              jsonReader:{ 
             	 repeatitems:false }
 		 });
+		 $("#jqGrid").jqGrid({
+			 //发注书内容
+		 });
 	},
-	createIvoice: function (){
-		var url="http://localhost:8080/document/createTest";
-		 $.post(url);
-   },
    modifyIvoice:function(){
 	   var selData = $("#jqGrid").getRowData();
 		// 要判断是否有选择，且只选中一行数据
 		var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
+		var ids_t = $("#jqGrid").jqGrid("getGridParam","selarrrow");
+		console.log(ids_t.length);
+		if(ids_t.length == 1){
 		window.location.href = ctxPath+"document/editinvoice/"+selData[rowId-1].invoiceDocumentId;
+		}
+		else{
+			layui.use('layer', function(){
+	 			  var layer = layui.layer;
+	 			 layer.msg('仅且只能选中一行数据进行修改');
+	 			});  
+		}
    },
    createIvoice:function(){
 	   var selData = $("#jqGrid").getRowData();
@@ -73,6 +82,7 @@ BF={
 			window.location.reload();
 		});
    }
+   
 	
 }
 

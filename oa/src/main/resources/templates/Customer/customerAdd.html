@@ -21,6 +21,8 @@
 <body>
 	<h1>客户信息登录:</h1>
 
+
+
 	<form action="#" th:action="@{/customer/add}" th:object="${form}"
 		method="post">
 
@@ -37,12 +39,12 @@
 		    
 		    <tr>
 		        <td>资本金: </td>
-		        <td><input th:field="*{registeredCapital}" type="number" /></td>
+		        <td><input th:field="*{registeredCapital}" type="number"  min="0"/></td>
 		    </tr>
 		    
 		    <tr>
 		        <td>社员数: </td>
-		        <td><input th:field="*{employeeNumber}" type="number" /></td>
+		        <td><input th:field="*{employeeNumber}" type="number"  min="0"/></td>
 		    </tr>
 		    
 		    <tr>
@@ -156,6 +158,5 @@
 	
 	<script type="text/javascript" th:inline="javascript"></script>　
     <script type="text/javascript" th:src="@{/js/pages/customer/customerAdd.js}"></script>
-	
 </body>
 </html>

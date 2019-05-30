@@ -41,7 +41,6 @@ BF={
 	},
 	modifyData:function(){
 		var rowId=$("#jqGrid").jqGrid('getGridParam','selrow');
-		debugger;
 		// 如果没有选择跳过
 		if(rowId==null){
 			alert("请先选择要修改的项");
