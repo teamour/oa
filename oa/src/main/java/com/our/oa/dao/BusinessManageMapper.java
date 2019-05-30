@@ -1,6 +1,7 @@
 package com.our.oa.dao;
 
 import com.github.pagehelper.Page;
+import com.our.oa.dto.form.SalesRecordDTO;
 import com.our.oa.dto.list.BusinessManageListDTO;
 import com.our.oa.dto.list.BusinessManageListQueryDTO;
 
