@@ -30,12 +30,11 @@ import com.our.oa.utils.PageInfoToGridDTOUtils;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private DictionaryService dicService;
 	@GetMapping("/login")
-    public String login(User user) {
+    public ModelAndView login(ModelAndView modelAndView,User user) {
 	 	
-        return "login";
+		modelAndView.setViewName("login");
+        return modelAndView;
     }
 	@PostMapping("/login")
 	public String loginData(User user) {

@@ -23,12 +23,6 @@
       employee_id, create_time, update_time, 
       delete_time, delete_flag
   </sql>
-  <select id="queryByUserName" resultType="com.our.oa.entity.User">
-  	select 
-  	  <include refid="column"/>
-  from oasys.sys_user
-  where user_name like Concat('%',#{searchValue},'%') 
-  </select>
   <select id="selectQueryList" parameterType="com.our.oa.dto.list.UserListQueryDTO" resultMap="BaseResultMap">
     select <include refid="column"/>
     from oasys.sys_user
@@ -48,5 +42,13 @@
   </insert>
   <select id="checkByUserName" resultType="int">
    select count(user_name) from oasys.sys_user where user_name = #{userName,jdbcType=VARCHAR} 
+  </select>
+  <select id="findByUserName" resultMap="BaseResultMap">
+   select <include refid="column"/>
+   from oasys.sys_user
+   <where>
+	    delete_flag = 0 
+	      and user_name like Concat('%',#{username},'%') 
+   </where>
   </select>
 </mapper>

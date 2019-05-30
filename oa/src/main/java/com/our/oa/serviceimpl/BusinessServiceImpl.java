@@ -51,7 +51,7 @@ public class BusinessServiceImpl implements BusinessService {
 		SalesRecord SalesR=new SalesRecord();
 		Customer customer = new Customer();
 		Project project = new Project();
-		EmployeeSiteDTO employeeSite=new EmployeeSiteDTO();
+		//EmployeeSiteDTO employeeSite=new EmployeeSiteDTO();
 		String[] salesHandler = salesRecord.getSalesHandler();
 		String[] interviewDate = salesRecord.getInterviewDate();
 		String[] interviewTime = salesRecord.getInterviewTime();
@@ -67,7 +67,7 @@ public class BusinessServiceImpl implements BusinessService {
 		String[] salesStaff = salesRecord.getSalesStaff();
 		String[] salesTelephone = salesRecord.getSalesTelephone();
 		
-		String[] enterDate = salesRecord.getEmployeeSite().getEnterDate();
+		//String[] enterDate = salesRecord.getEmployeeSite().getEnterDate();
 		System.out.println();
 		for (int i = 0; i < salesHandler.length; i++) {
 			if (salesHandler[i]!=null&&salesHandler[i]!="") {
@@ -92,13 +92,14 @@ public class BusinessServiceImpl implements BusinessService {
 			customer.setSalesStaff(salesStaff[i]);
 			customer.setSalesTelephone(salesTelephone[i]);
 			
-			if (enterDate[i]!=null&&enterDate[i]!="") {
-				employeeSite.setEnterDate(enterDate);
-			}
+			/*
+			 * if (enterDate[i]!=null&&enterDate[i]!="") {
+			 * employeeSite.setEnterDate(enterDate); }
+			 */
 			salesRecordMapper.insert(SalesR);
 			projectMapper.insert(project);//向项目表中添加项目名称和项目详细
 			customerMapper.insert(customer);
-			employeeSiteMapper.insert(employeeSite);
+			//employeeSiteMapper.insert(employeeSite);
 		}
 		
 	}
