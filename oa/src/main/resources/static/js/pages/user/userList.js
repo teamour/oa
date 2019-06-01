@@ -11,7 +11,7 @@ BF={
 		                 { label: 'email', name: 'email', width: 150 },
 		                 { label: 'userPwd', name: 'userPwd', width: 150 },
 		                 { label: 'createTime', name: 'createTime', width: 150,
-								formatter : 'date', formatoptions: { srcformat : 'Y-m-d H:i:s', newformat :'ShortDate'}}
+								formatter : 'date', formatoptions: { srcformat : 'Y-m-d H:i:s', newformat :'ShortDate'}}		
 		             ],
 		             width: "100%",
 		             height: "100%",
@@ -27,7 +27,6 @@ BF={
 		             jsonReader:{  repeatitems:false },
 		             
 		         });
-
 		}
 }
     

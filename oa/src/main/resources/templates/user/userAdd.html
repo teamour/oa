@@ -21,13 +21,12 @@
 <body>
 	<h1>新規の表:</h1>
 
-	<form action="#" th:action="@{/user/add}" th:object="${form}"
+	<form action="#" th:action="@{/user/add}" th:object="${form}" 
 		method="post">
-
 		<table>
 			<tr>
 		        <td>用户名: </td>
-		        <td><input th:field="*{userName}" type="text" /></td>
+		        <td><input th:field="*{userName}" type="text" onblur="check()" name="username"/></td>
 		    </tr>
 			<tr>
 		        <td>用户邮箱: </td>
@@ -35,7 +34,7 @@
 		    </tr>
 			<tr>
 		        <td>密码: </td>
-		        <td><input th:field="*{userPwd}" type="text" /></td>
+		        <td><input th:field="*{userPwd}" type="password" /></td>
 		    </tr>
 			<tr>
 				<td>職位:</td><td>
@@ -44,7 +43,7 @@
 			</tr>
 			<tr>
 		        <td>赋予权限: </td>
-		        <td><input type="text" /></td>
+		        <td><input type="text"/></td>
 		    </tr>
 		    
 		</table>
@@ -56,6 +55,16 @@
 	
 	<script type="text/javascript" th:inline="javascript"></script>　
     <script type="text/javascript" th:src="@{/js/pages/user/userAdd.js}"></script>
+	<script type="text/javascript">
+	 //密码非空验证+确认验证
+    function check(){
+		var pass=$("input[name='userName']").val()
+        //var pass=document.form.text;
+        if(pass==null||pass.trim()==""){
+            alert("用户名不能为空");
+        }
+    }
+	</script>
 	
 </body>
 </html>

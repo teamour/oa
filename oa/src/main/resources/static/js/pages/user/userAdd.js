@@ -1,6 +1,5 @@
 
 function initSelectType(id, type) {
-	debugger
 	const url = "/emp/dicNames/"+id;
 	const testData = $("#form1").serialize();
 
