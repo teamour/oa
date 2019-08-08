@@ -1,23 +1,27 @@
-package com.our.oa.entity;
+package com.our.oa.dto.list;
 
-import java.io.Serializable;
 import java.util.Date;
+
+import javax.mail.search.IntegerComparisonTerm;
+
+import com.our.oa.dto.GridListQueryBaseDTO;
+
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-/**
-* Created by Mybatis Generator on 2019/03/31
-*/
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class MailingCustomer implements Serializable {
-    private Integer mailingId;
+@ToString(callSuper=true)
+@EqualsAndHashCode(callSuper=true)
+public class OUR002MailRecordDetailResponseDTO extends GridListQueryBaseDTO{
+	
+	private static final long serialVersionUID = 1L;
+	
+	private Integer mailingId;
 
     private Integer customerId;
 
@@ -30,6 +34,4 @@ public class MailingCustomer implements Serializable {
     private String sendMailAddress;
     
     private String sendCustomerName;
-
-    private static final long serialVersionUID = 1L;
 }

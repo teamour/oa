@@ -124,4 +124,37 @@
 	    </if>
     </where>
   </select>
+  <select id="getSendMailCustomerInfoOUR001"  resultMap="BaseResultMap">
+    select customer_id,customer_name,sales_email,sales_staff,proposal1_email,proposal1_handler,proposal2_email,
+    proposal2_handler,proposal3_email,proposal3_handler from t_customer
+    <where>
+    	<if test="arg0 == 0">
+    		company_type = 0
+    	</if>
+    	<if test="arg0 == 1">
+    		company_type = 1
+    	</if>
+    	<if test="arg1 == 0">
+	     	and cooperation_intention = 1
+	    </if>
+	    <if test="arg1 == 1">
+	    	and cooperation_intention = 1
+	    </if>
+	    <if test="arg1 == 2">
+	     	and cooperation_intention = 2
+	    </if>
+	    <if test="arg1 == 3">
+	     	and cooperation_intention = 3
+	    </if>
+	    <if test="arg1 == 4">
+	    	and cooperation_intention = 4
+	    </if>
+	    <if test="arg1 == 5">
+	    	and cooperation_intention = 5
+	    </if>
+	    <if test="arg1 == 6">
+	    	and cooperation_intention != 0
+	    </if>
+    </where>
+  </select>
 </mapper>

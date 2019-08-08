@@ -6,15 +6,24 @@
     <result column="customer_id" jdbcType="INTEGER" property="customerId" />
     <result column="send_time" jdbcType="TIMESTAMP" property="sendTime" />
     <result column="send_result" jdbcType="BIT" property="sendResult" />
+    <result column="send_MailAddress" jdbcType="VARCHAR" property="sendMailAddress" />
+    <result column="send_CustomerName" jdbcType="VARCHAR" property="sendCustomerName" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    
   </resultMap>
   <insert id="insert" parameterType="com.our.oa.entity.MailingCustomer">
-    insert into oa..t_mailing_customer (mailing_id, customer_id, send_time, 
-      send_result)
-    values (#{mailingId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, #{sendTime,jdbcType=TIMESTAMP}, 
-      #{sendResult,jdbcType=BIT})
+    insert into t_mailing_customer (mailing_id, customer_id, send_time, 
+      send_result,send_MailAddress,send_CustomerName,customer_name)
+    values (#{mailingId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, #{sendTime,jdbcType=TIMESTAMP},
+    	#{sendResult,jdbcType=BIT},#{sendMailAddress,jdbcType=VARCHAR}, #{sendCustomerName,jdbcType=VARCHAR},
+    	#{customerName,jdbcType=VARCHAR})
   </insert>
   <select id="selectAll" resultMap="BaseResultMap">
-    select mailing_id, customer_id, send_time, send_result
+    select mailing_id, customer_id, send_time, send_result, send_MailAddress, send_CustomerName
     from oa..t_mailing_customer
+  </select>
+  <select id="selectByMailingId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select mailing_id, customer_id, send_time, send_result, send_MailAddress, send_CustomerName,customer_name
+    from t_mailing_customer  where mailing_id = #{mailing_id,jdbcType=INTEGER}
   </select>
 </mapper>

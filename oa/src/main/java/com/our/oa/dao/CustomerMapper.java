@@ -3,9 +3,12 @@ package com.our.oa.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.github.pagehelper.Page;
 import com.our.oa.dto.list.CustomerListDTO;
 import com.our.oa.dto.list.CustomerListQueryDTO;
+import com.our.oa.dto.list.OUR001SendMailCustomerInfoResponseDTO;
 import com.our.oa.entity.Customer;
 
 /**
@@ -23,4 +26,6 @@ public interface CustomerMapper {
     Page<CustomerListDTO> selectQueryList(CustomerListQueryDTO DTO);
 
     int updateByPrimaryKey(Customer record);
+    
+    Page<OUR001SendMailCustomerInfoResponseDTO> getSendMailCustomerInfoOUR001(Integer compayType, Integer CooperationIntention);
 }

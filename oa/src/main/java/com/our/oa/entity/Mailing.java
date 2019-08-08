@@ -34,6 +34,10 @@ public class Mailing implements Serializable {
     private Date deleteTime;
 
     private Boolean deleteFlag;
+    
+    private Integer mailStats;
+    
+    private Integer mailNumber;
 
     private String mailingTempleteContent;
 

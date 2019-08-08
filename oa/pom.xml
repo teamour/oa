@@ -24,6 +24,7 @@
 		<com.github.pagehelper.version>5.1.2</com.github.pagehelper.version>
 		<org.modelmapper.version>2.3.2</org.modelmapper.version>
 		<org.apache.maven.plugins.version>2.22.1</org.apache.maven.plugins.version>
+		<commons-lang3.version>3.9</commons-lang3.version>
 	</properties>
 
 	<dependencies>
@@ -123,6 +124,12 @@
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>${commons-lang3.version}</version>
+		</dependency>
 		
 		<!-- 它是一个用于mvn 生命周期的测试阶段的插件 -->
 		<dependency>
@@ -137,6 +144,13 @@
             <version>2.4</version>
             <classifier>jdk15</classifier>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+<!-- <dependency>
+    <groupId>commons-fileupload</groupId>
+    <artifactId>commons-fileupload</artifactId>
+    <version>1.3.3</version>
+</dependency> -->
+		
 	</dependencies>
 
     

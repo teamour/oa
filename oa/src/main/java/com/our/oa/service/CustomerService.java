@@ -5,6 +5,8 @@ import java.util.List;
 import com.our.oa.dto.form.CustomerDTO;
 import com.our.oa.dto.list.CustomerListDTO;
 import com.our.oa.dto.list.CustomerListQueryDTO;
+import com.our.oa.dto.list.OUR001SendMailCustomerInfoRequestDTO;
+import com.our.oa.dto.list.OUR001SendMailCustomerInfoResponseDTO;
 import com.our.oa.entity.Customer;
 
 public interface CustomerService extends ListQueryService<CustomerListDTO,CustomerListQueryDTO>{
@@ -17,4 +19,5 @@ public interface CustomerService extends ListQueryService<CustomerListDTO,Custom
 	int updateByPrimaryKey(CustomerDTO DTO);
 	
 	int deleteByPrimaryKey(Integer id);
+	
 }

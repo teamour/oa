@@ -1,8 +1,6 @@
 package com.our.oa.serviceimpl;
 
-import java.awt.image.AreaAveragingScaleFilter;
 import java.io.File;
-import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 import javax.mail.MessagingException;
@@ -17,13 +15,12 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
 
 
 @Service
 @Component
 public class EmailSendServiceImpl {
-	 @Autowired
+	 	@Autowired
 	    private JavaMailSender javaMailSender;
 
 	    @Value("${spring.mail.username}")
@@ -47,10 +44,6 @@ public class EmailSendServiceImpl {
 	            helper.setSubject(valueMap.get("title").toString());
 
 	            // 添加正文（使用thymeleaf模板）
-//	            Context context = new Context();
-//	            context.setVariables(valueMap);
-//	            String content = this.templateEngine.process("sendemail", context);
-//	            helper.setText(content, true);
 	            helper.setText(valueMap.get("content").toString());
 
 	            // 添加附件

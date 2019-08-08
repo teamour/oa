@@ -80,5 +80,4 @@ public class CustomerListDTO extends GridListDTO {
 
 	private Boolean deleteFlag;
 
-
 }

@@ -21,50 +21,65 @@
 </head>
 <body style="margin: 0;padding: 0;">
 <h2>邮件群发</h2>
-
-<form class="form-empl" id="emailsend" th:action="@{/email/sendemail}" method="POST"  enctype="multipart/form-data">
-		<table>
-			<tr>
-				<td>主题</td>
-				<td ><input type="text"  class="layui-input" name="emailtitle" id="emailtitle" style="width:400px;"></td>
-			</tr>
-				<br>
-			<tr>
-				<td>内容</td>
-			
-				<td><textarea  class="layui-textarea" name="emailcontext" id="emailcontext" rows="10" style="width:400px;"></textarea></td>
-			</tr>
-			
-			<tr>
-				<td>附件</td>
-				<td><input type="file" name="emailfile" id="emailfile" multiple="multiple" /><td>
-			</tr>
-			<tr>
-				<td>发送对象</td>
-				<td><select name="customer" id="customer">
-  					<option value ="JPCustomer">日企</option>
-  					<option value ="CHCustomer">中企</option>
-  					<option value="ALLCustomer">全部</option>
-  				</select></td>
-			</tr>
-			
-		</table>
-		<br><br>
-		<button id="submitE" name="submitE" type="button" class="layui-btn">提交</button>
-	</form> 
+<table border="2" cellspacing="20">
+	<tr>
+		<td>
+			<form class="form-empl" id="emailsend" method="POST"  action="/OUR001/sendemail" enctype="multipart/form-data">
+			<input type="hidden" name="customerids" id="customerids">
+			<table>
+					<td>发送对象</td>
+					<td><select name="customer" id="customer">
+	  					<option value ="JPCustomer">日企</option>
+	  					<option value ="CHCustomer">中企</option>
+	  					<option value="ALLCustomer">全部</option>
+	  				</select>
+	  				<select name=cooperation id="cooperation">
+	  					<option value ="CooperationHave">合作意向有</option>
+	  					<option value ="CooperationNothing">合作意向无</option>
+	  					<option value="CooperationLow">合作意向低</option>
+	  					<option value="CooperationMid">合作意向中</option>
+	  					<option value="CooperationHigh">合作意向高</option>
+	  					<option value="CooperationHaved">合作过</option>
+	  					<option value="Cooperationhaving">合作中</option>
+	  				</select>
+	  				<select name=sendMailType id="sendMailType">
+	  					<option value ="salesStaff">营业担当</option>
+	  					<option value ="proposalHandler">提案担当</option>
+	  				</select>
+	  				<button id="submitA" name="submitA" type="button"
+	  				onclick="SMCP.searchData();return false;"
+	  				 style="margin-left:1px;margin-top:1px">选择客户</button>
+	  				</td>
+				</tr>
+				<tr>
+					<td>主题</td>
+					<td ><input type="text"  class="layui-input" name="emailtitle" id="emailtitle" style="width:400px;"></td>
+				</tr>
+					<br>
+				<tr>
+					<td>内容</td>
+				
+					<td><textarea  class="layui-textarea" name="emailcontext" id="emailcontext" rows="10" style="width:400px;"></textarea></td>
+				</tr>
+				
+				<tr>
+					<td>附件</td>
+					<td><input type="file" name="emailfile" id="emailfile" multiple="multiple" /><td>
+				</tr>
+			</table>
+				<button id="submitE" name="submitE" type="button" class="layui-btn" onclick="SMCP.saveData()">发送</button>
+			</form>
+		</td>
+	</table>
+	           
+	<table id="mailCustomer"></table>
+    <div id="mailCustomerPager"></div>
+	
+	<script type="text/javascript" th:inline="javascript">
+	   /*<![CDATA[*/
+	  var  ctxPath = /*[[@{/}]]*/ '';
+	   /*]]>*/
+	</script>
+	<script type="text/javascript" th:src="@{/js/pages/sendmail/sendmailcustomer.js}"></script> 
 </body>
-	<script type="text/javascript">
- 	$("#submitE").click(function(){
- 		layui.use('layer', function(){
- 			  var layer = layui.layer;
- 			 layer.msg('邮件发送中·····');
- 			});        
-
- 		console.log('youjianfasong');
- 		$("#emailsend").action="@{/email/sendemail}";
-		$("#emailsend").enctype="multipart/form-data";
-		$("#emailsend").method="post";
- 		$("#emailsend").submit();
- 	});
- 	</script>
 </html>

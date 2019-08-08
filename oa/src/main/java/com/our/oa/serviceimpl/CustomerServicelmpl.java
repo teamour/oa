@@ -12,6 +12,8 @@ import com.our.oa.dao.CustomerMapper;
 import com.our.oa.dto.form.CustomerDTO;
 import com.our.oa.dto.list.CustomerListDTO;
 import com.our.oa.dto.list.CustomerListQueryDTO;
+import com.our.oa.dto.list.OUR001SendMailCustomerInfoRequestDTO;
+import com.our.oa.dto.list.OUR001SendMailCustomerInfoResponseDTO;
 import com.our.oa.entity.Customer;
 import com.our.oa.service.CustomerService;
 
