@@ -29,9 +29,11 @@ public class OUR002MailRecordDetailResponseDTO extends GridListQueryBaseDTO{
 
     private Boolean sendResult;
     
+    //公司名字
     private String customerName;
     
     private String sendMailAddress;
+    
     
     private String sendCustomerName;
 }

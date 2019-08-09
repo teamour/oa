@@ -39,9 +39,11 @@ public class OUR002SendMailRecordController {
 	@GetMapping(value = "/detailed/{id}")
 	public ModelAndView getMaildetailed(@PathVariable(name = "id", required = false) 
 										Integer id, ModelAndView modelAndView) {
-		
+		System.out.println("www");
 		Page<OUR002MailRecordDetailResponseDTO> queryList = service.getMailRecordDetail(id);
-		return null;
+		modelAndView.setViewName("email/mailrecorddetail");
+		modelAndView.addObject("list", queryList);
+		return modelAndView;
 	}
 
 }
