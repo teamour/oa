@@ -1,0 +1,48 @@
+2019/08/13-16:39 [main] INFO  com.our.oa.OaApplication- Starting OaApplication on SKY-20160526QLI with PID 2820 (D:\Githib\oa\oa\target\classes started by Administrator in D:\Githib\oa\oa)
+2019/08/13-16:39 [main] INFO  com.our.oa.OaApplication- The following profiles are active: dev
+2019/08/13-16:39 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat initialized with port(s): 8080 (http)
+2019/08/13-16:39 [main] INFO  org.apache.catalina.core.StandardService- Starting service [Tomcat]
+2019/08/13-16:39 [main] INFO  org.apache.catalina.core.StandardEngine- Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019/08/13-16:39 [main] INFO  org.apache.catalina.core.AprLifecycleListener- The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_60\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_60/bin/server;C:/Program Files/Java/jre1.8.0_60/bin;C:/Program Files/Java/jre1.8.0_60/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\scala\bin;D:\KwDownload\nodejs\;D:\maven\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;D:\SoftWare_Study\eclipse;;.]
+2019/08/13-16:39 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]- Initializing Spring embedded WebApplicationContext
+2019/08/13-16:39 [main] INFO  org.springframework.web.context.ContextLoader- Root WebApplicationContext: initialization completed in 4010 ms
+2019/08/13-16:39 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor- Initializing ExecutorService 'applicationTaskExecutor'
+2019/08/13-16:39 [main] INFO  org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping- Adding welcome page template: index
+2019/08/13-16:39 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat started on port(s): 8080 (http) with context path ''
+2019/08/13-16:39 [main] INFO  com.our.oa.OaApplication- Started OaApplication in 8.197 seconds (JVM running for 9.238)
+2019/08/13-16:41 [http-nio-8080-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]- Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019/08/13-16:41 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet- Initializing Servlet 'dispatcherServlet'
+2019/08/13-16:41 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet- Completed initialization in 13 ms
+2019/08/13-16:41 [http-nio-8080-exec-10] INFO  com.our.oa.controller.OUR001MailOperationController- send mail customer start!
+2019/08/13-16:41 [http-nio-8080-exec-10] INFO  com.zaxxer.hikari.HikariDataSource- DatebookHikariCP - Starting...
+2019/08/13-16:41 [http-nio-8080-exec-10] INFO  p6spy- [ 2019-08-13T16:41:21.210 ] --- | took 18ms | statement | connection 0
+ SELECT 1;
+2019/08/13-16:41 [http-nio-8080-exec-10] INFO  com.zaxxer.hikari.HikariDataSource- DatebookHikariCP - Start completed.
+2019/08/13-16:41 [http-nio-8080-exec-10] INFO  p6spy- [ 2019-08-13T16:41:21.276 ] --- | took 18ms | statement | connection 0
+ SELECT count(0) FROM t_customer WHERE company_type = 0 AND cooperation_intention != 0;
+2019/08/13-16:41 [http-nio-8080-exec-10] INFO  p6spy- [ 2019-08-13T16:41:21.301 ] --- | took 1ms | statement | connection 0
+ select customer_id,customer_name,sales_email,sales_staff,proposal1_email,proposal1_handler,proposal2_email,
+    proposal2_handler,proposal3_email,proposal3_handler from t_customer
+     WHERE company_type = 0
+    	
+    	
+    	
+	    
+	    
+	    
+	    
+	    
+	    
+	    	and cooperation_intention != 0 LIMIT 10 ;
+2019-08-13 16:47:27.330  INFO 1660 --- [main] com.our.oa.OaApplication                 : Starting OaApplication on SKY-20160526QLI with PID 1660 (D:\Githib\oa\oa\target\classes started by Administrator in D:\Githib\oa\oa)
+2019-08-13 16:47:27.336  INFO 1660 --- [main] com.our.oa.OaApplication                 : The following profiles are active: dev
+2019-08-13 16:47:31.357  INFO 1660 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-08-13 16:47:31.420  INFO 1660 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-08-13 16:47:31.421  INFO 1660 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-08-13 16:47:31.440  INFO 1660 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_60\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_60/bin/server;C:/Program Files/Java/jre1.8.0_60/bin;C:/Program Files/Java/jre1.8.0_60/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\scala\bin;D:\KwDownload\nodejs\;D:\maven\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;D:\SoftWare_Study\eclipse;;.]
+2019-08-13 16:47:31.725  INFO 1660 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-08-13 16:47:31.725  INFO 1660 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4209 ms
+2019-08-13 16:47:33.804  INFO 1660 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-13 16:47:34.146  INFO 1660 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-08-13 16:47:34.489  INFO 1660 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-13 16:47:34.495  INFO 1660 --- [main] com.our.oa.OaApplication                 : Started OaApplication in 8.102 seconds (JVM running for 9.043)

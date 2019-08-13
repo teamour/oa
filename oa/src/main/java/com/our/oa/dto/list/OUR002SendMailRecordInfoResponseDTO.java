@@ -1,7 +1,5 @@
 package com.our.oa.dto.list;
 
-import java.util.Date;
-
 import com.our.oa.dto.GridListDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,9 +21,9 @@ public class OUR002SendMailRecordInfoResponseDTO extends GridListDTO {
 	
 	private Integer mailStats;
 	
-	private Date beginTime;
+	private String beginTime;
 	
-	private Date endTime;
+	private String endTime;
 	
 	private String mailingAimSummary;
 	

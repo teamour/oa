@@ -7,7 +7,7 @@ BF={
 	             colNames:["Id", "发送状态", "开始时间", "结束时间","发送人Email", "邮件标题"],
 	             colModel: [
 	                 { label: 'mailingId', name: 'mailingId', key: true,hidden:true, width: 75 },
-	                 { label: 'mailStats', name: 'mailStats', width: 50 },
+	                 { label: 'mailStats', name: 'mailStats', width: 60, formatter:'select',editoptions:{value:"0:正在发送;1:发送完成"}},
 	                 { label: 'beginTime', name: 'beginTime', width: 180 },
 	                 { label: 'endTime', name: 'endTime', width: 180 },
 	                 { label: 'mailingAimSummary', name: 'mailingAimSummary', width: 200 },
@@ -64,9 +64,9 @@ BF={
 			});
 	},
 	searchData: function (){
-		$("#jqGrid").setGridParam({
+		$("#mailRecord").setGridParam({
             page: 1,
-            postData: { customerName :$("#title").val() }
+            postData: {}
         }).trigger('reloadGrid');
    }
 }

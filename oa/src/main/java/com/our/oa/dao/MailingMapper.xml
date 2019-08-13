@@ -4,8 +4,8 @@
   <resultMap id="BaseResultMap" type="com.our.oa.entity.Mailing">
     <id column="mailing_id" jdbcType="INTEGER" property="mailingId" />
     <result column="mailing_aim_summary" jdbcType="VARCHAR" property="mailingAimSummary" />
-    <result column="begin_time" jdbcType="TIMESTAMP" property="beginTime" />
-    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="begin_time" jdbcType="VARCHAR" property="beginTime" />
+    <result column="end_time" jdbcType="VARCHAR" property="endTime" />
     <result column="operator" jdbcType="INTEGER" property="operator" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
@@ -32,8 +32,8 @@
   <update id="updateByPrimaryKey" parameterType="com.our.oa.entity.Mailing">
     update t_mailing
     set mailing_aim_summary = #{mailingAimSummary,jdbcType=VARCHAR},
-      begin_time = #{beginTime,jdbcType=TIMESTAMP},
-      end_time = #{endTime,jdbcType=TIMESTAMP},
+      begin_time = #{beginTime,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=VARCHAR},
       operator = #{operator,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},

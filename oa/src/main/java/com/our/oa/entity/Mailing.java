@@ -21,9 +21,9 @@ public class Mailing implements Serializable {
 
     private String mailingAimSummary;
 
-    private Date beginTime;
+    private String beginTime;
 
-    private Date endTime;
+    private String endTime;
 
     private Integer operator;
 
