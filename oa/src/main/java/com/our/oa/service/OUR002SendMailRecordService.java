@@ -8,4 +8,6 @@ import com.our.oa.dto.list.OUR002SendMailRecordInfoResponseDTO;
 public interface OUR002SendMailRecordService extends ListQueryService<OUR002SendMailRecordInfoResponseDTO, OUR002SendMailRecordInfoRequestDTO>{
 	
 	Page<OUR002MailRecordDetailResponseDTO> getMailRecordDetail(Integer mailingId); 
+	
+	boolean deleteSendMailRecord(String id);
 }

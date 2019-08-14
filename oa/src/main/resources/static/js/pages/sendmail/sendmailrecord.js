@@ -7,7 +7,7 @@ BF={
 	             colNames:["Id", "发送状态", "开始时间", "结束时间","发送人Email", "邮件标题"],
 	             colModel: [
 	                 { label: 'mailingId', name: 'mailingId', key: true,hidden:true, width: 75 },
-	                 { label: 'mailStats', name: 'mailStats', width: 60, formatter:'select',editoptions:{value:"0:正在发送;1:发送完成"}},
+	                 { label: 'mailStats', name: 'mailStats', width: 60, formatter:'select',editoptions:{value:"0:正在发送;1:发送完成;2:发送失败;"}},
 	                 { label: 'beginTime', name: 'beginTime', width: 180 },
 	                 { label: 'endTime', name: 'endTime', width: 180 },
 	                 { label: 'mailingAimSummary', name: 'mailingAimSummary', width: 200 },
@@ -38,7 +38,7 @@ BF={
 		window.location.href = ctxPath+"OUR002/detailed/"+rowId;
 	},
 	deleteData:function(){
-		var rows=$("#jqGrid").jqGrid('getGridParam','selarrrow');
+		var rows=$("#mailRecord").jqGrid('getGridParam','selarrrow');
 		
 		// 如果没有选择跳过
 		if(rows.length==0){
@@ -49,7 +49,7 @@ BF={
 		if(!confirm("您确认删除吗"))
 			return;
 		
-		var url="http://localhost:8080/customer/delete";
+		var url=ctxPath + "OUR002/delete";
 		var params={"rows":rows.toString()};
 		
 		$.post(url,params,function(result){})
@@ -57,7 +57,7 @@ BF={
 			   
 			})
 			.fail(function(jqXHR, textStatus, errorThrown ) {
-				alert("请求失败");
+				alert("删除发生异常");
 			})
 			.always(function() {
 				window.location.reload();

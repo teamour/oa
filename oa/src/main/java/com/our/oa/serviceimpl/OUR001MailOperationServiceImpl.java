@@ -91,7 +91,7 @@ public class OUR001MailOperationServiceImpl implements OUR001MailOperationServic
 			logger.info("send Mail To Customer Service end！");
 			return true;
 		} catch (Exception e) {
-			logger.info("send Mail To Customer Service happen Exception！");
+			logger.error("send Mail To Customer Service happen Exception！");
 			return false;
 		}
 	}

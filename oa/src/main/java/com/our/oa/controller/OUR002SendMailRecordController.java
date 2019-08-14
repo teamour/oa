@@ -58,5 +58,12 @@ public class OUR002SendMailRecordController {
 		logger.info("GET: mailrecord detail info end!");
 		return modelAndView;
 	}
-
+	
+	@PostMapping(value = "/delete" )
+	public ModelAndView deleteSendRecord(String rows) {
+		logger.info("delete send mail record start!");
+		service.deleteSendMailRecord(rows);
+		logger.info("delete send mail record end!");
+		return new ModelAndView("email/sendmailrecord");
+	}
 }

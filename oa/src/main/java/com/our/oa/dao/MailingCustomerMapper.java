@@ -14,4 +14,6 @@ public interface MailingCustomerMapper {
     List<MailingCustomer> selectAll();
     
     Page<OUR002MailRecordDetailResponseDTO> selectByMailingId(Integer mailing_id);
+    
+    int deleteByMailingId(Integer mailingId);
 }

@@ -26,4 +26,8 @@
     select mailing_id, customer_id, send_time, send_result, send_MailAddress, send_CustomerName,customer_name
     from t_mailing_customer  where mailing_id = #{mailing_id,jdbcType=INTEGER}
   </select>
+  <delete id="deleteByMailingId" parameterType="java.lang.Integer">
+    delete from t_mailing_customer
+    where mailing_id = #{mailingId,jdbcType=INTEGER}
+  </delete>
 </mapper>

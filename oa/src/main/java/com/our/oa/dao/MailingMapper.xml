@@ -16,7 +16,7 @@
     <result column="mailing_templete_content" jdbcType="LONGVARCHAR" property="mailingTempleteContent" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from oa..t_mailing
+    delete from t_mailing
     where mailing_id = #{mailingId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.our.oa.entity.Mailing">

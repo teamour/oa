@@ -4,15 +4,17 @@ BF={
 	             url:  ctxPath +'customer/list',
 	             mtype: "POST",
 	             datatype: "json",
-	             colNames:["Id", "公司名", "公司地址", "网址", "主要业务", "联系渠道", "营业担当"],
+	             colNames:["Id", "公司名", "资本金(円)","社员数","公司性质", "营业担当", "营业电话", "提案用邮箱1", "提案用担当1"],
 	             colModel: [
 	                 { label: 'customerId', name: 'customerId', key: true,hidden:true, width: 75 },
-	                 { label: 'customerName', name: 'customerName', width: 100 },
-	                 { label: 'address', name: 'address', width: 150 },
-	                 { label: 'website', name: 'website', width: 80 },
-	                 { label: 'mainBusiness', name: 'mainBusiness', width: 80 },
-	                 { label: 'contactChannel', name: 'contactChannel', width: 80 },
+	                 { label: 'customerName', name: 'customerName', width: 150 },
+	                 { label: 'registeredCapital', name: 'registeredCapital', width: 100 },
+	                 { label: 'employeeNumber', name: 'employeeNumber', width: 50 },
+	                 { label: 'companyType', name: 'companyType', width: 80, formatter:'select',editoptions:{value:"0:日本公司;1:中国公司;"}},
 	                 { label: 'salesStaff', name: 'salesStaff', width: 50 },
+	                 { label: 'salesTelephone', name: 'salesTelephone', width: 80 },
+	                 { label: 'proposal1Email', name: 'proposal1Email', width: 200 },
+	                 { label: 'proposal1Handler', name: 'proposal1Handler', width: 50 },
 	             ],
 	             width: "100%",
 	             height: "100%",
@@ -61,7 +63,7 @@ BF={
 		if(!confirm("您确认删除吗"))
 			return;
 		
-		var url="http://localhost:8080/customer/delete";
+		var url=ctxPath + "customer/delete";
 		var params={"rows":rows.toString()};
 		
 		$.post(url,params,function(result){})
