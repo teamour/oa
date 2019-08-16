@@ -43,9 +43,12 @@
 				<option value="Cooperationhaving">合作中</option>
 			</select>
 			<select name=sendMailType id="sendMailType">
-				<option value ="salesStaff">营业担当</option>
 				<option value ="proposalHandler">提案担当</option>
+				<option value ="salesStaff">营业担当</option>
 			</select>
+			<label class="label">发件人:</label>
+			 <select name=sendername id="sendername"></select>
+			 
 			<button id="submitA" name="submitA" type="button" onclick="SMCP.searchData();return false;"	class="layui-btn send_button" >选择客户</button>
 			<button id="submitE" name="submitE" type="button" class="layui-btn send_button" onclick="SMCP.saveData()">发送</button>
 		</div>
@@ -68,7 +71,7 @@
 <hr>
 <div class="div_table">
 	<table id="mailCustomer"></table>
-	<div id="mailCustomerPager"></div>
+	<!-- <div id="mailCustomerPager"></div> -->
 </div>
 	
 	<script type="text/javascript" th:inline="javascript">

@@ -20,6 +20,7 @@ import com.our.oa.dto.list.OUR002MailRecordDetailResponseDTO;
 import com.our.oa.dto.list.OUR002SendMailRecordInfoRequestDTO;
 import com.our.oa.dto.list.OUR002SendMailRecordInfoResponseDTO;
 import com.our.oa.service.OUR002SendMailRecordService;
+import com.our.oa.utils.CodeInterfaceUtils;
 
 @Service
 public class OUR002SendMailRecordServiceImpl implements OUR002SendMailRecordService{
@@ -44,7 +45,7 @@ public class OUR002SendMailRecordServiceImpl implements OUR002SendMailRecordServ
 	@Override
 	public boolean deleteSendMailRecord(String mailingIds) {
 		try {
-			List<Integer> mainingIdList = getListCustomerid(mailingIds);
+			List<Integer> mainingIdList = CodeInterfaceUtils.getInstance().getListid(mailingIds);
 			for (Integer integer : mainingIdList) {
 				deleteEverySendMailRecord(integer);
 			}
@@ -65,22 +66,5 @@ public class OUR002SendMailRecordServiceImpl implements OUR002SendMailRecordServ
 		int delMainingRes = mailingMapper.deleteByPrimaryKey(mailingId);
 		logger.info("delete t_mailing table result Code: " + delMainingRes);
 		return true;
-	}
-	
-	@SuppressWarnings("unused")
-	private List<Integer> getListCustomerid(String customerids) {
-		logger.info("split customerid add to List start!");
-		String[] cuStrings = customerids.split(",");
-		List<Integer> customerList = new ArrayList<>();
-		Pattern pattern = Pattern.compile("[0-9]*");
-		for (String string : cuStrings) {
-			Matcher isNum = pattern.matcher(string);
-			
-			if (!string.isEmpty() && isNum.matches()) {
-				customerList.add(Integer.valueOf(string));
-			}
-		}
-		logger.info("split customerid add to List end!");
-		return customerList;
 	}
 }

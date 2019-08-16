@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.github.pagehelper.Page;
@@ -26,9 +27,11 @@ import com.our.oa.controller.OUR002SendMailRecordController;
 import com.our.oa.dao.CustomerMapper;
 import com.our.oa.dao.MailingCustomerMapper;
 import com.our.oa.dao.MailingMapper;
+import com.our.oa.dao.SenderMapper;
 import com.our.oa.dto.list.OUR001SendMailCustomerInfoRequestDTO;
 import com.our.oa.dto.list.OUR001SendMailCustomerInfoResponseDTO;
 import com.our.oa.entity.Mailing;
+import com.our.oa.entity.Sender;
 import com.our.oa.service.CustomerService;
 import com.our.oa.service.OUR001MailOperationService;
 
@@ -45,8 +48,10 @@ public class OUR001MailOperationServiceImpl implements OUR001MailOperationServic
 	private MailingCustomerMapper mailingCustomerMapper;
 	@Autowired 
 	private MailingMapper mailingMapper;
-	@Value("${spring.mail.username}")
-    private String senderMailAddress;
+	@Autowired
+	private SenderMapper SenderMapper;
+	
+	private String senderMailAddress;
 	
 	@Override
 	public List<OUR001SendMailCustomerInfoResponseDTO> getSendMailCustomerInfoOUR001(
@@ -59,11 +64,14 @@ public class OUR001MailOperationServiceImpl implements OUR001MailOperationServic
 	public boolean sendMailToCustomerOUR001(Map<String, Object> requestDTO) {
 		try {
 			logger.info("send Mail To Customer Service start！");
-			//get filesPass
+			
+			//获取发件人的邮箱和密码
+			setSenderInfo((String)requestDTO.get("senderName"));
+			//获取附件名和路径
 			MultipartFile[] files = (MultipartFile[])requestDTO.get("emailfile");
 			String pathRoot = (String)requestDTO.get("pathRoot");
 			List<Map<String, Object>> filesPass = getFileNameAndParm(files,pathRoot);
-			//get customeridList
+			//获取List类型的customerId
 			List<Integer> customeridList = getListCustomerid((String)requestDTO.get("customerids"));
 			//装配线程内需要的数据
 			logger.info("send mail Address:" + senderMailAddress);
@@ -228,6 +236,16 @@ public class OUR001MailOperationServiceImpl implements OUR001MailOperationServic
 			logger.error("insert into Mailing table happened Exception!");
 			return -999;
 		}
+	}
+	
+	private void setSenderInfo(String senderId) {
+		Sender sender = SenderMapper.seleteBySenderId(Integer.valueOf(senderId));
+		String senderMail = sender.getSenderMailAddress();
+		String senderPass = sender.getSenderMailPassword();
 		
+		JavaMailSenderImpl javaMailSenderImpl = (JavaMailSenderImpl)javaMailSender;
+		javaMailSenderImpl.setUsername(senderMail);
+		javaMailSenderImpl.setPassword(senderPass);
+		this.senderMailAddress = senderMail;
 	}
 }

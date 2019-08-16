@@ -27,12 +27,6 @@ BF={
 	             jsonReader:{ repeatitems:false },
 	         });
 	},
-	searchData: function (){
-		$("#jqGrid").setGridParam({
-            page: 1,
-            postData: { customerName :$("#title").val() }
-        }).trigger('reloadGrid');
-   }
 }
     
 $(function () { 

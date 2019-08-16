@@ -55,6 +55,7 @@ public class OUR001MailOperationController {
 			@RequestParam("emailtitle") String emailtitle,
 			@RequestParam("emailcontext") String emailcontext,HttpServletRequest request,
 			@RequestParam("emailfile") MultipartFile[] files,
+			@RequestParam("sendername") String senderName,
 			ModelAndView modelAndView) throws IOException, FileUploadException {
 		
 		try {
@@ -67,6 +68,7 @@ public class OUR001MailOperationController {
 			data.put("customerids", customerids);
 			data.put("emailtitle", emailtitle);
 			data.put("emailcontext", emailcontext);
+			data.put("senderName", senderName);
 			boolean resule = service.sendMailToCustomerOUR001(data);
 			if (resule) {
 				modelAndView.setViewName("email/sendmailrecord");

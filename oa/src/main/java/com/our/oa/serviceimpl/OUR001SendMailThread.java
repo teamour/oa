@@ -152,8 +152,8 @@ public class OUR001SendMailThread implements Runnable{
 	
 	private String getMailTest(String customerName,  String handlerName) {
 		if (!customerName.isEmpty() && !handlerName.isEmpty()) {
-			String contentString = "["+customerName+"]"+ "\n"
-					+handlerName+"様"+"\n"
+			String contentString = customerName + "\n"
+					+handlerName+"　様"+"\n"
 					+sendParam.get("emailcontext");
 			return contentString;
 		} else {
