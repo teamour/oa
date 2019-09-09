@@ -27,6 +27,8 @@
 	<form class="form-empl" id="emailsend" method="POST"  action="/OUR001/sendemail" enctype="multipart/form-data">
 		<input type="hidden" name="customerids" id="customerids">
 		<div id="search">
+		<label class="label1">发件人:</label>
+			 <select name=sendername id="sendername"></select>
 			<label class="label2">发送对象:</label>
 			<select name="customer" id="customer">
   					<option value ="JPCustomer">日企</option>
@@ -46,8 +48,7 @@
 				<option value ="proposalHandler">提案担当</option>
 				<option value ="salesStaff">营业担当</option>
 			</select>
-			<label class="label">发件人:</label>
-			 <select name=sendername id="sendername"></select>
+			
 			 
 			<button id="submitA" name="submitA" type="button" onclick="SMCP.searchData();return false;"	class="layui-btn send_button" >选择客户</button>
 			<button id="submitE" name="submitE" type="button" class="layui-btn send_button" onclick="SMCP.saveData()">发送</button>

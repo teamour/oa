@@ -19,6 +19,12 @@
     padding-right: 1%;
     text-align: right;
 }
+.label1{
+    float: left;
+    width: 7%;
+    padding-right: 1%;
+    text-align: right;
+}
 
 .div_marin_top{
 	margin-top: 5px;
@@ -30,4 +36,10 @@
 }
 .div_table{
 	padding-left:8%;
+}
+#sendername{
+	float: left;
+    width: 7%;
+    padding-right: 1%;
+    text-align: right;
 }
